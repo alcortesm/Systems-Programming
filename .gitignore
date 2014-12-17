@@ -1,0 +1,14 @@
+*.swp
+*.swo
+out/
+*.aux
+*.dvi
+*.dvi.mk
+*.log
+*.pdf
+*.ps
+*.dvi_FAILED
+*.bak
+*.toc
+*.class
+*.out
