@@ -18,4 +18,4 @@ if [ "$?" != "0" ] ; then
     fi
 fi
 
-cp -r $dir/../out/* ~/mnt/www/asig/1415/ps-ging/
+cp -r $dir/../out/pub/* ~/mnt/www/asig/1415/ps-ging/
