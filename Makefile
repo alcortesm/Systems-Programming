@@ -11,4 +11,4 @@ clean:
 	$(MAKE) -C $(src) clean
 
 nuke: clean
-	rm -r $(out)
+	- rm -r $(out)
