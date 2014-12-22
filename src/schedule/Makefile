@@ -1,24 +1,30 @@
+name := schedule
+
 # build
-SRC := schedule.dia
-OUT := $(SRC:.dia=.pdf)
+src := $(name).dia
+out := $(name).pdf
 
 # install
-PUB_DIR := ../../out/pub
-PUB_FILES := $(addprefix $(PUB_DIR)/, $(OUT))
+pub_dir := ../../out/pub
+pub_files := $(pub_dir)/$(out)
 
-.PHONY : all build install clean
+.PHONY : all install install clean
 
-all : $(PUB_FILES)
+all : install
+
+install : build $(pub_files)
+
+build : $(out)
 
 clean :
-	- rm $(OUT)
+	- rm $(out)
 
-$(OUT) : $(SRC)
-	dia --export=$(OUT) --filter=pdf $(SRC)
+$(out) : $(src)
+	dia --export=$(out) --filter=pdf $(src)
 
-$(PUB_FILES) : $(PUB_DIR)/% : % | $(PUB_DIR)
+$(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
 
-$(OUT_DIR) :
-	mkdir -p $(OUT_DIR)
+$(pub_dir) :
+	mkdir -p $(pub_dir)
 
