@@ -14651,10 +14651,10 @@ time and/or room#</dia:string>
     </dia:object>
     <dia:object type="Standard - Text" version="1" id="O484">
       <dia:attribute name="obj_pos">
-        <dia:point val="31.6,21.2"/>
+        <dia:point val="32,21"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="31.6,20.605;34.1725,21.35"/>
+        <dia:rectangle val="32,20.7375;33.1375,21.0675"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
@@ -14665,10 +14665,10 @@ time and/or room#</dia:string>
             <dia:font family="sans" style="0" name="Helvetica"/>
           </dia:attribute>
           <dia:attribute name="height">
-            <dia:real val="0.80000000000000004"/>
+            <dia:real val="0.35277776420116425"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="31.6,21.2"/>
+            <dia:point val="32,21"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -14743,6 +14743,105 @@ time and/or room#</dia:string>
       <dia:connections>
         <dia:connection handle="0" to="O485" connection="8"/>
       </dia:connections>
+    </dia:object>
+    <dia:object type="Standard - Text" version="1" id="O487">
+      <dia:attribute name="obj_pos">
+        <dia:point val="38.5,0.5"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="34.8188,0.27;42.1812,0.73"/>
+      </dia:attribute>
+      <dia:attribute name="text">
+        <dia:composite type="text">
+          <dia:attribute name="string">
+            <dia:string>#Systems Programming (2014/2015)#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="font">
+            <dia:font family="monospace" style="0" name="Courier"/>
+          </dia:attribute>
+          <dia:attribute name="height">
+            <dia:real val="0.49388886988162994"/>
+          </dia:attribute>
+          <dia:attribute name="pos">
+            <dia:point val="38.5,0.6375"/>
+          </dia:attribute>
+          <dia:attribute name="color">
+            <dia:color val="#000000"/>
+          </dia:attribute>
+          <dia:attribute name="alignment">
+            <dia:enum val="1"/>
+          </dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="valign">
+        <dia:enum val="2"/>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="Standard - Text" version="1" id="O488">
+      <dia:attribute name="obj_pos">
+        <dia:point val="44.5,23.5"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="40.59,23.335;44.5,23.665"/>
+      </dia:attribute>
+      <dia:attribute name="text">
+        <dia:composite type="text">
+          <dia:attribute name="string">
+            <dia:string>#Last update: 2014-12-22#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="font">
+            <dia:font family="monospace" style="0" name="Courier"/>
+          </dia:attribute>
+          <dia:attribute name="height">
+            <dia:real val="0.35277776420116425"/>
+          </dia:attribute>
+          <dia:attribute name="pos">
+            <dia:point val="44.5,23.5975"/>
+          </dia:attribute>
+          <dia:attribute name="color">
+            <dia:color val="#000000"/>
+          </dia:attribute>
+          <dia:attribute name="alignment">
+            <dia:enum val="2"/>
+          </dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="valign">
+        <dia:enum val="2"/>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="Standard - Text" version="1" id="O489">
+      <dia:attribute name="obj_pos">
+        <dia:point val="44.5,23"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="42.12,22.835;44.5,23.165"/>
+      </dia:attribute>
+      <dia:attribute name="text">
+        <dia:composite type="text">
+          <dia:attribute name="string">
+            <dia:string>#Alberto Cortés#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="font">
+            <dia:font family="monospace" style="0" name="Courier"/>
+          </dia:attribute>
+          <dia:attribute name="height">
+            <dia:real val="0.35277776420116425"/>
+          </dia:attribute>
+          <dia:attribute name="pos">
+            <dia:point val="44.5,23.0975"/>
+          </dia:attribute>
+          <dia:attribute name="color">
+            <dia:color val="#000000"/>
+          </dia:attribute>
+          <dia:attribute name="alignment">
+            <dia:enum val="2"/>
+          </dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="valign">
+        <dia:enum val="2"/>
+      </dia:attribute>
     </dia:object>
   </dia:layer>
 </dia:diagram>
