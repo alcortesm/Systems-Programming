@@ -83,7 +83,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -145,7 +145,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -270,7 +270,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -332,7 +332,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -394,7 +394,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -522,7 +522,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -581,7 +581,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -643,7 +643,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -738,7 +738,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -833,7 +833,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -928,7 +928,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -990,7 +990,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -1052,7 +1052,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -1114,7 +1114,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -1176,7 +1176,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -1238,7 +1238,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2238,7 +2238,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2297,7 +2297,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2359,7 +2359,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2421,7 +2421,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2480,7 +2480,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2831,7 +2831,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2890,7 +2890,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2952,7 +2952,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3014,7 +3014,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3073,7 +3073,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3424,7 +3424,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3483,7 +3483,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3545,7 +3545,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3607,7 +3607,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -3666,7 +3666,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4020,7 +4020,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4079,7 +4079,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4141,7 +4141,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4203,7 +4203,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4262,7 +4262,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4613,7 +4613,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4672,7 +4672,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4734,7 +4734,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4796,7 +4796,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -4855,7 +4855,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5206,7 +5206,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5265,7 +5265,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5327,7 +5327,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5389,7 +5389,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5448,7 +5448,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5920,7 +5920,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -5982,7 +5982,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6044,7 +6044,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6106,7 +6106,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6168,7 +6168,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6230,7 +6230,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6292,7 +6292,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6354,7 +6354,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6416,7 +6416,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6478,7 +6478,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -6540,7 +6540,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7251,7 +7251,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7313,7 +7313,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7375,7 +7375,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7437,7 +7437,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7499,7 +7499,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7561,7 +7561,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7623,7 +7623,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7685,7 +7685,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7747,7 +7747,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7809,7 +7809,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -7871,7 +7871,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8582,7 +8582,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8644,7 +8644,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8706,7 +8706,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8768,7 +8768,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8830,7 +8830,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8892,7 +8892,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -8954,7 +8954,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -9016,7 +9016,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -9078,7 +9078,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -9140,7 +9140,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -9202,7 +9202,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -9913,7 +9913,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -9975,7 +9975,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10037,7 +10037,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10099,7 +10099,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10161,7 +10161,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10223,7 +10223,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10285,7 +10285,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10347,7 +10347,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10409,7 +10409,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10471,7 +10471,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -10533,7 +10533,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11250,7 +11250,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11312,7 +11312,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11374,7 +11374,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11436,7 +11436,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11498,7 +11498,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11560,7 +11560,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11622,7 +11622,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11684,7 +11684,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11746,7 +11746,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11808,7 +11808,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -11870,7 +11870,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12581,7 +12581,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12643,7 +12643,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12705,7 +12705,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12767,7 +12767,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12829,7 +12829,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12891,7 +12891,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -12953,7 +12953,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -13015,7 +13015,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#d8e5e5"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -13077,7 +13077,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#00ff00"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -13139,7 +13139,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#00ff00"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -13150,7 +13150,7 @@
         <dia:point val="42.2,17.2"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="41.265,17.0226;43.1432,17.3774"/>
+        <dia:rectangle val="41.265,17.035;43.135,17.365"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
@@ -13164,7 +13164,7 @@
             <dia:real val="0.35277776420116425"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="42.2,17.2934"/>
+            <dia:point val="42.2,17.2975"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -13201,7 +13201,7 @@
         <dia:real val="0.05000000074505806"/>
       </dia:attribute>
       <dia:attribute name="inner_color">
-        <dia:color val="#00ff00"/>
+        <dia:color val="#7f7f7f"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
