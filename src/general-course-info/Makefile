@@ -25,5 +25,5 @@ $(pub_dir) :
 
 clean :
 	- rm $(out)
-	- rm $(name).aux $(name).log texput.log
+	- rm $(name).aux $(name).log $(name).out texput.log
 
