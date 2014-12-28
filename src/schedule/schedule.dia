@@ -14749,12 +14749,12 @@ time and/or room#</dia:string>
         <dia:point val="38.5,0.5"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="34.8188,0.27;42.1812,0.73"/>
+        <dia:rectangle val="34.8188,0.25275;42.1927,0.74725"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#Systems Programming (2014/2015)#</dia:string>
+            <dia:string>#Systems Programming (2014-2015)#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="monospace" style="0" name="Courier"/>
@@ -14763,7 +14763,7 @@ time and/or room#</dia:string>
             <dia:real val="0.49388886988162994"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="38.5,0.6375"/>
+            <dia:point val="38.5,0.63175"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
