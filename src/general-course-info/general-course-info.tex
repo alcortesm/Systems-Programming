@@ -2,6 +2,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{nicefrac}
 
 \begin{document}
 
@@ -90,14 +92,15 @@ There won't be offical solutions to the self assessment exercises. Instead,
 there is a \textbf{\href{http://it.uc3m.es}{course forum}} where students can
 post questions about the self assessment exercises and discuss about them. This
 course forum is \emph{for students by students}. Teachers will not answer
-direct questions there or correct wrong answers by other students, although
+direct questions there or correct wrong answers from other students, although
 teachers will post a few lines from time to time just to spice up discussions
 or to make class-wide announcements.
 
 
 \section{Grading}
 
-The student's final grade will be computed as follows:
+The student's overall grade is a number between 0.0 (worst) and 10.0 (best),
+and will be computed as follows:
 
 \begin{itemize}
 
@@ -105,24 +108,55 @@ The student's final grade will be computed as follows:
 
   \item 25\% midterm exam 2
 
-  \item 50\% final exam
+  \item 50\% final exam.
 
 \end{itemize}
 
-A minimum final score of 5.0 out of 10.0 is required to pass this course. Also,
-a minimum score of 3.5 points out of 10.0 in the final exam is required to pass
+A minimum overall score of 5.0 is required to pass this course. Also,
+a minimum score of 3.5 in the final exam is required to pass
 the course with the continuous evaluation system.
 
-Please, note that these three exams are the only events affecting the student
-final grade. Class attendance, lab attendance, self-assesment exercises and lab
-exercises are not required to pass and they will not affect the student's final
-grade. Also there are no projects to submit in this course.
+A student can also be graded ``NP'' (\emph{no presentado} in Spanish) in case
+of student absence to the final exam.
+
+Here are some grading examples:
+
+\begin{center}
+  \begin{tabular}{|c|c|c||c|l|}
+    \hline
+    \multicolumn{3}{|c||}{Exams grades} & \multicolumn{2}{|c|}{Overall grade} \\
+    \hline
+    Midterm 1 & Midterm 2 & Final & Overall & Comments\\
+    \hline
+    $x$  & $y$  & NP   & NP   & \\
+    NP   & NP   & $z$  & $\nicefrac{z}{2}$  & pass $\iff z = 10$ \\
+    \hline
+    0.0  & 0.0  & 0.0  & 0.0  & fail \\
+    5.0  & 5.0  & 5.0  & 5.0  & pass \\
+    10.0 & 10.0 & 10.0 & 10.0 & pass \\
+    \hline
+    0.0  & 0.0  & 10.0 & 5.0  & pass \\
+    0.0  & 0.0  & 9.9  & 5.0  & pass (owing to round-off error)\\
+    0.0  & 0.0  & 9.8  & 4.9  & fail \\
+    \hline
+    7.2  & 8.5  & 3.5  & 5.7  & pass \\
+    7.2  & 8.5  & 3.4  & 3.4  & fail (final exam $< 3.5$) \\
+    \hline
+    NP   & 10.0 & 5.0  & 5.0  & pass (NP $\rightarrow$ 0.0) \\
+    NP   & 9.7  & 5.0  & 5.0  & pass (NP $\rightarrow$ 0.0, round-off error) \\
+    NP   & 9.6  & 5.0  & 4.9  & fail (NP $\rightarrow$ 0.0) \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Please, note that these three exams are the only events affecting a student's
+overall grade. Class and lab attendance or answers to exercises
+are not required to pass and they will not affect the student's overall grade.
+Also there are no projects to submit in this course.
 
 \subsection{Exams}
 
-All exams will be closed-books and closed-electronics. They will be graded from
-$0.0$ (worst score) to $10.0$ (best score) or with an ``NP'' (\emph{no
-presentado} in Spanish, in case of student absence). Each exam will have two
+All exams will be closed-books and closed-electronics. Each exam will have two
 parts:
 
 \begin{itemize}
@@ -138,7 +172,9 @@ parts:
 \section{Attendance and Absences}
 
 Class and lab attendance is not required to pass this course, nor will it be
-taken into account for the final grade. Exams attendance is required in order to avoid getting an score of ``NP''.
+taken into account for the overall grade. Exams attendance is required in order
+to avoid getting an score of ``NP'' in that exam and attendance to the final
+exam is required to avoid getting an overall score of ``NP''.
 
 \section{Regulation, Ethics and Student Behaviour}
 
@@ -159,10 +195,10 @@ Likewise, the student is responsible for guarding their evaluation assets in
 order to avoid such fraudulent actions from other peers.
 
 Any behaviour breaking these rules will be penalised and brought to the
-attention of the relevant bodies, and they should take appropriate action
-in accordance with current regulations. Where it is established that a student
-has committed a fraud situation that impedes the exercise by the teachers, from
-the power of knowledge verification, the calification will be fail (0.0).
+attention of the relevant bodies, and they should take appropriate action in
+accordance with current regulations. Where it is established that a student has
+committed a fraud situation that impedes the exercise by the teachers, from the
+power of knowledge verification, the calification will be \emph{fail} (0.0).
 
 
 \end{document}
