@@ -1,12 +1,12 @@
-name := recap
-imgs := img/world-max-?/world-max-?.pdf img/world-data/world-data.pdf
+name := s01-lecture-notes
+imgs := $(wildcard img/*/*.pdf)
 
 # build
 src := $(name).tex
 out := $(name).pdf
 
 # install
-pub_dir := ../../../../out/pub/units/recap
+pub_dir := ../../../../../out/teacher/
 pub_files := $(pub_dir)/$(out)
 
 .PHONY: all install build clean imgs
