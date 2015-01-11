@@ -129,15 +129,13 @@ Here are some grading examples:
     Midterm 1 & Midterm 2 & Final & Overall & Comments\\
     \hline
     $x$  & $y$  & NP   & NP   & \\
-    NP   & NP   & $z$  & $\nicefrac{z}{2}$  & pass $\iff z = 10$ \\
+    NP   & NP   & $z$  & $\nicefrac{z}{2}$  & pass $\iff z >= 9.9$ (round-off error)\\
     \hline
     0.0  & 0.0  & 0.0  & 0.0  & fail \\
     5.0  & 5.0  & 5.0  & 5.0  & pass \\
     10.0 & 10.0 & 10.0 & 10.0 & pass \\
     \hline
-    0.0  & 0.0  & 10.0 & 5.0  & pass \\
-    0.0  & 0.0  & 9.9  & 5.0  & pass (owing to round-off error)\\
-    0.0  & 0.0  & 9.8  & 4.9  & fail \\
+    0.0  & 0.0  & $z$ & $\nicefrac{z}{2}$ & pass $\iff z >= 9.9$ (round-off error)\\
     \hline
     7.2  & 8.5  & 3.5  & 5.7  & pass \\
     7.2  & 8.5  & 3.4  & 3.4  & fail (final exam $< 3.5$) \\
