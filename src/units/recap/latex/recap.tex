@@ -1,0 +1,157 @@
+\documentclass[8pt, a4paper, oneside]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage[includehead, includefoot, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf[HL]{}
+\fancyhf[HC]{Unit 1 - Recap}
+\fancyhf[HR]{}
+\fancyhf[FL]{}
+\fancyhf[FC]{\thepage}
+\fancyhf[FR]{}
+
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{fancyvrb}
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}
+{frame=single, commandchars=\\\{\}}
+
+\usepackage{enumitem}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+\newcommand{\realtitle}{Unit 1 - Recap}
+
+\begin{document}
+
+\title{Systems Programming\\\realtitle\\Lecture Notes}
+\author{Alberto Cortés}
+\date{\today}
+\maketitle
+
+\section{What is ``Programming''}
+
+\begin{multicols}{2}
+  \begin{Verbatim}
+"The process of \underline{writting} computer programs."
+
+ - \underline{Think} what you want to write about
+ - Use \underline{proper} English/Java
+ - \underline{Proofread} what you wrote
+  \end{Verbatim}
+  \columnbreak
+
+  So, programming is basically writting,
+  like when you write a book, a novel or an essay.
+
+  When you write a text you need to:
+  \begin{itemize}
+    \item Think what you want to write
+    \item Write it on proper English/Java
+    \item Proof read what you wrote
+  \end{itemize}
+
+  Knowing proper English (or Java) is important for writting, but the thinking
+  part and the proofreading is also essential.
+
+  A 10 year old child already know how to write in proper English, but would
+  not write very good books, because he don't know yet how to think or how to
+  proofread.
+
+  You already know how to write proper Java from the first term, in this second
+  term you will learn how to think about what you want to programm and how to
+  test it.
+\end{multicols}
+
+\subsection{Programming in high level languages}
+
+\begin{multicols}{2}
+\begin{Verbatim}
+"Find a solution to a real world problem by \underline{simulating} it
+ inside the computer memory."
+\end{Verbatim}
+  \columnbreak
+
+  A common definition for programming in high level computer languages (like
+  Java) is: Find a solution to a real world problem by simulating it inside
+  your computer memory.
+
+  In this definition, the ``simulating'' part is the important part. Also you
+  will need to know a little bit about the computer memory for programming and
+  how the world looks like to Java.
+
+\end{multicols}
+
+\subsection{Representing Data Inside the Computer Memory}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{img/world-data/world-data.pdf}
+\end{figure}
+
+\subsection{A simple real world problem}
+
+\begin{Verbatim}
+Find the maximum of two integers.  -->   $ java Max 3 7
+                                         7
+                                         $ java Max -2 -6
+                                         -2
+                                         $ java Max 237 237
+                                         237
+\end{Verbatim}
+\newpage
+\begin{multicols}{2}
+\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/Max.java}
+\columnbreak
+
+\begin{itemize}
+
+  \item Line 1 is a comment (this programm is incomplete because there is no
+    error checking code in it.
+
+  \item Lines 2 to 19 is the declaration of the class.
+
+  \item Lines 3 to 10 are the definition of the main method, the entry point of
+    the program.
+
+  \item Lines 12 to 18 are the definition of another method.
+
+  \item Lines 4 and 5 are for processing the input arguments into something
+    useful (Strings to ints)
+
+  \item Line 9 shows the output to the user.
+
+  \item Line 7 is the one that actually does the work (finding the max).
+
+\end{itemize}
+
+\end{multicols}
+
+\section{The World According to Java}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{img/world-max-1/world-max-1.pdf}
+\end{figure}
+\begin{figure}[!ht]
+  \centering
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics{img/world-max-2/world-max-2.pdf}
+  \end{minipage}%
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics{img/world-max-3/world-max-3.pdf}
+  \end{minipage}
+\end{figure}
+
+
+\section{Primitive Data Types}
+
+\end{document}
