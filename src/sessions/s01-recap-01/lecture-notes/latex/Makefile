@@ -6,7 +6,7 @@ src := $(name).tex
 out := $(name).pdf
 
 # install
-pub_dir := ../../../../../out/teacher/
+pub_dir := ../../../../../out/teacher
 pub_files := $(pub_dir)/$(out)
 
 .PHONY: all install build clean imgs
