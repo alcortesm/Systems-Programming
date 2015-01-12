@@ -1,4 +1,4 @@
-subdirs := $(shell find $(CURDIR) -mindepth 1 -maxdepth 1 -type d | grep -v './sty')
+subdirs := $(shell find $(CURDIR) -mindepth 1 -maxdepth 1 -type d)
 
 .PHONY: all clean $(subdirs)
 
