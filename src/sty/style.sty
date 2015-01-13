@@ -1,0 +1,125 @@
+\NeedsTeXFormat{LaTeX2e}[2011/06/27]
+\ProvidesPackage{style}[2014/07/08 Alcortes style for Systems Programming]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[yyyymmdd]{datetime}
+\RequirePackage{mdframed}
+\RequirePackage{parskip} %% noindent on all the lines
+\RequirePackage{fancyvrb}
+\RequirePackage{comment}
+\RequirePackage{titlesec}
+\RequirePackage{hyperref}
+
+\newif\ifopt@nooption\opt@nooptiontrue
+\newif\ifopt@notes\opt@notesfalse
+\newif\ifopt@handout\opt@handoutfalse
+\newif\ifopt@assessment\opt@assessmentfalse
+
+\DeclareOption{notes}{%
+    \opt@notestrue%
+    \opt@nooptionfalse%
+}
+\DeclareOption{handout}{%
+    \opt@handouttrue%
+    \opt@nooptionfalse%
+}
+\DeclareOption{assessment}{%
+    \opt@assessmenttrue%
+    \opt@nooptionfalse%
+}
+
+\ProcessOptions\relax
+
+%% checks if no options are used
+\ifopt@nooption
+    \PackageError{style}{%
+        The style package requires one option
+    }{%
+        Avaliable options are:\MessageBreak
+        \space \space note, handout or assessment
+    }
+\fi
+
+%% prints dates using '-' instead of '/'
+\renewcommand{\dateseparator}{-}
+
+%% blackboard new environment
+\DefineVerbatimEnvironment{blackboard}{Verbatim}{frame=single, %
+  numbers=left, commandchars=\\\{\}}
+\newcommand{\blackboardinput}[2]{%
+    \vspace{0.5cm}\VerbatimInput[frame=single, numbers=left, %
+    label=#2, commandchars=\\\{\}]{#1}}
+
+%% reduce page margins
+\usepackage[inner=2cm, outer=1cm, top=2cm, bottom=2cm]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  ASSESSMENT STUFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifopt@assessment
+    %% makes sections look like exercises
+    \titleformat{\section}
+     [hang]
+     {\titlerule
+         \vspace{.8ex}%
+         \Large
+         \itshape
+         \bfseries}
+     {Exercise 1.\thesection}
+     {0.5em}
+     {}
+     {}
+
+    %% makes subsections look like exercise's parts
+    \titleformat{\subsection}
+     [hang]
+     {\itshape\bfseries}
+     {Part \Alph{subsection}}
+     {0.5em}
+     {}
+     {}
+
+     %% ugly hack to always show a solution, no matter the
+     %% value of \withsolutions
+     \newenvironment{spoiler}
+        {%
+          \VerbatimEnvironment%
+            \vspace{0.2cm}
+          \color{red}
+          \begin{Verbatim}[frame=single, numbers=left, %
+            label=Spoiler, commandchars=\\\{\}]%
+        }{%
+          \end{Verbatim}
+          \color{black}%
+        }
+    \newcommand{\spoilerinput}[1]{%
+      \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
+      numbers=left, label=Spoiler, commandchars=\\\{\}]{#1}}
+
+
+    %% solutions are in red
+    %% solutions will be invisible unless the command \withsolutions is defined
+    \ifdefined\withsolutions
+        \newenvironment{solution}
+            {%
+                \VerbatimEnvironment%
+                \vspace{0.2cm}
+                \color{red}
+                \begin{Verbatim}[frame=single, numbers=left, %
+                  label=Solution, commandchars=\\\{\}]%
+            }{%
+                \end{Verbatim}
+                \color{black}%
+            }
+      \newcommand{\solutioninput}[1]{%
+        \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
+        numbers=left, label=Solution, commandchars=\\\{\}]{#1}}
+    \else
+        \excludecomment{solution}
+        \newcommand{\solutioninput}[1]{}
+    \fi
+
+\fi %% assessment
+
+\endinput
