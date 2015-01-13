@@ -46,10 +46,10 @@
 
 %% blackboard new environment
 \DefineVerbatimEnvironment{blackboard}{Verbatim}{frame=single, %
-  numbers=left, commandchars=\\\{\}}
+  numbers=left}
 \newcommand{\blackboardinput}[2]{%
     \vspace{0.5cm}\VerbatimInput[frame=single, numbers=left, %
-    label=#2, commandchars=\\\{\}]{#1}}
+    label=#2]{#1}}
 
 %% reduce page margins
 \usepackage[inner=2cm, outer=1cm, top=2cm, bottom=2cm]{geometry}
@@ -88,14 +88,14 @@
             \vspace{0.2cm}
           \color{red}
           \begin{Verbatim}[frame=single, numbers=left, %
-            label=Spoiler, commandchars=\\\{\}]%
+            label=Spoiler]%
         }{%
           \end{Verbatim}
           \color{black}%
         }
     \newcommand{\spoilerinput}[1]{%
       \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
-      numbers=left, label=Spoiler, commandchars=\\\{\}]{#1}}
+      numbers=left, label=Spoiler]{#1}}
 
 
     %% solutions are in red
@@ -107,14 +107,14 @@
                 \vspace{0.2cm}
                 \color{red}
                 \begin{Verbatim}[frame=single, numbers=left, %
-                  label=Solution, commandchars=\\\{\}]%
+                  label=Solution]%
             }{%
                 \end{Verbatim}
                 \color{black}%
             }
       \newcommand{\solutioninput}[1]{%
         \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
-        numbers=left, label=Solution, commandchars=\\\{\}]{#1}}
+        numbers=left, label=Solution]{#1}}
     \else
         \excludecomment{solution}
         \newcommand{\solutioninput}[1]{}
