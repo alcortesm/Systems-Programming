@@ -1,0 +1,206 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[handout]{style}
+
+\newcommand{\realtitle}{Session 01 - Required Reading 1}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Working with Linux in the Labs
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{0.5cm}
+
+\tableofcontents
+\vspace{1cm}
+
+We will be using Linux in this course as the main programming environment.
+Most student use Linux dailly, in their phones and tablets, but few have prior
+experience on using Linux as a programming environment.
+
+This document is a short guide to learn the basics, it contains a few short
+explanations and some interesting links to external resources.
+
+Disclaimer: The authors of the resources linked in this document are not
+involved with this course in any way. As you are first year students, with few
+online experience, please don't bother them with your questions, ask the
+course teaching staff instead.
+
+\section{Connecting to your Linux account}
+
+A Linux account should have been created for you when you first got into the
+University on your first term.
+
+The authentication credentials to log into your Linux account are the same as
+for your Windows account.
+
+There are two ways to login:
+
+\begin{enumerate}
+
+  \item \textbf{Connecting to your Linux account at the lab}:
+
+  If you are seated at a computer in the labs you can log into your Linux
+  account using the following procedure:
+
+  \begin{enumerate}
+
+    \item Boot into Linux: all computers in the labs are configured to
+      dual-boot into Linux or Windows. If the computer is currently runing
+      Windows, just reboot it and choose Linux at the boot menu.
+
+    \item Log into your account: after the boot process has completed, you
+      will be asked for a login name and a password. Enter the same login and
+      password as for your student Windows account.
+
+    \item Logging out: Once you have finished working, remember to log out from
+      your account using a graphical menu you will find in your desktop manager
+      (details on how to do this depend on the actual desktop manager you are
+      running). There is no need to reboot the computer back into Windows
+      before you leave.
+
+  \end{enumerate}
+
+  \item \textbf{Connecting to your Linux account from outside the lab}:
+
+  You can work on your Linux account remotely, connecting from home, a
+  cafeteria, a library, etc.
+
+  You will find remote connections useful while working on this course on
+  weekends, outside of class hours, etc.
+
+  To connect to your Linux account remotely follow this procedure:
+
+  \begin{enumerate}
+
+    \item Install an SSH client for your Operating System. You can find more
+      information about SSH
+      \href{http://en.wikipedia.org/wiki/Secure_Shell}{here}.
+
+      If you are running Windows, I recommend using
+      \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html}{PuTTY}.
+
+      If you are using Linux or Mac, there is a great chance you
+      already have an SSH client installed in your computer, the program is
+      called ``\texttt{ssh}''. If this program is not already installed, just
+      install it.
+
+    \item Connect to the SSH server of the University: Use your SSH client of
+      choice to connect to the SSH server of the University at
+      ``\texttt{linux.aig.uc3m.es}'' (port is 23).
+
+      Make sure the fingerprint of the server you are connecting to is:
+
+      \begin{center}
+        \texttt{e9:98:4d:37:18:07:53:eb:33:3b:06:8d:c5:40:c2:f7}
+      \end{center}
+
+      otherwise drop your connection inmediately, as you are probably suffering
+      a
+      \href{http://en.wikipedia.org/wiki/Man-in-the-middle_attackman-in-the-middle}
+      man-in-the-middle attack.
+
+      You can personally verify the fingerprint of the University SSH server at
+      room 1.1.J07 during working hours, if you think this document has been
+      compromised as part of the attack.
+
+      On a successful connection attemp you will be
+      welcomed with a message from the Linux admins, like in this example:
+
+\begin{blackboard}
+alcortes@bat:~\$ ssh linux.aig.uc3m.es
+alcortes@linux.aig.uc3m.es's password: 
+
+       Bienvenido a Aulas Informáticas Generales
+          Universidad Carlos III de Madrid
+
+          Puede contactar con nosotros en:
+     
+                gsai@aig.uc3m.es
+
+Last login: Tue Jan 13 13:53:33 2015 from bat.it.uc3m.es
+alcortes@linux:~\$
+\end{blackboard}
+
+    \item Logging out: Once you have finished working, you can log out from
+      your account by exitting from your login shell with the ``\texttt{exit}''
+      command.
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+You can find more information about your Linux account at
+\href{http://www.aig.uc3m.es/index.php?option=com_content&task=view&id=28&Itemid=49}{Aulas
+Informáticas - UC3M - Linux} (sorry, only in Spanish).
+
+\section{Linux as a Programming Environment}
+
+The hardest part of learning to use Linux as a programming environment is
+learning how to use the Command Line.
+
+You will find a nice introducction to the Linux command line
+\href{http://linuxcommand.org/lc3_learning_the_shell.php#contents}{here}.
+
+There is also a very good book about this topic: "The Unix Programming
+Environment," by Brian W. Kernighan and Rob Pike, published by Prentice-Hall.
+Unix and Linux are two different operating systems, altough so similar on how
+they work as a programming environment that this book is very useful for
+learning both of them.
+
+
+\section{Working with Java in Linux}
+
+To work with Java in Linux you will need at least three kind of programs:
+
+\begin{enumerate}
+
+  \item \textbf{A good text editor}: You will spend most of your time in this
+    course writting programs, so you will need a good (programming) text
+    editor.
+
+    I recommend you to learn either Vim or Emacs. They are both very powerful
+    programming text editors, well documented and widely used by programmers
+    everywhere. They are also already installed in the Linux University
+    servers.
+
+    You can learn how to use the Vim editor by reading this
+    \href{ftp://ftp.vim.org/pub/vim/doc/book/vimbook-OPL.pdf}{guide} or by
+    using the command \texttt{vimtutor}.  You can learn to use the Emacs editor
+    by reading this \href{http://www.gnu.org/software/emacs/tour/}{guide}.
+
+    In case you don't want to learn Vim or Emacs, you can use any other text
+    editor you like, at your own risk.
+
+    We will not be using IDEs (like Eclipse, for example) in this course as
+    they will slow your learning process and has been responsible for 50\% of
+    student fails in the past (this a personal appreciation).
+
+  \item \textbf{A Java Compiler}: There is already a Java compiler installed in
+    the Linux servers called \texttt{javac}.
+
+    \begin{blackboard}
+alcortes@linux:~\$ javac -version
+javac 1.7.0_13
+\end{blackboard}
+
+  \item \textbf{A Java Virtual Machine}: There is a Java Virtual Machine
+    installed in the Linux servers called \texttt{java}.
+
+    \begin{blackboard}
+alcortes@linux:~\$ java -version
+java version "1.7.0_13"
+Java(TM) SE Runtime Environment (build 1.7.0_13-b20)
+Java HotSpot(TM) Client VM (build 23.7-b01, mixed mode)
+\end{blackboard}
+
+
+\end{enumerate}
+
+\end{document}
