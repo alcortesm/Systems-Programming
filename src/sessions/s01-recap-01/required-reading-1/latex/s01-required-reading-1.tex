@@ -20,11 +20,12 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \vspace{1cm}
 
 We will be using Linux in this course as the main programming environment.
-Most student use Linux dailly, in their phones and tablets, but few have prior
-experience on using Linux as a programming environment.
+Most students already use Linux dailly, in their phones and tablets, but few
+have prior experience on using Linux as a programming environment.
 
-This document is a short guide to learn the basics, it contains a few short
-explanations and some interesting links to external resources.
+This document contains a few short explanations and some links to external
+resources that will help the student to learn the basics about using Linux as a
+programming environment.
 
 Disclaimer: The authors of the resources linked in this document are not
 involved with this course in any way. As you are first year students, with few
@@ -34,52 +35,56 @@ course teaching staff instead.
 \section{Connecting to your Linux account}
 
 A Linux account should have been created for you when you first got into the
-University on your first term.
-
-The authentication credentials to log into your Linux account are the same as
-for your Windows account.
+UC3M on your first term.  The authentication credentials to log into your Linux
+account are the same as for your Windows account.
 
 There are two ways to login:
 
-\begin{enumerate}
-
-  \item \textbf{Connecting to your Linux account at the lab}:
+\subsection{Connecting to your Linux account at the lab}
 
   If you are seated at a computer in the labs you can log into your Linux
   account using the following procedure:
 
   \begin{enumerate}
 
-    \item Boot into Linux: all computers in the labs are configured to
+    \item Boot into Linux
+
+      All computers in the labs are configured to
       dual-boot into Linux or Windows. If the computer is currently runing
       Windows, just reboot it and choose Linux at the boot menu.
 
-    \item Log into your account: after the boot process has completed, you
+    \item Log into your account
+
+      After the boot process has completed, you
       will be asked for a login name and a password. Enter the same login and
       password as for your student Windows account.
 
-    \item Logging out: Once you have finished working, remember to log out from
+    \item Logging out
+
+      Once you have finished working, remember to log out from
       your account using a graphical menu you will find in your desktop manager
       (details on how to do this depend on the actual desktop manager you are
-      running). There is no need to reboot the computer back into Windows
-      before you leave.
+      running).
+
+      There is no need to reboot the computer back into Windows
+      before you leave, as most computers in the lab will be happier if you
+      leave them running Linux (this is a personal appreciation).
 
   \end{enumerate}
 
-  \item \textbf{Connecting to your Linux account from outside the lab}:
+\subsection{Connecting to your Linux account from outside the lab}
 
   You can work on your Linux account remotely, connecting from home, a
-  cafeteria, a library, etc.
-
-  You will find remote connections useful while working on this course on
-  weekends, outside of class hours, etc.
+  cafeteria, a library, etc.  You will find remote connections useful while
+  working on this course on weekends, outside of class hours, etc.
 
   To connect to your Linux account remotely follow this procedure:
 
   \begin{enumerate}
 
-    \item Install an SSH client for your Operating System. You can find more
-      information about SSH
+    \item Install an SSH client for your Operating System.
+
+      You can find more information about SSH
       \href{http://en.wikipedia.org/wiki/Secure_Shell}{here}.
 
       If you are running Windows, I recommend using
@@ -90,9 +95,10 @@ There are two ways to login:
       called ``\texttt{ssh}''. If this program is not already installed, just
       install it.
 
-    \item Connect to the SSH server of the University: Use your SSH client of
-      choice to connect to the SSH server of the University at
-      ``\texttt{linux.aig.uc3m.es}'' (port is 23).
+    \item Connect to the SSH server of the UC3M
+
+      Use your SSH client of choice to connect to the SSH server of the UC3M at
+      ``\texttt{linux.aig.uc3m.es}'' (port is 22).
 
       Make sure the fingerprint of the server you are connecting to is:
 
@@ -105,9 +111,9 @@ There are two ways to login:
       \href{http://en.wikipedia.org/wiki/Man-in-the-middle_attackman-in-the-middle}
       man-in-the-middle attack.
 
-      You can personally verify the fingerprint of the University SSH server at
-      room 1.1.J07 during working hours, if you think this document has been
-      compromised as part of the attack.
+      You can personally verify the fingerprint of the UC3M's SSH server at
+      room 1.1.J07 during working hours, if you think this document may has
+      been compromised as part of the attack.
 
       On a successful connection attemp you will be
       welcomed with a message from the Linux admins, like in this example:
@@ -127,18 +133,53 @@ Last login: Tue Jan 13 13:53:33 2015 from bat.it.uc3m.es
 alcortes@linux:~$
 \end{blackboard}
 
-    \item Logging out: Once you have finished working, you can log out from
+    \item Logging out
+
+      Once you have finished working, you can log out from
       your account by exitting from your login shell with the ``\texttt{exit}''
       command.
 
   \end{enumerate}
 
-\end{enumerate}
-
-
 You can find more information about your Linux account at
 \href{http://www.aig.uc3m.es/index.php?option=com_content&task=view&id=28&Itemid=49}{Aulas
 Informáticas - UC3M - Linux} (sorry, only in Spanish).
+
+
+\section{Configuring your Linux Account}
+
+Thankfully pretty much everything is already configured and ready to go.
+Except for one very important detail: UC3M's Linux accounts are configured
+so that most programs will use Spanish instead of English.
+
+Even if you can read/write Spanish just fine, \textbf{this is still a mayor
+issue}, because when a program outputs an error or some other important
+information in Spanish it can be very hard to google it.
+
+Therefore, to be able to debug your Java code quickly or fix any other issues
+with your Linux account you should configure it to talk English instead of
+Spanish. Here is how to do it:
+
+\subsection{Configuring Locales to English}
+
+To configure your Linux account to use English in all its programs, input the
+following commands into a terminal:
+
+\begin{blackboard}
+alcortes@linux:~$ export LANG=en_US.utf8
+alcortes@linux:~$ echo 'LANG=en_US.utf8' >> ~/.profile
+\end{blackboard}
+
+The command at line 1 tells your current ongoing session to use English. The
+command at line 2 modifies an init script file to make the same change to all
+your future sessions.
+
+Run those two commands once, preferably, the first time you log into your
+account, and you will never have to worry again about programs using Spanish
+instead of English.
+
+The teachers will not answer students questions if they don't have their
+account correctly configured to use English.
 
 \section{Linux as a Programming Environment}
 
@@ -167,7 +208,7 @@ To work with Java in Linux you will need at least three kind of programs:
 
     I recommend you to learn either Vim or Emacs. They are both very powerful
     programming text editors, well documented and widely used by programmers
-    everywhere. They are also already installed in the Linux University
+    everywhere. They are also already installed in the Linux UC3M's
     servers.
 
     You can learn how to use the Vim editor by reading this
@@ -176,11 +217,15 @@ To work with Java in Linux you will need at least three kind of programs:
     by reading this \href{http://www.gnu.org/software/emacs/tour/}{guide}.
 
     In case you don't want to learn Vim or Emacs, you can use any other text
-    editor you like, at your own risk.
+    editor, at your own risk.
 
     We will not be using IDEs (like Eclipse, for example) in this course as
     they will slow your learning process and has been responsible for 50\% of
-    student fails in the past (this a personal appreciation).
+    student fails in the past (this is another personal appreciation).
+
+    The teachers will not answer students questions if they use Eclipse or
+    other IDEs, as often, the student problem turn out to be with the IDE, not
+    with Java.
 
   \item \textbf{A Java Compiler}: There is already a Java compiler installed in
     the Linux servers called \texttt{javac}.
