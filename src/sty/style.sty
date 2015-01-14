@@ -123,3 +123,17 @@
 \fi %% assessment
 
 \endinput
+
+%% VIM commands to fix standard tex.vim syntax highlighting with this style:
+%% (to be added on .vim/after/syntax/tex/UC3M-style.vim, for example)
+%%
+%% " makes vim skip syntax highlighting inside an environment
+%% syn region texZone start="\\begin{blackboard}" end="\\end{blackboard}\|%stopzone\>"
+%% syn region texZone start="\\begin{spoiler}" end="\\end{blackboard}\|%stopzone\>"
+%% syn region texZone start="\\begin{solution}" end="\\end{blackboard}\|%stopzone\>"
+%% 
+%% " makes vim skip syntax highlighting on input commands
+%% syn match texInputFile "\\blackboardinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
+%% syn match texInputFile "\\spoilerinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
+%% syn match texInputFile "\\solutioninput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
+
