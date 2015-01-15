@@ -10,6 +10,7 @@
 \RequirePackage{comment}
 \RequirePackage{titlesec}
 \RequirePackage{hyperref}
+\RequirePackage{framed}
 
 \newif\ifopt@nooption\opt@nooptiontrue
 \newif\ifopt@notes\opt@notesfalse
@@ -103,20 +104,19 @@
     \ifdefined\withsolutions
         \newenvironment{solution}
             {%
-                \VerbatimEnvironment%
                 \vspace{0.2cm}
                 \color{red}
-                \begin{Verbatim}[frame=single, numbers=left, %
-                  label=Solution]%
+                \begin{framed}%
             }{%
-                \end{Verbatim}
+                \end{framed}
                 \color{black}%
             }
       \newcommand{\solutioninput}[1]{%
         \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
-        numbers=left, label=Solution]{#1}}
+        numbers=left]{#1}}
     \else
         \excludecomment{solution}
+        \excludecomment{solutionblackboard}
         \newcommand{\solutioninput}[1]{}
     \fi
 
@@ -129,11 +129,13 @@
 %%
 %% " makes vim skip syntax highlighting inside an environment
 %% syn region texZone start="\\begin{blackboard}" end="\\end{blackboard}\|%stopzone\>"
-%% syn region texZone start="\\begin{spoiler}" end="\\end{blackboard}\|%stopzone\>"
-%% syn region texZone start="\\begin{solution}" end="\\end{blackboard}\|%stopzone\>"
+%% syn region texZone start="\\begin{spoiler}" end="\\end{spoiler}\|%stopzone\>"
+%% syn region texZone start="\\begin{solution}" end="\\end{solution}\|%stopzone\>"
 %% 
 %% " makes vim skip syntax highlighting on input commands
 %% syn match texInputFile "\\blackboardinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
 %% syn match texInputFile "\\spoilerinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
 %% syn match texInputFile "\\solutioninput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
-
+%% 
+%% " makes vim skip syntax highlighting on commands (including options)
+%% " syn match texZone "\\foo\s*\(\[.*\]\)\={.\{-}}"
