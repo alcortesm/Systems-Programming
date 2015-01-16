@@ -45,12 +45,31 @@
 %% prints dates using '-' instead of '/'
 \renewcommand{\dateseparator}{-}
 
-%% blackboard new environment
-\DefineVerbatimEnvironment{blackboard}{Verbatim}{frame=single, %
-  numbers=left}
-\newcommand{\blackboardinput}[2]{%
-    \vspace{0.5cm}\VerbatimInput[frame=single, numbers=left, %
-    label=#2]{#1}}
+%% Blackboard environment and its associated command input.
+%%
+%% Latex inside this environment will be rendered inside a box (as if you
+%% were writting in a blackboard).
+\DefineVerbatimEnvironment{blackboard}{Verbatim}{frame=single}
+\newcommand{\blackboardinput}[1]{%
+    \vspace{0.5cm}\VerbatimInput[frame=single]{#1}}
+
+%% Code command input.
+%%
+%% Text will be rendered verbatim inside a box, with a title and line numbers.
+\newcommand{\codeinput}[2]{%
+  \vspace{0.5cm}\VerbatimInput[frame=single, numbers=left, label=#2]{#1}}
+
+%% Command line example environment and associated command input.
+%%
+%% Text will be rendered verbatim inside a box, with the title
+%% "Command line exapmle" and line numbers.
+\DefineVerbatimEnvironment{cmd}{Verbatim}{frame=single, %
+  numbers=left, %
+  label=Command line example}
+\newcommand{\cmdinput}[1]{%
+  \vspace{0.5cm}\VerbatimInput[frame=single, %
+    numbers=left, %
+    label=Command line example]{#1}}
 
 %% reduce page margins
 \usepackage[inner=2cm, outer=1cm, top=2cm, bottom=2cm]{geometry}
@@ -129,11 +148,14 @@
 %%
 %% " makes vim skip syntax highlighting inside an environment
 %% syn region texZone start="\\begin{blackboard}" end="\\end{blackboard}\|%stopzone\>"
+%% syn region texZone start="\\begin{cmd}" end="\\end{cmd}\|%stopzone\>"
 %% syn region texZone start="\\begin{spoiler}" end="\\end{spoiler}\|%stopzone\>"
 %% syn region texZone start="\\begin{solution}" end="\\end{solution}\|%stopzone\>"
 %% 
 %% " makes vim skip syntax highlighting on input commands
 %% syn match texInputFile "\\blackboardinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
+%% syn match texInputFile "\\codeinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
+%% syn match texInputFile "\\cmdinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
 %% syn match texInputFile "\\spoilerinput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
 %% syn match texInputFile "\\solutioninput\s*\(\[.*\]\)\={.\{-}}" contains=texStatement,texInputCurlies,texInputFileOpt
 %% 
