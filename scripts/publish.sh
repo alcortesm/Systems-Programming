@@ -18,4 +18,9 @@ if [ "$?" != "0" ] ; then
     fi
 fi
 
-cp -r $dir/../out/pub/* ~/mnt/www/asig/1415/ps-ging/
+
+base_dir="${HOME}/mnt/www/asig/1415/ps-ging"
+rm -rf $base_dir
+mkdir -p $base_dir
+cp -r $dir/../out/pub/* $base_dir
+
