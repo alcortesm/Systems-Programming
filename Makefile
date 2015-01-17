@@ -2,7 +2,7 @@ out := out
 src := src
 MAKEFLAGS += --no-print-directory
 spell_check_zip := $(out)/spell-check.zip
-spell_check_dir := $(out)/html-for-spell-checkers
+spell_check_dir := $(out)/html-versions-of-pdfs
 
 .PHONY: all clean nuke spell-check
 

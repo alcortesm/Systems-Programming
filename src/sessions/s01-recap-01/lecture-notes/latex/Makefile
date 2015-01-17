@@ -4,16 +4,19 @@ imgs := $(wildcard img/*/*.pdf)
 # build
 src := $(name).tex
 out := $(name).pdf
+html_out := html-version/$(name)
 
 # install
-pub_dir := ../../../../../out/teacher
+out_dir := ../../../../../out
+pub_dir := $(out_dir)/teacher
 pub_files := $(pub_dir)/$(out)
+html_dir := $(out_dir)/html-versions-of-pdfs
 
-.PHONY: all install build clean imgs
+.PHONY: all install build clean imgs html
 
 all : imgs install
 
-install : $(pub_files)
+install : $(pub_files) html
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
@@ -31,4 +34,14 @@ clean :
 	- rm $(out)
 	- rm $(name).aux $(name).log $(name).out texput.log
 	$(MAKE) -C img clean
+	- rm -rf html-version
 
+html : $(html_out)
+
+$(html_out) : $(src) | $(html_dir)
+	mkdir -p $(html_out)
+	latex2html -dir $(html_out) -html_version 4.0,unicode -no_navigation -split +0 $(src)
+	cp -r $(html_out)/.. $(html_dir)
+
+$(html_dir) :
+	mkdir -p $(html_dir)

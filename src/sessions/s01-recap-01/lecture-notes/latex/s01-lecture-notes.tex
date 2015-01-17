@@ -28,6 +28,12 @@
 
 \newcommand{\realtitle}{Session 01 - Recap 1}
 
+\usepackage{ifpdf}
+\usepackage{html}
+\ifpdf\else
+   \def\href#1#2{\htmladdnormallink{#2}{#1}}
+\fi
+
 \begin{document}
 
 \title{Systems Programming\\\realtitle\\Lecture Notes}
