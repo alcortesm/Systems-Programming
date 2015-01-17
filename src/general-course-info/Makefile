@@ -3,7 +3,7 @@ name := general-course-info
 # build
 src := $(name).tex
 out := $(name).pdf
-html_out := html-version/$(name)
+html_out := html-version
 
 # install
 out_dir := ../../out
@@ -34,9 +34,9 @@ clean :
 html : $(html_out)
 
 $(html_out) : $(src) | $(html_dir)
-	mkdir -p $(html_out)
-	latex2html -dir $(html_out) -html_version 4.0,unicode -no_navigation -split +0 $(src)
-	cp -r $(html_out)/.. $(html_dir)
+	mkdir -p $(html_out)/$(name)
+	latex2html -dir $(html_out)/$(name) -html_version 4.0,unicode -no_navigation -split +0 $(src)
+	cp -r $(html_out)/$(name) $(html_dir)
 
 $(html_dir) :
 	mkdir -p $(html_dir)
