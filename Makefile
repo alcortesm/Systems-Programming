@@ -17,5 +17,5 @@ nuke: clean
 
 spell-check : $(spell_check_zip)
 
-$(spell_check_zip) : | all
+$(spell_check_zip) :
 	(cd $(spell_check_dir) ; zip -r ../../$(spell_check_zip) *)
