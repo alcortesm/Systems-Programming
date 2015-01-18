@@ -10,9 +10,6 @@
 \RequirePackage{comment}
 \RequirePackage{titlesec}
 \RequirePackage{hyperref}
-\RequirePackage{framed}
-\RequirePackage{ifpdf}
-\RequirePackage{html}
 
 \newif\ifopt@nooption\opt@nooptiontrue
 \newif\ifopt@notes\opt@notesfalse
@@ -42,11 +39,6 @@
         Avaliable options are:\MessageBreak
         \space \space note, handout or assessment
     }
-\fi
-
-%% change how href is handled by latex2html
-\ifpdf\else
-  \def\href#1#2{\htmladdnormallink{#2}{#1}}
 \fi
 
 %% prints dates using '-' instead of '/'
@@ -113,12 +105,10 @@
         {%
           \VerbatimEnvironment%
             \vspace{0.2cm}
-          \color{red}
           \begin{Verbatim}[frame=single, numbers=left, %
-            label=Spoiler]%
+            formatcom=\color{red}, label=Spoiler]%
         }{%
           \end{Verbatim}
-          \color{black}%
         }
     \newcommand{\spoilerinput}[1]{%
       \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
@@ -128,21 +118,21 @@
     %% solutions are in red
     %% solutions will be invisible unless the command \withsolutions is defined
     \ifdefined\withsolutions
-        \newenvironment{solution}
-            {%
-                \vspace{0.2cm}
-                \color{red}
-                \begin{framed}%
-            }{%
-                \end{framed}
-                \color{black}%
-            }
+      \newenvironment{solution}
+        {%
+          \VerbatimEnvironment%
+            \vspace{0.2cm}
+          \begin{Verbatim}[frame=single, formatcom=\color{red}, %
+            fontfamily=auto, commandchars=\\\{\}, %
+            codes={\catcode`$=3\catcode`^=7}]%
+        }{%
+          \end{Verbatim}
+        }
       \newcommand{\solutioninput}[1]{%
         \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
         numbers=left]{#1}}
     \else
         \excludecomment{solution}
-        \excludecomment{solutionblackboard}
         \newcommand{\solutioninput}[1]{}
     \fi
 
