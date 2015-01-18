@@ -20,7 +20,7 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \vspace{1cm}
 
 We will be using Linux in this course as the main programming environment.
-Most students already use Linux dailly, in their phones and tablets, but few
+Most students already use Linux daily, in their phones and tablets, but few
 have prior experience on using Linux as a programming environment.
 
 This document contains a few short explanations and some links to external
@@ -28,9 +28,8 @@ resources that will help the student to learn the basics about using Linux as a
 programming environment.
 
 Disclaimer: The authors of the resources linked in this document are not
-involved with this course in any way. As you are first year students, with few
-online experience, please don't bother them with your questions, ask the
-course teaching staff instead.
+involved with this course in any way. Please do not bother them with your
+questions; ask the course teaching staff instead.
 
 \section{Connecting to your Linux account}
 
@@ -42,7 +41,7 @@ There are two ways to login:
 
 \subsection{Connecting to your Linux account at the lab}
 
-  If you are seated at a computer in the labs you can log into your Linux
+  If you are sitting at a computer in the labs, you can log into your Linux
   account using the following procedure:
 
   \begin{enumerate}
@@ -50,7 +49,7 @@ There are two ways to login:
     \item Boot into Linux
 
       All computers in the labs are configured to
-      dual-boot into Linux or Windows. If the computer is currently runing
+      dual-boot into Linux or Windows. If the computer is currently running
       Windows, just reboot it and choose Linux at the boot menu.
 
     \item Log into your account
@@ -78,7 +77,7 @@ There are two ways to login:
   cafeteria, a library, etc.  You will find remote connections useful while
   working on this course on weekends, outside of class hours, etc.
 
-  To connect to your Linux account remotely follow this procedure:
+  To connect to your Linux account remotely, follow this procedure:
 
   \begin{enumerate}
 
@@ -92,7 +91,7 @@ There are two ways to login:
 
       If you are using Linux or Mac, there is a great chance you
       already have an SSH client installed in your computer, the program is
-      called ``\texttt{ssh}''. If this program is not already installed, just
+      called ``\texttt{ssh}.'' If this program is not already installed, just
       install it.
 
     \item Connect to the SSH server of the UC3M
@@ -106,8 +105,8 @@ There are two ways to login:
         \texttt{e9:98:4d:37:18:07:53:eb:33:3b:06:8d:c5:40:c2:f7}
       \end{center}
 
-      otherwise drop your connection inmediately, as you are probably suffering
-      a
+      Otherwise, drop your connection immediately, as you are probably
+      suffering a
       \href{http://en.wikipedia.org/wiki/Man-in-the-middle_attackman-in-the-middle}
       man-in-the-middle attack.
 
@@ -115,8 +114,8 @@ There are two ways to login:
       room 1.1.J07 during working hours, if you think this document may has
       been compromised as part of the attack.
 
-      On a successful connection attemp you will be
-      welcomed with a message from the Linux admins, like in this example:
+      On a successful connection attempt, you will be welcomed with a message
+      from the Linux admins, like in this example:
 
 \begin{blackboard}
 alcortes@bat:~$ ssh linux.aig.uc3m.es
@@ -136,7 +135,7 @@ alcortes@linux:~$
     \item Logging out
 
       Once you have finished working, you can log out from
-      your account by exitting from your login shell with the ``\texttt{exit}''
+      your account by exiting from your login shell with the ``\texttt{exit}''
       command.
 
   \end{enumerate}
@@ -148,8 +147,8 @@ Informáticas - UC3M - Linux} (sorry, only in Spanish).
 
 \section{Configuring your Linux Account}
 
-Thankfully pretty much everything is already configured and ready to go.
-Except for one very important detail: UC3M's Linux accounts are configured
+Thankfully pretty much everything is already configured and ready to go,
+except for one very important detail: UC3M's Linux accounts are configured
 so that most programs will use Spanish instead of English.
 
 Even if you can read/write Spanish just fine, \textbf{this is still a mayor
@@ -171,14 +170,14 @@ alcortes@linux:~$ echo 'LANG=en_US.utf8' >> ~/.profile
 \end{blackboard}
 
 The command at line 1 tells your current ongoing session to use English. The
-command at line 2 modifies an init script file to make the same change to all
-your future sessions.
+command at line 2 modifies a configuration file to make the same change
+automatically every time you login.
 
 Run those two commands once, preferably, the first time you log into your
 account, and you will never have to worry again about programs using Spanish
 instead of English.
 
-The teachers will not answer students questions if they don't have their
+The teachers will not answer student's questions if they do not have their
 account correctly configured to use English.
 
 \section{Linux as a Programming Environment}
@@ -186,24 +185,23 @@ account correctly configured to use English.
 The hardest part of learning to use Linux as a programming environment is
 learning how to use the Command Line.
 
-You will find a nice introducction to the Linux command line
+You will find a nice introduction to the Linux command line
 \href{http://linuxcommand.org/lc3_learning_the_shell.php#contents}{here}.
 
 There is also a very good book about this topic: ``The Unix Programming
 Environment,'' by Brian W. Kernighan and Rob Pike, published by Prentice-Hall.
-Unix and Linux are two different operating systems, altough so similar on how
-they work as a programming environment that this book can be used to learn
-both.
+Unix and Linux are two different operating systems, although so similar that
+you can this book to learn both.
 
 
 \section{Working with Java in Linux}
 
-To work with Java in Linux you will need at least three kind of programs:
+To work with Java in Linux you will need at least three kinds of programs:
 
 \begin{enumerate}
 
   \item \textbf{A good text editor}: You will spend most of your time in this
-    course writting programs, so you will need a good (programming) text
+    course writing programs, so you will need a good (programming) text
     editor.
 
     I recommend you to learn either Vim or Emacs. They are both very powerful
@@ -216,14 +214,14 @@ To work with Java in Linux you will need at least three kind of programs:
     using the command \texttt{vimtutor}.  You can learn to use the Emacs editor
     by reading this \href{http://www.gnu.org/software/emacs/tour/}{guide}.
 
-    In case you don't want to learn Vim or Emacs, you can use any other text
+    In case you do not want to learn Vim or Emacs, you can use any other text
     editor, at your own risk.
 
     We will not be using IDEs (like Eclipse, for example) in this course as
     they will slow your learning process and has been responsible for 50\% of
     student fails in the past (this is another personal appreciation).
 
-    The teachers will not answer students questions if they use Eclipse or
+    The teachers will not answer student's questions if they use Eclipse or
     other IDEs, as often, the student problem turn out to be with the IDE, not
     with Java.
 
