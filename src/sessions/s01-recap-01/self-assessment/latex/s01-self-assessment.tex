@@ -11,20 +11,20 @@ UC3M \hfill Alberto Cortés Martín\\
 Systems Programming, 2014-2015 \hfill version: \today\\
 \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \begin{center}
-  \Large{\realtitle}\\Self Assessment Exercises
+  \Large{\realtitle}\\Self-Assessment
 \end{center}
 \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \vspace{1cm}
 
-Problems are sorted in growing order of difficulty, this means the first
-problems are easier than the last ones.
+Problems are sorted by difficulty; the first problems are easier than the last
+ones.
 
-Also, the later problems illustrate programming concepts by using the solutions
-to the earlier ones, therefore, you should solve them \emph{all} and \emph{in
-order}, or you will be missing important core concepts along the way.
+In addition, the later problems illustrate programming concepts by using the
+solutions to the earlier ones, therefore, you should solve them \emph{all} and
+\emph{in order}, or you will be missing important core concepts along the way.
 
 The goal here is to make you think. There is no point in copying solutions.  If
-you get stuck on a problem, that is fine, keep thinking about it and discussing
+you are stuck on a problem, that is fine, keep thinking about it and discussing
 it with your classmates (either in person or in the course forum).
 
 \emph{Beware of spoilers}, though, as these problems are like good films: you
@@ -117,10 +117,10 @@ called \emph{odd}.}
 
 Write a program called \texttt{IsEvenlyDivisible} that prints ``\texttt{true}''
 if its first argument is evenly divisible by its second argument. Otherwise, it
-will print ``\texttt{false}''.
+will print ``\texttt{false}.''
 
 For instance, the following two invocations tell us that 16 is evenly divisible
-by 4, but not by 5.
+by four, but not by five.
 
 \begin{cmd}
 $ java IsEvenlyDivisible 16 4
@@ -133,7 +133,7 @@ false
 
 \subsection{}
 
-Write a program called \texttt{FooBar} that counts from 1 up to its argument,
+Write a program called \texttt{FooBar} that counts from one up to its argument,
 while printing \ldots
 
 \begin{itemize}
@@ -174,8 +174,8 @@ Write a program called \texttt{IsPrimeSlow} that tells you if an integer is
 prime or not.
 
 \textsl{Tip: A \emph{prime} number is an integer greater than 1 that has no
-positive divisors other than 1 and itself. A number that is not prime is called
-\emph{composite}.}
+positive divisors other than 1 and itself. A number that is not prime is a
+\emph{composite} number.}
 
 Implement your code using the algorithm depicted bellow.
 
@@ -212,9 +212,9 @@ false
 \subsection{}
 
 Explain the algorithm depicted in the previous problem in your own words, in
-less than 3 paragraphs.
+less than three paragraphs.
 
-Now, compare what you have write with the first tip of the previous exercise
+Now, compare what you have written with the first tip of the previous exercise
 (the one that explains what a prime number is).
 
 \begin{solution}
@@ -228,22 +228,23 @@ loop inside your \texttt{IsPrimeSlow} program.
 
 Let $n$ be a very big prime number.
 
-How long will \texttt{IsPrimeSlow} take to ckeck the primality of $n$?
-(approximately)
+How long will \texttt{IsPrimeSlow} take to check the primality of $n$?
+(Approximately)
 
 \begin{solution}
 It will take $\approx(n-2)x$.
+
 As $n$ is very big and $x$ is very small, an answer of $\approx nx$ is also
 accurate enough.
 \end{solution}
 
 \subsection{}
 
-Draw a graph showing how long does it \emph{really} take \texttt{IsPrimeSlow}
-to calculate some big prime nubers, and check if your answer to the previous
+Draw a graph showing how long does it \emph{really} takes \texttt{IsPrimeSlow}
+to calculate some big prime numbers, and check if your answer to the previous
 problem looks right.
 
-\textsl{Tip}: You can see how long does it take for a program to run using the
+\textsl{Tip}: You can see how long it does take a program to run using the
 command \texttt{time -p} as follows:
 
 \begin{cmd}
@@ -292,7 +293,7 @@ loop inside your \texttt{IsPrimeTrialDivision} program.
 
 Let $n$ be a very big prime number.
 
-How long will \texttt{IsPrimeTrialDivision} take to ckeck the primality of $n$
+How long will \texttt{IsPrimeTrialDivision} take to check the primality of $n$
 (approximately)?
 
 \begin{solution}
@@ -301,8 +302,8 @@ It will take $\approx x\sqrt{n}$.
 
 \subsection{}
 
-Draw a graph showing how long does it \emph{really} take
-\texttt{IsPrimeTrialDivision} to check the primality of some big prime nubers.
+Draw a graph showing how long does it \emph{really} takes
+\texttt{IsPrimeTrialDivision} to check the primality of some big prime numbers.
 
 Superimpose this graph with the previous graph about \texttt{IsPrimeSlow} and
 compare them.
@@ -325,7 +326,7 @@ algorithm:
 
 \begin{cmd}
 $ java PrimesUntilSlow 0
-$ java PrimseUntilSlow 2
+$ java PrimesUntilSlow 2
 2
 $ java PrimesUntilSlow 9
 2
@@ -348,10 +349,10 @@ primality.
 \subsection{}
 
 Write a program called \texttt{SieveOfEratosthenes} that does the same as the
-two previous problems but using the algorithm know as the ``\emph{Sieve of
-Eratosthenes}''.
+two previous problems but using the algorithm known as the ``\emph{Sieve of
+Eratosthenes}.''
 
-You can google that algorithm if you don't know about it.
+You can google that algorithm if you do not know about it.
 
 \solutioninput{../java/SieveOfEratosthenes.java}
 
