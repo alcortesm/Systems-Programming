@@ -1,0 +1,379 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[assessment]{style}
+
+\newcommand{\realtitle}{Session 01 - Recap 1}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Self Assessment Exercises
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+Problems are sorted in growing order of difficulty, this means the first
+problems are easier than the last ones.
+
+Also, the later problems illustrate programming concepts by using the solutions
+to the earlier ones, therefore, you should solve them \emph{all} and \emph{in
+order}, or you will be missing important core concepts along the way.
+
+The goal here is to make you think. There is no point in copying solutions.  If
+you get stuck on a problem, that is fine, keep thinking about it and discussing
+it with your classmates (either in person or in the course forum).
+
+\emph{Beware of spoilers}, though, as these problems are like good films: you
+will only have one chance in your life to see them for the first time.
+
+\section{Command line arguments}
+
+\subsection{}
+
+Write a program called \texttt{CountArgs} that prints the number of arguments
+supplied by the user as in the following example:
+
+\begin{cmd}
+$ java CountArgs
+0
+$ java CountArgs I love Java
+3
+$ java CountArgs "I love Java" too
+2
+\end{cmd}
+
+\solutioninput{../java/CountArgs.java}
+
+\subsection{}
+
+Write a program called \texttt{Echo} that prints its input arguments, one per
+line, as in the following example:
+
+\begin{cmd}
+$ java Echo
+$ java Echo I love Java
+I
+love
+Java
+$ java Echo "I love Java" too
+I love Java
+too
+\end{cmd}
+
+\solutioninput{../java/Echo.java}
+
+\subsection{}
+
+Write a program called \texttt{Sum} that sums its input arguments, as if they
+were integers. Example:
+
+\begin{cmd}
+$ java Sum
+0
+$ java Sum 34
+34
+$ java Sum 1000 327
+1327
+$ java Sum 1 -2 3 -4 5
+3
+\end{cmd}
+
+\solutioninput{../java/Sum.java}
+
+\section{Primes and the Remainder Operation}
+
+In Java, you can calculate the remainder of an integer division using the
+``\texttt{\%}'' operator, for instance:
+
+\codeinput{../java/IntegerDivisionDemo.java}{IntegerDivisionDemo.java}
+
+\subsection{}
+
+Write a program called \texttt{Parity} that prints ``\texttt{even}'' if its
+argument is an even integer or ``\texttt{odd}'' otherwise.  Example:
+
+\begin{cmd}
+$ java Parity 0
+even
+$ java Parity 1
+odd
+$ java Parity 31
+odd
+$ java Parity -12
+even
+\end{cmd}
+
+\textsl{Tip: an \emph{even} integer is an integer ``evenly divisible'' by 2,
+i.e., the remainder of its division by 2 is 0. Integers that are not even are
+called \emph{odd}.}
+
+\solutioninput{../java/Parity.java}
+
+\subsection{}
+
+Write a program called \texttt{IsEvenlyDivisible} that prints ``\texttt{true}''
+if its first argument is evenly divisible by its second argument. Otherwise, it
+will print ``\texttt{false}''.
+
+For instance, the following two invocations tell us that 16 is evenly divisible
+by 4, but not by 5.
+
+\begin{cmd}
+$ java IsEvenlyDivisible 16 4
+true
+$ java IsEvenlyDivisible 16 5
+false
+\end{cmd}
+
+\solutioninput{../java/IsEvenlyDivisible.java}
+
+\subsection{}
+
+Write a program called \texttt{FooBar} that counts from 1 up to its argument,
+while printing \ldots
+
+\begin{itemize}
+  \item ``\texttt{FOO}'' if the number is multiple of 3
+  \item ``\texttt{BAR}'' if the number is multiple of 5
+  \item otherwise, it prints the number itself.
+\end{itemize}
+
+Pay attention to the use of End-Of-Line characters and line 16 in the example
+bellow:
+
+\begin{cmd}
+$ java FooBar 17
+1
+2
+FOO
+4
+BAR
+FOO
+7
+8
+FOO
+BAR
+11
+FOO
+13
+14
+FOOBAR
+16
+17
+\end{cmd}
+
+\solutioninput{../java/FooBar.java}
+
+\subsection{}
+
+Write a program called \texttt{IsPrimeSlow} that tells you if an integer is
+prime or not.
+
+\textsl{Tip: A \emph{prime} number is an integer greater than 1 that has no
+positive divisors other than 1 and itself. A number that is not prime is called
+\emph{composite}.}
+
+Implement your code using the algorithm depicted bellow.
+
+\begin{center}
+  \includegraphics{img/IsPrimeSlowFlowchart/IsPrimeSlowFlowchart.eps}
+\end{center}
+\vspace{1cm}
+
+\textsl{Tip: The picture above is a flowchart representing an algorithm. You
+can learn more about flowcharts
+\href{http://en.wikipedia.org/wiki/Flowchart}{here}.}
+
+Example:
+
+\begin{cmd}
+$ java IsPrimeSlow -7
+false
+$ java IsPrimeSlow 0
+false
+$ java IsPrimeSlow 1
+false
+$ java IsPrimeSlow 2
+true
+$ java IsPrimeSlow 4
+false
+$ java IsPrimeSlow 334214459
+true
+$ java IsPrimeSlow 334214460
+false
+\end{cmd}
+
+\solutioninput{../java/IsPrimeSlow.java}
+
+\subsection{}
+
+Explain the algorithm depicted in the previous problem in your own words, in
+less than 3 paragraphs.
+
+Now, compare what you have write with the first tip of the previous exercise
+(the one that explains what a prime number is).
+
+\begin{solution}
+Both texts must be the same or very similar.
+\end{solution}
+
+\subsection{}
+
+Let $x$ be the time needed by your computer to perform a loop iteration on the
+loop inside your \texttt{IsPrimeSlow} program.
+
+Let $n$ be a very big prime number.
+
+How long will \texttt{IsPrimeSlow} take to ckeck the primality of $n$?
+(approximately)
+
+\begin{solution}
+It will take $\approx(n-2)x$.
+As $n$ is very big and $x$ is very small, an answer of $\approx nx$ is also
+accurate enough.
+\end{solution}
+
+\subsection{}
+
+Draw a graph showing how long does it \emph{really} take \texttt{IsPrimeSlow}
+to calculate some big prime nubers, and check if your answer to the previous
+problem looks right.
+
+\textsl{Tip}: You can see how long does it take for a program to run using the
+command \texttt{time -p} as follows:
+
+\begin{cmd}
+$ time -p java IsPrimeSlow 334214459
+true
+real 1.60
+user 1.53
+sys 0.00
+\end{cmd}
+
+This means \texttt{IsPrimeSlow} took 1.53 seconds to execute in my
+computer (the ``user'' time is the important part).
+
+\textsl{Tips}: A good set of primes to use as benchmarks are:
+
+\begin{verbatim}
+10000019
+100000007
+200000033
+300000007
+400000009
+500000003
+600000001
+700000001
+\end{verbatim}
+
+\begin{solution}
+  \centering
+  \includegraphics{img/IsPrimeSlowGraph/IsPrimeSlowGraph.eps}
+\end{solution}
+
+\subsection{}
+
+Write a program called \texttt{IsPrimeTrialDivision} that does the same as
+\texttt{IsPrimeSlow}, but using the ``\emph{trail division}'' algorithm.
+
+\href{https://www.khanacademy.org/computing/computer-science/cryptography/comp-number-theory/a/trial-divisionalgorithm}{Here}
+you will find a nice explanation of the trial division algorithm.
+
+\solutioninput{../java/IsPrimeTrialDivision.java}
+
+\subsection{}
+
+Let $x$ be the time needed by your computer to perform a loop iteration on the
+loop inside your \texttt{IsPrimeTrialDivision} program.
+
+Let $n$ be a very big prime number.
+
+How long will \texttt{IsPrimeTrialDivision} take to ckeck the primality of $n$
+(approximately)?
+
+\begin{solution}
+It will take $\approx x\sqrt{n}$.
+\end{solution}
+
+\subsection{}
+
+Draw a graph showing how long does it \emph{really} take
+\texttt{IsPrimeTrialDivision} to check the primality of some big prime nubers.
+
+Superimpose this graph with the previous graph about \texttt{IsPrimeSlow} and
+compare them.
+
+\begin{solution}
+  \centering
+  \includegraphics{img/IsPrimeTrialDivisionGraph/IsPrimeTrialDivisionGraph.eps}
+\end{solution}
+
+\subsection{}
+
+Write a program called \texttt{PrimesUntilSlow} that prints all the primes
+smaller or equal to its argument, in growing order, using the following
+algorithm:
+
+\begin{center}
+  \includegraphics{img/PrimesUntilSlowFlowchart/PrimesUntilSlowFlowchart.eps}
+\end{center}
+\vspace{1cm}
+
+\begin{cmd}
+$ java PrimesUntilSlow 0
+$ java PrimseUntilSlow 2
+2
+$ java PrimesUntilSlow 9
+2
+3
+5
+7
+\end{cmd}
+
+\solutioninput{../java/PrimesUntilSlow.java}
+
+\subsection{}
+
+Write a program called \texttt{PrimesUntilTrialDivision} that prints all the
+primes smaller or equal to its argument, in growing order, using the same
+algorithm as in the previous problem, but using trial division to check for
+primality.
+
+\solutioninput{../java/PrimesUntilTrialDivision.java}
+
+\subsection{}
+
+Write a program called \texttt{SieveOfEratosthenes} that does the same as the
+two previous problems but using the algorithm know as the ``\emph{Sieve of
+Eratosthenes}''.
+
+You can google that algorithm if you don't know about it.
+
+\solutioninput{../java/SieveOfEratosthenes.java}
+
+\subsection{}
+
+Draw a graph showing the time it takes your computer to run
+\texttt{PrimesUntilSlow}, \\\texttt{PrimesUntilTrialDivision} and
+\texttt{SieveOfEratosthenes} on some big numbers.
+
+\textsl{Tip:} A good set of numbers to use as benchmarks are:
+
+\begin{verbatim}
+50000
+100000
+150000
+200000
+250000
+\end{verbatim}
+
+\begin{solution}
+  \centering
+  \includegraphics{img/PrimesUntilGraph/PrimesUntilGraph.eps}
+\end{solution}
+
+\end{document}
