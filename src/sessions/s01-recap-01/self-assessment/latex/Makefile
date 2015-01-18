@@ -62,7 +62,7 @@ html : $(html_out)
 
 $(html_out) : $(src) | $(html_dir)
 	mkdir -p $(html_out)/$(name2)
-	htlatex $(src2) '"xhtml,url-enc"' '""' '"-dhtml-version/$(name2)/"'
+	htlatex $(src2) '"html,url-enc"' '""' '"-dhtml-version/$(name2)/"'
 	- rm $(name2).html
 	- rm $(name2).css
 	cp -r $(html_out)/$(name2) $(html_dir)
