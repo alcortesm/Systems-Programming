@@ -4,6 +4,8 @@ imgs := $(wildcard img/*/*.pdf)
 # build
 src := $(name).tex
 out := $(name).pdf
+dvi := $(name).dvi
+ps := $(name).ps
 html_out := html-version
 
 # install
@@ -22,7 +24,10 @@ $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
 
 $(out) : $(src) $(imgs)
-	pdflatex $(src)
+	latex $(src)
+	latex $(src)
+	dvips $(dvi)
+	ps2pdf $(ps)
 
 $(pub_dir) :
 	mkdir -p $(pub_dir)
@@ -31,8 +36,10 @@ imgs :
 	$(MAKE) -C img all
 
 clean :
-	- rm $(out)
+	- rm $(out) $(dvi) $(ps)
 	- rm $(name).aux $(name).log $(name).out texput.log
+	- rm $(name).4ct $(name).4tc
+	- rm $(name).idv $(name).lg $(name).tmp $(name).xref
 	$(MAKE) -C img clean
 	- rm -rf html-version
 
@@ -40,7 +47,9 @@ html : $(html_out)
 
 $(html_out) : $(src) | $(html_dir)
 	mkdir -p $(html_out)/$(name)
-	latex2html -dir $(html_out)/$(name) -html_version 4.0,unicode -no_navigation -split +0 $(src)
+	htlatex $(src) '"xhtml,url-enc"' '""' '"-dhtml-version/$(name)/"'
+	- rm $(name).html
+	- rm $(name).css
 	cp -r $(html_out)/$(name) $(html_dir)
 
 $(html_dir) :

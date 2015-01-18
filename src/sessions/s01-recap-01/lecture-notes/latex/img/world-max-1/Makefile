@@ -2,15 +2,14 @@ name := world-max-1
 
 # build
 src := $(name).dia
-out := $(src:%.dia=%.pdf)
+out := $(src:%.dia=%.eps)
 
 .PHONY : all clean
 
 all : $(out)
 
 $(out) : $(src)
-	dia $< --export=$@ --filter=pdf
-	pdfcrop $@ $@
+	dia $< --export=$@ --filter=eps
 
 clean :
 	- rm $(out)
