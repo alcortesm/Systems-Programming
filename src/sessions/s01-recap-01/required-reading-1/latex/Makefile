@@ -19,9 +19,9 @@ dir_html := $(dir_out)/html-versions-of-pdfs
 
 all : install ;
 
-install : $(file_pub) html ;
+install : $(file_pub) ;
 
-$(file_pub) : $(out) | $(dir_pub)
+$(file_pub) : $(out) | $(dir_pub) html
 	cp $< $@
 
 $(out) : $(src) $(imgs)
@@ -51,9 +51,9 @@ clean :
 	- rm texput.log
 	- rm -rf $(html_out)
 
-html : $(html_out) ;
+html : $(html_out)/$(name)/$(name).html ;
 
-$(html_out) : $(src) | $(dir_html)
+$(html_out)/$(name)/$(name).html : $(src) | $(dir_html)
 	mkdir -p $(html_out)/$(name)
 	htlatex $(src) '"html,url-enc"' '""' '"-d$(html_out)/$(name)/"'
 	- rm $(name).html

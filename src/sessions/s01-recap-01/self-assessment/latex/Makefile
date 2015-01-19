@@ -26,13 +26,13 @@ html_dir := $(out_dir)/html-versions-of-pdfs
 
 all : imgs install
 
-install : $(pub_files) html
+install : $(pub_files)
 
-$(pub_files) : $(out) | $(pub_dir)
+$(pub_files) : $(out) | $(pub_dir) html
 	cp $< $@
 	cp $(out2) $(pub_files2)
 
-$(out) : $(src) $(imgs)
+$(out) : $(src)
 	latex $(src)
 	latex $(src)
 	dvips $(dvi)
@@ -58,9 +58,9 @@ clean :
 	$(MAKE) -C img clean
 	- rm -rf html-version
 
-html : $(html_out)
+html : $(html_out)/$(name2)/$(name2).html
 
-$(html_out) : $(src) | $(html_dir)
+$(html_out)/$(name2)/$(name2).html : $(src) | $(html_dir)
 	mkdir -p $(html_out)/$(name2)
 	htlatex $(src2) '"html,url-enc"' '""' '"-dhtml-version/$(name2)/"'
 	- rm $(name2).html
