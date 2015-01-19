@@ -246,4 +246,50 @@ Java HotSpot(TM) Client VM (build 23.7-b01, mixed mode)
 
 \end{enumerate}
 
+\section{Appendix: Working Remotely with Graphical Applications}
+
+In the previous sections we have seen how to connect to the labs and work
+remotely using text-based applications.
+
+There are times when you need to launch a graphical application in the remote
+server, for instance, a drawing tool. To run this kind of aplications
+you will have to export the server's windowing system to your local host.
+
+The UC3M's SSH server is running the ``X Window System'' as its windowing
+system.  Here follows how to export it to your local host:
+
+\begin{itemize}
+
+  \item If your local host is also running Linux with an X Window System, just
+    connect to the server passing the ``\texttt{-X}'' argument to your SSH
+    client, for instance:
+
+    \begin{blackboard}
+$ ssh -X linux.aig.uc3m.es
+alcortes@linux.aig.uc3m.es's password: 
+
+       Bienvenido a Aulas Informáticas Generales
+          Universidad Carlos III de Madrid
+
+          Puede contactar con nosotros en:
+     
+                gsai@aig.uc3m.es
+
+Last login: Mon Jan 19 12:05:31 2015 from bat.it.uc3m.es
+alcortes@linux:~$ xeyes 
+\end{blackboard}
+
+  \item If your local host is running Windows, you will need to run an X server
+    for Windows and connect it to the UC3M's SSH server through your SSH client
+    of choice.
+
+    I have no personal experience installing and using X servers for Windows,
+    but the ``\href{http://www.straightrunning.com/XmingNotes/}{Xming X
+    Server}'' seems to be the most popular choice.
+
+    There are plenty of online resources explaining how to install an Xming X
+    Server in Windows and connect it to an SSH server using PuTTY.
+
+\end{itemize}
+
 \end{document}
