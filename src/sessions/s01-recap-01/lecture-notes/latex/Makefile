@@ -43,9 +43,9 @@ clean :
 	$(MAKE) -C img clean
 	- rm -rf html-version
 
-html : $(html_out)
+html : $(html_out)/$(name)/$(name).html
 
-$(html_out) : $(src) | $(html_dir)
+$(html_out)/$(name)/$(name).html : $(src) | $(html_dir)
 	mkdir -p $(html_out)/$(name)
 	htlatex $(src) '"html,url-enc"' '""' '"-dhtml-version/$(name)/"'
 	- rm $(name).html
