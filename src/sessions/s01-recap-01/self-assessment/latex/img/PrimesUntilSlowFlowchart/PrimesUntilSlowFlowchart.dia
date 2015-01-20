@@ -200,7 +200,7 @@
         <dia:point val="6.35335,6.06565"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="6.1506,5.76915;6.5471,6.15615"/>
+        <dia:rectangle val="6.1596,5.77815;6.5471,6.13815"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
@@ -280,13 +280,13 @@
     </dia:object>
     <dia:object type="Flowchart - Parallelogram" version="0" id="O6">
       <dia:attribute name="obj_pos">
-        <dia:point val="2.44495,0.711201"/>
+        <dia:point val="3.01933,0.711201"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="2.41995,0.686201;7.32987,1.76231"/>
+        <dia:rectangle val="2.99433,0.686201;7.90425,1.76231"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="2.44495,0.711201"/>
+        <dia:point val="3.01933,0.711201"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="4.8599168541862454"/>
@@ -319,7 +319,7 @@
             <dia:real val="0.38805554062128067"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="4.87491,1.1237"/>
+            <dia:point val="5.44929,1.1237"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -335,11 +335,11 @@
         <dia:point val="2.35702,1.22426"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="2.33202,1.11836;2.68759,1.33016"/>
+        <dia:rectangle val="2.33202,1.11836;3.26197,1.33016"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
         <dia:point val="2.35702,1.22426"/>
-        <dia:point val="2.63169,1.22426"/>
+        <dia:point val="3.20607,1.22426"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -398,7 +398,7 @@
             <dia:real val="0.38805554062128067"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="1.4875,3.40658"/>
+            <dia:point val="1.4875,3.40659"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -604,7 +604,7 @@
             <dia:real val="0.38805554062128067"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="4.59136,3.40658"/>
+            <dia:point val="4.59137,3.40658"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -803,13 +803,13 @@
     </dia:object>
     <dia:object type="Standard - PolyLine" version="0" id="O19">
       <dia:attribute name="obj_pos">
-        <dia:point val="7.11813,1.22426"/>
+        <dia:point val="7.69251,1.22426"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="7.09312,1.19852;9.16374,3.00866"/>
+        <dia:rectangle val="7.6675,1.19852;9.16374,3.00866"/>
       </dia:attribute>
       <dia:attribute name="poly_points">
-        <dia:point val="7.11813,1.22426"/>
+        <dia:point val="7.69251,1.22426"/>
         <dia:point val="9.05634,1.22352"/>
         <dia:point val="9.05799,2.95276"/>
       </dia:attribute>
@@ -835,7 +835,7 @@
         <dia:point val="4.59137,7.54743"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="4.56636,7.52241;6.40414,8.12847"/>
+        <dia:rectangle val="4.56636,7.52242;6.40413,8.12847"/>
       </dia:attribute>
       <dia:attribute name="poly_points">
         <dia:point val="4.59137,7.54743"/>
@@ -927,7 +927,7 @@
             <dia:real val="0.38805554062128067"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="7.05635,8.11632"/>
+            <dia:point val="7.05636,8.11633"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000"/>
@@ -943,7 +943,7 @@
         <dia:point val="7.76447,8.02285"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="7.73941,6.09524;9.00515,8.04792"/>
+        <dia:rectangle val="7.7394,6.09524;9.00515,8.04792"/>
       </dia:attribute>
       <dia:attribute name="poly_points">
         <dia:point val="7.76447,8.02285"/>

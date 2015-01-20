@@ -30,7 +30,109 @@ it with your classmates (either in person or in the course forum).
 \emph{Beware of spoilers}, though, as these problems are like good films: you
 will only have one chance in your life to see them for the first time.
 
+\textbf{How to work on the problems:}
+
+Some problems are theoretical questions or ask you to draw some diagram, you
+should answer them with pen and paper.
+
+But most problems will ask you to write a program. Use a computer to solve them
+by writing a fully functional program, that you can compile and run.
+
+Most of these problems will show you some examples of execution so you can test
+your program by comparing its outputs with the examples provided. Be carefull,
+as output of your program should be \emph{exactly} as the examples provided or
+it will be wrong, even a simple extra espace character or an enter will mean
+that your program is wrong.
+
+Once you have successfully solved a problem, do not delete your source code, as
+it will be usefull for you in the future.
+
+\newpage
+
+\section{Simple loops}
+
+\subsection{}
+
+Write a program called \texttt{CountFrom1To100} that counts from 1 to 100, as
+in the example below.
+
+\begin{cmd}
+$ java CountFrom1To100
+1
+2
+.
+.
+.
+99
+100
+\end{cmd}
+
+\textsl{Tip: In the example above, 96 lines of text has beeen substituted by
+  three dots (at lines 4, 5 and 6) to keep the example short and legible. This
+  will be common for examples of programs with long outputs. You should be able
+  to guess the real contents of the missing lines pretty easily.}
+
+\solutioninput{../java/CountFrom1To100.java}
+
+\subsection{}
+
+Write a program called \texttt{CountFrom100To1} that counts from 100 to 1.
+
+\begin{cmd}
+$ java CountFrom100To1
+100
+99
+.
+.
+.
+2
+1
+\end{cmd}
+
+\solutioninput{../java/CountFrom100To1.java}
+
+\subsection{}
+
+Write a program called \texttt{CountInStepsOf7} that counts from 1 to 100 in
+steps of 7.
+
+\begin{cmd}
+$ java CountInStepsOf7
+1
+8
+15
+22
+29
+36
+43
+50
+57
+64
+71
+78
+85
+92
+99
+\end{cmd}
+
+\solutioninput{../java/CountInStepsOf7.java}
+
 \section{Command line arguments}
+
+\subsection{}
+
+Write a program called \texttt{EchoFirst} that prints its first arguemnt.
+
+\begin{cmd}
+$ java EchoFirst hello
+hello
+$ java EchoFirst hello bye
+hello
+$ java EchoFirst hello bye "see you"
+hello
+\end{cmd}
+
+\solutioninput{../java/EchoFirst.java}
 
 \subsection{}
 
@@ -40,13 +142,28 @@ supplied by the user as in the following example:
 \begin{cmd}
 $ java CountArgs
 0
-$ java CountArgs I love Java
+$ java CountArgs hello
+1
+$ java CountArgs hello bye "see you"
 3
-$ java CountArgs "I love Java" too
-2
 \end{cmd}
 
 \solutioninput{../java/CountArgs.java}
+
+\subsection{}
+
+Write a program called \texttt{EchoLast} that prints its last argument.
+
+\begin{cmd}
+$ java EchoLast hello
+hello
+$ java EchoLast hello bye
+bye
+$ java EchoLast hello bye "see you"
+see you
+\end{cmd}
+
+\solutioninput{../java/EchoLast.java}
 
 \subsection{}
 
@@ -55,21 +172,62 @@ line, as in the following example:
 
 \begin{cmd}
 $ java Echo
-$ java Echo I love Java
-I
-love
-Java
-$ java Echo "I love Java" too
-I love Java
-too
+$ java Echo hello
+hello
+$ java Echo hello bye "see you" bye-bye
+hello
+bye
+see you
+bye-bye
 \end{cmd}
 
 \solutioninput{../java/Echo.java}
 
 \subsection{}
 
-Write a program called \texttt{Sum} that sums its input arguments, as if they
-were integers. Example:
+Write a program called \texttt{CountUntil} that counts from 1 to 5, but stops
+at its argument.
+
+\begin{cmd}
+$ java CountUntil -4
+1
+2
+3
+4
+5
+$ java CountUntil 3
+1
+2
+3
+$ java CountUntil 7
+1
+2
+3
+4
+5
+\end{cmd}
+
+\solutioninput{../java/CountUntil.java}
+
+\subsection{}
+
+Write a program called \texttt{Sum2} that sums two integers.
+
+\begin{cmd}
+$ java Sum2 2 6
+8
+$ java Sum2 3 0
+3
+$ java Sum2 4 -12
+-8
+\end{cmd}
+
+\solutioninput{../java/Sum2.java}
+
+\subsection{}
+
+Write a program called \texttt{Sum} that sums all its input arguments, as if
+they were integers. Example:
 
 \begin{cmd}
 $ java Sum
@@ -94,7 +252,22 @@ In Java, you can calculate the remainder of an integer division using the
 \subsection{}
 
 Write a program called \texttt{Parity} that prints ``\texttt{even}'' if its
-argument is an even integer or ``\texttt{odd}'' otherwise.  Example:
+argument is an even integer or ``\texttt{odd}'' otherwise.
+
+\textsl{Tip: an \emph{even} integer is an integer ``evenly divisible'' by 2,
+i.e., the remainder of its division by 2 is 0. Integers that are not even are
+called \emph{odd}.}
+
+Solve this problem using the algorithm depicted below:
+
+\begin{center}
+  \includegraphics{img/ParityFlowchart/ParityFlowchart.eps}
+\end{center}
+\vspace{0.5cm}
+
+\textsl{Tip: The picture above is a flowchart representing an algorithm. You
+can learn more about flowcharts
+\href{http://en.wikipedia.org/wiki/Flowchart}{here}.}
 
 \begin{cmd}
 $ java Parity 0
@@ -106,10 +279,6 @@ odd
 $ java Parity -12
 even
 \end{cmd}
-
-\textsl{Tip: an \emph{even} integer is an integer ``evenly divisible'' by 2,
-i.e., the remainder of its division by 2 is 0. Integers that are not even are
-called \emph{odd}.}
 
 \solutioninput{../java/Parity.java}
 
@@ -143,7 +312,7 @@ while printing \ldots
 \end{itemize}
 
 Pay attention to the use of End-Of-Line characters and line 16 in the example
-bellow:
+below:
 
 \begin{cmd}
 $ java FooBar 17
@@ -174,21 +343,15 @@ Write a program called \texttt{IsPrimeSlow} that tells you if an integer is
 prime or not.
 
 \textsl{Tip: A \emph{prime} number is an integer greater than 1 that has no
-positive divisors other than 1 and itself. A number that is not prime is a
-\emph{composite} number.}
+positive divisors other than 1 and itself. A number that is not prime is called
+\emph{composite}.}
 
-Implement your code using the algorithm depicted bellow.
+Implement your code using the algorithm depicted below.
 
 \begin{center}
   \includegraphics{img/IsPrimeSlowFlowchart/IsPrimeSlowFlowchart.eps}
 \end{center}
-\vspace{1cm}
-
-\textsl{Tip: The picture above is a flowchart representing an algorithm. You
-can learn more about flowcharts
-\href{http://en.wikipedia.org/wiki/Flowchart}{here}.}
-
-Example:
+\vspace{0.5cm}
 
 \begin{cmd}
 $ java IsPrimeSlow -7
@@ -322,7 +485,7 @@ algorithm:
 \begin{center}
   \includegraphics{img/PrimesUntilSlowFlowchart/PrimesUntilSlowFlowchart.eps}
 \end{center}
-\vspace{1cm}
+\vspace{0.5cm}
 
 \begin{cmd}
 $ java PrimesUntilSlow 0

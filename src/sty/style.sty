@@ -62,11 +62,18 @@
 %%
 %% Text will be rendered verbatim inside a box, with the title
 %% "Command line exapmle" and line numbers.
-\DefineVerbatimEnvironment{cmd}{Verbatim}{frame=single, %
-  numbers=left, %
-  label=Command line example}
+\newenvironment{cmd}
+  {%
+    \VerbatimEnvironment%
+    \vspace{0.2cm}
+    \begin{Verbatim}[frame=single, %
+      numbers=left, %
+      label=Command line example]%
+  }{%
+    \end{Verbatim}
+  }
 \newcommand{\cmdinput}[1]{%
-  \vspace{0.5cm}\VerbatimInput[frame=single, %
+  \vspace{0.2cm}\VerbatimInput[frame=single, %
     numbers=left, %
     label=Command line example]{#1}}
 
