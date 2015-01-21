@@ -137,8 +137,8 @@ to study:
   buy a book for this course, my favorite one is this one. You can check them
   all during the break.
 
-  This ohter book is also interesting because, it is a very good book, and it
-  is freely available online, so there is no need to buy it.
+  This ohter book is also interesting, it is NOT a very good book, and it
+  is freely available online.
 
 - I'm giving you also the slides used by teachers in past editions of this
   course. Personally, I will not be using slides to teach you this course, but
