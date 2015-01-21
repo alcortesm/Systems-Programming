@@ -1,0 +1,216 @@
+Hello everybody,
+can you hear me back there?
+good.
+
+Welcome to Programming Systems,
+I'm Alberto Cortes,
+I'll be teaching you this term.
+
+There is a web page for this course,
+
+http://it.uc3m.es/alcortes/asig/1415/ps-ging
+
+you should all check it out,
+because, here you will find all there is to know about this course,
+from administrative staff
+to the core materials you need to study to pass this course.
+
+
+
+
+I'll go over some of the general course information now.
+
+Let's see what do you need to write a good book
+
+1) you need to be able to read and write in english
+
+2) you need some book writing skills:
+
+   - story telling
+
+   - developing interesting characters
+
+   - some real world experiences
+
+   - lots of reading on your own
+
+   - ...
+
+Many 10 year old kids knows how to read and write in English,
+even better than me,
+but few have the right writing skills to write interesting books.
+
+Well, we have the same problem with programming.
+
+What do you need to code good programs:
+
+1) you need to be able to read and write in a programming language
+
+Java for example, you already know Java from the first term.
+
+2) you need some programming skills
+
+we are not going to learn Java in this course,
+we are going to learn important skills for programming,
+and we will be using Java in our examples.
+
+Any questions about this?
+
+
+
+
+So what important skills are we going to learn:
+
+- We are going to learn about Object Oriented programming, which is a way to
+  organize data and operations in your programs, which is quite popular
+  nowadays.
+
+- We are going to learn how graphical user interfaces work, because a good
+  deal of software today uses graphics, windows, buttons, all that kind of
+  graphical stuff...
+
+- We are going to learn about recursion, which is a nice way to solve some
+  complicated problems in a simple way, and is used a lot in programming
+
+- And finallly, we are going to learn aobut some data structures, like lists,
+  queues, stacks, and trees. These are special ways to store data
+inside a computer, so you can access and use those data later in very quick
+ways.
+
+The nice thing about this course, is that all these topics can be used with
+any programming language, not just Java. So you will be able to use all this
+tools in the future, no matter what programming language you use.
+
+Any questions about this?
+
+
+
+
+This is how we are going to organize the classes:
+
+(show calendar)
+
+each week, we will be having a lecture, on fridays, which is a class between 1
+teacher and about 40 students in a room without computers.
+
+each week, we will be also having a lab, which is class between 1 or more
+teachers and about 20 students, in a room full of computers, like this one.
+
+In fact, today is officially a lab, but a very special one as this is the
+first class after all.
+
+There are some important events marked in red, in the calendar, that is, the
+exams.
+
+There are also some green markings, meaning those classes are not in
+the usual day of the week or they are not at the usual hours, so be carefull
+not to miss them.
+
+OK, any questions so far?
+
+
+Now, about the teachers:
+
+(show teaching staff)
+
+This is me, Alberto, I'll be teaching you all the lectures
+and I'm also going to be the lab teacher for groups 65, 69 and 79.
+
+Here you can find my web page, with all the details about how to get in touch
+with me, including how to ask me for tutorials and how to ask me technical
+questions.
+
+There is another teacher: Alicia, over there.
+She will be the lab teacher for group 95.
+
+Any questions about this?
+
+
+
+In the main web page of the course, you will also find the materials you have
+to study:
+
+- For lectures: there is going to be bibliographic references to selected
+  books. This will be your main source of information for this course.
+
+  Here I have phisical copies of the three more important books. If i were to
+  buy a book for this course, my favorite one is this one. You can check them
+  all during the break.
+
+  This ohter book is also interesting because, it is a very good book, and it
+  is freely available online, so there is no need to buy it.
+
+- I'm giving you also the slides used by teachers in past editions of this
+  course. Personally, I will not be using slides to teach you this course, but
+  you can use them anyway, if you want to.
+
+  I recommend you to use the books, instead of the slides, though.
+
+- For the labs, there are the lab scripts, with exercises to solve in
+  pairs in front of a computer. We will be publishing the solutions to these
+  lab scripts a week after each lab.
+
+- We are also going to publish self-assessment exercises for each lecture.
+  Some of these exercises will be easier than the labs, some will be harder,
+  so I recommend you to start working on them as soon as the lecture has finish,
+  and maybe finish them after the lab. So they are kind of a weekly homework
+  for you.
+
+- We are not going to publish the solution to this self-assessment exercises,
+  instead we encourage you to use the course forum, available through Aula
+  Global, to ask questions there.
+
+- The forum is a tool for students, and by students, meaning we, the teachers,
+  are not going to answer questions there, nor are we going to correct wrong
+  answers by other students, just like in the real world, forums can be
+  dangerous, they are also very useful, but dangerous.
+
+- There is also going to be some optional resources, like readings and videos,
+  to complement the lectures. This resources are marked optional, because they
+  will not be used for the exams.
+
+Any questions about that?
+
+
+
+
+Now let's talk about grading
+
+Your overall grade will be computed as follows:
+
+- 25% will come from your midterm 1 exam
+
+- another 25% will come from your midterm 2 exam
+
+- and a final 50% will come from your final exam.
+
+To pass this course you'll need an overall grade above 5.0.
+
+On top of this, in the ordinary call, you will need a minimum score of 3.5 in
+the final exam to pass this course.
+
+Here you will find more details about our grading system.
+
+Please note that the only thing that matters to pass this course are the
+exams: the two midterms and final. Class attendance is not required, lab
+attendance is not required, you won't be submitting any labs or exercises and
+there is not going to be a project to submit at the end of this course.
+
+Any questions about this?
+
+
+
+
+How does an Exam looks like?
+
+All exams will have two parts:
+
+- first, a test, worth 30% of the score. All the materials we have been
+  talking about before can be part of this test.
+
+- then, some problems, worth 70% of the score. These problems will be similar
+  to the lab scripts we have been talking before.
+
+And that's all for the intro.
+
+Any questions?
