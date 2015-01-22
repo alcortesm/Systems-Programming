@@ -1,12 +1,14 @@
 \documentclass[8pt, a4paper, oneside]{extarticle}
-
-\usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{nicefrac}
 \usepackage[includehead, includefoot, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+
+\usepackage{eurosym}
+\usepackage{CJKutf8}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -22,6 +24,9 @@
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}
 {frame=single, commandchars=\\\{\}}
 
+\DefineVerbatimEnvironment{blackboard}{Verbatim}
+{frame=single}
+
 \usepackage{enumitem}
 \setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
 
@@ -34,65 +39,46 @@
 \date{\today}
 \maketitle
 
-\section{What is ``Programming''?}
+\section{The World according to Java}
 
-\begin{multicols}{2}
-  \begin{Verbatim}
-"The process of \underline{writing} computer programs."
+Java sees the world as a big empty space.
 
- - \underline{Think} about what you want to write
- - Use \underline{proper} English/Java
- - \underline{Proofread} what you wrote/\underline{Test} your program
-  \end{Verbatim}
-  \columnbreak
+A program place data (numbers and characters) in it, and asks Java to perform
+computations on them.
 
-  So, programming is writing,
-  like when you write a book, a novel or an essay.
+That big empty space is the computer memory, and looks like this:
 
-  When you write a text you need to:
-  \begin{itemize}
-    \item Think about what you want to write
-    \item Write it on proper English/Java
-    \item Proofread what you wrote/test your program
-  \end{itemize}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{img/computer-memory/computer-memory.eps}
+\end{figure}
 
-  Knowing proper English (or Java) is important for writing, but the thinking
-  part and the proofreading is essential.
+Each small cell is a bit, and can hold a ``1'' or a ``0'', so the memory is not
+really empty, it always holds some value.
 
-  A 10 year old child already knows how to write in proper English, but would
-  not write very good books, because he does not know yet how to think or how
-  to proofread.
+8 bits are called a byte, and the bytes are numbered from 0 to some big number.
 
-  You already know how to write proper Java from the first term, in this second
-  term you will learn how to think about what you want to program and how to
-  test it.
-\end{multicols}
+This are called memory addresses.
 
-\subsection{Programming in High-Level Languages}
-
-\begin{multicols}{2}
-\begin{Verbatim}
-"Find a solution to a real world problem by \underline{simulating} the
- real world inside the computer memory."
-\end{Verbatim}
-  \columnbreak
-
-  A common definition for programming in high-level computer languages (like
-  Java) is: Find a solution to a real world problem by simulating the real
-  world inside your computer memory.
-
-  In this definition, the ``simulating'' part is the important part. In
-  addition, you will need to know a little bit about the computer memory
-  and about how the world looks like to Java.
-
-\end{multicols}
-
-\subsection{Representing Data inside the Computer Memory}
+This is what java does when you execute a program:
 
 \begin{figure}[!ht]
   \centering
   \includegraphics{img/world-data/world-data.eps}
 \end{figure}
+
+\verb+int i = 5+ will do 3 things:
+
+\begin{itemize}
+
+  \item allocate enough space in memory to store a int (32 bits) in some
+    \emph{random} possition (e.g. from address 60 to 63)
+
+  \item call that memory chunk \verb+a+ from now on (instead of 60).
+
+  \item overwrite that memory with \verb+00...0101+ (32 bits)
+
+\end{itemize}
 
 \subsection{A simple real world problem}
 
@@ -111,28 +97,25 @@ Find the maximum of two integers.  -->   $ java Max 3 7
 
 \begin{itemize}
 
-  \item Line 1 is a comment (this program is incomplete because there is no
-    error checking code in it.
+  \item Lines 1 to 16 are the declaration of the class.
 
-  \item Lines 2 to 19 are the declaration of the class.
-
-  \item Lines 3 to 10 are the definition of the main method, the entry point of
+  \item Lines 2 to 7 are the definition of the main method, the entry point of
     the program.
 
-  \item Lines 12 to 18 are the definition of another method.
+  \item Lines 9 to 16 are the definition of another method.
 
-  \item Lines 4 and 5 are for processing the input arguments into something
+  \item Lines 3 and 4 are for processing the input arguments into something
     useful (Strings to ints)
 
-  \item Line 9 shows the output to the user.
+  \item Line 6 shows the output to the user.
 
-  \item Line 7 is the one that actually does the work (finding the max).
+  \item Line 5 is the one that actually does the work (finding the max).
 
 \end{itemize}
 
 \end{multicols}
 
-\section{The World According to Java}
+\subsection{The Memory while the program is running}
 
 \begin{figure}[!ht]
   \centering
@@ -149,5 +132,374 @@ Find the maximum of two integers.  -->   $ java Max 3 7
     \includegraphics{img/world-max-3/world-max-3.eps}
   \end{minipage}
 \end{figure}
+
+\section{Data Types in Java}
+
+As you have seen, programming is all about creating and operating with data in
+the memory of the computer.
+
+What types of data there are in Java then?
+
+There are 2 types of data:
+
+\begin{itemize}
+
+  \item Primitive Types: int, float, char, boolean\ldots
+
+  \item ``Composite'' Types: (Arrays and Objects) String, Person, int[]\ldots
+
+\end{itemize}
+
+When you work with primitive types, you store their values in ``variables'' and
+operate on the data with ``operators''. For isntance:
+
+\begin{blackboard}
+int a = 4;
+int b = 6;
+int c = a + b;
+// a, b, and c are variables
+// = and + are operators
+\end{blackboard}
+
+When you work with composite types, you store their addresses in ``references''
+and operate on them by calling ``methods''.
+
+\begin{blackboard}
+String a = "hello";
+s.ToUppercas();
+// a is a reference to an String object
+// .ToUppercase is a method to turn all caracters in the string to uppercase
+\end{blackboard}
+
+We will go back to this later, now lets review the Java Primitive Types:
+
+\subsection{Java Booleans}
+
+A boolean in Java is a primitive data type that can store only 2 values:
+
+\verb+true or false+
+
+To declare a boolean (allocate memory for it and give it a name), you do
+something like this:
+
+\begin{blackboard}
+                 ___
+boolean a;     a |?|
+                 ---
+\end{blackboard}
+
+\verb+boolean+ here is a reserved word, that tells Java that you want to
+allocate memory for a boolean and call that chunk of memory \verb+a+ from now
+on.
+
+The memory has not been initialized, so Java will not let you use that
+variable:
+
+\begin{blackboard}
+class Bla {
+    public static void main(String[] args) {
+        boolean a;
+        System.out.println(a);
+    }
+}
+
+$ javac Bla.java
+/tmp/Bla.java:4: error: variable a might not have been initialized
+        System.out.println(a);
+                           ^
+1 error
+\end{blackboard}
+
+Literals: \verb+true+ \& \verb+false+.
+
+You can operate on booleans using operators:
+
+\begin{itemize}
+
+\item \verb+=+: (assignment opertor), stores a value inside the variable, valid
+  values are only \verb+true+ or \verb+false+. Example: \verb+a = true+.
+
+  It returns its \emph{lvalue}, so chaining is possible:
+
+\begin{blackboard}
+boolean a;
+boolean b;
+boolean c;
+c = b = a = true;
+\end{blackboard}
+
+\item \verb+==+: (Equal to operator), tells you if the value stores in a
+  boolean variable is equal to the boolean value on the other variable. Returns
+  a boolean. The oposite is the ``Not equal to'' operator (\verb+!=+). Example:
+
+\begin{blackboard}
+boolean a = true;
+boolean b = false;
+boolean c = a == b; // c is false
+boolean d = a != b; // d is true
+\end{blackboard}
+
+\item \verb+!+: (Logical complement operator), inverts the value of a boolean.
+
+\begin{blackboard}
+boolean a = true;
+boolean b = !a; // a is false
+b = !b; // a is true again
+\end{blackboard}
+
+\item \verb+|| and &&+: (Conditionals operators), logical OR and logical AND:
+
+\begin{blackboard}
+boolean a = true;
+boolean b = false;
+boolean or = a || b; // or is true
+boolean and = a && b; // and is false
+\end{blackboard}
+
+\end{itemize}
+
+Printing: using the \verb+java.io.PrintStream.println(boolean b)+ method.
+
+\subsection{Java Ints}
+
+\begin{itemize}
+
+  \item Declaration (allocates 32 bits) \verb+int a;+
+
+  \item Literals: \verb+26+, \verb+0x1a+ or \verb+0b11010+. Underscores are
+    ignored for readability (1\_000 is same as 1000).
+
+  \item Can hold integers from -2\_147\_483\_648 ($-2^{31}$) to 2\_147\_483\_647
+    ($2^{31}-1$) (about 2 billions) (Compilation error: \verb+error: integer number too large+)
+
+  \item Operators:
+
+    \begin{itemize}
+
+      \item Arithmetic: \verb^+, -, *, /, %^
+
+\begin{blackboard}
+int a = 7;
+int b = 3;
+int c = a + b; // 10
+c = a - b; // 4
+c = a * b; // 21
+c = a / b; // 2
+c = a % b; // 1
+\end{blackboard}
+
+      \item Unary: \verb^+a, -a, ++a, a++, --a, a--^
+
+\begin{blackboard}
+int a = 7;
+int b = +a; // 7 (not useful)
+b = -a; // -7 (changes the sign)
+b = ++a; // a=8 b=8
+b = a++; // a=9 b=8
+b = --a; // a=8 b=8
+b = a--; // a=7 b=8
+\end{blackboard}
+
+      \item Relational: \verb^==, !=, <, <=, >, >=^
+
+\begin{blackboard}
+int a = 7;
+int b = 3;
+boolean c = a == b; // false
+c = a != b // true
+c = a < b // false
+c = a <= b // false
+c = a > b // true
+c = a >= b // true
+\end{blackboard}
+
+      \item Bitwise: \verb+~, <<, >>, >>>, &, |, ^+ Don't worry about them in
+this course.
+
+    \end{itemize}
+
+  \item Printing: using the \verb+java.io.PrintStream.println(int b)+ method.
+
+\end{itemize}
+
+\subsection{Java small integers (byte, short)}
+
+They are just like int, but smaller:
+
+\begin{itemize}
+
+  \item Declaration \verb+byte a;+ or \verb+short a;+
+  \item \verb+byte+ is 8 bits (-128 ($-2^{7}$) - 127 ($2^{7} -1$)).
+  \item \verb+short+ is 16 bits (-32\_768 ($-2^{15}$) - 32\_769 ($2^{15}-1$)), less than 33 thousands.
+  \item Literals: the same as for ints.
+
+\begin{blackboard}
+byte b1 = 15;
+byte b2 = 200; // compilation error: possible loss of precision.
+short s1 = 15_000;
+short s2 = 33_000; // compilation error: possible loss of precision.
+\end{blackboard}
+
+  \item Printing: using the \verb+java.io.PrintStream.println(byte b);+ or
+    \verb+java.io.PrintStream.println(short b)+ methods.
+
+\end {itemize}
+
+\subsection{Java big integers (long)}
+
+\begin{itemize}
+
+  \item Declaration \verb+long a;+
+
+  \item 64 bits long (-lots ($-2^{63}$) - +lots ($2^{63}-1$) (about a 9 and 18 zeros).
+
+  \item Literals: int literals can be used, but for big numbers the sufix
+    \verb+L+ or \verb+l+ has to be used
+
+\begin{blackboard}
+long l1 = 15L;
+long l2 = 15;
+long l3 = 3_000_000_000; // compilation error, but some compilers are ok with it
+long l4 = 3_000_000_000L;
+\end{blackboard}
+
+  \item Printing: using the \verb+java.io.PrintStream.println(long b)+ method.
+
+\end{itemize}
+
+\subsection{Java characters (char)}
+
+Represent characters in Unicode (don't need to know).
+
+They are really shorts, but gets converted to chars using conversions tables,
+also know as \emph{Charset}s.
+
+\begin{itemize}
+
+  \item Declaration \verb+char a;+
+
+  \item 16 bits long, there are 65,536 possible chars.
+
+  \item Literals:
+
+    \begin{itemize}
+
+      \item \verb+'a'+, \verb+'7'+, \verb+','+, \verb+'ñ'+, \verb+'+$\beta$\verb+'+,
+        \verb+'+$\infty$\verb+'+, \verb+'+\euro\verb+'+,
+      \verb+'+$\forall$\verb+'+, \verb+'+\begin{CJK*}{UTF8}{min}茶\end{CJK*}\verb+'+.
+
+      \item invisible charactes: tab \verb+'\t'+, space \verb+' '+, linefeed
+        \verb+'\n'+, carriage return \verb+'\r'+, single quote \verb+'\''+,
+        double quote \verb+'\"'+, backslash \verb+'\\'+\ldots
+
+      \item by unicode code: \verb+'\u8636'+ (kanji for tea)
+
+    \end{itemize}
+
+  \item Operators: 
+
+    \begin{itemize}
+
+      \item Arithmetic: Don't use them unless you know alot about Charsets.
+
+      \item Unary: Don't use them unless you know alot about Charsets.
+
+      \item Relational: \verb^==, !=, <, <=, >, >=^ are OK.
+
+    \end{itemize}
+
+  \item Printing: using the \verb+java.io.PrintStream.println(char b)+ method.
+
+\end{itemize}
+
+\subsection{Floating point numbers (float and double)}
+
+Floats and doubles are fast but inexact representations of real numbers.
+
+\begin{itemize}
+
+  \item Declaration: \verb+float f;+ or \verb+double d;+
+
+  \item float: 32-bit IEEE 754 floating point number (ignore this for this course).
+
+  \item double: 64-bit IEEE 754 floating point number (ignore this for this course).
+
+  \item Literals:
+
+    \begin{itemize}
+
+      \item floats end in \verb'f' or \verb'F'.
+
+      \item doubles end in \verb'd' o \verb'D' or nothing.
+
+    \end{itemize}
+
+  \item Operators: the same as ints, but without the remainder.
+
+  \item They are inexact:
+
+\begin{blackboard}
+double a = 0.1d;
+boolean b = (a + a) == 0.2d; // true
+boolean c = (a + a + a) == 0.3d; // false
+System.out.println(a + a + a); // 0.30000000000000004
+\end{blackboard}
+
+    This is way floats and doubles are not used for important operations like currency, the class BigDecimal is used instead (session 03).
+
+  \item Printing: using the \verb+java.io.PrintStream.println(float f)+ or the \verb+java.io.PrintStream.println(double d)+ method.
+
+\end{itemize}
+
+\subsection{Constant Variables}
+
+This looks like an oximoron, but it is not.
+
+To declare a variable so that once initiliazed, its value can not be changed,
+use the \verb+final+ keyword.
+
+\begin{blackboard}
+final int DAYS_IN_A_WEEK = 7;
+final boolean YES = true;
+final char TEA = '\u8636';
+
+DAYS_IN_A_WEEK = 8; // compilation error: cannot assign a value to final variable
+
+final int NUM_SESSIONS;
+NUM_SESSIONS = 29;
+NUM_SESSIONS = 34; // compilation error: cannot assign a value to final variable
+\end{blackboard}
+
+\subsection{Castings}
+
+A casting is interpreting a variable as if it has a different type, example:
+turn an int into a long.
+
+An implicit castings is performed when casting a small variable into a big one.
+Are done automatically by Java.
+
+\begin{blackboard}
+int i = 3;
+long l = i; // implicit casting, l is 3L
+
+long l = 3L;
+int i = l; // compilation error: possible loss of precision
+\end{blackboard}
+
+Explicit castings are performed when casting a big variable into a smaller one.
+As you can loose some data, they are not performed automatically by Java, you
+must request the conversion explicitly by using the casting operator
+\verb+(type)+, which is a way of telling Java, it's OK, I know what I'm doing.
+
+\begin{blackboard}
+long l = 3L;
+int i = (int) l; // explicit casting, works, i is 3
+
+long l = 3_000_000_000L;
+int i = (int) l; // explicit casting, works, i is -1294967296, is this what you want?
+\end{blackboard}
+
+You can cast all primitive types into any other (implicitly or explicitly),
+except booleans.
 
 \end{document}

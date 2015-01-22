@@ -1,11 +1,8 @@
-// error checking skipped for didactic purposes
 class Max {
     public static void main(String[] args) {
         int a = Integer.parseInt(args[0]);
         int b = Integer.parseInt(args[1]);
-
         int c = max(a, b);
-
         System.out.println(c);
     }
 
