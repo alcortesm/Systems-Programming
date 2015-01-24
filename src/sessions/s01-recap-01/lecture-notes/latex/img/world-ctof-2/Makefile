@@ -1,4 +1,4 @@
-name := world-max-3
+name := world-ctof-2
 
 # build
 src := $(name).dia

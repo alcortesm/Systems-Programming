@@ -43,8 +43,8 @@
 
 Java sees the world as a big empty space.
 
-A program place data (numbers and characters) in it, and asks Java to perform
-computations on them.
+A program place data (numbers) in it, and asks Java to perform computations on
+them.
 
 That big empty space is the computer memory, and looks like this:
 
@@ -83,33 +83,40 @@ This is what java does when you execute a program:
 \subsection{A simple real world problem}
 
 \begin{Verbatim}
-Find the maximum of two integers.  -->   $ java Max 3 7
-                                         7
-                                         $ java Max -2 -6
-                                         -2
-                                         $ java Max 237 237
-                                         237
+Print a conversion table from Celsius to Fahrenheit, from 0 to 50 in steps of 10.
+
+Tip: the mathematical function to convert Celsius degrees to Fahrenheit degrees
+is:
+
+f(x) = x * 9/5 + 32  (dibuja la gráfica xy)
+
+Example:
+
+$ java CelsiusToFahrenheit
+0.0 32.0
+10.0 50.0
+20.0 68.0
+30.0 86.0
+40.0 104.0
+50.0 122.0
 \end{Verbatim}
-\newpage
+
 \begin{multicols}{2}
-\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/Max.java}
+\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/CelsiusToFahrenheit.java}
 \columnbreak
 
 \begin{itemize}
 
-  \item Lines 1 to 16 are the declaration of the class.
+  \item Lines 1 to 13 are the declaration of the class.
 
   \item Lines 2 to 7 are the definition of the main method, the entry point of
     the program.
 
-  \item Lines 9 to 16 are the definition of another method.
+  \item Lines 9 to 13 are the definition of an auxiliary method.
 
-  \item Lines 3 and 4 are for processing the input arguments into something
-    useful (Strings to ints)
+  \item Line 5 shows the output to the user.
 
-  \item Line 6 shows the output to the user.
-
-  \item Line 5 is the one that actually does the work (finding the max).
+  \item Line 4 is the one that actually does the work (translating degrees).
 
 \end{itemize}
 
@@ -119,18 +126,15 @@ Find the maximum of two integers.  -->   $ java Max 3 7
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics{img/world-max-1/world-max-1.eps}
+  \includegraphics{img/world-ctof-1/world-ctof-1.eps}
 \end{figure}
 \begin{figure}[!ht]
   \centering
-  \begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics{img/world-max-2/world-max-2.eps}
-  \end{minipage}%
-  \begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics{img/world-max-3/world-max-3.eps}
-  \end{minipage}
+  \includegraphics{img/world-ctof-2/world-ctof-2.eps}
+\end{figure}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{img/world-ctof-3/world-ctof-3.eps}
 \end{figure}
 
 \section{Data Types in Java}
@@ -146,7 +150,7 @@ There are 2 types of data:
 
   \item Primitive Types: int, float, char, boolean\ldots
 
-  \item ``Composite'' Types: (Arrays and Objects) String, Person, int[]\ldots
+  \item Reference Types: (Arrays and Objects) String, Person, int[]\ldots
 
 \end{itemize}
 
@@ -165,10 +169,12 @@ When you work with composite types, you store their addresses in ``references''
 and operate on them by calling ``methods''.
 
 \begin{blackboard}
-String a = "hello";
-s.ToUppercas();
-// a is a reference to an String object
-// .ToUppercase is a method to turn all caracters in the string to uppercase
+Object a = new Object();
+Object b = new Object();
+a.toString();
+a.equals(b);
+// a and b are references to Objects
+// .toString and .equals are methods to operate on Objects
 \end{blackboard}
 
 We will go back to this later, now lets review the Java Primitive Types:
@@ -192,23 +198,7 @@ boolean a;     a |?|
 allocate memory for a boolean and call that chunk of memory \verb+a+ from now
 on.
 
-The memory has not been initialized, so Java will not let you use that
-variable:
-
-\begin{blackboard}
-class Bla {
-    public static void main(String[] args) {
-        boolean a;
-        System.out.println(a);
-    }
-}
-
-$ javac Bla.java
-/tmp/Bla.java:4: error: variable a might not have been initialized
-        System.out.println(a);
-                           ^
-1 error
-\end{blackboard}
+Values: only 2 possible values.
 
 Literals: \verb+true+ \& \verb+false+.
 
@@ -226,6 +216,9 @@ boolean a;
 boolean b;
 boolean c;
 c = b = a = true;
+// a = true;
+// b = a;
+// c = b;
 \end{blackboard}
 
 \item \verb+==+: (Equal to operator), tells you if the value stores in a
@@ -266,11 +259,11 @@ Printing: using the \verb+java.io.PrintStream.println(boolean b)+ method.
 
   \item Declaration (allocates 32 bits) \verb+int a;+
 
+  \item Can hold integers from -2\_147\_483\_648 ($-2^{31}$) to 2\_147\_483\_647
+    ($2^{31}-1$) (about 2 billions) \\ (Compilation error: \verb+error: integer number too large+)
+
   \item Literals: \verb+26+, \verb+0x1a+ or \verb+0b11010+. Underscores are
     ignored for readability (1\_000 is same as 1000).
-
-  \item Can hold integers from -2\_147\_483\_648 ($-2^{31}$) to 2\_147\_483\_647
-    ($2^{31}-1$) (about 2 billions) (Compilation error: \verb+error: integer number too large+)
 
   \item Operators:
 
@@ -282,7 +275,7 @@ Printing: using the \verb+java.io.PrintStream.println(boolean b)+ method.
 int a = 7;
 int b = 3;
 int c = a + b; // 10
-c = a - b; // 4
+c = b - a; // -4
 c = a * b; // 21
 c = a / b; // 2
 c = a % b; // 1
@@ -330,7 +323,7 @@ They are just like int, but smaller:
 
   \item Declaration \verb+byte a;+ or \verb+short a;+
   \item \verb+byte+ is 8 bits (-128 ($-2^{7}$) - 127 ($2^{7} -1$)).
-  \item \verb+short+ is 16 bits (-32\_768 ($-2^{15}$) - 32\_769 ($2^{15}-1$)), less than 33 thousands.
+  \item \verb+short+ is 16 bits (-32\_768 ($-2^{15}$) - 32\_767 ($2^{15}-1$)), less than 33 thousands.
   \item Literals: the same as for ints.
 
 \begin{blackboard}
@@ -392,7 +385,7 @@ also know as \emph{Charset}s.
         \verb+'\n'+, carriage return \verb+'\r'+, single quote \verb+'\''+,
         double quote \verb+'\"'+, backslash \verb+'\\'+\ldots
 
-      \item by unicode code: \verb+'\u8636'+ (kanji for tea)
+      \item by unicode code: \verb+'\u0041'+ (character A)
 
     \end{itemize}
 
@@ -445,9 +438,33 @@ boolean c = (a + a + a) == 0.3d; // false
 System.out.println(a + a + a); // 0.30000000000000004
 \end{blackboard}
 
-    This is way floats and doubles are not used for important operations like currency, the class BigDecimal is used instead (session 03).
+    This is way floats and doubles are not used for important operations like
+    currency, the class BigDecimal is used instead (session 03).
 
-  \item Printing: using the \verb+java.io.PrintStream.println(float f)+ or the \verb+java.io.PrintStream.println(double d)+ method.
+  \item Printing: using the \verb+java.io.PrintStream.println(float f)+ or the
+    \verb+java.io.PrintStream.println(double d)+ method.
+
+\end{itemize}
+
+\subsection{Review}
+
+\begin{itemize}
+
+  \item boolean - true or false
+
+  \item byte (8 bits) -128 to 127
+
+  \item short (16 bits) -32 thousand to 32 thousand
+
+  \item int (32 bits) -2 billions to 2 billions
+
+  \item long (64 bits) -lots to lots
+
+  \item float (32 bits) not very precise real numbers
+
+  \item double (64 bits) double precission real number
+
+  \item char (16 bits) really numbers in disguise using the Unicode Charset table
 
 \end{itemize}
 
@@ -461,7 +478,7 @@ use the \verb+final+ keyword.
 \begin{blackboard}
 final int DAYS_IN_A_WEEK = 7;
 final boolean YES = true;
-final char TEA = '\u8636';
+final char ALPHA = '\u03B1';
 
 DAYS_IN_A_WEEK = 8; // compilation error: cannot assign a value to final variable
 
