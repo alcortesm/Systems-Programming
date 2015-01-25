@@ -487,6 +487,18 @@ NUM_SESSIONS = 29;
 NUM_SESSIONS = 34; // compilation error: cannot assign a value to final variable
 \end{blackboard}
 
+\subsubsection{Magic numbers}
+
+A constant numerical or text value used to identify some important value.
+
+Your program should not have magic numbers, use constants instead.
+
+\begin{multicols}{2}
+\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/MagicNumbers.java}
+\columnbreak
+\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/NoMagicNumbers.java}
+\end{multicols}
+
 \subsection{Castings}
 
 A casting is interpreting a variable as if it has a different type, example:
