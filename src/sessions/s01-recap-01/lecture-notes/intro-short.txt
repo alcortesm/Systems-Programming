@@ -1,0 +1,56 @@
+- Welcome
+
+- home web page
+
+- general course info PDF
+
+- Literature - writing a good book
+    + read/write english
+    + other skills
+        * story telling
+        * developing interesting characters
+        * lots of reading on your own
+
+    + 10 year old
+
+- Programming - writing a good program
+
+- Skills to learn
+    + Object Oriented Programming
+    + GUI
+    + Recursion
+    + Data structures: lists, stacks, queues and trees
+
+- Organization
+    + calendar
+    + lectures and labs
+    + red marks
+    + green marks
+
+- Staff
+    + web page
+
+- Materials
+    + lectures
+        * bibliographic references
+            ** favorite
+            ** online
+        * required readings
+        * Slides
+    + labs scripts
+        * solutions
+    + self-assessment exercises
+        * no-solutions
+    + forum
+    + optional resources
+
+- Grading
+    + overall grade
+    + minimum grade for final
+    + only the exams are important
+
+- Exams
+    + test
+    + problems
+
+
