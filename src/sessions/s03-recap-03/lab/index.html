@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Review: Fundamentals of Java</title>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <meta name="Author" content="Universidad Carlos III de Madrid" />
+    <meta name="language" content="en" />
+    <link type="text/css" rel="stylesheet" href="./style.css" media="all" />
+  </head>
+  <body>
+  <h2 class="title" id="idm140277379203088">Session 2 (lab): Review exercises</h2>
+          <p>
+      
+      <span xml:lang="en" class="phrase" lang="en">
+	We advise the students to program according to usual Java
+	conventions. The document <a class="ulink" href="http://www.oracle.com/technetwork/java/codeconventions-150003.pdf">Java
+	Code Conventions</a> presents a brief introduction to the
+	most important conventions.
+      </span>
+    </p>
+          <div class="section" id="idm140277376659056">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h3 class="title" id="idm140277376659056">1.1. 
+    <span xml:lang="en" class="phrase" lang="en">Debugging Java programs with Eclipse: Calculation
+    of pi</span>
+  </h3>
+                </div>
+              </div>
+            </div>
+            <p xml:lang="en" lang="en">
+    A debugger is a program to test other programs in a controlled way. A
+    debugger allows finding errors in programs (bugs) and help to
+    understand them.
+  </p>
+            <p xml:lang="en" lang="en">
+    Common functionalities of a debugger:
+  </p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist" type="disc">
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        Run a program step by step (this is, the program will execute
+        one source code statement and then wait for further
+        instructions).
+      </p>
+                </li>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        Stop the execution of a program at a given line of source code
+        and wait for further user instructions.
+      </p>
+                </li>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        Allow to inspect the values of the program variables while its
+        execution is stopped.
+      </p>
+                </li>
+              </ul>
+            </div>
+
+            <p> The JDK comes with its own debugger, called <code
+              class="code">jdb</code>.  The Eclipse IDE also includes a
+            debugger, as powerful as the <code class="code">jdb</code>, but
+            with a more friendly user interface.</p>
+
+            <p> We are not going to use Eclipse for the rest of the course, but
+            since its debugger is so nice, we will be using Eclipse just for
+            this lab, as an exception.</p>
+
+            <div class="section" id="idm140277376661040">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277376661040">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 1: A program to compute pi</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      The following program computes the value of pi with the desired
+      precision (the number of desired decimal places is passed as a
+      command argument).
+    </p>
+              <pre class="programlisting">import java.math.BigDecimal;
+import java.math.MathContext;
+
+public class PiCalc {
+
+    private int numDigits;
+    private MathContext mc;
+
+    public PiCalc(int numDigits) {
+        this.numDigits = numDigits;
+        mc = new MathContext(numDigits);
+    }
+
+    public BigDecimal compute() {
+        BigDecimal pi = new BigDecimal(0);
+        BigDecimal limit = new BigDecimal(1).movePointLeft(numDigits);
+        boolean stop = false;
+        for (int k = 0; !stop; k++) {
+            BigDecimal piK = piFunction(k);
+            pi = pi.add(piK);
+            if (piK.compareTo(limit) &lt; 0) {
+                stop = true;
+            }
+        }
+        return pi.round(mc);
+    }
+
+    private BigDecimal piFunction(int k) {
+        int k8 = 8 * k;
+        BigDecimal val1 = new BigDecimal(4);
+        val1 = val1.divide(new BigDecimal(k8 + 1), mc);
+        BigDecimal val2 = new BigDecimal(-2);
+        val2 = val2.divide(new BigDecimal(k8 + 4), mc);
+        BigDecimal val3 = new BigDecimal(-1);
+        val3 = val3.divide(new BigDecimal(k8 + 5), mc);
+        BigDecimal val4 = new BigDecimal(-1);
+        val4 = val4.divide(new BigDecimal(k8 + 6), mc);
+        BigDecimal val = val1;
+        val = val.add(val2);
+        val = val.add(val3);
+        val = val.add(val4);
+        BigDecimal multiplier = new BigDecimal(16);
+        multiplier = multiplier.pow(k);
+        BigDecimal one = new BigDecimal(1);
+        multiplier = one.divide(multiplier, mc);
+        val = val.multiply(multiplier);
+        return val;
+    }
+
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("One command-line argument expected: number of "
+                               + "digits.");
+        } else {
+            PiCalc piCalc = new PiCalc(Integer.parseInt(args[0]));
+            System.out.println(piCalc.compute());
+        }
+    }
+}
+</pre>
+              <p xml:lang="en" lang="en">
+      Take a look at its source code without paying too much attention
+      to its details and answer the following questions.
+    </p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" type="disc">
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Can you describe the program flow? This is, what methods are
+          invoked and in which order? Is there any method that is being
+          executed more than once?
+        </p>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Justify why the class <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html"><code class="code">BigDecimal</code></a>
+          is used instead of the native Java types <code class="code">float</code> or
+          <code class="code">double</code>. Look for external documentation to back up
+          your answer.
+        </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="section" id="idm140277376660128">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277376660128">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 2: Running the program</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Import the program into Eclipse and run it several times with
+      varied precisions. Note how the program takes more and more time
+      to execute as you ask for higher precisions (in the next section
+      you will understand why is that).
+    </p>
+            </div>
+            <div class="section" id="idm140277372136496">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277372136496">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 3: Using the Eclipse debugger</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Use the Eclipse debugger to understand how the program works. Set
+      a breakpoint in the first line of the method
+      <code class="code">compute()</code> (menu <span class="emphasis"><em>Run / Toggle
+      Breakpoint</em></span>). Run the program in debug mode, using
+      <span class="emphasis"><em>Debug</em></span> instead of
+      <span class="emphasis"><em>Run</em></span>. The program will begin its execution and
+      will stop at your breakpoint.
+    </p>
+              <p xml:lang="en" lang="en">
+      You will be asked to change the Eclipse perspective to the
+      <span class="emphasis"><em>Debugging Perspective</em></span>, which will allow you to
+      control and obtain information about the ongoing debugging
+      session. You will be able to see your source code, along with a
+      marker on the line that is going to be executed next. You can also
+      see the values of your program variables (at first, only
+      <code class="code">this</code> is shown, which is the object with the method
+      where the breakpoint is; if you unfold it, you will be able to see
+      the values of all its attributes). You can also see the Console.
+    </p>
+              <p xml:lang="en" lang="en">
+      Now that the program is waiting at the breakpoint, you can resume
+      its execution in several ways:
+    </p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" type="disc">
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Option <span class="emphasis"><em>Run / Resume</em></span>: resume the program
+          execution until it finishes or until a breakpoint is reached.
+        </p>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Option <span class="emphasis"><em>Run / Step Into</em></span>: execute the next
+          line of code. If this line is a method invocation, the program
+          will stop executing at the first line of code inside that
+          method, so you can execute the program step by step.
+        </p>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Option <span class="emphasis"><em>Run / Step Over</em></span>: execute the next
+          line of code. If this line is a method invocation, the program
+          will execute the whole method normally and then stop once it
+          returns. This is very useful to understand the general flow
+          of the program without getting into the details of each
+          method.
+        </p>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Option <span class="emphasis"><em>Run / Step Return</em></span>: execute the
+          code in the current method until it gets to a return
+          statement.
+        </p>
+                  </li>
+                </ul>
+              </div>
+              <p xml:lang="en" lang="en">
+      You can also cancel the debugging mode by using the option
+      <span class="emphasis"><em>Run / Terminate</em></span>.
+    </p>
+              <p xml:lang="en" lang="en">
+      Debug the program using 10 as its command line argument. Count the
+      number of iterations performed on the loop inside the method
+      <span class="emphasis"><em>compute()</em></span> before getting the final value of
+      pi. Repeat this for bigger arguments. What can you say about the
+      time it takes to execute the program as a function of its
+      argument?
+    </p>
+              <p xml:lang="en" lang="en">
+      In a new debugging session, keep track of the value of the
+      variable <span class="emphasis"><em>piK</em></span> on each loop iteration. How is
+      this value changing with each iteration of the loop?
+    </p>
+              <p xml:lang="en" lang="en">
+      What is the role of the <code class="code">limit</code> variable in the
+      program? Run additional debugging sessions if you need to.
+    </p>
+            </div>
+            <div class="section" id="idm140277377757440">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277377757440">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 4: The expression to calculate pi</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      What is the mathematical expression that the program is using to
+      calculate the value of pi? You can answer this question by
+      thinking about the source code above and using the debugger.
+    </p>
+            </div>
+            <div class="section" id="idm140277378331360">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277378331360">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 5: Area of a circle</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Write a new Java program to calculate the area of a circle knowing
+      it radius. This program will have a <code class="code">main</code> method that
+      will receive as its arguments the decimal places of pi for the
+      calculation of the solution and the radius of the circle. The
+      program must write the calculated area to its standard output.
+    </p>
+              <p xml:lang="en" lang="en">
+      The program must use the class <code class="code">PiCalc</code> presented above
+      to generate a suitable value of pi for its calculations. It must
+      also use the class <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html">BigDecimal</a>.
+    </p>
+            </div>
+            <div class="section" id="idm140277376691744">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277376691744">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 6: Total area of several
+      circles</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Write a new Java program to calculate the sum of the areas of
+      several circles, knowing their radii. The program will have a
+      <code class="code">main</code> method with the following arguments: the desired
+      precision on pi and one or more radii values (one per circle). The
+      program must write the solution to the standard output.
+    </p>
+              <p xml:lang="en" lang="en">
+      This program must use the class from the previous section and <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html">BigDecimal</a>.
+    </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="adagio_page_footer"></div>
+  </body>
+</html>
