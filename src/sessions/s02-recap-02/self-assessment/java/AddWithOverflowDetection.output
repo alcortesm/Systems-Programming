@@ -1,0 +1,5 @@
+OK: Integer.MAX_VALUE plus 1 throws an exception
+OK: Integer.MAX_VALUE plus -1 is 2147483646
+OK: Integer.MIN_VALUE plus 1 is -2147483647
+OK: Integer.MIN_VALUE plus -1 throws an exception
+OK: 1000111222 plus 2000111222 throws an exception

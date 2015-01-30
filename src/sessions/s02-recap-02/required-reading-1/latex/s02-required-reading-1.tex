@@ -1,0 +1,146 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[handout]{style}
+
+\newcommand{\realtitle}{Session 02 - Required Reading 1}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Control Flow Statements - Loops
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{0.5cm}
+
+\tableofcontents
+\vspace{1cm}
+
+\section{While}
+
+\begin{multicols}{2}
+\begin{blackboard}
+        while (condition) {
+            actions;
+        }
+
+// prints from 0 to 9 (both included)
+int i = 0;
+while (i < 10) {
+  System.out.println(i);
+  i++;
+}
+\end{blackboard}
+
+\columnbreak
+
+\begin{center}
+  \includegraphics[height=5cm]{img/while/while.eps}
+\end{center}
+
+\end{multicols}
+
+A \verb+break+ takes you out of the innermost loop.
+
+A \verb+continue+ jumps just before the condition of the innermost loop.
+
+
+\section{Do-while}
+
+Similar to \verb+while+, but always runs for at least one iteration.
+
+\begin{multicols}{2}
+\begin{blackboard}
+        do {
+            actions;
+        } while(condition);
+
+// prints from 0 to 9 (both included)
+int i = 0;
+do {
+    System.out.println(i);
+    i++;
+} while (i < 10);
+\end{blackboard}
+
+\columnbreak
+
+\begin{center}
+  \includegraphics[height=6cm]{img/do_while/do_while.eps}
+\end{center}
+
+\end{multicols}
+
+A \verb+break+ takes you out of the innermost loop.
+
+A \verb+continue+ jumps just before the condition of the innermost loop.
+
+\section{For}
+
+\begin{multicols}{2}
+\begin{blackboard}
+  for (init; condition; update) {
+      actions;
+  }
+
+// prints from 0 to 9 (both included)
+// but skips 5.
+for (int i = 0; i<10; i++) {
+    if (i == 5) {
+      continue;
+    }
+    System.out.println(i);
+}
+\end{blackboard}
+
+\columnbreak
+
+\begin{center}
+  \includegraphics[height=6cm]{img/for/for.eps}
+\end{center}
+
+\end{multicols}
+
+A \verb+break+ takes you out of the innermost loop.
+
+A \verb+continue+ jumps just before the update.
+
+All four parts are optional (init, condition, update, actions).
+
+\section{Simple Infinite Loops}
+
+\begin{blackboard}
+  while (true) {
+    actions;
+  }
+
+  do {
+    actions;
+  } while (true);
+
+  for (;;) {
+    actions;
+  }
+
+  Remember to use a break inside your ACTIONS, or your program will
+  never finish!
+\end{blackboard}
+
+\section{More Information}
+
+Please check out the Java Tutorials for more information about loops:
+
+\begin{itemize}
+
+  \item \href{http://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html}{While and Do-While Loops}
+
+  \item \href{http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html}{For Loops}
+
+  \item \href{http://docs.oracle.com/javase/tutorial/java/nutsandbolts/branch.html}{Break and Continue}
+
+\end{itemize}
+
+\end{document}

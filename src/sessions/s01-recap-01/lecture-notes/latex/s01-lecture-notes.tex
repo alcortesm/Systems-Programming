@@ -468,38 +468,9 @@ System.out.println(a + a + a); // 0.30000000000000004
 
 \end{itemize}
 
-\subsection{Constant Variables}
-
-This looks like an oximoron, but it is not.
-
-To declare a variable so that once initiliazed, its value can not be changed,
-use the \verb+final+ keyword.
-
-\begin{blackboard}
-final int DAYS_IN_A_WEEK = 7;
-final boolean YES = true;
-final char ALPHA = '\u03B1';
-
-DAYS_IN_A_WEEK = 8; // compilation error: cannot assign a value to final variable
-
-final int NUM_SESSIONS;
-NUM_SESSIONS = 29;
-NUM_SESSIONS = 34; // compilation error: cannot assign a value to final variable
-\end{blackboard}
-
-\subsubsection{Magic numbers}
-
-A constant numerical or text value used to identify some important value.
-
-Your program should not have magic numbers, use constants instead.
-
-\begin{multicols}{2}
-\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/MagicNumbers.java}
-\columnbreak
-\VerbatimInput[numbers=left, numbersep=2pt, frame=single]{../java/NoMagicNumbers.java}
-\end{multicols}
-
 \subsection{Castings}
+
+DESDE AQUI YA NO DA TIEMPO A DARLO (¿mover esto a herencia?).
 
 A casting is interpreting a variable as if it has a different type, example:
 turn an int into a long.
@@ -509,10 +480,10 @@ Are done automatically by Java.
 
 \begin{blackboard}
 int i = 3;
-long l = i; // implicit casting, l is 3L
+long j = i; // implicit casting, j is 3L
 
-long l = 3L;
-int i = l; // compilation error: possible loss of precision
+long j = 3L;
+int i = j; // compilation error: possible loss of precision
 \end{blackboard}
 
 Explicit castings are performed when casting a big variable into a smaller one.
@@ -521,11 +492,11 @@ must request the conversion explicitly by using the casting operator
 \verb+(type)+, which is a way of telling Java, it's OK, I know what I'm doing.
 
 \begin{blackboard}
-long l = 3L;
-int i = (int) l; // explicit casting, works, i is 3
+long j = 3L;
+int i = (int) j; // explicit casting, works, i is 3
 
-long l = 3_000_000_000L;
-int i = (int) l; // explicit casting, works, i is -1294967296, is this what you want?
+long j = 3_000_000_000L;
+int i = (int) j; // explicit casting, works, i is -1294967296, is this what you want?
 \end{blackboard}
 
 You can cast all primitive types into any other (implicitly or explicitly),
@@ -549,9 +520,7 @@ Java Primitive Data Types
   - char
   - Literals
   - Operators
-Constants
-  - magic numbers
-Castings
+Castings?
 \end{blackboard}
 
 \end{document}

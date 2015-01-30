@@ -1,0 +1,311 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[assessment]{style}
+
+\newcommand{\realtitle}{Session 02 - Recap 2}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Self-Assessment
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+\section{Today}
+
+Write a program called \texttt{Today} that prints the current date using the
+\verb+java.util.Data+ class.
+
+\begin{cmd}
+$ java Today
+Thu Jan 29 16:35:51 CET 2015
+\end{cmd}
+
+\solutioninput{../java/Today.java}
+
+\section{Magic Numbers}
+
+Write a program called \texttt{DaysInMonths} that prints the number of days in
+each month of the current year.
+
+Avoid using magic numbers.
+
+Repeat this exercise twice, first using only \verb+if+ statements, then using
+only a \verb+switch+ statement.
+
+For simplicity, you can assume that the current year is not a leap year.
+
+\begin{cmd}
+$ java DaysInMonths
+1 31
+2 28
+3 31
+4 30
+5 31
+6 30
+7 31
+8 31
+9 30
+10 31
+11 30
+12 31
+\end{cmd}
+
+\solutioninput{../java/DaysInMonths.java}
+
+\section{Limits of integer values}
+
+\subsection{}
+
+What is the value of the biggest \texttt{int} in Java?
+Why?
+
+\begin{solution}
+2,147,483,647
+
+Java ints are 32 bit values. The first half of them, from $0$ to $2^{31}-1$,
+are used for positive integers. The other half of them, from $2^{31}$ to
+$2^{32}-1$, are used for negative integers.
+
+Therefore, the maximum int in Java is $2^{31}-1$ = 2\_147\_483\_647.
+\end{solution}
+
+\subsection{}
+
+The \texttt{Integer} class (from the Java API) has an static field
+that stores the maximum value of an \texttt{int} in Java.
+What is the name of that field?
+
+Write a Java program that prints its value.
+
+\begin{solution}
+Integer.MAX_VALUE or java.lang.Integer.MAX_VALUE if you prefer the long name.
+\end{solution}
+\solutioninput{../java/IntMaxValue.java}
+\solutioninput{../java/IntMaxValue.output}
+
+\subsection{}
+
+Write a Java program that prints the mininum and maximum values of
+a Java \texttt{byte}, \texttt{short}, \texttt{int} and \texttt{long}.
+
+\solutioninput{../java/Limits.java}
+\solutioninput{../java/Limits.output}
+
+\subsection{}
+
+What happens when you overflow an \texttt{int}?
+As an example, what is the result of adding \newline
+\texttt{Integer.MAX\_VALUE} and 1?
+
+\solutioninput{../java/AddOverflowDemo.java}
+\solutioninput{../java/AddOverflowDemo.output}
+
+\subsection{}
+
+Does Java warn you about the failed sum in the previous exercise
+or is the programmer responsible for checking arithmetic overflows?
+
+\begin{solution}
+Java does NOT warn you about integer sum overflows.
+
+The programmer is resposible for checking arithmetic overflows.
+\end{solution}
+
+\subsection{}
+
+Write a Java method that returns the sum of its two \texttt{int} arguments
+and that throws an exception if an overflow occurs.
+
+Test your method with the following operations:
+
+\begin{itemize}
+  \item $\texttt{Integer.MAX\_VALUE} + 1$
+  \item $\texttt{Integer.MAX\_VALUE} + (-1)$
+  \item $\texttt{Integer.MIN\_VALUE} + 1$
+  \item $\texttt{Integer.MIN\_VALUE} + (-1)$
+  \item $1,000,111,222 + 2,000,111,222$
+\end{itemize}
+
+\solutioninput{../java/AddWithOverflowDetection.java}
+\solutioninput{../java/AddWithOverflowDetection.output}
+
+\section{Precision of floating point values}
+
+\subsection{}
+
+Compile and run the following Java program an explain why its output looks
+weird:
+
+\blackboardinput{../java/FloatPrecision.java}
+\solutioninput{../java/FloatPrecision.output}
+\begin{solution}
+Real numbers are uncountable.  This means there are infinite real numbers even
+in the smallest interval between two other real numbers. Therefore, it is
+imposible to represent all real numbers in a computer between a given minimum
+and a maximum, as there are infinite posible values.
+
+Java floats and doubles are stored in memory usgin "IEEE 754 binary floating
+point representation".  In this format, real numbers are approximated by a
+finite set of real numbers that represent them.  For example, the value 0.1
+cannot be represented exactly, so and approximate value is stored instead.
+
+This aproximation is quite good and you can print 0.1 as if it where the exact
+number.  But the approximation error is still there and can be amplified by
+operating on it.
+
+When adding an approximation of 0.1 three times, we are making the
+approximation error so big, that Java actually recognices the result as another
+number (the next number in the finite set of representatives).
+\end{solution}
+
+\section{Strings}
+
+\subsection{}
+
+Write an interactive Java program that asks the user for the
+"Answer to The Ultimate Question of Life, the Universe, and Everything".
+
+The program must print "RIGHT!" if the answer is either
+\texttt{42} or \texttt{Forty-two} (case insensitive).
+and must print "WRONG!" otherwise.
+
+Tip: You can learn about Java IO streams
+\href{https://docs.oracle.com/javase/tutorial/essential/io/streams.html}{here}.
+
+\solutioninput{../java/UltimateQuestion.java}
+\solutioninput{../java/UltimateQuestion.output}
+
+\subsection{}
+
+Write a \textsl{Unix filter} that translates
+\begin{itemize}
+\item all 'a's into '4's
+\item all 'e's into '3's
+\item all 'i's and 'I's into '1's
+\item and all 'o's into '0's
+\end{itemize}
+
+Tip: A Unix filter is a programa that keeps reading lines from the standard
+input until and End-Of-File character (EOF) is found. Each time a line is
+readed, the program translates it acording to some predefined rules and prints
+the result of that translation.
+
+Use the following execution example as a reference (user inputs are lines 1, 2,
+4 and 6. The program outputs are lines 3, 5 and 7):
+
+\begin{blackboard}
+; java Eleet
+hi there!
+h1 th3r3!
+noob hacker
+n00b h4ck3r
+I hate Java
+1 h4t3 j4v4
+\end{blackboard}
+
+\solutioninput{../java/Eleet.java}
+
+\section{Arrays}
+
+\subsection{}
+
+Write a \texttt{daysOfTheWeek()} method that returns an array of strings,
+holding the names of the days of the week in chronological order as per
+\href{http://en.wikipedia.org/wiki/ISO_8601}{ISO 8601} (i.e., Mondays come
+  first).
+
+\subsection{}
+
+Write a \texttt{print(String[] a)} method that prints the strings in an array
+in the same order as they appear in the array, using ", " as a separator and a
+'.' as the terminator.
+
+Tests this method using the output of the \texttt{daysOfTheWeek} method from
+the previous exercise. The output should look exactly like this:
+
+\begin{blackboard}
+Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.
+\end{blackboard}
+
+\subsection{}
+
+Write a \texttt{reverse(String[] a)} method that returns a copy of its input
+array, but with its elements in reverse order. The input array must be left
+untouched.
+
+Test this method by printing the days of the week in reverse order, using the
+methods above. The output should look exactly like this:
+
+\begin{blackboard}
+Sunday, Saturday, Friday, Thursday, Wednesday, Tuesday, Monday.
+\end{blackboard}
+
+\subsection{}
+
+Write a \texttt{sort(String[] a)} method that returns a copy of its input
+array, but with its elements sorted in alphabetical order. The input array
+should be left untouched.
+
+Test this method by printing the days of the week in reverse alphabetical
+order, using the methods above. The output must look exactly like this:
+
+\begin{blackboard}
+Wednesday, Tuesday, Thursday, Sunday, Saturday, Monday, Friday.
+\end{blackboard}
+
+\subsection{}
+
+Write a \texttt{shuffle(String[] a)} method that returns a copy of its input
+array, with its elements in a random order. The input array must be left
+untouched.
+
+Test this method by printing the result of five invocations to this method
+using the days of the week as its input, as shown bellow:
+
+\begin{blackboard}
+Wednesday, Sunday, Thursday, Saturday, Friday, Monday, Tuesday.
+Sunday, Wednesday, Saturday, Thursday, Tuesday, Friday, Monday.
+Monday, Wednesday, Sunday, Friday, Tuesday, Saturday, Thursday.
+Wednesday, Saturday, Tuesday, Thursday, Friday, Monday, Sunday.
+Wednesday, Tuesday, Friday, Saturday, Thursday, Sunday, Monday.
+\end{blackboard}
+
+Tip: you will find the standard Java \texttt{java.util.Random} class quite
+useful to generate random numbers.
+
+\subsection{}
+
+Write a method that takes an array of strings as its input, and keeps shuffling
+them and printing them until the they end up in the same order as the original
+one.
+
+The output might look something like this:
+
+\begin{blackboard}
+Monday, Sunday, Thursday, Saturday, Friday, Tuesday, Wednesday.
+Thursday, Sunday, Tuesday, Wednesday, Saturday, Friday, Monday.
+Tuesday, Friday, Thursday, Wednesday, Sunday, Monday, Saturday.
+Tuesday, Friday, Thursday, Wednesday, Monday, Sunday, Saturday.
+Sunday, Saturday, Tuesday, Wednesday, Monday, Friday, Thursday.
+Monday, Thursday, Tuesday, Wednesday, Friday, Sunday, Saturday.
+.
+.     [some thousand lines later...]
+.
+Monday, Sunday, Wednesday, Saturday, Tuesday, Friday, Thursday.
+Monday, Sunday, Tuesday, Thursday, Saturday, Friday, Wednesday.
+Wednesday, Monday, Sunday, Friday, Tuesday, Thursday, Saturday.
+Tuesday, Sunday, Thursday, Friday, Monday, Wednesday, Saturday.
+Wednesday, Sunday, Saturday, Monday, Tuesday, Thursday, Friday.
+Monday, Tuesday, Wednesday, Saturday, Friday, Sunday, Thursday.
+Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.
+\end{blackboard}
+
+\solutioninput{../java/DaysOfTheWeek.java}
+
+\end{document}

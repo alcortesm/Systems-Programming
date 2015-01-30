@@ -1,0 +1,743 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 02 - Recap 2}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+\section{Last Session Review}
+
+\begin{blackboard}
+The World according to Java
+  - Stack
+    + Stack frames
+    + Pass by value
+    + method parameters are automatic variables
+    + this variable
+  - Heap
+  - Static
+
+Java Primitive Data Types
+  - booleans
+  - byte, short, int, long
+  - float, double
+  - char
+  - Literals
+  - Operators
+
+Program Arguments
+Remainder Operator
+Primes
+Flowcharts
+Measuring execution time of programs
+\end{blackboard}
+
+\newpage
+\section{Constant Variables}
+
+This looks like an oximoron, but it is not.
+
+To declare a variable so that, once initiliazed, its value can not be changed,
+use the \verb+final+ keyword.
+
+\begin{blackboard}
+final int DAYS_IN_A_WEEK = 7;
+DAYS_IN_A_WEEK = 8; // compilation error: cannot assign a value to final variable
+
+final char ALPHA = '\u03B1'; // '\uXXXX' way to write chars by its UNICODE value
+
+final int NUM_SESSIONS;
+NUM_SESSIONS = 29;
+NUM_SESSIONS = 34; // compilation error: cannot assign a value to final variable
+\end{blackboard}
+
+The use of uppercase letters in the names of constants is a tradition in
+programming, it allows to know at a glance, which variables you can modify
+later in your programs, and which not.
+
+
+
+
+
+
+\section{Java Types Again}
+
+\begin{center}
+\includegraphics{img/variables_and_references/variables_and_references.eps}
+\end{center}
+
+\begin{center}
+\includegraphics{img/comparing/comparing.eps}
+\end{center}
+
+
+
+
+
+
+
+
+
+\section{Java References}
+
+Are used to store the memory address of Objects.
+
+\begin{blackboard}
+Declaration:
+
+  Name_of_class Name_of_reference ; // allocates memory and alias
+
+  Object a;       (Dibujos)
+  String b;
+  Date   c;
+
+Operators:
+  = : assignment, store a memory address in the reference (points the reference
+      to something)
+  == : Equal to, compare two references (not two Objects), returns a boolean
+  != : Not Equal to, the opposite.
+\end{blackboard}
+
+\section{Java Objects}
+
+\subsection{The problem}
+
+If your program deals with integers (like calculating prime numbers) you will
+create ints and operate on them.
+
+celsius degrees $\rightarrow$ doubles.
+
+But what if your program deals with points?, dates?, or words?, or with
+people?, or airplanes?
+
+You will like to create points, dates, phrases, people and airplanes and
+operate on them, but you cannot do that with primitive data types.
+
+SIMPLE SOLUTION: simulate complex things using a bunch primitive types:
+
+\begin{blackboard}
+- a point is 2 ints (x and y)
+- a date is 3 ints (year, month and day)
+- a word is several chars
+- a person may be a name (word) and birthdate (date)
+- a plane is thousands of ints and chars
+\end{blackboard}
+
+And, how do you operate on them?
+
+\begin{blackboard}
+  - plane1 * plane2 ?
+
+  - person1 / person2 ?
+\end{blackboard}
+
+So using operators don't make sense with this complex things.
+
+SOLUTION:
+\begin{itemize}
+\item lets call this complex things OBJECTS
+\item lets allow for ways to create them (CONSTRUCTORS instead of literals)
+\item lets operate on them with METHODS (instead of operators).
+\end{itemize}
+
+Objects belong to a class, which defines:
+
+\begin{itemize}
+
+  \item its constructors (how to create a new object)
+
+  \item its methods (what you can do to an object)
+
+  \item and sometimes fields (its internal data)
+
+\end{itemize}
+
+\begin{blackboard}
+myPlane and yourPlane are both planes.
+Alberto and Alicia are both persons.
+Madrid and New York are both words or points in a map.
+
+Plane, person, String and Points are classes.
+
+MyPlane, yourPlane, Alberto, Alicia, Madrid and New York are Objects from
+that classes.
+\end{blackboard}
+
+How do you know what constructors, methods and fields there are in a class? The
+Java API.
+
+Show the Java API and look for:
+
+\begin{itemize}
+  \item \verb+String.isEmpty()+
+\end{itemize}
+
+
+
+
+
+\section{Methods}
+
+Methods are what you can do to an object.
+
+The list of methods of a class is the list of things you can ASK an object to
+do.
+
+So calling methods on an object is like giving orders to your minions so they
+can do your work for you.
+
+A good designed class will have interesting methods, useful to the programmer.
+
+So to write a program, just create enought minions (objects) of the appropiate
+classes, and start giving order to them.
+
+For example:
+
+\begin{blackboard}
+What would you like to order to a String:
+
+String a = new String("Hello");
+String b = new String("Bye");
+
+- tell me how long you are: a.length() // 5
+- what is your first character: a.charAt(0) // H
+- what is your thrid character: a.charAt(2) // first l
+- what is your last character: a.charAt(a.length() - 1); // o
+- build me a new Uppercase version of yourself: a.toUpperCase(); // HELLO
+- are you empty: a.isEmpty(); // false
+- do you have the same text as b: a.equals(b); // false
+- concat yourself with b: a.concat(b); // HelloBye
+- do you end with "lo": a.endsWith("lo"); // true
+- replace "l" with "X": a.replace('l', 'X'); // Hexxo
+\end{blackboard}
+
+Methods are defined by:
+
+\begin{blackboard}
+- the class they belong to
+- their access modifiers
+- if they are static or not
+- their return value
+- their name
+- their parameters
+- the exceptions they throw
+
+public String Object.toString()  <- no arguments, no exceptions
+public char   String.charAt(int index) throws IndexOutOfBoundsException
+public void   Date.setYear(int newYear)
+\end{blackboard}
+
+CLASS
+
+An String have different methods than a Point or a Person.
+
+So methods belong to the class.
+
+ACCESS MODIFIERS
+
+\verb+public, private, protected+.
+
+Don't worry about access modifiers for now.
+
+PARAMETERS:
+
+Methods need some information from you to operate:
+
+\begin{blackboard}
+String a = new String("Hello");
+a.charAt(3); // what char do you want: the forth
+a.equals(b); // what String do you want me to comparte to: b
+\end{blackboard}
+
+When you call a method a new stack frame is created, and variables for their
+arguments are allocated inside that frame.
+
+In addition to that, a \verb+this+ reference is created pointing to the object
+you are operating on.
+
+These variables are initialized with the contents of the variables or
+references used in its invocation, by copying their values. This is call "pass
+by value" and has strong implications.
+
+\newpage
+
+\begin{multicols}{2}
+\begin{blackboard}
+// what will this program print?
+
+
+class Bla {
+  static void increment(int a) {
+    a++;
+  }
+
+  public static void main(String[] args) {
+    int a = 0;
+    increment(a);
+    System.out.println(a);
+  }
+}
+\end{blackboard}
+\columnbreak
+\begin{blackboard}
+// what will this program print?
+import java.awt.Point;
+
+class Foo {
+  static void increment(Point a) {
+    a.move(3, 7);
+  }
+
+  public static void main(String[] args) {
+    Point a = new Point(0, 0);
+    increment(a);
+    System.out.println(a);
+  }
+}
+\end{blackboard}
+\end{multicols}
+
+Other programming languages also allow to "pass by reference", but Java only
+allows you to pass by value.
+
+Other methods don't need any data to operate:
+
+\begin{blackboard}
+a.length()
+a.isEmpty()
+\end{blackboard}
+
+Their parameters lists is empty, so no authomatic variables are created in the
+stack, except for \verb+this+.
+
+
+RETURN VALUE:
+
+Some methods are questions you make to the object:
+
+\begin{blackboard}
+String a = new String("Hello");
+a.isEmpty(); // false
+a.charAt(3); // second l
+a.toUpperCase(); // HELLO
+\end{blackboard}
+
+The return value is the answer to that question.
+
+Other methods are just operations you request on an object.
+They don't return anything, in Java, they return \verb+void+.
+
+\begin{blackboard}
+Point a = new Point(2, 4);
+a.move(4, 8);
+\end{blackboard}
+
+EXCEPTIONS
+
+Sometimes a method fails, so a value cannot be returned or the operation can
+not be performed.
+
+When this happens, the method throws an exception instead of returning a value:
+
+\begin{blackboard}
+String a = new String("Hello");
+a.charAt(-3); // throws an IndexOutOfBoundsException
+a.charAt(15); // throws an IndexOutOfBoundsException
+a.equals(null); // throws a NullPointerException
+\end{blackboard}
+
+As a programmer you WANT to know when a method fails, to fix your inputs to the
+method and try again.
+
+You can know when a method throws an exception using a \verb+try...catch+ clause:
+
+\begin{multicols}{2}
+
+\begin{blackboard}
+void print8thCharacter(String s) {
+  char c;
+  c = s.charAt(7);
+  System.out.println(c);
+}
+\end{blackboard}
+
+\columnbreak
+
+\begin{blackboard}
+void print8thCharacter(String s) {
+  char c;
+  try {
+    c = s.charAt(7);
+  } catch (IndexOutOfBoundsException ex) {
+    System.out.println("Error: The string is too short");
+    return;
+  }
+  System.out.println(c);
+}
+\end{blackboard}
+\end{multicols}
+
+If you don't catch the exception the receiving method will fail, throwing that
+same exception to his caller, and so on and so forth until main is reached and
+the program exit with an Error to the user, and all the stackframes are printed
+on the screen (so you know where the problem was).
+
+STATIC vs. NON-STATIC:
+
+Static methods don't operate on objects.
+
+They belong to the class, not to its objects.
+
+They are utilities for the class. Like really usefull actions you would like to
+do, that are somehow related with the class.
+
+\begin{blackboard}
+What would be the string representing the number 7?
+C2F.c2f(10.0); // 50.0
+Math.abs(-12); // 12
+\end{blackboard}
+
+It is the same with static fields.  There is only copy of static fields, no
+matter how many objects of that class you have created.
+
+\begin{blackboard}
+System.out // is and static field of the class System
+  // you have not really create any objects from that class, but you can still
+  // use its statics fields (and methods if it has any).
+\end{blackboard}
+
+SIGNATURES
+
+A method signature is the TRUE name of a method, it includes its name and the
+lists of arguments:
+
+\begin{blackboard}
+toString()
+charAt(int)
+\end{blackboard}
+
+There can not be two methods with the same signature on the same class.
+Otherwise, Java will not know which method are you calling.
+
+Other programming languages don't include the number of arguments in the
+signature. So there can not be two methods with the same name.
+
+But in Java, as method signatures includes the parameter lists, you can have
+several methods with the same name but different arguments.
+
+\begin{blackboard}
+println(boolean a)
+println(int a)
+println(String a)
+max(int a, int b)
+max(int a, int b, int c)
+max(float a, float b)
+\end{blackboard}
+
+This is called method overloading
+
+\subsection{Constructors}
+
+A constructor is a special kind of method.
+
+You use them for initializing an Object, just after it is allocated in memory.
+
+Just after the "new".
+
+They are always called after the class.
+
+You can use method overloading with constructors, so you can have different
+ways to initialize and object.
+
+\begin{blackboard}
+Point p1 = new Point();
+Point p2 = new Point(3, 5);
+Point p3 = new Point(p2);
+
+// constructors can also throw exceptions
+Point p4 = null;
+Point p5 = new Point(p4); // runntime error: NullPointerException!
+\end{blackboard}
+
+\section{Essential Classes}
+
+There are 4024 classes in the Standard Edition Java API.
+
+The most important one is String, for two reasons:
+
+\begin{itemize}
+
+  \item Is widely used: most programs deal with words in some way or another.
+
+  \item It has lots of sintactic sugar: exceptions to Java rules.
+
+\end{itemize}
+
+\subsection{String}
+
+\begin{itemize}
+
+  \item{Literals}:
+
+\begin{blackboard}
+String a = "hello";
+String b = new String("hello");
+\end{blackboard}
+
+  String literals create an String if it has not been used before in the program.
+
+  But reuse that string afterwards.
+
+\begin{blackboard}
+String c = "hello";
+boolean z1 = (a == b); // false
+boolean z2 = (a == c); // true
+
+// Empty string
+String d = "";
+// String with "
+String e = "String literals are surrounded by the character \"";
+\end{blackboard}
+
+\item{Inmutable}
+
+  Strings are inmutable, you can not change the contents of an String once it
+  has been created.
+
+  All the methods of the string class, that seems to modify an string, return a
+  new String instead, leaving the original unmodified.
+
+\begin{blackboard}
+String a = "hello";
+String b = a.toUpperCase();
+\end{blackboard}
+
+  Very few objects in Java are inmutable.
+
+  A mutable version of String exits, it is called a StringBuilder.
+
+\item{toString() method}
+
+  All objects in Java have this method, it returns a String, a textual
+  representation of the object.
+
+\begin{blackboard}
+Date a = new Date();
+String b = a.toString(); // Thu Jan 29 13:44:41 CET 2015
+\end{blackboard}
+
+\item{Operators}:
+
+    Strings has methods, just like any other object.
+
+\begin{blackboard}
+String a = "hello";
+boolean b = String.isEmpty(); // false
+String b = a.concat(" and bye"); // "hello and bye"
+\end{blackboard}
+
+  But they also have one operator \verb'+' (no other object has that):
+
+\begin{blackboard}
+String a = "hello";
+String b = " and bye";
+String c = a + b;
+\end{blackboard}
+
+  When \verb+adding+ anything to a String, it gets converted into an String, if
+  it is a primitive type, it generates its String representation, if it is a
+  reference type, .toString() method is called.
+
+\begin{blackboard}
+String a = 7 + " " + 32.0 + " " + 'a' + " " + true + " " + new Date();
+// "7 32.0 a true Thu Jan 29 13:44:41 CET 2015"
+\end{blackboard}
+
+When using the \verb.+. operator, the JVM internally creates a StringBuilder,
+concats everything and call .toString() over that StringBuilder.
+
+\end{itemize}
+
+
+
+\subsection{Primitive Data Types Wrappers}
+
+TODO: para required reading.
+
+\subsubsection{Autoboxing and Unboxing}
+
+\section{Control Flow statements}
+
+\subsection{Conditionals}
+
+\subsubsection{If-then}
+
+Evaluate a block if a condition is true.
+
+\begin{multicols}{2}
+\begin{blackboard}
+        if (condition) {
+            actions;
+        }
+
+if (b != 0) {
+    result = a / b;
+}
+\end{blackboard}
+
+\columnbreak
+
+  \begin{center}
+    \includegraphics[height=5cm]{img/if/if.eps}
+  \end{center}
+\end{multicols}
+
+
+\subsubsection{If-then-else}
+
+\begin{multicols}{2}
+\begin{blackboard}
+        if (condition) {
+            actions-1;
+        } else {
+            actions-2;
+        }
+
+if (b != 0) {
+    result = a / b;
+} else {
+    System.err.println("ERROR: division by zero");
+    System.exit();
+}
+
+if (a > b) {
+  return a;
+} else {
+  return b;
+}
+\end{blackboard}
+
+\columnbreak
+
+  \begin{center}
+    \includegraphics[height=5cm]{img/if_else/if_else.eps}
+  \end{center}
+\end{multicols}
+
+
+\subsubsection{Switch}
+
+Multiple comparison.
+
+Works with byte, short, char and int (using == to compare)
+
+Also with Strings, Byte, Short, Integer, Char (using .equals() to compare)
+
+\begin{multicols}{2}
+\begin{blackboard}
+        switch (var) {
+            case value1:
+                actions-1;
+            case value2:
+                actions-2;
+            .
+            .
+            .
+            case valueN:
+                actions-N;
+            default:
+                actions-default;
+        }
+\end{blackboard}
+
+\columnbreak
+
+  \begin{center}
+    \includegraphics[width=8cm]{img/switch/switch.eps}
+  \end{center}
+\end{multicols}
+
+A \verb+break+ will jump to the end of the switch.
+
+Ejemplo:
+
+\begin{blackboard}
+Write a program that prints the number of working hours per day in the week.
+
+Example:
+
+$ java WorkHours
+1 0 // sundays
+2 8
+3 8
+4 8
+5 8
+5 7 // fridays
+6 0 // saturdays
+\end{blackboard}
+
+DEMO:
+
+(print days from 1 to 7)
+
+(function to return 8)
+
+(add exception to function)
+
+(return 0, 7 or 8)
+
+(remove magic numbers using finals)
+
+(join days with the same amount of hours)
+
+(join the exceptions and move them to the beginning)
+
+(add another function doing the same with a switch)
+
+(join cases in a single line)
+
+\blackboardinput{../java/WorkHours.java}
+
+\section{Review}
+
+\begin{blackboard}
+Constants (final)
+  Magic numbers
+
+References
+  Declaration
+  Operators
+
+Objects
+  Methods
+    stack frames
+    parameters
+      automatic variables
+      this
+    return values
+    exceptions
+    static
+    overloading
+  Constructors
+  Essential Classes
+    Strings
+
+Control Flow statements
+  conditionals
+    if-then
+      if-then-else
+    switch
+\end{blackboard}
+
+\end{document}
