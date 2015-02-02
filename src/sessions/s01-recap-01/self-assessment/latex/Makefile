@@ -26,11 +26,13 @@ html_dir := $(out_dir)/html-versions-of-pdfs
 
 all : imgs install
 
-install : $(pub_files)
+install : $(pub_files) $(pub_files2)
 
-$(pub_files) : $(out) | $(pub_dir) html
+$(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
-	cp $(out2) $(pub_files2)
+
+$(pub_files2) : $(out2) | $(pub_dir2) html
+	cp $< $@
 
 $(out) : $(src)
 	latex $(src)
