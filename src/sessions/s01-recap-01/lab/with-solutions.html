@@ -1,0 +1,580 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Review: Fundamentals of Java</title>
+    <meta name="Author" content="Universidad Carlos III de Madrid" />
+    <meta name="language" content="en" />
+    <link type="text/css" rel="stylesheet" href="./style.css" media="all" />
+  </head>
+  <body>
+                <h2 class="title" id="idm140277430674960">1. Session 0 (lab): The command line</h2>
+                  <h3 class="title" id="idm140277430664864">1.1. Compile and execute programs using the command line</h3>
+            <p xml:lang="en" lang="en">
+    In this exercise you will learn how to use the command line (a.k.a
+    command prompt) to compile and execute Java programs. Make sure you
+    read <a class="ulink" href="http://linuxcommand.org/lc3_learning_the_shell.php">this
+    tutorial about the Linux command line</a> before
+    starting the exercises.
+  </p>
+            <div class="section" id="idm140277428609520">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277428609520">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 1</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Save the following code in a file called
+      <code class="code">HelloWorld.java</code>:
+    </p>
+              <pre class="programlisting">public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+</pre>
+              <p xml:lang="en" lang="en">
+      Using the Windows command line, compile and execute the code. Use
+      the command <code class="code">javac</code> to compile the code and the command
+      <code class="code">java</code> to run the program.
+    </p>
+              <pre class="screen">C:\Users\Alumno&gt;javac HelloWorld.java
+C:\Users\Alumno&gt;java HelloWorld
+Hello World!</pre>
+              <p xml:lang="en" lang="en">
+      As you can see, the text <span class="emphasis"><em>"Hello World!"</em></span> is
+      shown on the command line window. This is because the command line
+      will show anything you print to the standard output (<a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/lang/System.html#out"><code class="code">System.out</code></a>).
+    </p>
+              <p xml:lang="en" lang="en">
+      Run the program again, but redirecting the standard output to a
+      file. You can use the standard output redirect operator
+      "<code class="code">&gt;</code>".
+    </p>
+            </div>
+            <div class="section" id="idm140277435832752">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277435832752">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 2</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      One way to fetch data to your program is by using command
+      arguments. Command arguments are commonly used to change how your
+      program works or as a way to fetch input data to your program
+      without using the standard input.
+    </p>
+              <p xml:lang="en" lang="en">
+      The user will chose these arguments when he executes the
+      program. In Java, you can read these arguments from the
+      <code class="code">main</code> method, as they are turn into an
+      <code class="code">array</code> of <code class="code">String</code>s and passed as an
+      argument to the <code class="code">main</code> method at runtime.
+    </p>
+              <p xml:lang="en" lang="en">
+      Practice reading command arguments with the following code. Save
+      it to a file and compile it:
+    </p>
+              <pre class="programlisting">public class HelloName {
+    public static void main(String[] args) {
+        String name = args[0];
+        System.out.println("Hello " + name);
+    }
+}
+</pre>
+              <p xml:lang="en" lang="en">
+      The command arguments are passed to a Java program just by
+      appending them after the call to the Virtual Java Machine
+      invocation, using one or more whitespace as the argument
+      separator:
+    </p>
+              <pre class="screen">C:\Users\Alumno&gt;java HelloName Juan
+Hello Juan</pre>
+              <p xml:lang="en" lang="en">
+      You can easily pass more than one argument by appending extra
+      strings separated by whitespaces. Try the following program:
+    </p>
+              <pre class="programlisting">public class Adder {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 0; i &lt; args.length; i++) {
+            sum += Integer.parseInt(args[i]);
+        }
+        System.out.println(sum);
+    }
+}
+</pre>
+              <p xml:lang="en" lang="en">
+      This program accepts an arbitrary number of arguments from the
+      command line, each of them interpreted as an integer. As Java
+      programs read their arguments as strings, <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#parseInt(java.lang.String)"><code class="code">Integer.parseInt()</code></a>
+      is used to turn the numbers from its textual representation into
+      integers. Play a little bit with this program, using several sets
+      of arguments, like in the example below:
+    </p>
+              <pre class="screen">C:\Users\Alumno&gt;java Adder 2 -3 6 4
+9</pre>
+            </div>
+            <div class="section" id="idm140277435844864">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277435844864">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 3</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Modify the previous program to instead return the maximum number
+      among its arguments. If no arguments are provided, return the
+      smallest Java <code class="code">int</code> (this is, the value of the Java
+      constant <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#MIN_VALUE"><code class="code">Integer.MIN_VALUE</code></a>).
+    </p>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277428601072">Solutions</h5>
+                    </div>
+                  </div>
+                </div>
+                <pre class="programlisting">public class Max {
+    public static void main(String[] args) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i &lt; args.length; i++) {
+            int number = Integer.parseInt(args[i]);
+            if (number &gt; max) {
+                max = number;
+            }
+        }
+        System.out.println(max);
+    }
+}
+</pre>
+              </div>
+            </div>
+            <div class="section" id="idm140277435854592">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277435854592">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 4</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Combine the last two programs into a single one. This new program
+      will receive as its first argument the string "sum" or the string
+      "max". The rest of its command line arguments will be numbers. If
+      the first argument is "sum", the sum of the numbers will be
+      returned. If the first argument is "max", the biggest argument
+      will be returned. If the first argument is none of these strings
+      or no arguments are provided, the program will show a sensible
+      error message through its <span class="emphasis"><em>standard error</em></span>
+      (<a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/lang/System.html#err"><code class="code">System.err</code></a>).
+    </p>
+              <p xml:lang="en" lang="en">
+      Here are some examples on how this program should work:
+    </p>
+              <pre class="screen">C:\Users\Alumno&gt;java AdderOrMax sum 2 -3 6 4
+9
+C:\Users\Alumno&gt;java AdderOrMax sum
+0
+C:\Users\Alumno&gt;java AdderOrMax max 2 -3 6 4
+6
+C:\Users\Alumno&gt;java AdderOrMax max
+-2147483648
+C:\Users\Alumno&gt;java AdderOrMax blah
+Invalid argument: blah</pre>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277429554224">Solutions</h5>
+                    </div>
+                  </div>
+                </div>
+                <pre class="programlisting">public class AdderOrMax {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.err.println("At least one argument expected.");
+        } else if (args[0].equals("max")) {
+            int max = Integer.MIN_VALUE;
+            for (int i = 1; i &lt; args.length; i++) {
+                int number = Integer.parseInt(args[i]);
+                if (number &gt; max) {
+                    max = number;
+                }
+            }
+            System.out.println(max);
+        } else if (args[0].equals("sum")) {
+            int sum = 0;
+            for (int i = 1; i &lt; args.length; i++) {
+                sum += Integer.parseInt(args[i]);
+            }
+            System.out.println(sum);
+        } else {
+            System.err.println("Invalid argument: " + args[0]);
+        }
+    }
+}
+</pre>
+              </div>
+            </div>
+            <div class="section" id="idm140277427736992">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277427736992">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 5</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      <a class="ulink" href="http://en.wikipedia.org/wiki/Code_refactoring">Refactor</a>
+      the code of the previous program to make the <code class="code">main</code>
+      method smaller, by moving the code portions responsible for the sum
+      and the max calculations to separated methods. This will make your
+      program more elegant, reusable and easier to modify in the
+      future. Here is an example on how to do it (you will need to fill
+      the blanks, though):
+    </p>
+              <pre class="programlisting">public class NumbersCruncher {
+
+    private int[] integers;
+
+    public NumbersCruncher(int[] integers) {
+        this.integers = integers;
+    }
+
+    public int sum() {
+        int total = 0;
+        for (int i = 0; i &lt; integers.length; i++) {
+            total += integers[i];
+        }
+        return total;
+    }
+
+    public int max() {
+        // TO DO: code this method
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        int[] values;
+        if (args.length &gt;= 2) {
+            values = new int[args.length - 1];
+            for (int i = 1; i &lt; args.length; i++) {
+                values[i - 1] = Integer.parseInt(args[i]);
+            }
+        } else {
+            values = new int[0];
+        }
+        NumbersCruncher cruncher = new NumbersCruncher(values);
+        /*
+         * TO DO: print the result of calling the sum() and
+         * max() methods, or show some error messages if
+         * necessary
+         *
+         */
+    }
+}
+</pre>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277429550592">Solutions</h5>
+                    </div>
+                  </div>
+                </div>
+                <pre class="programlisting">public class NumbersCruncher {
+
+    private int[] integers;
+
+    public NumbersCruncher(int[] integers) {
+        this.integers = integers;
+    }
+
+    public int sum() {
+        int total = 0;
+        for (int i = 0; i &lt; integers.length; i++) {
+            total += integers[i];
+        }
+        return total;
+    }
+
+    public int max() {
+        int maxSeen = Integer.MIN_VALUE;
+        for (int i = 0; i &lt; integers.length; i++) {
+            if (integers[i] &gt; maxSeen) {
+                maxSeen = integers[i];
+            }
+        }
+        return maxSeen;
+    }
+
+    public static void main(String[] args) {
+        int[] values;
+        if (args.length &gt;= 2) {
+            values = new int[args.length - 1];
+            for (int i = 1; i &lt; args.length; i++) {
+                values[i - 1] = Integer.parseInt(args[i]);
+            }
+        } else {
+            values = new int[0];
+        }
+        NumbersCruncher cruncher = new NumbersCruncher(values);
+        if (args.length == 0) {
+            System.err.println("At least one argument expected.");
+        }
+        else if (args[0].equals("sum")) {
+            System.out.println(cruncher.sum());
+        } else if (args[0].equals("max")) {
+            System.out.println(cruncher.max());
+        } else {
+            System.err.println("Invalid argument: " + args[0]);
+        }
+    }
+}
+</pre>
+              </div>
+            </div>
+            <div class="section" id="idm140277427730000">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277427730000">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 6</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Add the following functionalities to the previous program, each of
+      them in a separate method of the class
+      <code class="code">NumberCruncher</code>:
+    </p>
+              <div class="orderedlist">
+                <ol>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          If the first argument is "sum-squared", return the sum of the
+          squares of the numbers passed as arguments. For example:
+        </p>
+                    <pre class="screen">C:\Users\Alumno&gt;java NumbersCruncher sum-squared 3 -4 -1 0 2
+30</pre>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          If the first argument is "is-neg", return "yes" if at least
+          one of the numeric arguments is a negative number, return "no"
+          otherwise. For example:
+        </p>
+                    <pre class="screen">C:\Users\Alumno&gt;java NumbersCruncher is-neg 3 -4 -1 0 2
+yes
+C:\Users\Alumno&gt;java NumbersCruncher is-neg 3 0 1 7 2 2
+no
+</pre>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          If the first argument is "neg", return each numeric argument
+          negated. For example:
+        </p>
+                    <pre class="screen">C:\Users\Alumno&gt;java NumbersCruncher neg 3 -4 -1 0 2
+-3 4 1 0 -2 </pre>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          If the first argument is "diff", return a new list of numbers
+          each of them being the difference between two of the original
+          numerical arguments, from left to right. For instance:
+        </p>
+                    <pre class="screen">C:\Users\Alumno&gt;java NumbersCruncher diff 3 6 2 10 7
+3 -4 8 -3 </pre>
+                    <p xml:lang="en" lang="en">
+          If less than 2 integers are passed as arguments, print an
+          error message on the standard error stream.
+        </p>
+                  </li>
+                </ol>
+              </div>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277428682896">Solutions</h5>
+                    </div>
+                  </div>
+                </div>
+                <pre class="programlisting">public class NumbersCruncher {
+
+    private int[] integers;
+
+    public NumbersCruncher(int[] integers) {
+        this.integers = integers;
+    }
+
+    public int sum() {
+        int total = 0;
+        for (int i = 0; i &lt; integers.length; i++) {
+            total += integers[i];
+        }
+        return total;
+    }
+
+    public int max() {
+        int maxSeen = Integer.MIN_VALUE;
+        for (int i = 0; i &lt; integers.length; i++) {
+            if (integers[i] &gt; maxSeen) {
+                maxSeen = integers[i];
+            }
+        }
+        return maxSeen;
+    }
+
+    public int sumSquared() {
+        int total = 0;
+        for (int i = 0; i &lt; integers.length; i++) {
+            total += integers[i] * integers[i];
+        }
+        return total;
+    }
+
+    public boolean isNegative() {
+        boolean isNegative = false;
+        for (int i = 0; !isNegative &amp;&amp; i &lt; integers.length; i++) {
+            if (integers[i] &lt; 0) {
+                isNegative = true;
+            }
+        }
+        return isNegative;
+    }
+
+    public int[] negate() {
+        int[] negated = new int[integers.length];
+        for (int i = 0; i &lt; integers.length; i++) {
+            negated[i] = -integers[i];
+        }
+        return negated;
+    }
+
+    public int[] difference() {
+        int[] difference = new int[integers.length - 1];
+        for (int i = 0; i &lt; integers.length - 1; i++) {
+            difference[i] = integers[i + 1] - integers[i];
+        }
+        return difference;
+    }
+
+    /*
+     * Don't bother right now about the fact that this method is
+     * "static".  We'll see what this means later in the course.
+     *
+     */
+    private static void printArray(int[] numbers) {
+        for (int i = 0; i &lt; numbers.length; i++) {
+            System.out.print(numbers[i]);
+            System.out.print(' ');
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] values;
+        if (args.length &gt;= 2) {
+            values = new int[args.length - 1];
+            for (int i = 1; i &lt; args.length; i++) {
+                values[i - 1] = Integer.parseInt(args[i]);
+            }
+        } else {
+            values = new int[0];
+        }
+        NumbersCruncher cruncher = new NumbersCruncher(values);
+        if (args.length == 0) {
+            System.err.println("At least one argument expected.");
+        }
+        else if (args[0].equals("sum")) {
+            System.out.println(cruncher.sum());
+        } else if (args[0].equals("max")) {
+            System.out.println(cruncher.max());
+        } else if (args[0].equals("sum-squared")) {
+            System.out.println(cruncher.sumSquared());
+        } else if (args[0].equals("is-neg")) {
+            if (cruncher.isNegative()) {
+                System.out.println("yes");
+            } else {
+                System.out.println("no");
+            }
+        } else if (args[0].equals("neg")) {
+            printArray(cruncher.negate());
+        } else if (args[0].equals("diff")) {
+            printArray(cruncher.difference());
+        } else {
+            System.err.println("Invalid argument: " + args[0]);
+        }
+    }
+}
+</pre>
+              </div>
+            </div>
+            <div class="section" id="idm140277435855968">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277435855968">
+      
+      <span xml:lang="en" class="phrase" lang="en">Section 7</span>
+    </h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      If you use Eclipse as your Integrated Programing Environment
+      (IDE), you can also execute your programs with arguments, even if
+      you are no longer using the command line. This is very useful to
+      test your programs without leaving your IDE. To pass arguments to
+      your program in Eclipse, you should open the <span class="emphasis"><em>Run As /
+      Run Configurations</em></span> menu, select the
+      <span class="emphasis"><em>Arguments</em></span> tab and fill in the text field
+      <span class="emphasis"><em>Program Arguments</em></span> as show on the following
+      screenshot:
+    </p>
+              <img src="http://www.it.uc3m.es/java/git-gisc-2013-14/units/repaso/guides/0/img-command-line/run-configurations-capture.png" align="middle" />
+              <p xml:lang="en" lang="en">
+      Eclipse shows the standard output and the standard error in a
+      window called the <span class="emphasis"><em>Console</em></span>. You can easily
+      identify data written to the standard error because it is printed
+      in red.
+    </p>
+              <p xml:lang="en" lang="en">
+      Practice this by executing some of the previous programs inside
+      Eclipse.
+    </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="adagio_page_footer"></div>
+  </body>
+</html>
