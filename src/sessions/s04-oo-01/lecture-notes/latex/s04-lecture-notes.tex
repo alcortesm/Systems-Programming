@@ -1,0 +1,966 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 04 - Object Orientation 1}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+\section{Last Session Review}
+
+\begin{blackboard}
+Constants (final)
+  Magic numbers
+
+References
+  Declaration
+  Operators
+
+Objects
+  Methods
+    stack frames
+    parameters
+      automatic variables
+      this
+    return values
+    exceptions
+    static
+    overloading
+  Constructors
+  Strings
+    Syntactic sugar
+
+Control Flow statements
+  Conditionals
+    if-then
+      if-then-else
+    switch
+  Loops
+    while
+    do while
+    for
+    infinite loops
+  Continue, break
+
+Arrays
+Dates
+Limits of numerical types
+Floating point are not exact
+Interactive programs (42)
+Unix filters
+Generating random numbers
+\end{blackboard}
+
+
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Programming Styles
+Object-Oriented Programming
+Difference between Classes and Programs
+State and Behavior
+Attributes
+Constructors
+Methods
+Shadowing
+Castings
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+\section{Programming Styles or Paradigms}
+
+\begin{center}
+\includegraphics{./img/martial-arts/martial-arts.eps}
+\end{center}
+
+\begin{multicols}{2}
+\setlength{\columnseprule}{0.4pt}
+
+There are many styles of martial arts.
+
+\begin{itemize}
+
+  \item Boxing
+
+  \item Karate
+
+  \item Kung-Fu
+
+  \item \ldots
+
+\end{itemize}
+
+\columnbreak
+
+There are many styles of writing programs.
+
+\begin{itemize}
+
+  \item Imperative
+
+  \item Object-Oriented
+
+  \item Functional
+
+  \item \ldots
+
+\end{itemize}
+
+\end{multicols}
+
+Some programming languages are better suited for one style or another.
+
+For example, Java is specifically designed for Object-Oriented programming.
+
+This means writing Object-Oriented programs in Java is EASY,
+but writing Functional programs in Java is HARD.
+
+This also means solving some problems in Java is very EASY,
+but other problems are quite HARD.
+
+\textsl{Many companies would ask you to solve a problem in Java. WRONG: just
+explain me the problem and I will see which language I use to solve it.}
+
+
+
+
+
+
+
+
+
+
+\section{Object-Oriented Programming}
+
+Or OOP for short.
+
+Allow me to explain what Object Oriented programing is by explaining first what
+it is not.
+
+\begin{multicols}{2}
+  \codeinput{../java/AreaOfCircle1.java}{Imperative Programming}
+  \columnbreak
+  \codeinput{../java/AreaOfCircle2.java}{Object-Oriented Programming}
+\end{multicols}
+
+\paragraph{Advantages of OOP}
+
+\begin{description}
+
+  \item[Code clarity] Solutions are written in the same terms as the
+    description of the problem.
+
+    You write about circles and areas, not mathematical expressions.
+
+    This is known as \textbf{information hiding}.
+
+    You are hiding the complexity behind a name, so you can think high level,
+    without caring about the details of the low level.
+
+  \item[Passing objects] Say your program is part of a bigger program, with
+    squares and circles. Squares are just doubles (for its side), the same as
+    circles. How do you know what concepts are represented by each double?
+
+    By passing Circles and Squares around the meaning is much clearer.
+
+    This is known as \textbf{type safety}.
+
+  \item[Objects know about what actions can they do] Each object carries its
+    own methods, telling you what you can do to them.
+
+    You no longer need to know how to calculate the area of a circle, the
+    circle already knows how to do it.
+
+    You will never calculate the area of a Square over a Circle by mistake.
+
+    This is known as \textbf{encapsulation}. An object is responsible for its data
+    and how to operate on it.
+
+  \item[Code reusability]
+
+    Classes are libraries, which you can use and reuse.
+
+    Say you write another program to calculate the length of the circle's
+    circumference ($2*\pi*radius$).
+
+    If not using OOP, you will write a new mathematical expression for that
+    calculation, if you want to reuse that in other program, you will have to
+    rewrite the expression, maybe with different variable names.
+
+    In OOP you will simply add a new method to the circle class, and you will
+    be able to use that new method from any program.
+
+  \item[You are extending the language] This is no longer standard Java; it is
+    your own version of Java that has a new Data Type, the circle.
+
+    Your new version of Java is much better to solve the problem than the
+    standard version of Java.
+
+\end{description}
+
+\paragraph{Disadvantages of OOP}
+
+You will have to create your own data types, like circles for example.
+
+
+
+
+
+
+
+
+
+\newpage
+\section{My First Java Class}
+
+Let's create a Java class to represent Circles.
+
+\begin{blackboard}
+class Circle {
+  private double radius;
+
+  public Circle(double radius) throws Exception {
+    if (radius <= 0) {
+      throw new Exception("Invalid radius");
+    }
+    this.radius = radius;
+  }
+
+  public double area() {
+    return this.radius * this.radius * Math.PI;
+  }
+}
+\end{blackboard}
+
+This class represents Circles, so instead of using a double, we will be
+creating objects from this class.
+
+This class has an ATTRIBUTE (radius) a CONSTRUCTOR (Circle) and a METHOD (area()).
+
+The purpose of a class is to be the template for creating objects from that
+class.
+
+DIBUJAR MEMORIA PARA EL PROGRAMA AreaOfCircle2.
+
+
+
+
+
+
+
+\section{Classes and Programs}
+
+A program is a Java class with an entry point.
+
+An entry point is where a program begins executing.
+
+In Java, that is the \verb+public static void main(String[] args)+ method.
+
+\begin{center}
+  \includegraphics{./img/classes-and-programs/classes-and-programs.eps}
+\end{center}
+
+\begin{multicols}{2}
+\begin{blackboard}
+class Circle { // Template for creating
+               // objects in programs
+  private double radius;
+
+  public Circle(double radius) throws Exception {
+    if (radius <= 0) {
+      throw new Exception("Invalid radius");
+    }
+    this.radius = radius;
+  }
+
+  public double area() {
+    return this.radius * this.radius * Math.PI;
+  }
+}
+\end{blackboard}
+\columnbreak
+\begin{blackboard}
+class Bla {  // a program
+  public static void main(String[] args)  {
+
+    System.out.println("Hello World!");
+
+-->    try {
+-->      Circle c = new Circle(Double.parseDouble(args[0]));
+-->    } catch (Exception ex) {
+-->      System.err.println(ex.getMessage);
+-->      return;
+-->    }
+-->    double area = c.area();
+-->    System.out.println(area);
+  }
+}
+\end{blackboard}
+\end{multicols}
+
+
+\begin{multicols}{2}
+\begin{blackboard}
+
+  ...
+
+  public static void main(String[] args)  {
+    Syste.out.println("Hello World!");
+  }
+
+  ...
+
+\end{blackboard}
+\columnbreak
+\begin{blackboard}
+
+  ...
+
+  public static void main(String[] args)  {
+    Circle c;
+    try {
+      c = new Circle(Double.parseDouble(args[0]));
+    } catch (Exception ex) {
+      System.err.println(ex.getMessage);
+      return;
+    }
+    double area = c.area();
+    System.out.println(area);
+  }
+
+  ...
+
+\end{blackboard}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+\section{State and Behavior}
+
+Objects have:
+
+\begin{description}
+
+  \item[State] what information objects have INSIDE.
+
+    what is different between two objects of the
+    same class.
+
+    In Java, the state of an object is its ATTRIBUTES.
+
+    Attributes are initialized by the CONSTRUCTORS.
+
+    Examples:
+
+\begin{blackboard}
+  Point: x and y            // write the class declaration
+  Circles: radius (or diameter or circunference) + [Point center]
+  Squares: side + point left-top-corner and an angle / or its two top points
+  Student: name, age, student id, courses they have paid tuition for
+  King: name and country [ + age]
+  Cars: plate, model, color, current speed, current direction
+\end{blackboard}
+
+  \item[Behavior] what objects can do.
+
+    What orders you can give to them.
+
+    In Java, the set of orders they can take are its METHODS.
+
+\begin{blackboard}
+  Circles: area(), circumference()
+  Square: area(), perimeter()
+  Student: addToCourse(), isInCourse(), passCourse(), failCourse()
+  Kings: whatever kings do
+  Cars: accelerate(), breakDown(), turnRight(), turnLeft()
+\end{blackboard}
+\end{description}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Attributes and Constructors}
+
+What information objects have.
+
+Variables and references.
+
+They are usually private, as you don't want anyone to set them to invalid values
+(like a negative radius).
+
+Constructors are used to initialize attributes.
+
+\begin{blackboard}
+class Circle {
+  private double radius;
+  private Point center;
+
+  public Circle(double radius, Point center) {
+    if (radius <= 0 || center == null) {
+      throw new Exception("Invalid arguemnts");
+    }
+    this.radius = radius;
+    this.center = center;
+  }
+
+  public Circle() {
+  }
+}
+                    // DIBUJAR MEMORIA
+\end{blackboard}
+
+If they are not initialized by a constructor, they get initialized by default
+to:
+
+\begin{blackboard}
+boolean: false
+byte, short, int: 0
+long: 0L
+float: 0F
+double: 0D
+char: '\u0000'
+references: null
+\end{blackboard}
+
+Difference between variables in the stack and attributes:
+
+\begin{blackboard}
+main:
+
+  Circle a = new Circle(2D, new Point(2D,3D));
+  double b;
+  Circle c;
+  Circle d = new Circle();
+
+  // DIBUJAR MEMORIA
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+\section{Methods}
+
+They operate on the objects:
+
+\begin{blackboard}
+main:
+
+ Circle a = new Circle(1D);
+ Circle b = new Circle(2D);
+ System.out.println(a.area()); // 3.14...
+ System.out.println(b.area()); // 12.57...
+
+     // DIBUJAR MEMORIA
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Overloading Constructors}
+
+You can overload them:
+
+\begin{blackboard}
+  ...
+
+  public Circle() {          // empty constructor
+    this.radius = 1D;
+  }
+
+  public Circle(String radius) {
+    this.radius = Double.parseDouble(radius);
+  }
+
+  ...
+
+main:
+  Circle c1 = new Circle(); // 0.0
+  Circle c2 = new Circle(5D); // 5.0
+  Circle c3 = new Circle("7"); // 7.0
+  Circle c4 = new Circle("-3"); // -3.0 <-- this is wrong
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+\subsection{Calling constructors from other constructors}
+
+You can call a constructor from another constructor, using the method named
+\verb+this+.
+
+\begin{blackboard}
+
+  ...
+
+  public Circle() {
+    this(1D);
+  }
+
+  public Circle(String radius) {
+    this(Double.parseDouble(radius));
+  }
+
+  ...
+
+\end{blackboard}
+
+It has to be the first line of code in your constructor, due to some Java
+complicated magic.
+
+
+
+
+
+
+
+
+
+\subsection{Default constructors}
+
+When a Java Class has no constructor, Java automatically creates a default
+constructor for you.
+
+This default constructor does not have any parameters and does not do anything.
+
+\begin{blackboard}
+
+  ...
+
+  public Circle() {
+  }
+
+  ...
+
+\end{blackboard}
+
+
+But it is useful because you can at least create objects from that class.
+
+\begin{blackboard}
+main:
+  Circle c = new Circle(); // 0.0 <-- wrong in this case
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+\section{Attributes: Public or Private}
+
+A public attribute can be accesses from outside, for reading or writing.
+
+They are part of the API of the object (what users need to know about your
+class to use it):
+
+\begin{blackboard}
+
+  ...
+
+  public double radius;
+
+  ...
+
+main:
+
+Circle a = new Circle(); // circle of radius 0.0
+System.out.println(a.radius); // 0.0
+a.radius = 7D;
+System.out.println(a.radius); // 7.0
+a.radius = -3D;
+\end{blackboard}
+
+Because most times, you want to hide the INTERNALS of the objects from the
+user.
+
+Why should the user know if you represent circles by a radius, or with a
+diameter or with a circumference?
+
+Why should the user know what are the valid values for a radius.
+
+Let the circle expert decide what is the best way to represent a circle in
+memory; users don't care about those details.
+
+
+
+
+
+
+
+
+
+
+\section{Final Attributes}
+
+Final attributes cannot be changed once initialized.
+
+\begin{blackboard}
+
+  ...
+
+  final private double DEFAULT_RADIUS = 1D;
+
+  ...
+
+  public Circle() {
+    this(DEFAULT_RADIUS);
+  }
+
+  ...
+
+\end{blackboard}
+
+
+
+
+
+
+
+
+\section{Static Attributes}
+
+Static attributes do not belong to the objects of the class but to the class.
+
+You can access them using the name of the class in addition to the name of the
+object.
+
+\begin{blackboard}
+
+  ...
+
+  final static public double DEFAULT_RADIUS = 1D;
+
+  ...                           // DIBUJAR MEMORIA
+
+\end{blackboard}
+
+All objects of the Circle class will have the same DEFAULT\_RADIUS, and there is only
+one reference to it stored in the static section.
+
+\begin{blackboard}
+
+  ...
+
+  public static int howMany;
+
+  ...
+
+  public Circle(double radius) {
+    if (radius <= 0) {
+      throw new Exception("Invalid radius");
+    }
+
+    this.radius = radius;
+    Circle.howMany++;
+  }
+
+main:
+  s.o.p(Circle.howMany); // 0
+  Circle a = new Circle();
+  s.o.p(Circle.howMany); // 1
+  Circle b = new Circle();
+  Circle a = new Circle();
+  s.o.p(Circle.howMany); // 3
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+\section{Private Methods}
+
+Private methods are useful for splitting long public methods into meaningful
+parts.
+
+\begin{blackboard}
+
+  ...
+
+  public Circle(double radius) throws Exception {
+    checkInvalidRadius(radius);
+    this.radius = radius;
+  }
+
+  private void checkInvalidRadius(double radius) throws Exception {
+    if (radius <= 0) {
+      throw new Exception("Invalid radius");
+    }
+  }
+
+  ...
+
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+\section{Static Methods}
+
+Static methods are useful for the class, not the objects:
+
+- write a test program inside your class.
+
+- other advanced uses: In general, you should not use them.
+
+
+
+
+
+
+
+\section{Private Constructors}
+
+Private constructors are useful to prevent users from creating objects.
+
+\begin{blackboard}
+Most Java programs.
+
+class HelloWorld {
+  private HelloWorld() {
+  }
+
+  public static void main(String[] args) {
+    System.out.println("Hello World");
+  }
+}
+
+Most utility classes, like this one:
+
+class Math {
+  private Math() { // private default constructor
+  }
+
+  public final static PI = 3.1415952265359;
+  public final static E = 2.7182818284590;
+
+  public static int abs(int a) {
+    // ...
+  }
+
+  public static int max(int a, int b) {
+    // ...
+  }
+
+  // ...
+}
+
+With Singletons: a singleton is a class that can only be instantiated once.
+class TheOneRing {
+  private static TheOneRing instance = null;
+
+  private TheOneRing() {
+  }
+
+  public static TheOneRing getInstance() {
+    if (TheOneRing.instance == null) {
+      TheOneRing.instance = new TheOneRing();
+    }
+    return TheOneRing.instance;
+  }
+}
+
+main:
+  TheOneRing ring = new TheOneRing(); // compiler error private constructor
+  TheOneRing ring = TheOneRing.getInstance();
+  frodo.addToInventory(ring);
+\end{blackboard}
+
+Singletons are generally a very bad idea.
+
+Even if in your program there is to be only one instance of a class, for
+testing your program you may need several, so don't use singletons.
+
+
+
+
+
+
+
+
+\section{Shadowing}
+
+\begin{multicols}{2}
+\begin{blackboard}
+class Circle {
+  private double radius;
+
+  public Circle(double radius) {
+    this.radius = radius;
+  }
+}
+\end{blackboard}
+\columnbreak
+\begin{blackboard}
+// This should not work, but it DOES work
+class Circle {
+  private double radius;
+
+  public Circle(double r) {
+    radius = r;    // shadowing
+  }
+}
+\end{blackboard}
+\end{multicols}
+
+\begin{blackboard}
+// This doesn't work
+class Circle {
+  private double radius;
+
+  public Circle(double radius) {
+    radius = radius;
+  }
+}
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Castings}
+
+A casting is interpreting a variable as if it has a different type, example:
+turn an int into a long.
+
+An \textbf{implicit} casting is performed when casting a small variable into a big one.
+Are done automatically by Java.
+
+\begin{blackboard}
+int i = 3;
+long j = i; // implicit casting, j is 3L
+
+long j = 3L;
+int i = j; // compilation error: possible loss of precision
+\end{blackboard}
+
+\textbf{Explicit} castings are performed when casting a big variable into a smaller one.
+As you can lose some data, they are not performed automatically by Java, you
+must request the conversion explicitly by using the casting operator
+\verb+(type)+, which is a way of telling Java, it is OK, I know what I'm doing.
+
+\begin{blackboard}
+long j = 3L;
+int i = (int) j; // explicit casting, works, i is 3
+
+long j = 3_000_000_000L;
+int i = (int) j; // explicit casting, works, i is -1294967296, is this what you want?
+\end{blackboard}
+
+You can cast all primitive types into any other (implicitly or explicitly),
+except booleans.
+
+
+
+
+
+\section{Review}
+
+\begin{blackboard}
+Programming Styles
+Object-Oriented Programming
+  Advantages
+    information hiding
+    type safety
+    encapsulation
+  Disadvantages
+Difference between Classes and Programs
+State and Behavior
+Private Attributes
+  Default initialization
+Public Constructors
+Public Methods
+Overloading constructors
+the this constructor
+Default constructors
+Public attributes
+Final attributes
+Static attributes
+  Counting objects
+Private methods
+Static methods
+Private constructors
+  Utility classes
+  Singletons
+Shadowing
+Castings
+  Implicit
+  Explicit
+  Syntactic Salt
+\end{blackboard}
+
+\end{document}

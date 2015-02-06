@@ -1,0 +1,457 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[assessment]{style}
+
+\newcommand{\realtitle}{Session 04 - Object-Oriented Programming 1}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Self-Assessment
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Rectangles}
+
+\subsection{}
+
+Write a class called \verb+Rectangle1+ that stores the width and height of a
+rectangle in public attributes.
+
+It must have a constructor that receives the width and height of the rectangle.
+This constructor should throw an exception if any of these
+parameters are zero or negative.
+
+\solutioninput{../java/Rectangle1.java}
+
+
+\subsection{}
+
+Write a program called \verb+Rectangle1TestException+ to test if creating a
+\verb+Rectangle1+ with an invalid width or height throws an exception.
+
+The program must print \verb+Exception caught!+ if the exception is caught.
+
+If the exception is not caught, it must print \verb+Exception NOT caught+.
+Modify the code of the program, changing the parameters to the rectangle
+constructor, compile again and run it, to test both situations.
+
+\solutioninput{../java/Rectangle1TestException.java}
+
+
+
+
+\subsection{}
+
+Make the necessary changes to your \verb+Rectangle1+ class so that the following
+program behaves as the example below.
+
+\codeinput{../java/Rectangle1Test.java}{Rectangle1Test.java}
+
+\begin{cmd}
+$ java Rectangle1Test
+Rectangle: width = 1.0 and height = 3.0
+\end{cmd}
+
+\solutioninput{../java/Rectangle1.java}
+
+
+
+
+
+
+\subsection{}
+
+Given that the width and the height should be greater than 0, do you think the
+width and height attributes of the Rectangle1 class should be public?
+
+Why not?
+
+Write a program called \verb+BreakARectangle1+ that creates a valid
+\verb+Rectangle1+, then change its width or its height to some invalid value
+and then prints the rectangle.
+
+\begin{blackboard}
+$ java BreakARectangle1
+Rectangle: width = -1.0 and height = 3.0
+\end{blackboard}
+
+\solutioninput{../java/BreakARectangle1.java}
+
+
+
+
+\subsection{}
+
+Fix the class \verb+Rectangle1+ by writing a new version called
+\verb+Rectangle2+ that protects the attributes of the rectangle from the user
+by making them private.
+
+\solutioninput{../java/Rectangle2.java}
+
+
+
+
+\subsection{}
+
+Would you say that instances of the class \verb+Rectangle2+ are immutable
+objects?
+
+\begin{solution}
+Yes.
+\end{solution}
+
+
+
+
+\subsection{}
+
+Write a mutable version of the class \verb+Rectangle2+ called \verb+Rectangle3+
+by adding a \verb+setWidth(double width)+ and a \verb+segHeight(double height)+
+methods.
+
+These methods must throw an exception if asked to set an invalid width or height
+for the rectangle.
+
+Test your class with the following program:
+
+\codeinput{../java/Rectangle3Test.java}{Rectangle3Test.java}
+
+That must behave exactly as shown below:
+
+\begin{cmd}
+$ java Rectangle2Test
+Rectangle: width = 1.0 and height = 3.0
+Rectangle: width = 5.0 and height = 7.0
+ERROR: height must be > 0
+\end{cmd}
+
+\solutioninput{../java/Rectangle3.java}
+
+
+\subsection{}
+
+Simplify the constructor of \verb+Rectangle3+ by using the methods
+\verb+setWidth+ and \verb+setHeight+ to make it look like this:
+
+\begin{blackboard}
+public Rectangle3(double width, double height) throws exception {
+    setWidth(width);
+    setHeight(height);
+}
+\end{blackboard}
+
+And explain if the class is still safe to use.
+
+Do you still need to declare that the constructor throws an exception, why?
+
+Which version of the constructor do you prefer?
+
+\begin{solution}
+The class is still safe to use, even if the constructor is not catching
+the exceptions from the methods it calls, it will retrhow them.
+
+I still need to declare the throw in my constructor as it is calling methods
+that throw exception but not caching them.
+
+I will rather use the new version as it works fine, and it is simpler.
+\end{solution}
+
+\subsection{}
+
+Create a new version of the class \verb+Rectangle3+ called \verb+Rectangle4+
+that has two overloaded constructors:
+
+\begin{itemize}
+
+  \item \verb+Rectangle4(double side)+ that creates a square rectangle of side
+    \verb+side+.
+
+  \item an empty constructor that creates a square rectangle of side \verb+1.0+.
+
+\end{itemize}
+
+Each of these two new constructors must also be safe and their bodies must have
+only one line of code.
+
+\solutioninput{../java/Rectangle4.java}
+
+
+
+
+
+\subsection{}
+
+Create a new version of the class \verb+Rectangle4+ called \verb+Rectangle5+
+that has:
+
+\begin{itemize}
+
+  \item a method called \verb+area+ to calculate the area of the rectangle.
+
+  \item a method called \verb+perimeter+ to calculate its perimeter.
+
+  \item a method called \verb+invert+ that exchanges its width with its
+    height.
+
+  \item a method called \verb+equals+ to tell if another \verb+Rectangle5+ has
+    the same width and height than the one you are invoking this method on.
+    Write the body of this method in only one line of code.
+
+  \item a new overloaded constructor that receives a \verb+Rectangle5+ and
+    creates a new rectangle with the same width and height. This is called a
+    \emph{clone} constructor. Write the body of this constructor in only one
+    line of code.
+
+\end{itemize}
+
+Also write a test program for this class, testing all the new methods in
+imaginative ways (e.g. is the invert of the invert of a rectangle equals to a
+clone of the original?).
+
+\solutioninput{../java/Rectangle5.java}
+
+\subsection{}
+
+Explain if \verb+Rectangle5.invert()+ can throw an exception. Are you sure?
+
+\begin{solution}
+It can, but it shouldn't, because a dimension from an object cannot be invalid.
+\end{solution}
+
+
+\subsection{}
+
+Explain why you can access the attributes of one \verb+Rectangle5+ object from
+another \verb+Rectangle5+ object if they are private (like you did in the
+\verb+equals+ method).
+
+\begin{solution}
+Private attributes are private to other classes, but not to objects of
+that same class, so you can access the private attributes of one object
+from other objects of that same class.
+\end{solution}
+
+
+
+
+
+
+
+\section{Simulating Dice}
+
+\subsection{}
+
+Write a class called \texttt{SixSidedDie} that simulates 6-sided die.
+
+It will have an empty constructor and a \verb+public int roll()+ method that
+returns a random integer between 1 and 6.
+
+Do not create a new random number generator for each roll; just create a new
+random number generator for each die.
+
+\textsl{Tip: do you need to define an empty constructor for the class? or will
+the default constructor suffice.}
+
+\solutioninput{../java/SixSidedDie.java}
+
+
+
+\subsection{}
+
+Write a program called \texttt{SixSidedDieTest} that test the class from the
+previous exercise by creating a die, rolling it 10 times and printing the
+outcomes.
+
+\begin{cmd}
+$ java SixSidedDieTest
+5
+6
+2
+2
+4
+3
+5
+2
+6
+1
+\end{cmd}
+
+\solutioninput{../java/SixSidedDieTest.java}
+
+
+
+
+
+\subsection{}
+
+Write a class called \texttt{Die} that simulates dices of any number of sides.
+
+The constructor must throw an exception if the number of sides is smaller than
+2 (this number, 2, is a magic number, avoid using it directly).
+
+Add also an empty constructor that construct dices of 6 sides.
+
+\solutioninput{../java/Die.java}
+
+
+
+
+\subsection{}
+
+Write 3 or 4 paragraphs about how would you test the class from the previous
+exercise.
+
+\begin{solution}
+Writing a program that tries to create a die of 1 or less sides
+to see if the exception is thrown.
+
+Then create a die of 2 sides and throw it some times.
+
+Then create a die of a big number of sides and throw it some times.
+
+Trying to test the fairness of the dice is out of the scope of this course.
+\end{solution}
+
+
+
+
+
+
+
+\subsection{}
+
+Use the following program to test your \verb+Die+ class.
+
+Do you understand this program?
+
+\codeinput{../java/DieTest.java}{DieTest.java}
+
+
+
+
+
+
+\subsection{}
+
+Add a method called \texttt{howMany} to your \texttt{Die} class that returns
+the number of dice created so far.
+
+Test the class with the following program:
+
+\codeinput{../java/CountDice.java}{CountDice.java}
+
+The output from the program should be exactly this:
+
+\begin{cmd}
+$ java CountDice
+0
+3
+4
+\end{cmd}
+
+\subsection{Playing with REGEXs}
+
+Write a program called \texttt{RollDice} that adds the rolls from a set of dice
+according to the following simplified \emph{Dungeons \& Dragons} notation:
+
+\begin{itemize}
+
+  \item \verb+1d6+ means roll one 6-sided die
+
+  \item \verb+3d8+ means roll three 8-sided dice and sum their outcomes
+
+\end{itemize}
+
+\begin{cmd}
+$ java RollDice 1d6
+5
+$ java RollDice 3d8
+13
+$ java RollDice 1000d100
+51249
+$ java RollDice
+ERROR: bad number of arguments
+$ java RollDice 1d6 3d6
+ERROR: bad number of arguments
+$ java RollDice alberto
+ERROR: bad argument format
+$ java RollDice 3d6a
+ERROR: bad argument format
+$ java RollDice 5d1
+ERROR: number of sides must be >= 2
+\end{cmd}
+
+\textsl{Tip: learn about \emph{regular expressions} before trying to
+solve this problem.}
+
+\solutioninput{../java/RollDice.java}
+
+
+
+
+
+
+
+
+\section{Counting students is hard}
+
+\subsection{}
+
+Write a \verb+Student+ class, that holds the information of a student:
+
+\begin{itemize}
+
+  \item His name
+
+  \item His surname
+
+  \item His Student ID: a number different for each student, assigned to each
+    student when he/she is created, starting from 1000.
+
+\end{itemize}
+
+The \verb+toString()+ method for this class must print the information for the
+student as shown below:
+
+\verb+surname, name (student_id)+
+
+Test your class with a simple program that creates three students in this order:
+
+\begin{itemize}
+
+  \item Alberto Cortés
+
+  \item Beatriz González
+
+  \item Carlos García
+
+\end{itemize}
+
+Then print their info, first of Alberto, then Carlos, the Beatriz.
+
+The output from your program must look like this:
+
+\begin{cmd}
+$ java StudentTest
+Cortés, Alberto (1001)
+García, Carlos (1003)
+González, Beatriz (1002)
+\end{cmd}
+
+\solutioninput{../java/Student.java}
+
+\subsection{}
+
+Check the differences between your \verb+StrudentTest+ program and the
+teachers' version and try to understand the differences if any:
+
+\codeinput{../java/StudentTest.java}{Teachers' version of StudentTest.java}
+
+\end{document}

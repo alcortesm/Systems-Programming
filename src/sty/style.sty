@@ -12,6 +12,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{multicol}
 \RequirePackage{graphicx}
+\RequirePackage{textcomp}
 
 \newif\ifopt@nooption\opt@nooptiontrue
 \newif\ifopt@notes\opt@notesfalse
@@ -52,13 +53,17 @@
 %% were writting in a blackboard).
 \DefineVerbatimEnvironment{blackboard}{Verbatim}{frame=single}
 \newcommand{\blackboardinput}[1]{%
-    \vspace{0.5cm}\VerbatimInput[frame=single]{#1}}
+    \vspace{0.2cm}\VerbatimInput[frame=single]{#1}}
 
 %% Code command input.
 %%
 %% Text will be rendered verbatim inside a box, with a title and line numbers.
 \newcommand{\codeinput}[2]{%
-  \vspace{0.5cm}\VerbatimInput[frame=single, numbers=left, label=#2]{#1}}
+  \vspace{0.2cm}\VerbatimInput[frame=single, %
+    numbers=left, %
+    numbersep=2pt, %
+    fontsize=\footnotesize, %
+    label=#2]{#1}}
 
 %% Command line example environment and associated command input.
 %%
