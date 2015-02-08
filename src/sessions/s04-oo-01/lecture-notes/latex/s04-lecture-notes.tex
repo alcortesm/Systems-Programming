@@ -74,7 +74,6 @@ Attributes
 Constructors
 Methods
 Shadowing
-Castings
 \end{blackboard}
 
 
@@ -892,42 +891,6 @@ class Circle {
 
 
 
-\section{Castings}
-
-A casting is interpreting a variable as if it has a different type, example:
-turn an int into a long.
-
-An \textbf{implicit} casting is performed when casting a small variable into a big one.
-Are done automatically by Java.
-
-\begin{blackboard}
-int i = 3;
-long j = i; // implicit casting, j is 3L
-
-long j = 3L;
-int i = j; // compilation error: possible loss of precision
-\end{blackboard}
-
-\textbf{Explicit} castings are performed when casting a big variable into a smaller one.
-As you can lose some data, they are not performed automatically by Java, you
-must request the conversion explicitly by using the casting operator
-\verb+(type)+, which is a way of telling Java, it is OK, I know what I'm doing.
-
-\begin{blackboard}
-long j = 3L;
-int i = (int) j; // explicit casting, works, i is 3
-
-long j = 3_000_000_000L;
-int i = (int) j; // explicit casting, works, i is -1294967296, is this what you want?
-\end{blackboard}
-
-You can cast all primitive types into any other (implicitly or explicitly),
-except booleans.
-
-
-
-
-
 \section{Review}
 
 \begin{blackboard}
@@ -957,10 +920,6 @@ Private constructors
   Utility classes
   Singletons
 Shadowing
-Castings
-  Implicit
-  Explicit
-  Syntactic Salt
 \end{blackboard}
 
 \end{document}

@@ -59,19 +59,232 @@ Shadowing
 
 \section{Today's Topics}
 \begin{blackboard}
-
+Castings
+  Implicit
+  Explicit
+  Syntactic Salt
+Inheritance
+  Specialization
+  Generalization
+  Lingo
+  Declaring subclasses
+  Consecuences
+    Inheriting the interface
+    Inheriting the implementation
+  Hierarchies
+  Super
+  Overriding
+    Attribute overriding - Shadowing
+      Attribute hidding
+    Method overriding
+      Virtual method invocation
+      Final methods
+  Constructors
+    Base class first
+    Super()
+  Final
+    Attributes
+    Methods
+    Classes
+  Static
+  Access Modifiers
 \end{blackboard}
 
 
 
 
-\section{Foo bar}
+
+
+
+
+
+\section{Castings}
+
+Take a look at this Java code, do you see something weird?
+
+\begin{blackboard}
+int i = 3;
+long j = i;
+\end{blackboard}
+
+This code should not even compile, because \verb+i+ and \verb+j+ are variables
+of different types.
+
+But it does compile, and what you end up having in \verb+j+ is \verb+3L+.
+
+This is called an \textbf{implicit} casting: turning a small variable into a
+big one.
+
+This transformation is performed automatically by Java, it is a kind of
+SYNTACTIC SUGAR: it is a small violation of the Java syntanxis, but makes the
+life of the programmer sweeter.
+
+Please note, there is no way this transformation can go wrong because small
+values will always fit into bigger variables, just by filling the remaining
+space with zeros, like this:
+
+\begin{center}
+  \includegraphics{./img/implicit_casting/implicit_casting.eps}
+\end{center}
+
+Now, the opposite is quite dangerous.
+
+It is OK with small numbers, but with big numbers, you never know what you will
+get.
+
+Infact, you would get a compiler error if you try to this.
+
+To be able to do this kind of transformation in Java, you have to convince Java
+you know what you are doing, by adding a casting operator:
+
+\begin{blackboard}
+long c = 3L;
+int d = (int) c; // explicit casting, works, d is 3
+
+long e = 3_000_000_000L;
+int f = (int) e; // explicit casting, works, f is -1_294_967_296, is this what you want?
+\end{blackboard}
+
+This casting operator is a way to tell Java, \textsl{hey!, I know what I am
+doing, so please just strip the left part of the number for me}.
+
+This is called an \textbf{explicit} casting and it is a form of SYNTACTIC SALT:
+it makes the life of the programmer harder, by forcing him to write something
+extra, just to be sure he really knows he is doing a dangerous operation.
+
+You can cast explicitly cast all primitive types into any other, except
+booleans.
 
 
 
 
 
 
+
+
+
+
+
+
+\section{Inheritance}
+
+You already know how to create new classes.
+
+Today you will learn ANOTHER way of creating classes, called INHERITANCE.
+
+\subsection{Version 1: print the bigger rectangle}
+
+Let's say your boss asks you to write a method to return the rectangle with the
+maximum area among a set of several rectangles.
+
+For instance which of the following rectangles has the bigger area?
+
+\begin{itemize}
+  \item A rectangle of 3x2
+  \item A rectangle of 2x2
+  \item A rectangle of 1x7
+\end{itemize}
+
+\begin{multicols}{2}
+  \codeinput{../java/Max1.java}{Max1.java}
+\columnbreak
+ \codeinput{../java/Rectangle1.java}{Rectangle1.java}
+\end{multicols}
+
+\begin{blackboard}
+$ java Max1
+Rectangle(1.0, 7.0)
+\end{blackboard}
+
+\subsection{Version 2: Squares}
+
+Now your boss asks you to change your code so can also insert squares to your
+method.
+
+The simpler solution:
+
+\verb+     Just create squares as rectangles, and we are done. I even made a constructor for that.+
+
+\textsl{No, no, no. Your method will be part of a bigger program, written using
+OOP. We need to differentiate between Squares and Rectangles, they are not the
+same for the rest of your team.}
+
+\textsl{Look, I will give you an array of Rectangles and Squares and you should
+return the Square or Rectangle with the bigger area.}
+
+For instance which of the following shapes has the bigger area?
+
+\begin{itemize}
+  \item A rectangle of 3x2
+  \item A rectangle of 1x7
+  \item An square of side 2
+  \item An square of side 3
+\end{itemize}
+
+OK, let's write version 2 of our program:
+
+\begin{multicols}{2}
+  \codeinput{../java/Max2.java}{Max2.java}
+\columnbreak
+  \codeinput{../java/Square2.java}{Square2.java}
+\end{multicols}
+
+As you can see, there is no way to insert Squares into our method, and even if
+we could, we will be still returning Rectangles, not squares.
+
+\subsection{Version 3: Squares with Rectangles inside}
+
+Let's try a clever trick, by creating a Square that holds a Rectangle inside.
+
+We will be able to create a Square, but pass the rectangle inside it to the
+method.
+
+Now, Square3 will be WRAPPER CLASS, it will just be a box holding a rectangle
+inside. It will be a square on the outside, but a rectangle on the inside.
+
+\begin{multicols}{2}
+  \codeinput{../java/Max3.java}{Max3.java}
+\columnbreak
+  \codeinput{../java/Square3.java}{Square3.java}
+\end{multicols}
+
+\begin{blackboard}
+$ java Max3
+Rectangle(3.0, 3.0)
+\end{blackboard}
+
+But we still have the same problem with the return value, we are still
+returning a Rectangle, instead of an Square.
+
+
+\subsection{Version 4: Squares are Rectangles}
+
+What we really need is a class that behaves both as an Square and as a
+Rectangle: we need a POLYMORPHIC class.
+
+We want that class that sometimes behaves as an Square: when we create objects
+and when we print them.
+
+But other times, we want that class to behave as a Rectangle: when we add
+objects to an array of Rectangles, for example.
+
+In a similar way as when you turn an \verb+int+ into a \verb+long+ using
+castings.
+
+The way to do this is using INHERITANCE.
+
+\begin{multicols}{2}
+  \codeinput{../java/Max4.java}{Max4.java}
+\columnbreak
+  \codeinput{../java/Square4.java}{Square4.java}
+\end{multicols}
+
+\begin{blackboard}
+$ java Max4
+Square(3.0)
+\end{blackboard}
+
+TODO.
 
 \section{Review}
 
