@@ -388,28 +388,42 @@ They look like this:
 
 \section{Inheritance Rules}
 
-\begin{itemize}
+\begin{enumerate}
 
   \item A subclass inherits all the attributes and all the methods from its
     superclass, but none of its constructors.
-
-  \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
-    it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
-
-  \item This means all Java classes inherits from \verb+Object+ (except
-    \verb+Object+ itself), and therefore they have all its methods and
-    attributes.  \section{Review}
 
   \item You can only inherit from one class. Multiple inheritance is not
     allowed in Java.
 
   \item This defines an inheritance hirarchy.
 
+  \item Java will implicitly cast subclass objects to superclass references.
+
+    \verb+Rectangle r = new Square(2);+
+
+  \item You can explicitly cast superclass objectss to subclass references, but
+    it is dangerous. The \verb+instanceof+ operator might help.
+
+\begin{blackboard}
+Rectangle r = new Rectangle(2, 2);
+Square s = r; // compiler error
+s = (Square) r; // explicit casting, OK
+s = (Square) new Rectangle(2,3); // explicit casting, Ok, but probably not what you want.
+if (r instanceof Square) {
+  s = (Square) r;
+}
+\end{blackboard}
+
   \item If you re-define an attribute from your superclass in your subclass,
-    the superclass version get shadowed. This is called \verb+ATTRIBUTE HIDING+.
+    the superclass version get shadowed. This is called
+    \verb+ATTRIBUTE HIDING+, because the you are hiding the attributes of the
+    superclass behind new attributes in the subclass.
 
   \item If you re-define a method from your superclass in your subclass, the
     superclass version get shadowed. This is called \verb+METHOD OVERRIDING+.
+    You are hiding the implementation of the methods in the superclass with a
+    new implementation in the subclass.
 
   \item Do not confuse \verb+METHOD OVERRIDING+ with \verb+METHOD OVERLOADING+.
 
@@ -424,7 +438,7 @@ They look like this:
 
   \item A final method in a superclass can not be overrided on subclasses.
 
-  \item A final class can not be a superclass.
+  \item A final class can not be a subclassed.
 
   \item Constructors for subclasses:
 
@@ -443,7 +457,24 @@ They look like this:
 
     \end{itemize}
 
-\end{itemize}
+  \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
+    it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
+
+  \item This means all Java classes inherits from \verb+Object+ (except
+    \verb+Object+ itself), and therefore all Java Objects have all the methods and
+    attributes of an Object:
+
+      \begin{itemize}
+
+        \item boolean equals();
+
+        \item String toString();
+
+        \item 9 more you don't need to know for this course.
+
+      \end{itemize}
+
+\end{enumerate}
 
 
 
@@ -454,9 +485,30 @@ They look like this:
 
 
 
+\section{Access Modifiers}
 
-
-
+\begin{center}
+  \begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\multicolumn{1}{|c|}{access mod.} & \multicolumn{1}{|c|}{class} & \multicolumn{1}{|c|}{method} & \multicolumn{1}{|c|}{attribute} \\
+\hline
+\texttt{public}    & \multicolumn{3}{|c|}{Accesible to all classes.} \\
+\hline
+\textsl{(empty) AKA friendly AKA package-protected} & \multicolumn{3}{|c|}{Accesible only to classes in the same package.} \\
+\hline
+\texttt{protected}   & Only for inner classes. & \multicolumn{2}{|c|}{Acecsible only to subclasses.} \\
+\hline
+\texttt{private}     & Only for inner classes. & \multicolumn{2}{|c|}{Accessible only inside the class.} \\
+\hline
+\hline
+\texttt{final}       & Cannot be subclassed & Cannot be overriden & Cannot be modified once initialized \\
+\hline
+\texttt{static}      & Turns an inner class into a statically nested class. & Class method (instead of an object method) & Class attribute (instead of an object attribute) \\
+\hline
+\texttt{abstract}    & Cannot be instantiated & Has no code & --- \\
+\hline
+\end{tabular}
+\end{center}
 
 
 
@@ -470,6 +522,7 @@ They look like this:
 \begin{blackboard}
   has-a vs. is-a
   exceptions use inheritance
+  Object is the father of all of them
 \end{blackboard}
 
 
