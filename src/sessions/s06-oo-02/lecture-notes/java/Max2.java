@@ -1,13 +1,20 @@
 class Max2 {
-    private static Rectangle1 bigger(Rectangle1[] input) {
+    public static Rectangle1 max(Rectangle1[] input) {
         if (input == null || input.length == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("null or zero-size array");
         }
-        Rectangle1 max = input[0];
-        for (int i=1; i<input.length; i++) {
-            if (input[i].area() > max.area()) {
+        Rectangle1 max = null;
+        for (int i=0; i<input.length; i++) {
+            if (input[i] == null ) {
+                continue;
+            } else if (max == null ||
+                    input[i].area() > max.area()) {
                 max = input[i];
             }
+        }
+        if (max == null) {
+            throw new IllegalArgumentException(
+                    "empty array");
         }
         return max;
     }
@@ -18,7 +25,7 @@ class Max2 {
         array[1] = new Rectangle1(1D, 7D);
         array[2] = new Square2(3D);
         array[3] = new Square2(2D);
-        Rectangle1 max = bigger(array);
+        Rectangle1 max = max(array);
         System.out.println(max);
     }
 }

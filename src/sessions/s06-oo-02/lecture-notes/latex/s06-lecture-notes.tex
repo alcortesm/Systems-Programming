@@ -64,13 +64,8 @@ Castings
   Explicit
   Syntactic Salt
 Inheritance
-  Specialization
-  Generalization
   Lingo
   Declaring subclasses
-  Consecuences
-    Inheriting the interface
-    Inheriting the implementation
   Hierarchies
   Super
   Overriding
@@ -86,7 +81,6 @@ Inheritance
     Attributes
     Methods
     Classes
-  Static
   Access Modifiers
 \end{blackboard}
 
@@ -103,17 +97,23 @@ Inheritance
 Take a look at this Java code, do you see something weird?
 
 \begin{blackboard}
-int i = 3;
-long j = i;
+int a = 3;
+long b = a;
 \end{blackboard}
 
-This code should not even compile, because \verb+i+ and \verb+j+ are variables
+This code should not even compile, because \verb+a+ and \verb+b+ are variables
 of different types.
 
-But it does compile, and what you end up having in \verb+j+ is \verb+3L+.
+But it does compile, and what you end up having in \verb+b+ is \verb+3L+.
+
+Another example of the same thing:
+
+\begin{blackboard}
+long c = 3;
+\end{blackboard}
 
 This is called an \textbf{implicit} casting: turning a small variable into a
-big one.
+bigger one.
 
 This transformation is performed automatically by Java, it is a kind of
 SYNTACTIC SUGAR: it is a small violation of the Java syntanxis, but makes the
@@ -127,22 +127,24 @@ space with zeros, like this:
   \includegraphics{./img/implicit_casting/implicit_casting.eps}
 \end{center}
 
-Now, the opposite is quite dangerous.
+Now, the opposite can be quite dangerous.
 
 It is OK with small numbers, but with big numbers, you never know what you will
 get.
 
-Infact, you would get a compiler error if you try to this.
+Infact, you would get a compiler error if you try to this. Which is nice,
+because it is dangerous.
 
 To be able to do this kind of transformation in Java, you have to convince Java
-you know what you are doing, by adding a casting operator:
+that you know what you are doing, by using a casting operator, like in the
+following 2 examples:
 
 \begin{blackboard}
-long c = 3L;
-int d = (int) c; // explicit casting, works, d is 3
+long d = 3L;
+int e = (int) d; // explicit casting, works, e is 3
 
-long e = 3_000_000_000L;
-int f = (int) e; // explicit casting, works, f is -1_294_967_296, is this what you want?
+long f = 3_000_000_000L;
+int g = (int) f; // explicit casting, works, g is -1_294_967_296, is this what you want?
 \end{blackboard}
 
 This casting operator is a way to tell Java, \textsl{hey!, I know what I am
@@ -152,8 +154,7 @@ This is called an \textbf{explicit} casting and it is a form of SYNTACTIC SALT:
 it makes the life of the programmer harder, by forcing him to write something
 extra, just to be sure he really knows he is doing a dangerous operation.
 
-You can cast explicitly cast all primitive types into any other, except
-booleans.
+You can explicitly cast all primitive types into any other, except booleans.
 
 
 
@@ -249,6 +250,7 @@ inside. It will be a square on the outside, but a rectangle on the inside.
 \end{multicols}
 
 \begin{blackboard}
+$ javac *3.java
 $ java Max3
 Rectangle(3.0, 3.0)
 \end{blackboard}
@@ -256,13 +258,15 @@ Rectangle(3.0, 3.0)
 But we still have the same problem with the return value, we are still
 returning a Rectangle, instead of an Square.
 
+This is called a \verb+has-a+ relationship, bucause an Square has a Rectangle
+inside.
 
 \subsection{Version 4: Squares are Rectangles}
 
 What we really need is a class that behaves both as an Square and as a
 Rectangle: we need a POLYMORPHIC class.
 
-We want that class that sometimes behaves as an Square: when we create objects
+We want a class that sometimes behaves as an Square: when we create objects
 and when we print them.
 
 But other times, we want that class to behave as a Rectangle: when we add
@@ -280,16 +284,193 @@ The way to do this is using INHERITANCE.
 \end{multicols}
 
 \begin{blackboard}
+$ javac *4.java
 $ java Max4
 Square(3.0)
 \end{blackboard}
 
-TODO.
+Now the program works.
+
+The relationship between Squares and Rectangles is called a \verb+is-a+
+relationship, because now, an Square is a Rectangle. As opposed to version 3,
+where an Square has a Rectagle.
+
+\subsection{Protected attributes}
+
+As the width and height attributes of Rectangles are private we can not use
+them from our Square.
+
+That is way we needed the \verb+getWidth+ method.
+
+But we can change those attributes from private to protected, which means
+public for the classes that inherit from me, but private for the rest.
+
+\begin{multicols}{2}
+  \codeinput{../java/Rectangle5.java}{Rectangle5.java}
+\columnbreak
+  \codeinput{../java/Square5.java}{Square5.java}
+\end{multicols}
+\codeinput{../java/Max5.java}{Max5.java}
+
+\begin{blackboard}
+$ javac *5.java
+$ java Max5
+Square(3.0)
+\end{blackboard}
+
+
+
+
+
+\section{Inheritance Lingo}
+
+To represent the relationships between classes that inherits we use UML
+diagrams (Unified Modeling Language).
+
+They look like this:
+
+\begin{multicols}{2}
+
+  \begin{center}
+    \includegraphics[height=6cm]{./img/uml/uml.eps}
+  \end{center}
+
+  \columnbreak
+
+  Vocabulary:
+
+  \begin{itemize}
+
+    \item A Square \textbf{INHERITS} attributes and methos from the Square,
+      \textsl{but not its constructors}.
+
+    \item A Square \textbf{EXTENDS} a Rectangle.
+
+    \item Square is a \textbf{SUBCLASS} of Rectangle.
+
+      \begin{itemize}
+
+        \item or is a \textbf{DERIVED} class of Rectangle.
+
+        \item or is a \textbf{CHILD} class of Rectangle.
+
+      \end{itemize}
+
+    \item A Rectangle is a \textbf{SUPERCLASS} of Square.
+
+      \begin{itemize}
+
+        \item or is a \textbf{BASE} class of Sqaure.
+
+        \item or is a \textbf{PARENT} class of Square.
+
+      \end{itemize}
+
+    \item Inheritance implements an \textbf{IS-A} relationship: An Square is a
+      Rectangle.  As opposed to version 3, where an Square \textbf{HAS-A}
+      Rectangle.
+
+  \end{itemize}
+
+\end{multicols}
+
+
+
+
+
+
+
+\section{Another Example}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/vehicle/vehicle.eps}
+\end{center}
+
+\section{Inheritance Rules}
+
+\begin{itemize}
+
+  \item A subclass inherits all the attributes and all the methods from its
+    superclass, but none of its constructors.
+
+  \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
+    it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
+
+  \item This means all Java classes inherits from \verb+Object+ (except
+    \verb+Object+ itself), and therefore they have all its methods and
+    attributes.  \section{Review}
+
+  \item You can only inherit from one class. Multiple inheritance is not
+    allowed in Java.
+
+  \item This defines an inheritance hirarchy.
+
+  \item If you re-define an attribute from your superclass in your subclass,
+    the superclass version get shadowed. This is called \verb+ATTRIBUTE HIDING+.
+
+  \item If you re-define a method from your superclass in your subclass, the
+    superclass version get shadowed. This is called \verb+METHOD OVERRIDING+.
+
+  \item Do not confuse \verb+METHOD OVERRIDING+ with \verb+METHOD OVERLOADING+.
+
+  \item \verb+this+ is a reference to the object itself, \verb+super+ is a
+    reference to the superclass version of the object itself.
+
+    \verb+Square this; Rectangle super;+
+
+  \item Even if you re-define attributes or methods from your superclass in
+    your subclass, you can still access the superclass version using the
+    \verb+super+ reference.
+
+  \item A final method in a superclass can not be overrided on subclasses.
+
+  \item A final class can not be a superclass.
+
+  \item Constructors for subclasses:
+
+    \begin{itemize}
+
+      \item you must initialize the part of the part of the object
+        corresponding to the superclass, using the \verb+super+ constructor,
+        and then initialize the part of the object corresponding to the
+        subclass.
+
+      \item the call to the super constructor must be the first line in your
+        constructor.
+
+      \item If you don't call super as the first line, Java will silently
+        insert a call to a empty super constructor for you.
+
+    \end{itemize}
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Review}
 
 \begin{blackboard}
-
+  has-a vs. is-a
+  exceptions use inheritance
 \end{blackboard}
+
 
 \end{document}
