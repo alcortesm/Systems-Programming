@@ -1,25 +1,31 @@
 class Square4 extends Rectangle1 {
+    // Rectangle is called the superclass
+    // Square4 is called the subclass
+    // DIBUJAR CONJUNTOS Y DIAGRAMA UML SIMPLE
 
-    // attributes are inherited from the super class
-    // but we can not access them because they are private:
-    //   width
-    //   height
+    // attributes are inherited from the superclass so there is
+    // no need to re-define them again:
+    // double width;
+    // double height;
 
-    // constructors are not inherited
-    public Square4(double side) {
-        super(side);
-    }
+    // all methods are also inherited, so there is no need to re-define them
+    // again:
+    //   public double area() { ... }
+    //   public double getWidth() {...}
+    //   public String toString() {...}
 
-    // all methods are inherited, no need to redefine:
-    //   area()
-    //   getWidth()
-    //   getHeight()
-
-    // We also inherited toString(), but we want our own version
+    // But this time we want our own version of toString()
     // so it writes "Square..." instead of "Rectangle(...".
     // This is called OVERRIDING a method.
     public String toString() {
         return "Square(" + this.getWidth() + ")";
     }
+    // this method is shadowing the Rectangle.toString().
+
+    // Constructors are not inherited
+    public Square4(double side) {
+        super(side);
+    }
+
 }
 
