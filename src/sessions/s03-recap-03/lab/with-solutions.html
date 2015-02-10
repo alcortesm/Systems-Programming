@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="./style.css" media="all" />
   </head>
   <body>
-  <h2 class="title" id="idm140277379203088">1. Session 2 (lab): Review exercises</h2>
+                <h2 class="title" id="idm140277377026224">1. Session 2 (lab): Review exercises</h2>
           <p>
       
       <span xml:lang="en" class="phrase" lang="en">
@@ -20,11 +20,12 @@
 	most important conventions.
       </span>
     </p>
-          <div class="section" id="idm140277376659056">
+          <div class="section" id="idm140277376452240">
             <div class="titlepage">
               <div>
                 <div>
-                  <h3 class="title" id="idm140277376659056">1.1. 
+                  <h3 class="title" id="idm140277376452240">1.1. 
+    
     <span xml:lang="en" class="phrase" lang="en">Debugging Java programs with Eclipse: Calculation
     of pi</span>
   </h3>
@@ -62,7 +63,7 @@
                 </li>
               </ul>
             </div>
-
+          
             <p> The JDK comes with its own debugger, called <code
               class="code">jdb</code>.  The Eclipse IDE also includes a
             debugger, as powerful as the <code class="code">jdb</code>, but
@@ -72,11 +73,11 @@
             since its debugger is so nice, we will be using Eclipse just for
             this lab, as an exception.</p>
 
-            <div class="section" id="idm140277376661040">
+            <div class="section" id="idm140277375077728">
               <div class="titlepage">
                 <div>
                   <div>
-                    <h4 class="title" id="idm140277376661040">
+                    <h4 class="title" id="idm140277375077728">
       
       <span xml:lang="en" class="phrase" lang="en">Section 1: A program to compute pi</span>
     </h4>
@@ -171,12 +172,40 @@ public class PiCalc {
                   </li>
                 </ul>
               </div>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277376654208">Solution</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+          The program begins its execution on the <code class="code">main</code>
+          method, where an object of the class <code class="code">PiCalc</code> is
+          instantiated and its <code class="code">compute()</code> method is
+          invoked. This method contains a loop; on each iteration, the
+          method <code class="code">piFunction()</code> is called. This method can be
+          executed several times, depending on the loop ending
+          condition.
+        </p>
+                <p xml:lang="en" lang="en">
+        The data types <code class="code">float</code> and <code class="code">double</code> has a
+        limited precision, especially the former one. As this program
+        should be able to calculate the value of pi with an arbitrary
+        precision, none of these data types can be used. The class
+        <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html"><code class="code">BigDecimal</code></a>
+        represents real numbers of arbitrary precision with a cost: the
+        code is more complex than if we use native Java data types and
+        simple computations are harder for the computer.
+      </p>
+              </div>
             </div>
-            <div class="section" id="idm140277376660128">
+            <div class="section" id="idm140277377020416">
               <div class="titlepage">
                 <div>
                   <div>
-                    <h4 class="title" id="idm140277376660128">
+                    <h4 class="title" id="idm140277377020416">
       
       <span xml:lang="en" class="phrase" lang="en">Section 2: Running the program</span>
     </h4>
@@ -190,11 +219,11 @@ public class PiCalc {
       you will understand why is that).
     </p>
             </div>
-            <div class="section" id="idm140277372136496">
+            <div class="section" id="idm140277375080992">
               <div class="titlepage">
                 <div>
                   <div>
-                    <h4 class="title" id="idm140277372136496">
+                    <h4 class="title" id="idm140277375080992">
       
       <span xml:lang="en" class="phrase" lang="en">Section 3: Using the Eclipse debugger</span>
     </h4>
@@ -281,12 +310,67 @@ public class PiCalc {
       What is the role of the <code class="code">limit</code> variable in the
       program? Run additional debugging sessions if you need to.
     </p>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277376669232">Solution</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+        To calculate pi with 10 decimal digits of precision the loop is
+        executed 8 times. The more precision you want, the more loop
+        iterations you will need.
+      </p>
+                <p xml:lang="en" lang="en">
+        The value of the variable <code class="code">piK</code> gets lower as the
+        program iterate on the loop. These are the first values it
+        takes:
+      </p>
+                <div xml:lang="en" class="itemizedlist" lang="en">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">With k = 0: 3.1333333333.</li>
+                    <li class="listitem">With k = 1: 0.008089133084375.</li>
+                    <li class="listitem">With k = 2: 0.0001649239239453125.</li>
+                    <li class="listitem">With k = 3: 0.00000506722085449218750.</li>
+                  </ul>
+                </div>
+                <p xml:lang="en" lang="en">
+        The value of <code class="code">pi</code> is calculated as the sum of the
+        values of <code class="code">piK</code> on each iteration, so with each
+        iteration the value of <code class="code">pi</code> is more precise and the
+        value of its most significant bits become more stable:
+      </p>
+                <div xml:lang="en" class="itemizedlist" lang="en">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">With k = 0: 3.1333333333.</li>
+                    <li class="listitem">With k = 1: 3.141422466384375.</li>
+                    <li class="listitem">With k = 2: 3.1415873903083203125.</li>
+                    <li class="listitem">With k = 3: 3.14159245752917480468750.</li>
+                  </ul>
+                </div>
+                <p xml:lang="en" lang="en">
+        The variable <code class="code">limit</code> is initialized with a value of
+        10 to the power of minus the number of desired digits of
+        precision. As an example, if two decimal places of precision is
+        desired, <code class="code">limit</code> will be initialized to 0.01. This
+        value is compared against the value of <code class="code">piK</code> on each
+        loop iteration. When <code class="code">piK</code> becomes less than
+        <code class="code">limit</code> it is assumed that the digits within the
+        desired precision have reach a stable value and the program can
+        stop looping and return the solution. The number of iterations on
+        the loop depends on the value of <code class="code">limit</code>, this is,
+        the more precision you desire, the more interations you will
+        need.
+      </p>
+              </div>
             </div>
-            <div class="section" id="idm140277377757440">
+            <div class="section" id="idm140277372130416">
               <div class="titlepage">
                 <div>
                   <div>
-                    <h4 class="title" id="idm140277377757440">
+                    <h4 class="title" id="idm140277372130416">
       
       <span xml:lang="en" class="phrase" lang="en">Section 4: The expression to calculate pi</span>
     </h4>
@@ -298,12 +382,34 @@ public class PiCalc {
       calculate the value of pi? You can answer this question by
       thinking about the source code above and using the debugger.
     </p>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277379197152">Solution</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+        Taking a close look at the source code you will notice that
+        expression being used is:
+      </p>
+                <p xml:lang="en" lang="en">
+                  <code class="code">pi = SUMMATION from k=0 to infinity of 16^(-k) * [ 4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6) ]</code>
+                </p>
+                <p xml:lang="en" lang="en">
+        This is the <a class="ulink" href="http://mathworld.wolfram.com/BBPFormula.html">
+        Bailey-Borwein-Plouffe expression</a>. There are better ways
+        to use it than what we present here as a solution; for instance,
+        by using base 16 operations instead of base 10 operations.
+      </p>
+              </div>
             </div>
-            <div class="section" id="idm140277378331360">
+            <div class="section" id="idm140277373495456">
               <div class="titlepage">
                 <div>
                   <div>
-                    <h4 class="title" id="idm140277378331360">
+                    <h4 class="title" id="idm140277373495456">
       
       <span xml:lang="en" class="phrase" lang="en">Section 5: Area of a circle</span>
     </h4>
@@ -322,12 +428,51 @@ public class PiCalc {
       to generate a suitable value of pi for its calculations. It must
       also use the class <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html">BigDecimal</a>.
     </p>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277372131072">Solution</h5>
+                    </div>
+                  </div>
+                </div>
+                <pre class="programlisting">import java.math.BigDecimal;
+
+public class CircleAreaCalc {
+
+    private BigDecimal pi;
+
+    public CircleAreaCalc(int numDigits) {
+        PiCalc piCalc = new PiCalc(numDigits);
+        pi = piCalc.compute();
+    }
+
+    public BigDecimal area(BigDecimal radius) {
+        BigDecimal area = radius.pow(2);
+        area = area.multiply(pi);
+        return area;
+    }
+
+    public static void main(String[] args) {
+        if (args.length != 2) {
+            System.err.println("Two command-line arguments expected: number of "
+                               + "digits and circle radius.");
+        } else {
+            int numDigits = Integer.parseInt(args[0]);
+            BigDecimal radius = new BigDecimal(args[1]);
+            CircleAreaCalc circleAreaCalc = new CircleAreaCalc(numDigits);
+            System.out.println(circleAreaCalc.area(radius));
+        }
+    }
+}
+</pre>
+              </div>
             </div>
-            <div class="section" id="idm140277376691744">
+            <div class="section" id="idm140277376460752">
               <div class="titlepage">
                 <div>
                   <div>
-                    <h4 class="title" id="idm140277376691744">
+                    <h4 class="title" id="idm140277376460752">
       
       <span xml:lang="en" class="phrase" lang="en">Section 6: Total area of several
       circles</span>
@@ -345,6 +490,35 @@ public class PiCalc {
               <p xml:lang="en" lang="en">
       This program must use the class from the previous section and <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html">BigDecimal</a>.
     </p>
+              <div class="section_solution" lang="en" xml:lang="en">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277373485824">Solution</h5>
+                    </div>
+                  </div>
+                </div>
+                <pre class="programlisting">import java.math.BigDecimal;
+
+public class ManyCirclesAreaCalc {
+
+    public static void main(String[] args) {
+        if (args.length &lt; 1) {
+            System.err.println("At least one argument expected: "
+                               + "number of digits for pi.");
+        } else {
+            int numDigits = Integer.parseInt(args[0]);
+            BigDecimal total = new BigDecimal(0.0);
+            CircleAreaCalc circleAreaCalc = new CircleAreaCalc(numDigits);
+            for (int i = 1; i &lt; args.length; i++) {
+                total = total.add(circleAreaCalc.area(new BigDecimal(args[i])));
+            }
+            System.out.println(total);
+        }
+    }
+}
+</pre>
+              </div>
             </div>
           </div>
         </div>

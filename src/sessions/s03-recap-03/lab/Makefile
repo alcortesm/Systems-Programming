@@ -1,5 +1,5 @@
 OUT_DIR := ../../../../out/pub/sessions/s03-lab
-SRC_FILES := index.html style.css
+SRC_FILES := index.html with-solutions.html style.css
 OUT_FILES := $(addprefix $(OUT_DIR)/, $(SRC_FILES))
 
 .PHONY : all clean
