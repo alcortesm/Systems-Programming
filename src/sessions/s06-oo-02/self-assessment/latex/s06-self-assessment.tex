@@ -373,17 +373,61 @@ Animal, Pet and Parrot).
 
 
 
-
 \subsection{}
+
+Answer the following questions:
+
+\begin{enumerate}
+
+  \item Will it be a problem for the previous exercises to declare the
+    \verb+Parrot+ class as a final class? Why?
+
+  \item Will it be a problem for the previous exercises to declare the
+    \verb+Person+ class as a final class? Why?
+
+  \item Will it be a problem for the previous exercises to declare the
+    \verb+toString+ method of class \verb+Pirate+ as final?, Why?
+
+  \item Will it be a problem for the previous exercises to declare the
+    \verb+toString+ method form class \verb+Pet+ as final?, Why?
+
+  \item Will it be a problem for the previous exercises to declare the
+    \verb+numWings+ attribute of the \verb+Animal+ class as final? Why?
+
+\end{enumerate}
+
+\begin{solution}
+  1. No, because no other class is extinding it.
+  2. Yes, because we will not be able to extend from it in Pirate.
+  3. No, because we are not overriding that method in any subclass.
+  4. Yes, because we are overriding that method in the Parrot subclass.
+  5. Yes, but that has nothing to do with inheritance.
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Classes with a fixed sets of instances.}
 
 Another way to solve the problem associated with null nationalities is by
 creating a \verb+Nationality+ class like this one:
 
 \codeinput{../java/Nationality.java}{Nationality.java}
 
-Think about this class and try to create a new \verb+Person2+ class that uses
-it. Also write a \verb+Person2Test+ program that creates the following people
-and prints them:
+Write a NEW version of the \verb+Person+ class, called \verb+Person2+, that
+uses this \verb+Nationality+ class.
+
+Also write a \verb+Person2Test+ program that creates the following people and
+prints them:
 
 \begin{itemize}
 
@@ -432,35 +476,60 @@ more about them
 
 
 
+
+
+
+
+\section{Parents, grand-parents and bloodlines}
+
 \subsection{}
 
-Answer the following questions:
+Write a class called \verb+Child+. A child is a person2 with a parent, that is
+another person2.
 
-\begin{enumerate}
+The \verb+toString+ method of this class must return a string with the
+following format:
 
-  \item Will it be a problem for the previous exercises to declare the
-    \verb+Parrot+ class as a final class? Why?
+\verb+    name, son of /person2/+
 
-  \item Will it be a problem for the previous exercises to declare the
-    \verb+Person+ class as a final class? Why?
+Also, write a program to test your child class, using the following bloodline:
 
-  \item Will it be a problem for the previous exercises to declare the
-    \verb+toString+ method of class \verb+Pirate+ as final?, Why?
+\begin{itemize}
 
-  \item Will it be a problem for the previous exercises to declare the
-    \verb+toString+ method form class \verb+Pet+ as final?, Why?
+  \item Aragorn, Dúnedain, son of Arathorn
 
-  \item Will it be a problem for the previous exercises to declare the
-    \verb+numWings+ attribute of the \verb+Animal+ class as final? Why?
+  \item Arathorn, Dúnedain, son of Arador
 
-\end{enumerate}
+  \item Arador, Dúnedain, son of Argonui
+
+  \item Argonui, Dúnedain
+
+\end{itemize}
+
+\begin{cmd}
+$ java ChildTest
+Aragorn, son of Arathorn, son of Arador, son of [Person2] Argonui (Dúnedain, 2 eyes)
+\end{cmd}
+
+\solutioninput{../java/Child.java}
+\solutioninput{../java/ChildTest.java}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{}
+
+Draw the objects in the heap at the end of the previous program.
 
 \begin{solution}
-  1. No, because no other class is extinding it.
-  2. Yes, because we will not be able to extend from it in Pirate.
-  3. No, because we are not overriding that method in any subclass.
-  4. Yes, because we are overriding that method in the Parrot subclass.
-  5. Yes, but that has nothing to do with inheritance.
+  \includegraphics[width=14cm]{./img/aragorn/aragorn.eps}
 \end{solution}
 
 
@@ -474,17 +543,5 @@ Answer the following questions:
 
 
 
-\section{Parents, grand-parents and family trees}
-
-\subsection{}
-
-Write a class called \verb+Parent+, 
-
-
-
-
-\section{}
-
-Create players, create weighteddie and run a simulation to see how wins.
 
 \end{document}
