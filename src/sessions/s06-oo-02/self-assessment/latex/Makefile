@@ -39,6 +39,8 @@ $(out) : $(src)
 	latex $(src)
 	dvips $(dvi)
 	ps2pdf $(ps)
+
+$(out2): $(src2) $(src)
 	latex $(src2)
 	latex $(src2)
 	dvips $(dvi2)
