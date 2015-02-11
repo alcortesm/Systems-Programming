@@ -1470,10 +1470,10 @@
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#gear#</dia:string>
+            <dia:string>#gearSet#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#Gear#</dia:string>
+            <dia:string>#GearSet#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
