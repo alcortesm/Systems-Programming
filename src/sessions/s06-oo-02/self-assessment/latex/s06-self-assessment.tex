@@ -346,6 +346,11 @@ for them.
 \solutioninput{../java/EsproncedasPirate.java}
 \solutioninput{../java/EsproncedasPirateTest.java}
 
+\textsl{Tip: the simpler way to solve this problem is to allow for null
+nationalities in the class \texttt{Person}.}
+
+
+
 
 
 
@@ -361,6 +366,62 @@ Animal, Pet and Parrot).
   \centering
     \includegraphics[width=16cm]{img/pirates_uml/pirates_uml.eps}
 \end{solution}
+
+
+
+
+
+
+
+
+\subsection{}
+
+Another way to solve the problem associated with null nationalities is by
+creating a \verb+Nationality+ class like this one:
+
+\codeinput{../java/Nationality.java}{Nationality.java}
+
+Think about this class and try to create a new \verb+Person2+ class that uses
+it. Also write a \verb+Person2Test+ program that creates the following people
+and prints them:
+
+\begin{itemize}
+
+  \item Alberto, Spanish
+
+  \item John, North American
+
+  \item Andrea, Italian
+
+  \item Pierre, French
+
+  \item Jack Sparrow, no nationality
+
+  \item Batman, unknown
+
+\end{itemize}
+
+The output of the program should look like this:
+
+\begin{cmd}
+$ java Person2Test
+[Person2] Alberto (Spanish, 2 eyes)
+[Person2] John (North American, 2 eyes)
+[Person2] Andrea (Italian, 2 eyes)
+[Person2] Pierre (unsupported, 2 eyes)
+[Person2] Jack Sparrow (no nationality, 2 eyes)
+[Person2] Batman (unknown, 2 eyes)
+\end{cmd}
+
+\textsl{Pro-tip: there is another way in Java to create this kind of classes,
+called \texttt{enum}s. Enums are not part of this course, but you can learn
+more about them
+\href{http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html}{here}.}
+
+\solutioninput{../java/Person2.java}
+\solutioninput{../java/Person2Test.java}
+
+
 
 
 
@@ -413,6 +474,11 @@ Answer the following questions:
 
 
 
+\section{Parents, grand-parents and family trees}
+
+\subsection{}
+
+Write a class called \verb+Parent+, 
 
 
 
