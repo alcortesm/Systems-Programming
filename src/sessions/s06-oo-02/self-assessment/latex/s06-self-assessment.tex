@@ -21,16 +21,15 @@ writing code:
 
 \begin{enumerate}
 
-  \item \textbf{Write your constructors so that it is imposible to create
+  \item \textbf{Write your constructors so that it is impossible to create
     invalid objects}.
 
     For example, do not allow a \verb+Circle+ constructor to
     create circles with negative radius.
 
     This means you will have to write some extra code in your constructors to
-    check their parameters. But it is worth it, because no longer will you be
-    needing to check the validity of your attributes in the code of your
-    methods.
+    check their parameters. However, it is worth it, because no longer will you
+    need to check the validity of your attributes in the code of your methods.
 
   \item \textbf{Do not add more methods to your class than the ones you really
     need} to solve the problem. Remember: more code means more bugs.
@@ -43,7 +42,7 @@ writing code:
 
   \item \textbf{If your class has methods that modify the values of your
     attributes, use the same checks you use with your constructors}, so you can
-    be sure that a valid objects remains valid no mather what the user does to
+    be sure that a valid objects remains valid no matter what the user does to
     it.
 
     For example, if you add a \verb+public void setRadius(int radius)+ to your
@@ -212,7 +211,7 @@ format:
 Where \verb+/animal/+ is the string representation of the animal part of the
 pet and \verb+/owner/+ is the string representation of the owner. For example:
 
-\verb+    [Animal] Gardfield (0 wings), owned by [Person] Jon Arbuckle (USA, 2 eyes)+
+\verb+    [Animal] Garfield (0 wings), owned by [Person] Jon Arbuckle (USA, 2 eyes)+
 
 \solutioninput{../java/Pet.java}
 
@@ -225,9 +224,9 @@ Use the following data for your animals:
 
 \begin{itemize}
 
-  \item Gardfield, 0 wings, owned by Jon Artbucke (North American).
+  \item Garfield, 0 wings, owned by Jon Arbucke (North American).
 
-  \item Odie, 0 wings, owned by the same owner as Gardfield.
+  \item Odie, 0 wings, owned by the same owner as Garfield.
 
 \end{itemize}
 
@@ -296,7 +295,7 @@ Irene Pepperberg, Irene Pepperberg!
 
 \subsection{}
 
-Write a class called \verb+Pirate+ that represent pirates.
+Write a class called \verb+Pirate+ that represents pirates.
 
 Pirates are people, with one eye and a parrot.
 
@@ -305,20 +304,20 @@ format:
 
 \verb+    \person\, owner of \parrot\+
 
-Also write a test program for your class where you create a pirate, print it
-and them ask the parrot to talk.
+Also, write a test program for your class where you create a pirate, print it
+and then ask the parrot to talk.
 
 You can use the following data for your pirate:
 
 \begin{itemize}
 
-  \item Cotton, english, owns a parrot called ``Cotton's parrot'' (nobody knows
+  \item Cotton, English, owns a parrot called ``Cotton's parrot'' (nobody knows
     the real name of the parrot, as Cotton is a mute).
 
 \end{itemize}
 
 \textsl{Tip: A program like this will never work. Explain the error you get and
-why are you getting it.  Then fix the bug so you can print as much information
+why you are getting it.  Then fix the bug so you can print as much information
 about the pirate and his parrot as possible, in a safe way.}
 
 \solutioninput{../java/Pirate.java}
@@ -394,7 +393,7 @@ Answer the following questions:
 \end{enumerate}
 
 \begin{solution}
-  1. No, because no other class is extinding it.
+  1. No, because no other class is extending it.
   2. Yes, because we will not be able to extend from it in Pirate.
   3. No, because we are not overriding that method in any subclass.
   4. Yes, because we are overriding that method in the Parrot subclass.
@@ -413,17 +412,17 @@ Answer the following questions:
 
 
 
-\section{Classes with a fixed sets of instances.}
+\section{Classes with a fixed set of instances.}
 
 Another way to solve the problem associated with null nationalities is by
 creating a \verb+Nationality+ class like this one:
 
 \codeinput{../java/Nationality.java}{Nationality.java}
 
-Write a NEW version of the \verb+Person+ class, called \verb+Person2+, that
+Write a NEW version of the \verb+Person+ class, called \verb+Person2+, which
 uses this \verb+Nationality+ class.
 
-Also write a \verb+Person2Test+ program that creates the following people and
+Also, write a \verb+Person2Test+ program that creates the following people and
 prints them:
 
 \begin{itemize}
@@ -481,8 +480,8 @@ more about them
 
 \subsection{}
 
-Write a class called \verb+Child+. A child is a person2 with a parent, that is
-another person2.
+Write a class called \verb+Child+. A child is a \verb+Person2+ with a parent,
+which is another \verb+Person2+.
 
 The \verb+toString+ method of this class must return a string with the
 following format:

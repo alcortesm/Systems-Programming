@@ -254,17 +254,17 @@ Well, this kind of work.
 
 But this is just a WORKAROUND, you are forcing your users to remember to call
 the \verb+getRectangle()+ method before adding into the array, and what is
-worst, the method returns a Rectangle, when it should return an Square.
+worst, the method returns a Rectangle, when it should return a Square.
 
 
 
 \newpage
 \subsection{Version 4: Squares are Rectangles}
 
-What we really need is a class that behaves both as an Square and as a
+What we really need is a class that behaves both as a Square and as a
 Rectangle: we need a POLYMORPHIC class.
 
-We want a class that sometimes behaves as an Square: when we create objects
+We want a class that sometimes behaves as a Square: when we create objects
 and when we print them.
 
 But other times, we want that class to behave as a Rectangle: when we add
@@ -336,7 +336,7 @@ Vocabulary:
 
     \begin{itemize}
 
-      \item or is a \textbf{BASE} class of Sqaure.
+      \item or is a \textbf{BASE} class of Square.
 
       \item or is a \textbf{PARENT} class of Square.
 
@@ -353,7 +353,7 @@ Vocabulary:
     \end{itemize}
 
   \item Inheritance implements an \textbf{IS-A} relationship: An Square is a
-    Rectangle.  As opposed to version 3, where an Square \textbf{HAS-A}
+    Rectangle.  As opposed to version 3, where a Square \textbf{HAS-A}
     Rectangle.
 
     \begin{center}
@@ -430,7 +430,7 @@ if (max instanceof Square5) {
 \end{blackboard}
 
   \item If you re-define an attribute from your superclass in your subclass,
-    the superclass version get shadowed. This is called \verb+ATTRIBUTE HIDING+.
+    the superclass version gets shadowed. This is called \verb+ATTRIBUTE HIDING+.
 
     You are hiding the attribute of the
     superclass behind the new attribute in the subclass.
@@ -464,10 +464,9 @@ class Square5 extends Rectangle5 {
 }
 \end{blackboard}
 
-  \item A \verb+final+ class can not be a subclassed.
+  \item A \verb+final+ class cannot be a subclassed.
 
-  \item A \verb+final+ method in a superclass can not be overrided on
-    subclasses.
+  \item A \verb+final+ method cannot be overridden.
 
   \item Constructors for subclasses:
 
@@ -480,7 +479,7 @@ class Square5 extends Rectangle5 {
       \item the call to the super constructor must be the first line in your
         constructor.
 
-      \item If you don't call the super constructor, Java will silently insert
+      \item If you do not call the super constructor, Java will silently insert
         a call to an empty super constructor for you.
 
     \end{itemize}
@@ -488,7 +487,7 @@ class Square5 extends Rectangle5 {
   \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
     it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
 
-  \item This defines an class hirarchy.
+  \item This defines a class hierarchy.
 
     \begin{center}
       \includegraphics[width=10cm]{./img/object/object.eps}
