@@ -1,0 +1,577 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 06 - Object Orientation 2}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+\section{Last Session Review}
+
+\begin{blackboard}
+Programming Styles
+Object-Oriented Programming
+  Advantages
+    information hiding
+    type safety
+    encapsulation
+  Disadvantages
+Difference between Classes and Programs
+State and Behavior
+Attributes
+  Default initialization
+  Private
+  Public
+  Final
+  Static
+    Counting objects
+Constructors
+  Public
+  Overloading
+  This
+  Default
+  Private
+    Utility classes
+Methods
+  Pubic
+  Private
+  Static
+Shadowing
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Castings
+Inheritance
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+\section{Castings}
+
+Take a look at this Java code, do you see something weird?
+
+\begin{blackboard}
+int a = 3;
+long b = a;
+\end{blackboard}
+
+This code should not even compile, because \verb+a+ and \verb+b+ are variables
+of different types.
+
+But it does compile, and what you end up having in \verb+b+ is \verb+3L+.
+
+Another example of the same thing:
+
+\begin{blackboard}
+long c = 3;
+\end{blackboard}
+
+This is called an \textbf{implicit} casting: turning a small variable into a
+bigger one.
+
+This transformation is performed automatically by Java, it is a kind of
+SYNTACTIC SUGAR: it is a small violation of the Java syntanxis, but makes the
+life of the programmer sweeter.
+
+Please note, there is no way this transformation can go wrong because small
+values will always fit into bigger variables, just by filling the remaining
+space with zeros, like this:
+
+\begin{center}
+  \includegraphics{./img/implicit_casting/implicit_casting.eps}
+\end{center}
+
+Now, the opposite can be quite dangerous.
+
+It is OK with small numbers, but with big numbers, you never know what you will
+get.
+
+Infact, you would get a compiler error if you try to this. Which is nice,
+because it is dangerous.
+
+To be able to do this kind of transformation in Java, you have to convince Java
+that you know what you are doing, by using a casting operator, like in the
+following 2 examples:
+
+\begin{blackboard}
+long d = 3L;
+int e = (int) d; // explicit casting, works, e is 3
+
+long f = 3_000_000_000L;
+int g = (int) f; // explicit casting, works, g is -1_294_967_296, is this what you want?
+\end{blackboard}
+
+This casting operator is a way to tell Java, \textsl{hey!, I know what I am
+doing, so please just strip the left part of the number for me}.
+
+This is called an \textbf{explicit} casting and it is a form of SYNTACTIC SALT:
+it makes the life of the programmer harder, by forcing him to write something
+extra, just to be sure he really knows he is doing a dangerous operation.
+
+You can explicitly cast all primitive types into any other, except booleans.
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Inheritance}
+
+You already know how to create new classes.
+
+Today you will learn ANOTHER way of creating classes, called INHERITANCE.
+
+\subsection{Version 1: print the biggest rectangle}
+
+Let's say your boss asks you to write a method to return the rectangle with the
+biggest area among a set of several rectangles.
+
+For instance, which is the biggest rectangle?
+
+\begin{itemize}
+  \item A rectangle of 3x2
+  \item A rectangle of 2x2
+  \item A rectangle of 1x7
+\end{itemize}
+
+\begin{multicols}{2}
+  \codeinput{../java/Max1.java}{Max1.java}
+\columnbreak
+
+  Let's list what kind of rectangle we need to solve the problem, using an UML
+  diagram (Unified Modeling Language):
+
+  \begin{center}
+    \includegraphics[width=6cm]{./img/Rectangle1/Rectangle1.eps}
+  \end{center}
+  \codeinput{../java/Rectangle1.java}{Rectangle1.java}
+\end{multicols}
+
+
+\begin{blackboard}
+$ java Max1
+Rectangle(1.0, 7.0)
+\end{blackboard}
+
+\subsection{Version 2: Squares}
+
+Now your boss asks you to change your code so you can also insert squares to
+your method.
+
+The simpler solution:
+
+\verb+     Just create squares as rectangles, and we are done. I even made a constructor for that.+
+
+\textsl{No, no, no. Your method will be part of a bigger program, written using
+OOP. We need to differentiate between Squares and Rectangles, they are not the
+same for the rest of your team.}
+
+\textsl{Look, I will give you an array of Rectangles and Squares and you should
+return the Square or Rectangle with the bigger area.}
+
+For instance which of the following shapes has the biggest area?
+
+\begin{itemize}
+  \item A rectangle of 3x2
+  \item A rectangle of 1x7
+  \item An square of side 2
+  \item An square of side 3
+\end{itemize}
+
+OK, let's write version 2 of our program:
+
+\begin{multicols}{2}
+  \codeinput{../java/Max2.java}{Max2.java}
+\columnbreak
+  \begin{center}
+    \includegraphics[width=5cm]{./img/Square2/Square2.eps}
+  \end{center}
+  \codeinput{../java/Square2.java}{Square2.java}
+\end{multicols}
+
+As you can see, there is no way to insert Squares into our method, and even if
+we could, we will be still returning Rectangles, not squares.
+
+\newpage
+
+\subsection{Version 3: Squares with Rectangles inside}
+
+Let's try a clever trick, by creating a Square that holds a Rectangle inside.
+
+We will be able to create a Square, but add the rectangle inside it to the
+array.
+
+Now, Square3 will be WRAPPER CLASS, it will just be a box holding a rectangle
+inside. It will be a square on the outside, but a rectangle on the inside.
+
+\begin{multicols}{2}
+  \codeinput{../java/Max3.java}{Max3.java}
+\columnbreak
+  \begin{center}
+    \includegraphics[width=5cm]{./img/Square3/Square3.eps}
+  \end{center}
+  \codeinput{../java/Square3.java}{Square3.java}
+\end{multicols}
+
+\begin{blackboard}
+$ javac *3.java
+$ java Max3
+Rectangle(3.0, 3.0)
+\end{blackboard}
+
+Well, this kind of work.
+
+But this is just a WORKAROUND, you are forcing your users to remember to call
+the \verb+getRectangle()+ method before adding into the array, and what is
+worst, the method returns a Rectangle, when it should return an Square.
+
+
+
+\newpage
+\subsection{Version 4: Squares are Rectangles}
+
+What we really need is a class that behaves both as an Square and as a
+Rectangle: we need a POLYMORPHIC class.
+
+We want a class that sometimes behaves as an Square: when we create objects
+and when we print them.
+
+But other times, we want that class to behave as a Rectangle: when we add
+objects to an array of Rectangles, for example.
+
+In a similar way as when you turn an \verb+int+ into a \verb+long+ using
+castings.
+
+The way to do this is using INHERITANCE.
+
+\begin{multicols}{2}
+  \begin{center}
+    \includegraphics[width=8cm]{./img/Square4/Square4.eps}
+  \end{center}
+  \codeinput{../java/Square4.java}{Square4.java}
+\columnbreak
+  \codeinput{../java/Max4.java}{Max4.java}
+\end{multicols}
+
+\begin{blackboard}
+$ javac *4.java
+$ java Max4
+Square(3.0)
+\end{blackboard}
+
+Now the program works.
+
+\subsection{Protected attributes}
+
+As the width and height attributes of Rectangles are private we can not use
+them from our Square.
+
+That is way we needed the \verb+getWidth+ method.
+
+But we can change those attributes from private to protected, which means
+public for the classes that inherit from me, but private for the rest.
+
+\begin{multicols}{2}
+  \codeinput{../java/Rectangle5.java}{Rectangle5.java}
+\columnbreak
+  \begin{center}
+    \includegraphics[width=5cm]{./img/Square5/Square5.eps}
+  \end{center}
+  \codeinput{../java/Square5.java}{Square5.java}
+\end{multicols}
+\codeinput{../java/Max5.java}{Max5.java}
+
+\begin{blackboard}
+$ javac *5.java
+$ java Max5
+Square(3.0)
+\end{blackboard}
+
+
+
+
+
+\section{Inheritance Lingo}
+
+Vocabulary:
+
+\begin{itemize}
+
+  \item A Square \textbf{INHERITS} all attributes and methods from Rectangle.
+
+  \item A Square \textbf{EXTENDS} a Rectangle.
+
+  \item A Rectangle is a \textbf{SUPERCLASS} of Square.
+
+    \begin{itemize}
+
+      \item or is a \textbf{BASE} class of Sqaure.
+
+      \item or is a \textbf{PARENT} class of Square.
+
+    \end{itemize}
+
+  \item Square is a \textbf{SUBCLASS} of Rectangle.
+
+    \begin{itemize}
+
+      \item or is a \textbf{DERIVED} class of Rectangle.
+
+      \item or is a \textbf{CHILD} class of Rectangle.
+
+    \end{itemize}
+
+  \item Inheritance implements an \textbf{IS-A} relationship: An Square is a
+    Rectangle.  As opposed to version 3, where an Square \textbf{HAS-A}
+    Rectangle.
+
+    \begin{center}
+      \includegraphics[width=8cm]{./img/is_a/is_a.eps}
+    \end{center}
+
+\end{itemize}
+
+
+
+
+
+
+
+\section{Another Example: Vehicles}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/vehicle/vehicle.eps}
+\end{center}
+
+
+
+
+
+
+
+
+
+\section{Another Example: Exceptions}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/exceptions/exceptions.eps}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Inheritance Rules}
+
+\begin{enumerate}
+
+  \item A subclass inherits all the attributes and all the methods from its
+    superclass, but none of its constructors.
+
+  \item You can only inherit from one class. Multiple inheritance is not
+    allowed in Java.
+
+  \item Java will implicitly cast subclass objects to superclass references.
+
+    \verb+Rectangle r = new Square(2);+
+
+  \item You can explicitly cast superclass objects to subclass references, but
+    it is dangerous. The \verb+instanceof+ operator might help.
+
+\begin{blackboard}
+Rectangle5 max = biggest(array);
+if (max instanceof Square5) {
+  Square5 s = (Square5) r;
+  // do something Square5 specific
+} else {
+  // do something Rectangle5 specific
+}
+// If your program is correctly designed
+// you will never have to do this or use the instanceof operator
+\end{blackboard}
+
+  \item If you re-define an attribute from your superclass in your subclass,
+    the superclass version get shadowed. This is called \verb+ATTRIBUTE HIDING+.
+
+    You are hiding the attribute of the
+    superclass behind the new attribute in the subclass.
+
+  \item If you re-define a method from your superclass in your subclass, the
+    superclass version get shadowed. This is called \verb+METHOD OVERRIDING+.
+
+    You are hiding the implementation of the methods in the superclass with a
+    new implementation in the subclass.
+
+  \item Do not confuse \verb+METHOD OVERRIDING+ with \verb+METHOD OVERLOADING+.
+
+  \item \verb+this+ is a reference to the object itself, \verb+super+ is a
+    reference to the ``superclass'' version of the object itself.
+
+  \item Even if you re-define attributes or methods from your superclass in
+    your subclass, you can still access the superclass version using the
+    \verb+super+ reference.
+
+\begin{blackboard}
+class Square5 extends Rectangle5 {
+  private double width;
+
+  public getSquareWidth() {
+    return this.width;
+  }
+
+  public getRectangleWidth() {
+    return super.width;
+  }
+}
+\end{blackboard}
+
+  \item A \verb+final+ class can not be a subclassed.
+
+  \item A \verb+final+ method in a superclass can not be overrided on
+    subclasses.
+
+  \item Constructors for subclasses:
+
+    \begin{itemize}
+
+      \item you must initialize the SUPER part of the new object before
+        initializing the SUB part. This is done using the \verb+super+
+        constructor.
+
+      \item the call to the super constructor must be the first line in your
+        constructor.
+
+      \item If you don't call the super constructor, Java will silently insert
+        a call to an empty super constructor for you.
+
+    \end{itemize}
+
+  \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
+    it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
+
+  \item This defines an class hirarchy.
+
+    \begin{center}
+      \includegraphics[width=10cm]{./img/object/object.eps}
+    \end{center}
+
+  \item This means all Java classes inherits from \verb+Object+ (except
+    \verb+Object+ itself), and therefore all Java Objects have all the methods and
+    attributes of an Object:
+
+      \begin{itemize}
+
+        \item String toString();
+
+        \item 10 more you don't need to know for this course.
+
+      \end{itemize}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Access Modifiers}
+
+ESTO NO DA TIEMPO, LO DEJO PARA LA SIGUIENTE CLASE.
+
+\begin{center}
+  \begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\multicolumn{1}{|c|}{access mod.} & \multicolumn{1}{|c|}{class} & \multicolumn{1}{|c|}{method} & \multicolumn{1}{|c|}{attribute} \\
+\hline
+\texttt{public}    & \multicolumn{3}{|c|}{Accesible to all classes.} \\
+\hline
+\textsl{(empty) AKA friendly AKA package-protected} & \multicolumn{3}{|c|}{Accesible only to classes in the same package.} \\
+\hline
+\texttt{protected}   & Only for inner classes. & \multicolumn{2}{|c|}{Acecsible only to subclasses.} \\
+\hline
+\texttt{private}     & Only for inner classes. & \multicolumn{2}{|c|}{Accessible only inside the class.} \\
+\hline
+\hline
+\texttt{final}       & Cannot be subclassed & Cannot be overriden & Cannot be modified once initialized \\
+\hline
+\texttt{static}      & Turns an inner class into a statically nested class. & Class method (instead of an object method) & Class attribute (instead of an object attribute) \\
+\hline
+\texttt{abstract}    & Cannot be instantiated & Has no code & --- \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+
+
+
+
+\section{Review}
+
+\begin{blackboard}
+Inplicit castings
+Explicit castings
+Syntactic salt
+Has-a vs. is-a
+Inheritance
+UML diagrams
+Protected access modifier
+Inheritance rules
+instanceof operator
+Final classes
+Final methods
+Super automatic reference
+Super() constructors
+Attribute hiding
+Method overriding
+Exception use inheritance
+Object is the father of all of objects
+\end{blackboard}
+
+
+\end{document}
