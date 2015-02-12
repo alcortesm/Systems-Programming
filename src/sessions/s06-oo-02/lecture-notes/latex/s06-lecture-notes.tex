@@ -60,28 +60,7 @@ Shadowing
 \section{Today's Topics}
 \begin{blackboard}
 Castings
-  Implicit
-  Explicit
-  Syntactic Salt
 Inheritance
-  Lingo
-  Declaring subclasses
-  Hierarchies
-  Super
-  Overriding
-    Attribute overriding - Shadowing
-      Attribute hidding
-    Method overriding
-      Virtual method invocation
-      Final methods
-  Constructors
-    Base class first
-    Super()
-  Final
-    Attributes
-    Methods
-    Classes
-  Access Modifiers
 \end{blackboard}
 
 
@@ -173,12 +152,12 @@ You already know how to create new classes.
 
 Today you will learn ANOTHER way of creating classes, called INHERITANCE.
 
-\subsection{Version 1: print the bigger rectangle}
+\subsection{Version 1: print the biggest rectangle}
 
 Let's say your boss asks you to write a method to return the rectangle with the
-maximum area among a set of several rectangles.
+biggest area among a set of several rectangles.
 
-For instance which of the following rectangles has the bigger area?
+For instance, which is the biggest rectangle?
 
 \begin{itemize}
   \item A rectangle of 3x2
@@ -189,8 +168,16 @@ For instance which of the following rectangles has the bigger area?
 \begin{multicols}{2}
   \codeinput{../java/Max1.java}{Max1.java}
 \columnbreak
- \codeinput{../java/Rectangle1.java}{Rectangle1.java}
+
+  Let's list what kind of rectangle we need to solve the problem, using an UML
+  diagram (Unified Modeling Language):
+
+  \begin{center}
+    \includegraphics[width=6cm]{./img/Rectangle1/Rectangle1.eps}
+  \end{center}
+  \codeinput{../java/Rectangle1.java}{Rectangle1.java}
 \end{multicols}
+
 
 \begin{blackboard}
 $ java Max1
@@ -199,8 +186,8 @@ Rectangle(1.0, 7.0)
 
 \subsection{Version 2: Squares}
 
-Now your boss asks you to change your code so can also insert squares to your
-method.
+Now your boss asks you to change your code so you can also insert squares to
+your method.
 
 The simpler solution:
 
@@ -213,7 +200,7 @@ same for the rest of your team.}
 \textsl{Look, I will give you an array of Rectangles and Squares and you should
 return the Square or Rectangle with the bigger area.}
 
-For instance which of the following shapes has the bigger area?
+For instance which of the following shapes has the biggest area?
 
 \begin{itemize}
   \item A rectangle of 3x2
@@ -227,18 +214,23 @@ OK, let's write version 2 of our program:
 \begin{multicols}{2}
   \codeinput{../java/Max2.java}{Max2.java}
 \columnbreak
+  \begin{center}
+    \includegraphics[width=5cm]{./img/Square2/Square2.eps}
+  \end{center}
   \codeinput{../java/Square2.java}{Square2.java}
 \end{multicols}
 
 As you can see, there is no way to insert Squares into our method, and even if
 we could, we will be still returning Rectangles, not squares.
 
+\newpage
+
 \subsection{Version 3: Squares with Rectangles inside}
 
 Let's try a clever trick, by creating a Square that holds a Rectangle inside.
 
-We will be able to create a Square, but pass the rectangle inside it to the
-method.
+We will be able to create a Square, but add the rectangle inside it to the
+array.
 
 Now, Square3 will be WRAPPER CLASS, it will just be a box holding a rectangle
 inside. It will be a square on the outside, but a rectangle on the inside.
@@ -246,6 +238,9 @@ inside. It will be a square on the outside, but a rectangle on the inside.
 \begin{multicols}{2}
   \codeinput{../java/Max3.java}{Max3.java}
 \columnbreak
+  \begin{center}
+    \includegraphics[width=5cm]{./img/Square3/Square3.eps}
+  \end{center}
   \codeinput{../java/Square3.java}{Square3.java}
 \end{multicols}
 
@@ -255,12 +250,15 @@ $ java Max3
 Rectangle(3.0, 3.0)
 \end{blackboard}
 
-But we still have the same problem with the return value, we are still
-returning a Rectangle, instead of an Square.
+Well, this kind of work.
 
-This is called a \verb+has-a+ relationship, bucause an Square has a Rectangle
-inside.
+But this is just a WORKAROUND, you are forcing your users to remember to call
+the \verb+getRectangle()+ method before adding into the array, and what is
+worst, the method returns a Rectangle, when it should return an Square.
 
+
+
+\newpage
 \subsection{Version 4: Squares are Rectangles}
 
 What we really need is a class that behaves both as an Square and as a
@@ -278,9 +276,12 @@ castings.
 The way to do this is using INHERITANCE.
 
 \begin{multicols}{2}
-  \codeinput{../java/Max4.java}{Max4.java}
-\columnbreak
+  \begin{center}
+    \includegraphics[width=8cm]{./img/Square4/Square4.eps}
+  \end{center}
   \codeinput{../java/Square4.java}{Square4.java}
+\columnbreak
+  \codeinput{../java/Max4.java}{Max4.java}
 \end{multicols}
 
 \begin{blackboard}
@@ -290,10 +291,6 @@ Square(3.0)
 \end{blackboard}
 
 Now the program works.
-
-The relationship between Squares and Rectangles is called a \verb+is-a+
-relationship, because now, an Square is a Rectangle. As opposed to version 3,
-where an Square has a Rectagle.
 
 \subsection{Protected attributes}
 
@@ -308,6 +305,9 @@ public for the classes that inherit from me, but private for the rest.
 \begin{multicols}{2}
   \codeinput{../java/Rectangle5.java}{Rectangle5.java}
 \columnbreak
+  \begin{center}
+    \includegraphics[width=5cm]{./img/Square5/Square5.eps}
+  \end{center}
   \codeinput{../java/Square5.java}{Square5.java}
 \end{multicols}
 \codeinput{../java/Max5.java}{Max5.java}
@@ -324,55 +324,43 @@ Square(3.0)
 
 \section{Inheritance Lingo}
 
-To represent the relationships between classes that inherits we use UML
-diagrams (Unified Modeling Language).
+Vocabulary:
 
-They look like this:
+\begin{itemize}
 
-\begin{multicols}{2}
+  \item A Square \textbf{INHERITS} all attributes and methods from Rectangle.
 
-  \begin{center}
-    \includegraphics[height=6cm]{./img/uml/uml.eps}
-  \end{center}
+  \item A Square \textbf{EXTENDS} a Rectangle.
 
-  \columnbreak
+  \item A Rectangle is a \textbf{SUPERCLASS} of Square.
 
-  Vocabulary:
+    \begin{itemize}
 
-  \begin{itemize}
+      \item or is a \textbf{BASE} class of Sqaure.
 
-    \item A Square \textbf{INHERITS} attributes and methos from the Square,
-      \textsl{but not its constructors}.
+      \item or is a \textbf{PARENT} class of Square.
 
-    \item A Square \textbf{EXTENDS} a Rectangle.
+    \end{itemize}
 
-    \item Square is a \textbf{SUBCLASS} of Rectangle.
+  \item Square is a \textbf{SUBCLASS} of Rectangle.
 
-      \begin{itemize}
+    \begin{itemize}
 
-        \item or is a \textbf{DERIVED} class of Rectangle.
+      \item or is a \textbf{DERIVED} class of Rectangle.
 
-        \item or is a \textbf{CHILD} class of Rectangle.
+      \item or is a \textbf{CHILD} class of Rectangle.
 
-      \end{itemize}
+    \end{itemize}
 
-    \item A Rectangle is a \textbf{SUPERCLASS} of Square.
+  \item Inheritance implements an \textbf{IS-A} relationship: An Square is a
+    Rectangle.  As opposed to version 3, where an Square \textbf{HAS-A}
+    Rectangle.
 
-      \begin{itemize}
+    \begin{center}
+      \includegraphics[width=8cm]{./img/is_a/is_a.eps}
+    \end{center}
 
-        \item or is a \textbf{BASE} class of Sqaure.
-
-        \item or is a \textbf{PARENT} class of Square.
-
-      \end{itemize}
-
-    \item Inheritance implements an \textbf{IS-A} relationship: An Square is a
-      Rectangle.  As opposed to version 3, where an Square \textbf{HAS-A}
-      Rectangle.
-
-  \end{itemize}
-
-\end{multicols}
+\end{itemize}
 
 
 
@@ -422,69 +410,89 @@ They look like this:
   \item You can only inherit from one class. Multiple inheritance is not
     allowed in Java.
 
-  \item This defines an inheritance hirarchy.
-
   \item Java will implicitly cast subclass objects to superclass references.
 
     \verb+Rectangle r = new Square(2);+
 
-  \item You can explicitly cast superclass objectss to subclass references, but
+  \item You can explicitly cast superclass objects to subclass references, but
     it is dangerous. The \verb+instanceof+ operator might help.
 
 \begin{blackboard}
-Rectangle r = new Rectangle(2, 2);
-Square s = r; // compiler error
-s = (Square) r; // explicit casting, OK
-s = (Square) new Rectangle(2,3); // explicit casting, Ok, but probably not what you want.
-if (r instanceof Square) {
-  s = (Square) r;
+Rectangle5 max = biggest(array);
+if (max instanceof Square5) {
+  Square5 s = (Square5) r;
+  // do something Square5 specific
+} else {
+  // do something Rectangle5 specific
 }
+// If your program is correctly designed
+// you will never have to do this or use the instanceof operator
 \end{blackboard}
 
   \item If you re-define an attribute from your superclass in your subclass,
-    the superclass version get shadowed. This is called
-    \verb+ATTRIBUTE HIDING+, because the you are hiding the attributes of the
-    superclass behind new attributes in the subclass.
+    the superclass version get shadowed. This is called \verb+ATTRIBUTE HIDING+.
+
+    You are hiding the attribute of the
+    superclass behind the new attribute in the subclass.
 
   \item If you re-define a method from your superclass in your subclass, the
     superclass version get shadowed. This is called \verb+METHOD OVERRIDING+.
+
     You are hiding the implementation of the methods in the superclass with a
     new implementation in the subclass.
 
   \item Do not confuse \verb+METHOD OVERRIDING+ with \verb+METHOD OVERLOADING+.
 
   \item \verb+this+ is a reference to the object itself, \verb+super+ is a
-    reference to the superclass version of the object itself.
-
-    \verb+Square this; Rectangle super;+
+    reference to the ``superclass'' version of the object itself.
 
   \item Even if you re-define attributes or methods from your superclass in
     your subclass, you can still access the superclass version using the
     \verb+super+ reference.
 
-  \item A final method in a superclass can not be overrided on subclasses.
+\begin{blackboard}
+class Square5 extends Rectangle5 {
+  private double width;
 
-  \item A final class can not be a subclassed.
+  public getSquareWidth() {
+    return this.width;
+  }
+
+  public getRectangleWidth() {
+    return super.width;
+  }
+}
+\end{blackboard}
+
+  \item A \verb+final+ class can not be a subclassed.
+
+  \item A \verb+final+ method in a superclass can not be overrided on
+    subclasses.
 
   \item Constructors for subclasses:
 
     \begin{itemize}
 
-      \item you must initialize the part of the part of the object
-        corresponding to the superclass, using the \verb+super+ constructor,
-        and then initialize the part of the object corresponding to the
-        subclass.
+      \item you must initialize the SUPER part of the new object before
+        initializing the SUB part. This is done using the \verb+super+
+        constructor.
 
       \item the call to the super constructor must be the first line in your
         constructor.
 
-      \item If you don't call super as the first line, Java will silently
-        insert a call to a empty super constructor for you.
+      \item If you don't call the super constructor, Java will silently insert
+        a call to an empty super constructor for you.
 
     \end{itemize}
 
   \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
     it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
+
+  \item This defines an class hirarchy.
+
+    \begin{center}
+      \includegraphics[width=10cm]{./img/object/object.eps}
+    \end{center}
 
   \item This means all Java classes inherits from \verb+Object+ (except
     \verb+Object+ itself), and therefore all Java Objects have all the methods and
@@ -492,11 +500,9 @@ if (r instanceof Square) {
 
       \begin{itemize}
 
-        \item boolean equals();
-
         \item String toString();
 
-        \item 9 more you don't need to know for this course.
+        \item 10 more you don't need to know for this course.
 
       \end{itemize}
 
@@ -509,9 +515,11 @@ if (r instanceof Square) {
 
 
 
-
+\newpage
 
 \section{Access Modifiers}
+
+ESTO NO DA TIEMPO, LO DEJO PARA LA SIGUIENTE CLASE.
 
 \begin{center}
   \begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
@@ -546,9 +554,23 @@ if (r instanceof Square) {
 \section{Review}
 
 \begin{blackboard}
-  has-a vs. is-a
-  exceptions use inheritance
-  Object is the father of all of them
+Inplicit castings
+Explicit castings
+Syntactic salt
+Has-a vs. is-a
+Inheritance
+UML diagrams
+Protected access modifier
+Inheritance rules
+instanceof operator
+Final classes
+Final methods
+Super automatic reference
+Super() constructors
+Attribute hiding
+Method overriding
+Exception use inheritance
+Object is the father of all of objects
 \end{blackboard}
 
 

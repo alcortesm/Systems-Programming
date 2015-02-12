@@ -1,7 +1,8 @@
 class Max5 {
-    public static Rectangle5 max(Rectangle5[] input) {
+    private static Rectangle5 biggest(Rectangle5[] input) {
         if (input == null || input.length == 0) {
-            throw new IllegalArgumentException("null or zero-size array");
+            throw new IllegalArgumentException(
+                    "null or zero-size array");
         }
         Rectangle5 max = null;
         for (int i=0; i<input.length; i++) {
@@ -25,7 +26,7 @@ class Max5 {
         array[1] = new Rectangle5(1D, 7D);
         array[2] = new Square5(3D);
         array[3] = new Square5(2D);
-        Rectangle5 max = max(array);
-        System.out.println(max);
+        Rectangle5 biggest = biggest(array);
+        System.out.println(biggest);
     }
 }

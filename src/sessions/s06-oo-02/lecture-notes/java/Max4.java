@@ -1,7 +1,8 @@
 class Max4 {
-    public static Rectangle1 max(Rectangle1[] input) {
+    private static Rectangle1 biggest(Rectangle1[] input) {
         if (input == null || input.length == 0) {
-            throw new IllegalArgumentException("null or zero-size array");
+            throw new IllegalArgumentException(
+                    "null or zero-size array");
         }
         Rectangle1 max = null;
         for (int i=0; i<input.length; i++) {
@@ -23,9 +24,9 @@ class Max4 {
         Rectangle1[] array = new Rectangle1[4];
         array[0] = new Rectangle1(3D, 2D);
         array[1] = new Rectangle1(1D, 7D);
-        array[2] = new Square4(3D);
-        array[3] = new Square4(2D);
-        Rectangle1 max = max(array);
-        System.out.println(max);
+        array[2] = new Square4(3D); // implicit casting
+        array[3] = new Square4(2D); // implicit casting
+        Rectangle1 biggest = biggest(array);
+        System.out.println(biggest);
     }
 }

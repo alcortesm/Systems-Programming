@@ -1,7 +1,13 @@
 class Max1 {
-    public static Rectangle1 max(Rectangle1[] input) {
+    // do you remember finding the "nearest" point?
+    private static Rectangle1 biggest(Rectangle1[] input) {
+        // there are 3 ways the user input can be invalid
+        // null argumetn
+        // zero-length array
+        // and empty array (see below)
         if (input == null || input.length == 0) {
-            throw new IllegalArgumentException("null or zero-size array");
+            throw new IllegalArgumentException(
+                    "null or zero-size array");
         }
         Rectangle1 max = null;
         for (int i=0; i<input.length; i++) {
@@ -24,7 +30,7 @@ class Max1 {
         array[0] = new Rectangle1(3D, 2D);
         array[1] = new Rectangle1(2D);
         array[2] = new Rectangle1(1D, 7D);
-        Rectangle1 max = max(array);
-        System.out.println(max);
+        Rectangle1 biggest = biggest(array);
+        System.out.println(biggest);
     }
 }

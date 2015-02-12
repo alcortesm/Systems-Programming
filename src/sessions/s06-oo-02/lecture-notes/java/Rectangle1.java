@@ -15,11 +15,11 @@ class Rectangle1 {
 
     public double area() { return this.width * this.height; }
 
-    // we will need this later
-    public double getWidth() { return this.width; }
-
     public String toString() {
         return "Rectangle(" + this.width + ", "
             + this.height + ")";
     }
+
+    // we will need this later
+    public double getWidth() { return this.width; }
 }
