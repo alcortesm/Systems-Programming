@@ -22,7 +22,7 @@ writing code:
 \begin{enumerate}
 
   \item \textbf{Write your constructors so that it is imposible to create
-    an invalid object}.
+    invalid objects}.
 
     For example, do not allow a \verb+Circle+ constructor to
     create circles with negative radius.
@@ -37,13 +37,13 @@ writing code:
 
     For instance, do not automatically create getters and setters methods for
     all your attributes unless you really need them; the user do not need to
-    know, and do not want to know the internals of your class, and you do not
+    know, and do not want to know, the internals of your class, and you do not
     need to spend extra thinking time checking inputs for methods that are not
     really needed.
 
   \item \textbf{If your class has methods that modify the values of your
     attributes, use the same checks you use with your constructors}, so you can
-    be sure that a valid objects remains valid no mather what the user do to
+    be sure that a valid objects remains valid no mather what the user does to
     it.
 
     For example, if you add a \verb+public void setRadius(int radius)+ to your
@@ -57,17 +57,17 @@ writing code:
     cannot, think about \verb+protected+ and only if there is no other option,
     use \verb+public+.
 
-    That way, your class will be as safe as it can be, but will still be able
-    to solve the problem.
+    That way, your class will be as safe as it can be, but able to solve the
+    problem.
 
-  \item \textbf{Never trust the user input}. Always check the input parameters
-    to your methods, as you do not know what kind of garbage the user is going
-    to throw at you.
+  \item \textbf{Never trust user input}. Always check the input parameters to
+    your methods, as you do not know what kind of garbage the user is going to
+    throw at you, like in \href{http://xkcd.com/327/}{this comic
+    strip}.
 
     For example, if your method receives an array of circles, check that the
-    array is not null, check that it is not a zero-length array and if it is
-    not, then be ready to cope with empty arrays or with arrays with holes in
-    them.
+    array is not null, check that it is not a zero-length array and even then,
+    be ready to cope with empty arrays or arrays with holes in them.
 
 \end{enumerate}
 
@@ -79,7 +79,7 @@ writing code:
 
 
 
-\section{Causality dilemmas: pirate or parrot?}
+\section{Causality dilemma: pirate or parrot?}
 
 \subsection{}
 
@@ -92,11 +92,11 @@ person will have if the number of eyes is not specified).
 The \verb+toString()+ method must return a string with the following
 format:
 
-\verb+    [Person] name (numEyes eye)+
+\verb+    [Person] name (nationality, numEyes eye)+
 
 For example:
 
-\verb+    [Person] Alberto (2 eyes)+
+\verb+    [Person] Alberto (Spanish, 2 eyes)+
 
 Remember to use the plural (``eyes'') if the person has 0 or 2 eyes, but use
 the singular if the person has only 1 eye.
@@ -177,7 +177,7 @@ Use the following data for your animals:
 
   \item Maya the bee, 4 wings.
 
-  \item Durin's Bane, 0 or 2 wings, depending on your geekiness.
+  \item Durin's Bane, 0 or 2 wings, depending on your level of geekiness.
 
 \end{itemize}
 
@@ -212,9 +212,7 @@ format:
 Where \verb+/animal/+ is the string representation of the animal part of the
 pet and \verb+/owner/+ is the string representation of the owner. For example:
 
-\begin{cmd}
-[Animal] Gardfield (0 wings), owned by [Person] Jon Arbuckle (USA, 2 eyes)
-\end{cmd}
+\verb+    [Animal] Gardfield (0 wings), owned by [Person] Jon Arbuckle (USA, 2 eyes)+
 
 \solutioninput{../java/Pet.java}
 
@@ -263,23 +261,21 @@ following format:
 
 Where \verb+/owner/+ is the string representation of its owner. For example:
 
-\begin{cmd}
-[Parrot] Alex, owned by [Person] Irene Pepperberg (USA, 2 eyes)
-\end{cmd}
+\verb+    [Parrot] Alex, owned by [Person] Irene Pepperberg (USA, 2 eyes)+
 
 \solutioninput{../java/Parrot.java}
 
 
 \subsection{}
 
-Write a program called \verb+ParrotTest+ that creates a parrot and prints
-the parrot and also makes it talk.
+Write a program called \verb+ParrotTest+ that creates a parrot, prints
+the parrot and makes it talk.
 
 Use the following data for your parrot:
 
 \begin{itemize}
 
-  \item Alex, owned by Irene Pepperberg.
+  \item Alex, owned by Irene Pepperberg, North American.
 
 \end{itemize}
 
@@ -310,19 +306,20 @@ format:
 \verb+    \person\, owner of \parrot\+
 
 Also write a test program for your class where you create a pirate, print it
-and them asks his parrot to talk.
+and them ask the parrot to talk.
 
 You can use the following data for your pirate:
 
 \begin{itemize}
 
-  \item Cotton, english, owns a parrot called ``Cotton's parrot'' (nobody knows the real name of the parrot, as Cotton is dumb).
+  \item Cotton, english, owns a parrot called ``Cotton's parrot'' (nobody knows
+    the real name of the parrot, as Cotton is a mute).
 
 \end{itemize}
 
 \textsl{Tip: A program like this will never work. Explain the error you get and
 why are you getting it.  Then fix the bug so you can print as much information
-about the pirate and his parrot, in a safe way.}
+about the pirate and his parrot as possible, in a safe way.}
 
 \solutioninput{../java/Pirate.java}
 \solutioninput{../java/PirateTest.java}
@@ -337,7 +334,7 @@ about the pirate and his parrot, in a safe way.}
 
 \subsection{}
 
-Write a class called \verb+EsprocendasPirate+. Everybody knows Espronceda's
+Write a class called \verb+EsproncedasPirate+. Everybody knows Espronceda's
 pirates do not have a nationality.
 
 Fix your code so you can create Espronceda's pirates and create a test program
@@ -526,7 +523,8 @@ Aragorn, son of Arathorn, son of Arador, son of [Person2] Argonui (Dúnedain, 2 
 
 \subsection{}
 
-Draw the objects in the heap at the end of the previous program.
+Draw the memory of the computer (stack, heap and static section) just before
+printing to \verb+System.out+ in the previous program.
 
 \begin{solution}
   \includegraphics[width=14cm]{./img/aragorn/aragorn.eps}
