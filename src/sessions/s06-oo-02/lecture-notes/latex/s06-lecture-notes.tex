@@ -60,6 +60,7 @@ Shadowing
 \section{Today's Topics}
 \begin{blackboard}
 Castings
+UML diagrams
 Inheritance
 \end{blackboard}
 
@@ -144,6 +145,50 @@ You can explicitly cast all primitive types into any other, except booleans.
 
 
 
+\section{UML diagrams}
+
+UML (Unified Modeling Language) diagrams are used to represent classes and
+relationships between classes.
+
+\begin{multicols}{2}
+Let's create a simple Square class:
+
+\codeinput{../java/Square1.java}{Square1.java}
+
+\columnbreak
+
+The UML diagram for that class would be:
+
+\begin{center}
+  \includegraphics[width=6cm]{./img/Square1/Square1.eps}
+\end{center}
+\end{multicols}
+
+
+\begin{multicols}{2}
+
+Now, let's say we want a class like this:
+
+\begin{center}
+  \includegraphics[width=6cm]{./img/Rectangle1/Rectangle1.eps}
+\end{center}
+
+\columnbreak
+
+\codeinput{../java/Rectangle1.java}{Rectangle1.java}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Inheritance}
@@ -157,6 +202,9 @@ Today you will learn ANOTHER way of creating classes, called INHERITANCE.
 Let's say your boss asks you to write a method to return the rectangle with the
 biggest area among a set of several rectangles.
 
+Do you remember when you had to program a method to calculate the nearest point
+in your last lag?, well, this is just the same:
+
 For instance, which is the biggest rectangle?
 
 \begin{itemize}
@@ -165,40 +213,36 @@ For instance, which is the biggest rectangle?
   \item A rectangle of 1x7
 \end{itemize}
 
-\begin{multicols}{2}
   \codeinput{../java/Max1.java}{Max1.java}
-\columnbreak
-
-  Let's list what kind of rectangle we need to solve the problem, using an UML
-  diagram (Unified Modeling Language):
-
-  \begin{center}
-    \includegraphics[width=6cm]{./img/Rectangle1/Rectangle1.eps}
-  \end{center}
-  \codeinput{../java/Rectangle1.java}{Rectangle1.java}
-\end{multicols}
-
 
 \begin{blackboard}
 $ java Max1
 Rectangle(1.0, 7.0)
 \end{blackboard}
 
-\subsection{Version 2: Squares}
 
-Now your boss asks you to change your code so you can also insert squares to
-your method.
 
-The simpler solution:
 
-\verb+     Just create squares as rectangles, and we are done. I even made a constructor for that.+
 
-\textsl{No, no, no. Your method will be part of a bigger program, written using
-OOP. We need to differentiate between Squares and Rectangles, they are not the
-same for the rest of your team.}
 
-\textsl{Look, I will give you an array of Rectangles and Squares and you should
-return the Square or Rectangle with the bigger area.}
+
+
+\subsection{Passing Squares to the method}
+
+Wouldn't it be cool to pass rectangles and squares to your method?
+
+Both of them have an \verb+area()+ method, so it should be possible to do that.
+
+Real example: fantasy multiplayer video game: the graphical effect of the
+speels are rectangles and squares, and you can only draw one effect in each
+point in the battlefield because your graphical engine is quite crappy.
+
+When two or more spells are cast at the same time over the same place, What
+effect should you draw?
+
+Well, as the area of an spell will be bigger the higher the level of the player
+casting it, let's say we want to draw in each point the effect of the spell
+with the biggest area.
 
 For instance which of the following shapes has the biggest area?
 
@@ -209,23 +253,37 @@ For instance which of the following shapes has the biggest area?
   \item An square of side 3
 \end{itemize}
 
-OK, let's write version 2 of our program:
+\verb+Modifica Max1 para pasarle Squares+
 
-\begin{multicols}{2}
-  \codeinput{../java/Max2.java}{Max2.java}
-\columnbreak
-  \begin{center}
-    \includegraphics[width=5cm]{./img/Square2/Square2.eps}
-  \end{center}
-  \codeinput{../java/Square2.java}{Square2.java}
-\end{multicols}
+As you can see, there is no way to insert Squares into our method.
 
-As you can see, there is no way to insert Squares into our method, and even if
-we could, we will be still returning Rectangles, not squares.
+The simpler solution:
+
+\verb+     Just create squares as rectangles, and we are done. I even made a constructor for that.+
+
+But that is not possible, we are using OOP, and we really want to use different
+classes for Squares and Rectangles. They are different things, you can inscribe
+a circle in a Square, but not in a rectangle, for example.
+
+
+
+Another solution would be to pass an array of rectangles and an array of
+squares, but won't work either, what would the method return?
+
+And also, it is not very elegant, what if you want to pass circles and
+triangles later, your method parameters will be a mess.
+
+
+
+
+
+
+
+
+
 
 \newpage
-
-\subsection{Version 3: Squares with Rectangles inside}
+\subsection{Version 2: Squares with Rectangles inside}
 
 Let's try a clever trick, by creating a Square that holds a Rectangle inside.
 
@@ -236,17 +294,17 @@ Now, Square3 will be WRAPPER CLASS, it will just be a box holding a rectangle
 inside. It will be a square on the outside, but a rectangle on the inside.
 
 \begin{multicols}{2}
-  \codeinput{../java/Max3.java}{Max3.java}
-\columnbreak
   \begin{center}
-    \includegraphics[width=5cm]{./img/Square3/Square3.eps}
+    \includegraphics[width=5cm]{./img/Square2/Square2.eps}
   \end{center}
-  \codeinput{../java/Square3.java}{Square3.java}
+  \codeinput{../java/Square2.java}{Square2.java}
+\columnbreak
+  \codeinput{../java/Max2.java}{Max2.java}
 \end{multicols}
 
 \begin{blackboard}
-$ javac *3.java
-$ java Max3
+$ javac *2.java
+$ java Max2
 Rectangle(3.0, 3.0)
 \end{blackboard}
 
@@ -259,7 +317,7 @@ worst, the method returns a Rectangle, when it should return a Square.
 
 
 \newpage
-\subsection{Version 4: Squares are Rectangles}
+\subsection{Version 3: Squares are Rectangles}
 
 What we really need is a class that behaves both as a Square and as a
 Rectangle: we need a POLYMORPHIC class.
@@ -277,22 +335,33 @@ The way to do this is using INHERITANCE.
 
 \begin{multicols}{2}
   \begin{center}
-    \includegraphics[width=8cm]{./img/Square4/Square4.eps}
+    \includegraphics[width=8cm]{./img/Square3/Square3.eps}
   \end{center}
-  \codeinput{../java/Square4.java}{Square4.java}
+  \codeinput{../java/Square3.java}{Square3.java}
 \columnbreak
-  \codeinput{../java/Max4.java}{Max4.java}
+  \codeinput{../java/Max3.java}{Max3.java}
 \end{multicols}
 
 \begin{blackboard}
-$ javac *4.java
-$ java Max4
+$ javac *3.java
+$ java Max3
 Square(3.0)
 \end{blackboard}
 
 Now the program works.
 
-\subsection{Protected attributes}
+\begin{center}
+  \includegraphics[width=8cm]{./img/is_a/is_a.eps}
+\end{center}
+
+
+
+
+
+
+\newpage
+
+\subsection{Version 4: Protected attributes}
 
 As the width and height attributes of Rectangles are private we can not use
 them from our Square.
@@ -303,18 +372,18 @@ But we can change those attributes from private to protected, which means
 public for the classes that inherit from me, but private for the rest.
 
 \begin{multicols}{2}
-  \codeinput{../java/Rectangle5.java}{Rectangle5.java}
-\columnbreak
   \begin{center}
-    \includegraphics[width=5cm]{./img/Square5/Square5.eps}
+    \includegraphics[width=5cm]{./img/Square4/Square4.eps}
   \end{center}
-  \codeinput{../java/Square5.java}{Square5.java}
+  \codeinput{../java/Square4.java}{Square4.java}
+\columnbreak
+  \codeinput{../java/Rectangle4.java}{Rectangle4.java}
 \end{multicols}
-\codeinput{../java/Max5.java}{Max5.java}
+\codeinput{../java/Max4.java}{Max4.java}
 
 \begin{blackboard}
-$ javac *5.java
-$ java Max5
+$ javac *4.java
+$ java Max4
 Square(3.0)
 \end{blackboard}
 
@@ -355,10 +424,6 @@ Vocabulary:
   \item Inheritance implements an \textbf{IS-A} relationship: An Square is a
     Rectangle.  As opposed to version 3, where a Square \textbf{HAS-A}
     Rectangle.
-
-    \begin{center}
-      \includegraphics[width=8cm]{./img/is_a/is_a.eps}
-    \end{center}
 
 \end{itemize}
 
@@ -418,12 +483,12 @@ Vocabulary:
     it is dangerous. The \verb+instanceof+ operator might help.
 
 \begin{blackboard}
-Rectangle5 max = biggest(array);
-if (max instanceof Square5) {
-  Square5 s = (Square5) r;
-  // do something Square5 specific
+Rectangle4 max = biggest(array);
+if (max instanceof Square4) {
+  Square4 s = (Square4) r;
+  // do something Square4 specific
 } else {
-  // do something Rectangle5 specific
+  // do something Rectangle4 specific
 }
 // If your program is correctly designed
 // you will never have to do this or use the instanceof operator
@@ -451,7 +516,7 @@ if (max instanceof Square5) {
     \verb+super+ reference.
 
 \begin{blackboard}
-class Square5 extends Rectangle5 {
+class Square4 extends Rectangle4 {
   private double width;
 
   public getSquareWidth() {
@@ -487,7 +552,7 @@ class Square5 extends Rectangle5 {
   \item If a class does not inherit \verb+EXPLICITLY+ from another class, then
     it does inherit \verb+IMPLICITLY+ from the \verb+Object+ class.
 
-  \item This defines a class hierarchy.
+    This defines a class hierarchy.
 
     \begin{center}
       \includegraphics[width=10cm]{./img/object/object.eps}
@@ -556,9 +621,9 @@ ESTO NO DA TIEMPO, LO DEJO PARA LA SIGUIENTE CLASE.
 Inplicit castings
 Explicit castings
 Syntactic salt
+UML diagrams
 Has-a vs. is-a
 Inheritance
-UML diagrams
 Protected access modifier
 Inheritance rules
 instanceof operator
@@ -567,7 +632,7 @@ Final methods
 Super automatic reference
 Super() constructors
 Attribute hiding
-Method overriding
+Method overriding (not method overloading)
 Exception use inheritance
 Object is the father of all of objects
 \end{blackboard}

@@ -24,8 +24,8 @@ class Max3 {
         Rectangle1[] array = new Rectangle1[4];
         array[0] = new Rectangle1(3D, 2D);
         array[1] = new Rectangle1(1D, 7D);
-        array[2] = new Square3(3D).getRectangle();
-        array[3] = new Square3(2D).getRectangle();
+        array[2] = new Square3(3D); // implicit casting
+        array[3] = new Square3(2D); // implicit casting
         Rectangle1 biggest = biggest(array);
         System.out.println(biggest);
     }

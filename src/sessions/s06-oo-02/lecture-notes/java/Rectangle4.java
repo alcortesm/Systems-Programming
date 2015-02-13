@@ -1,17 +1,17 @@
-class Rectangle5 {
+class Rectangle4 {
 
     protected double width;
     protected double height;
 
-    public Rectangle5(double width, double height) {
-        if (width == 0 || height == 0) {
+    public Rectangle4(double width, double height) {
+        if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException();
         }
         this.width = width;
         this.height = height;
     }
 
-    public Rectangle5(double side) { this(side, side); }
+    public Rectangle4(double side) { this(side, side); }
 
     public double area() { return this.width * this.height; }
 

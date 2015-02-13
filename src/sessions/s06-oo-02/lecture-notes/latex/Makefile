@@ -15,10 +15,11 @@ out_dir := ../../../../../out
 pub_dir := $(out_dir)/teacher
 pub_files := $(pub_dir)/$(out)
 html_dir := $(out_dir)/html-versions-of-pdfs
+demo_dir := $(pub_dir)/s06-demo
 
 .PHONY: all install build clean imgs html
 
-all : imgs install
+all : imgs install demo
 
 install : $(pub_files) html
 
@@ -56,3 +57,10 @@ $(html_out)/$(name)/$(name).html : $(src) | $(html_dir)
 
 $(html_dir) :
 	mkdir -p $(html_dir)
+
+demo :
+	rm -rf $(demo_dir)
+	mkdir -p $(demo_dir)
+	cp img/vehicle/vehicle.eps $(demo_dir)
+	cp img/exceptions/exceptions.eps $(demo_dir)
+	cp ../java/Rectangle1.java $(demo_dir)

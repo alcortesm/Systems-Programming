@@ -1,17 +1,19 @@
-class Square3 {
-    // this is called a "HAS-A" relationship
-    // Points HAS two integers
-    // Triangles HAS three points
-    // Square3 HAS A rectangle1
-    private Rectangle1 rect;
+class Square3 extends Rectangle1 {
+    // private double width;
+    // private double height;
+    // public double area() { ... }
+    // public double getWidth() {...}
 
+    // Constructors are not inherited
+    // We build the SUPERclass part first
+    // then the SUBclass part (in this case nothing)
     public Square3(double side) {
-        this.rect = new Rectangle1(side);
+        super(side);
     }
 
-    public Rectangle1 getRectangle() { return rect; }
-
+    // This is called OVERRIDING a method.
     public String toString() {
-        return "Square( " + this.rect.getWidth() + ")";
+        return "Square(" + this.getWidth() + ")";
     }
 }
+

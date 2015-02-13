@@ -24,8 +24,8 @@ class Max2 {
         Rectangle1[] array = new Rectangle1[4];
         array[0] = new Rectangle1(3D, 2D);
         array[1] = new Rectangle1(1D, 7D);
-        array[2] = new Square2(3D);
-        array[3] = new Square2(2D);
+        array[2] = new Square2(3D).getRectangle();
+        array[3] = new Square2(2D).getRectangle();
         Rectangle1 biggest = biggest(array);
         System.out.println(biggest);
     }

@@ -1,4 +1,4 @@
-name := Square5
+name := Square1
 
 # build
 src := $(name).dia

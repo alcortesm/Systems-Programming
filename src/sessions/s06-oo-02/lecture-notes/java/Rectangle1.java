@@ -4,7 +4,7 @@ class Rectangle1 {
     private double height;
 
     public Rectangle1(double width, double height) {
-        if (width == 0 || height == 0) {
+        if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException();
         }
         this.width = width;
@@ -20,6 +20,5 @@ class Rectangle1 {
             + this.height + ")";
     }
 
-    // we will need this later
     public double getWidth() { return this.width; }
 }

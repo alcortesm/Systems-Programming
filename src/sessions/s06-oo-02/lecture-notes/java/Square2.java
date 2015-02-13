@@ -1,20 +1,17 @@
 class Square2 {
-
-    private double side;
+    // this is called a "HAS-A" relationship
+    // Points HAS two integers
+    // Triangles HAS three points
+    // Square3 HAS A rectangle1
+    private Rectangle1 rect;
 
     public Square2(double side) {
-        if (side <= 0) {
-            throw new IllegalArgumentException(
-                    "ERROR: negative dimensions not allowed");
-        }
-        this.side = side;
+        this.rect = new Rectangle1(side);
     }
 
-    public double area() {
-        return this.side * this.side;
-    }
+    public Rectangle1 getRectangle() { return rect; }
 
     public String toString() {
-        return "Square( " + this.side + ")";
+        return "Square( " + this.rect.getWidth() + ")";
     }
 }
