@@ -1,0 +1,116 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 06 - Object Orientation 2}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Appendix 01
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Inheritance Rules}
+
+\begin{enumerate}
+
+  \item A subclass inherits all the attributes and all the methods from its
+    superclass, but none of its constructors.
+
+  \item You can only inherit from one class. Multiple inheritance is not
+    allowed in Java.
+
+  \item Java will implicitly cast subclass objects to superclass references.
+
+\verb+Rectangle r = new Square(2); // implicit casting+
+
+  \item You can explicitly cast superclass objects to subclass references, but
+    it is dangerous. The \verb+instanceof+ operator might help.
+
+\begin{blackboard}
+Rectangle4 max = biggest(array);
+if (max instanceof Square4) {
+  Square4 s = (Square4) r;
+  // do something Square4 specific to s.
+} else {
+  // do something Rectangle4 specific to r.
+}
+// If your program is correctly designed
+// you will never have to do this or use the instanceof operator
+\end{blackboard}
+
+  \item If you re-define an attribute from your superclass in your subclass,
+    the superclass version gets shadowed. This is called \textbf{attribute hiding}.
+
+    You are hiding the attribute of the
+    superclass behind the new attribute in the subclass.
+
+  \item If you re-define a method from your superclass in your subclass, the
+    superclass version get shadowed. This is called \textbf{method overriding}.
+
+    You are hiding the implementation of the method in the superclass with a
+    new implementation in the subclass.
+
+  \item Do not confuse method overriding with method overloading.
+
+  \item \verb+this+ is a reference to the object itself, \verb+super+ is a
+    reference to the ``superclass'' version of the object itself.
+
+  \item Even if you re-define attributes or methods from your superclass in
+    your subclass, you can still access their superclass version using the
+    \verb+super+ reference.
+
+  \item A \verb+final+ class cannot be a subclassed.
+
+  \item A \verb+final+ method cannot be overridden.
+
+  \item Constructors for subclasses:
+
+    \begin{itemize}
+
+      \item You must initialize the super part of the new object before
+        initializing the sub part. The super part of the object is initialized
+        using the \verb+super(...)+ constructors.
+
+      \item The call to the super constructor must be the first line in your
+        constructor.
+
+      \item If you do not call the super constructor, Java will silently insert
+        a call to an empty super constructor for you.
+
+    \end{itemize}
+
+  \item If a class does not inherit \textbf{explicitly} from another class,
+    then it does inherit \textbf{implicitly} from the \verb+Object+ class.
+
+    This defines a class hierarchy:
+
+    \begin{center}
+      \includegraphics[width=14cm]{./img/object/object.eps}
+    \end{center}
+
+  \item This means all Java classes inherit from \verb+Object+ (except
+    \verb+Object+ itself), and therefore all Java objects have all the methods
+    and attributes of the \verb+Object+ class, this is:
+
+      \begin{itemize}
+
+        \item \verb+public String toString()+
+
+        \item and 10 more you do not need to know for this course.
+
+      \end{itemize}
+
+\end{enumerate}
+
+
+
+
+\end{document}
