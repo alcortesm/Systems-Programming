@@ -33,6 +33,578 @@ Packages
 
 \section{Interfaces}
 
+\begin{blackboard}
+Packages
+--------
+
+Let's create Squares with color so you can draw a red rectangle(2D,3D) or 
+a blue rectangle(1D, 7D).
+
+There is a Java class to represent colors, it is called java.awt.Color:
+
+class Square {
+    protected double side;
+    protected java.awt.Color color;
+
+    publiic Square(double width, double side) {
+        // check inputs
+        this.side = side;
+    }
+
+    public void draw() {
+        // draw an red/blue... Square on the screen
+        // we will learn how to do that in a couple of weeks
+    }
+}
+
+The java.awt.Color class is called like that because it is defined as follows:
+
+package java.awt;
+
+class Color {
+...
+}
+
+So, java.awt.Color is a Java class called Color that belongs to the java.awt
+package.
+
+A package is a collection of classes in Java.
+
+So you can have many Color classes in your programs:
+
+java.awt.Color // the official java Color class
+alcortes.Color // my own color class
+uc3m.web.Color // the UC3M color class for creating the UC3M official website
+...
+
+Classes in packages have to live in directories name after its packages, so:
+
+java.awt.Color: java/awt/Color.java
+                java/awt/Color.class
+
+alcortes.Color: alcortes/Color.java
+                java/Color.class
+...
+
+Compiling classes in directories is tricky, you have a required reading about
+this in the materials page.
+
+
+
+Imports
+-------
+
+The import keyword is a trick to avoid writting long Java class names:
+
+class ColorTest {
+    public static void main(String[] args) {
+        java.awt.Color c1 = new java.awt.Color();
+        alcortes.Color c2 = new alcortes.Color();
+    }
+}
+
+---------------------------
+
+import java.awt.color;
+
+class ColorTest {
+    public static void main(String[] args) {
+        Color c1 = new Color();
+        alcortes.Color c2 = new alcortes.Color();
+    }
+}
+
+You cannot import that and alcortes.Color at the same time, because the java
+will not know which class are you refering to by declaring a reference to
+Color.
+
+Java automatically imports java.lang.* (all classes in the java.lang package)
+so you can write:
+
+String instead of java.lang.String
+Object instead of java.lang.Object
+...
+
+
+Default package
+---------------
+
+If you do not define a package for your classes, they go to the "Default"
+package, that has no name, therefore:
+
+class Rectangle {
+...
+}
+
+is a class called Rectangle in the default package, and its name is
+"Rectangle". The default package has no directory, so you don not have to
+define it in any special directory.
+
+But:
+
+package alcortes;
+
+class Rectangle {
+...
+}
+
+would be a DIFFERENT java class, called "alcortes.Rectangle", and their .java
+and .class files must be in a directory called "alcortes/".
+
+
+Using packages
+--------------
+
+Example:
+
+-> main
+java.awt.Color red = java.awt.Color.RED; // static final color in class color
+alcortes.Rectangle = new alcortes.Rectangle(red, 2D, 3D);
+
+or:
+
+import java.awt.Color;
+-> main
+Color red = Color.RED; // static final color in class color
+alcortes.Rectangle = new alcortes.Rectangle(red, 2D, 3D);
+
+or:
+import java.awt.Color;
+import alcortes.Rectangle;
+-> main
+Color red = Color.RED; // static final color in class color
+Rectangle = new Rectangle(red, 2D, 3D);
+
+But you cannot do this:
+import java.awt.Color;
+import alcortes.*;  // there is already a Color class in alcortes.
+-> main
+Color red = Color.RED; // static final color in class color
+Rectangle = new Rectangle(red, 2D, 3D);
+
+
+But you can do this:
+
+import alcortes.*;
+-> main
+Color red = Color.RED; // This will be an alcortes.Color, not java.awt.Color.
+Rectangle = new Rectangle(red, 2D, 3D);
+
+Or:
+
+import alcortes.*;
+-> main
+java.awt.Color red = java.awt.Color.RED; // This will be an java.awt.Color.
+Rectangle = new Rectangle(red, 2D, 3D);
+
+
+
+
+
+
+
+Abstract classes
+----------------
+
+The sole purpose of an Abstract Class is to be extended by other classes.
+
+So, you can not construct object of an abstract class, you will have to
+create a derived class, and then construct objects of that derived class.
+
+Here is an example:
+
+Do you remember the biggest method from our last class?
+
+It takes an array of rectangles and return the biggest rectangle in the array.
+
+Rectangle
+   ^
+   |
+ Square
+
+As squares where also rectangles you can insert squares in the array and they
+may be returned by the method.
+
+But What if we want to insert Triangles and Circles also.
+
+Well, you already know how to solve that:
+
+       Shape
+
+Circle  Triangle    Rectangle
+
+                    Square
+
+You can create a Square class, with all things common to Circles, Triangles
+and Rectangles, and make those classes extend from it:
+
+___________________
+Shape
+_
+area(): double
+toString(): String
+__________________
+
+Then you will be able to change your biggest method, to receive an array of
+Shapes, and return the biggest Shape.
+
+This is really an actual problem from video game: This video game will draw
+shapes in the battlefield when a player cast an spell.
+
+Each spell has a visual effect, a shape with a color: for example, a fireball
+will be a red circle, a lighting bolt will be a blue rectangle, the
+earthquake spell will be a brown square.
+
+The area of the spell is related with the level of the player, so high level
+players will create bigger areas.
+
+When several spells are cast at the same time over the same area, only the
+biggest one will be drawn for each point, this is only the one cast by the
+most powerfull player:
+
+low level fireball - red circle
+high level lighting bole - blue rectangle over it
+very high level earthquake - brown square over it
+
+DIBUJO
+
+So our method will calculate the color of each pixel in the battlefield based
+on the list of spells in effect in that pixel:
+
+for this pixel: none
+for this pixel: red pixel
+for this pixel: blue pixel
+for this pixel: brown pixel
+
+So the real biggest method looks like this:
+
+Color biggest(Shape[] spells)
+
+So now, all shapes: Recatangles, Squares, Circles and Triangles have a color.
+
+--------------------------
+Shape
+--------------------------
+- color: java.awt.Color
+--------------------------
++ getColor(): java.awt.Color
++ area(): double
+--------------------------
+
+Let's write those classes:
+
+UML for all of them:
+
+class Rectangle extends Shape {
+...
+}
+
+class Squere extends Rectangle {
+...
+}
+
+class Triangle extends Shape {
+  private double base;
+  private height height;
+...
+}
+
+class Circle extends Shape {
+  private double raidus;
+...
+}
+
+Now let's write the Shape class.
+
+A shape is not any particular shape, it is just defining the interface I want
+any particular shape to have.
+
+import java.awt.Color;
+
+class Shape {
+    // every shape will have a color
+    protected Color color;
+
+    protected Shape(Color color) {
+        this.color = color;
+    }
+
+    // every shape has to have a getColor method
+    public Color getColor() {
+        return this.color;
+    }
+
+    // every shape has to have an area() method
+    public abstract double area();
+    // this method is interesting because I didn't provide an implementation
+    // for it. I just provide the type of the method and I stopped there with 
+    // a semicolon, and declare it abstract.
+}
+
+What is an abstract method?
+
+It is a method that I don't actually provide an implementation for it.
+
+It ensures that whenever I provide an implementation for a Shape, by extending
+the Shape class, that subclass will have that method.
+
+I don't know how it is going to be implemented yet, because I don't know how
+each particular class is going to calculate its area, but I know, and I want
+that all my clindrens know how to calculate their area.
+
+Abstract classes do not allow to create objects, you cannot create an Shape
+object, because it is to general, you would not know how to calculate its area
+for example.
+
+But I can declare a reference of type Shape and point it to a Rectangle or a
+Circle by using an implicit casting:
+
+Shape s;
+s = new Shape(Color.RED); // compiler error
+s = new Square(Color.BLUE, 2D); // OK, every square is a shape
+s = new Circle(Color.BLACK, 3D); // OK, every circle is a shape
+
+An abstract class is a class that has at least one abstract method.
+
+So, Shape here is an abstract class.
+
+If you did not provide an implementation for the area method in the rectangle,
+then the rectangle will also be an abstract class.
+
+In java, you must identify abstract classes explicitly by using the "abstract"
+modifier:
+
+abstract class Shape {
+...
+}
+
+As you don't want your Rectangle, Squares, Triangles and Circles to be
+abstract, because abstract classes can not be instantiated and you want
+Rectangle objects, and circle objects in your program.
+
+So, you will have to implement all the abstract methods from Shape in your
+children, that is why Rectangle, triangle and circle is overriding the area
+method.
+
+You don't need to override the area method in Square, because it is already
+inheriting an implemented version of the method from Rectangle.
+
+So real, non-abstract classes have to implement all the abstract methods from
+their parents, or they will be abstract them selves and you won't be able to
+instantiate them.
+
+So, non-abstract classes cannot:
+
+ - contain an abstract method (otherwise it will be abstract)
+
+ - inherit an abstracct method without providing an implementation.
+
+Since you can not create a Shape method, it is OK to not provide an
+implementation for the area method, because you will never call that method.
+
+But for Rectangles, for examples, you will need to provide an implementation
+for all their methods, because you will be creating rectangles and potentially
+calling that methods on them.
+
+Shape s = new Square(2D);
+System.out.println(s.area());
+// this compiles because all shapes has an area method, even if it is not
+// implemented for the Shape class itself.
+// this executes without errors, because Squares have an implementation for
+// the area method, inherited from Rectangle.
+
+An abstract class inherit from another abstract class.
+
+Shape
++ area(): double
+  ^
+  |
+ColorShape
+- color: Color
++ getColor(): Color
+  ^
+  |
+Rectangle ...
+
+Example:
+Shape s = new Rectangle(Color.RED, 2D, 3D);
+s.getColor(); // compile error
+((ColorShape) s).getColor(); OK
+
+But an abstract class cannot inherit from a non-abstract class.
+
+Abstract classes does not have to have an abstract method. But even if all its
+methods are implmented, you will still be unable to instantiate it.
+
+The point of abstract classes is to define an interface:
+
+- for multiple classes to share (its children)
+
+- without defining any of its children yet.
+
+It is very nice for program design and planification, before having write the
+program yet.
+
+You will have a description of what several classes can do, without getting
+into the details of HOW they are going to do it.
+
+An abstract class is called an abstract data type or ADT: a explanation of how
+you can interact with other objects in the future.
+
+If you know the Shape ADT, then you will know how to use Rectangles and
+Circles once they get implemented.
+
+We define an interface (an ADT) for our classes, the I can go write a program
+that uses them, while you go home to write the actual implmentation of that
+ADT. After that we will be able to join them together and every thing will
+work.
+
+Example:
+
+Write a program to find the biggest shape:
+
+- you can write it without know about circles and rectangles.
+
+- later someone will be able to insert an array of rectangles and it will
+  work.
+
+- or an array of circles, and it will work.
+
+- or even a mix of arrays and circles, and it will still work.
+
+
+Java Interfaces
+---------------
+
+We have been talking about interfaces.
+
+But a Java Interface is something different.
+
+A Java interface is an special kind of abstract class of Java class. Sometimes
+called a "TRUE ABSTRACT CLASS".
+
+There are 2 differences between Interfaces and abstract classes:
+
+- You can "implement" (inheriting an Interface) from more than one Java
+  Interface. VERY POWERFULL.
+
+- A Java interface:
+
+  + cannot implement any methods (all will be abstract)
+
+  + can only include "final static" attributes
+
+  + all attributes and methods has to be public
+
+  + Interfaces are always public classes.
+
+UML DIAGRAM
+
+public interface HasColor {
+    public abstract Color getColor();
+}
+
+Can also be written as:
+
+interface HasColor {
+    Color getColor();
+}
+
+class Rectangle implements HasColor {
+    private Color color;
+
+    public Rectangle(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+}
+
+UML DIAGRAM
+
+abstract class Shape imlements HasColor {
+    public abstract Color getColor();
+    public abstract double area();
+}
+
+UML DIAGRAM
+
+interface HasArea {
+    double area();
+}
+
+interface HasAreaAndColor extends HasColor, HasArea {
+}
+
+class Spell implements HasAreaAndColor {
+    private Shape areaOfEffect;
+
+    public Spell(Shape shape, int level) {
+        this.areaOfEffect = shape;
+    }
+
+    public double area() {
+        return areaOfEffect.area();
+    }
+
+    public Color getColor() {
+        return areaOfEffect.getColor();
+    }
+}
+
+
+Point
+
+BattleField
+
+Obstacles
+Tables, Chairs, Columns
+
+Spells
+
+Shapes
+
+HasArea
+HasColor
+HsaColorAndArea
+
+---
+
+Color biggest(HasColorAndShape[] inputs)
+
+---
+
+BattleField battleField = new BattleField(800, 600);
+Table t = new Table(new Point(2, 3));
+
+Spell fireball = new Spell(new Circle(new Point(5,7), Color.RED, 2D);
+Spell lightingBolt = new Spell(new Rectangle(new Point(3, 5), Color.BLUE, 1D, 7D);
+Spell eartquake = new Spell(new Square(new Point(1, 3), Color.BROWN, 3D);
+battlefield.add(fireball);
+battlefield.add(lightingBolt);
+battlefield.add(earthquake);
+
+battlefield.draw();
+
+---
+
+// in the BattleField class
+public void draw() {
+for (int pixel=0; i<battlefield.length; pixel++) {
+    Spell[] array = getSpellsAt(pixel);
+    battlefield.setColor(biggest(array));
+}
+
+---
+
+Dibujo
+
+\end{blackboard}
+
+
+
 \section{Access Modifiers}
 
 \begin{center}
