@@ -1,0 +1,167 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[assessment]{style}
+
+\newcommand{\realtitle}{Session 08 - Interfaces}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Self-Assessment
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Software for a Clothing Store}
+
+\subsection{}
+
+Write a \texttt{Warehouse} class that represents the warehouse of a clothing
+store.
+
+The class must have an empty constructor, an \texttt{add} method to store
+garments in the warehouse and a \texttt{toString} method that returns a string
+representation of all the stored garments and their total price.
+
+Test your classes with the following program:
+
+\codeinput{../java/WarehouseTest.java}{WarehouseTest.java}
+
+The output from this program must be exactly like this:
+
+\begin{cmd}
+$ java WarehouseTest
+Jacket(color=java.awt.Color[r=255,g=0,b=0], price=10)
+Jacket(color=java.awt.Color[r=0,g=255,b=0], price=10)
+Pants(color=java.awt.Color[r=0,g=0,b=0], size=small, price=7)
+Pants(color=java.awt.Color[r=0,g=0,b=0], size=big, price=14)
+Total price = 41
+\end{cmd}
+
+Additional details:
+
+\begin{itemize}
+
+  \item The shop only works with 2 types of garments: jackets and pants.
+
+  \item Jackets come in many colors and their price is always 10 Euros.
+
+  \item Pants come only in black, and have two sizes (small and big).
+
+    \begin{itemize}
+
+      \item The constructor of this class receives a boolean to know if the new
+        pants must be small or not.
+
+      \item The price of the small pants is 7 Euros, the price for the big
+        pants is the double of the small ones.
+
+    \end{itemize}
+
+\end{itemize}
+
+\solutioninput{../java/Garment.java}
+\solutioninput{../java/Jacket.java}
+\solutioninput{../java/Pants.java}
+\solutioninput{../java/Warehouse.java}
+
+
+\subsection{}
+
+Write an interface called \texttt{Reversible} that allows classes to have a
+\texttt{void reverse()} method.
+
+\solutioninput{../java/Reversible.java}
+
+\subsection{}
+
+Write a class called \texttt{ReversibleJacket} that represents a reversible
+Jacket.
+
+A reversible jacket will have two colors, the ordinary one on the outside and
+another one on the inside.
+
+Calling the \texttt{reverse} method on a reversible jacket will interchange
+those colors.
+
+\begin{solution}
+TODO: write the solution to this exercise.
+\end{solution}
+
+\subsection{}
+
+Write a class called \texttt{ReversiblePoint} that represents a point that can
+be reversed.
+
+When you reverse a point, you are swapping its x and y coordinates.
+
+\begin{solution}
+TODO: write the solution to this exercise.
+\end{solution}
+
+\subsection{}
+
+Try to write a class called \texttt{ReversibleString} that represents a Java
+\texttt{String} that can be reversed.
+
+When you reverse an string, you will get a string with the caracters in reverse
+order, for example:
+
+\begin{blackboard}
+ReversibleString s = new ReversibleString("hello");
+s.reverse(); // "olleh"
+\end{blackboard}
+
+This problem is impossible to solve, explain why.
+
+\begin{solution}
+String is a final class.
+\end{solution}
+
+
+\section{Comparable Things}
+
+\subsection{}
+
+Write a class \texttt{ComparablePoint}, that represent \texttt{Point}s that can
+be compared.
+
+A point $\alpha$ will be bigger than a point $\beta$ if the distance between
+$\alpha$ and the origin is bigger than the distance between $\beta$ and the
+origin.
+
+\begin{solution}
+TODO: write the solution to this exercise.
+\end{solution}
+
+
+\subsection{}
+
+Write a class \texttt{ComparableReversiblePoint}, that represent
+\texttt{Point}s that can be compared and reversed.
+
+Test your class with a program that checks that a point is as big as its reverse.
+
+\begin{solution}
+TODO: write the solution to this exercise.
+\end{solution}
+
+
+\subsection{}
+
+Modify your answer to the first exercise about the \texttt{Warehouse} so now
+garments are comparable, based on their price.
+
+The \texttt{toString} method of \texttt{Warehouse} must now print the garments
+sorted from the cheapest one to the most expensive one.
+
+\begin{solution}
+TODO: write the solution to this exercise.
+\end{solution}
+
+\end{document}

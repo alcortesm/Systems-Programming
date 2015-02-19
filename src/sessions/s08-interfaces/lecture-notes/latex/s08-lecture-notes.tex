@@ -1,0 +1,591 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 08 - Interfaces}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Abstract Classes
+Interfaces
+--
+Access Modifires Table
+Packages
+Object.equals(Object)
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+\section{Abstract Classes}
+
+%The sole purpose of an Abstract Class is to be extended by other classes.
+
+%This means, you cannot create objects of abstract classes.
+
+%You will have to create a derived class, and then construct objects of that
+%derived class.
+
+Allow me to exaplain what an abstract class is, using an example:
+
+Do you remember the ``biggest'' method from our last class?
+
+It takes an array of rectangles and returns the biggest rectangle in the array.
+
+\begin{blackboard}
+  public static Rectangle biggest(Rectangle[] inputs) {
+    ...
+  }
+
+  public static Rectangle biggest(ArrayList<Rectangle> inputs) {
+    ...
+  }
+\end{blackboard}
+
+MOSTRAR \verb+uml_square.eps+
+\begin{center}
+  \includegraphics[width=5cm]{./img/uml_square/uml_square.eps}
+\end{center}
+
+But what if we want to insert Triangles and Circles also.
+
+Well, you already know how to solve that:
+
+You can create a Shape class and make Rectangles, Circles... extend from it:
+
+MOSTRAR \verb+uml_shape_1.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/uml_shape_1/uml_shape_1.eps}
+\end{center}
+
+We will have to change the method definition form Rectangles to Shapes of
+course:
+
+\codeinput{../java/v1/ShapeTest.java}{v1/ShapeTest.java}
+
+And Circles, Triangles and Rectangles have to extend Shape.
+
+We don't have to extend Square though, as it is already extending Shape from Rectangle.
+
+But there is a problem here, can you see it?
+
+The \texttt{Shape} class has no \texttt{area()} method.
+
+Even if know that all Circles, Rectangles... have an area, Java only see a
+Shape, and a Shape has no area method.
+
+OK, no problem, let's fix it:
+
+MOSTRAR \verb+uml_shape_2.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/uml_shape_2/uml_shape_2.eps}
+\end{center}
+
+Now, this works.
+
+DEMO: \verb+cd v1 ; java ShapeTest+
+
+Let's see how to write the Shape class:
+
+\begin{blackboard}
+class Shape {
+  // no attributes
+
+  // no need to declare a ctor,
+  // as it has no attributes
+  // the default ctor will do.
+
+  public double area() {
+    // now, what?
+  }
+}
+\end{blackboard}
+
+What is the area of a shape?
+
+We are not sure, we know whats the area of a circle, and of a rectangle, but of a shape?
+
+We will not know until we instantiate a more concrete shape (circle, rectangle...).
+
+So we cannot implement this method.
+
+This is called an abstract method, because it is not implemented, it has no
+code and you can not really execute it, because Java will not know what to do.
+
+
+Let's say we create a new Shape object, what will happend if we call the area method over it:
+
+\begin{blackboard}
+  Shape s = new Shape();
+  System.out.println(s.area());
+\end{blackboard}
+
+Java cannot do this, that is way this class is an abstract class, you are not
+allowed to instantiate it.
+
+But you are allowed to subclass it, and implemente the area method on all their subclasses, so you can write code like this:
+
+\begin{blackboard}
+  Shape s = new Rectangle(2D, 3D);
+  System.out.println(s.area());
+\end{blackboard}
+
+\codeinput{../java/v1/Shape.java}{v1/Shape.java}
+
+\codeinput{../java/v1/ShapeTest.java}{v1/ShapeTest.java}
+
+This is the simplest example about abstract classes you can write.
+
+Let's complicate things a little bit:
+
+In the future, we would like to draw all this shapes in the screen, so we need
+to improve our shapes a little by adding to them a center (point) and a color.
+
+MOSTRAR \verb+uml_graphicalshape.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/uml_graphicalshape/uml_graphicalshape.eps}
+\end{center}
+
+\begin{itemize}
+
+  \item Do GraphicalShape extends Shape? YES.
+
+  \item Do you think GraphicalShape is an abstract class? YES. IT HAS AN ABSTRACT METHOD (area)
+
+  \item Can GraphicalShape has constructors? YES, IT HAS ATTRIBUTES.
+
+  \item Can you instantiate it? NO, IT IS ABSTRACT.
+
+  \item Why it has ctors then? SUBCLASSES WILL CALL THEM USING THE SUPER CTOR.
+
+\end{itemize}
+
+\begin{blackboard}
+MOSTRAR CÓDIGO:
+  v2/GraphicalShape.java
+  v2/Rectangle.java
+\end{blackboard}
+
+
+\subsection{Abstract rules}
+
+MOSTRAR \verb+abstract_rules.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/abstract_rules/abstract_rules.eps}
+\end{center}
+
+The point of abstract classes is to define a user interface to their subclasses.
+
+Sometimes and abstract class is also called an ADT (Abstract Data Type): it
+defines HOW to use some classes, but not HOW they are implemented.
+
+EXAMPLE: You can write the biggest method just by knowing the Shape ADT, you
+don't need to know about Rectangles or Circles.
+
+You can even create more shapes later, and all of them will work just fine with
+your method.
+
+
+
+
+\subsection{More examples of Abstract Classes}
+
+MOSTRAR \verb+number.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/number/number.eps}
+\end{center}
+
+MOSTRAR \verb+abstractlist.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/abstractlist/abstractlist.eps}
+\end{center}
+
+
+\section{Java Interfaces}
+
+An interface is the public methods and attributes of a class: this is, how to
+use that class.
+
+A Java Interface is something different, altough related:
+
+A Java Interface is a type of abstract class, with the following rules:
+
+MOSTRAR \verb+interfaces_rules.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/interfaces_rules/interfaces_rules.eps}
+\end{center}
+
+EXAMPLE:
+
+MOSTRAR \verb+drawable.eps+
+\begin{center}
+  \includegraphics[width=14cm]{./img/drawable/drawable.eps}
+\end{center}
+
+\begin{blackboard}
+// HasColor.java
+import java.awt.Color;
+
+interface HasColor {
+  setColor(Color color);
+  Color getColor();
+}
+
+// HasCenter.java
+interface HasCenter {
+  setCenter(Point center);
+  Point getCenter(center);
+}
+
+// Drawable.java
+interface Drawable extends HasCenter, HasColor {
+  draw();
+}
+
+// Shape.java
+abstract class Shape implements Drawable {
+  ...
+}
+\end{blackboard}
+
+
+\subsection{Extends and Implements}
+
+MOSTRAR \verb+extends_implements.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/extends_implements/extends_implements.eps}
+\end{center}
+
+\subsection{Examples of Java Interfaces}
+
+MOSTRAR \verb+important_interfaces.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/important_interfaces/important_interfaces.eps}
+\end{center}
+
+MOSTRAR \verb+abstractlist_interface.eps+
+\begin{center}
+  \includegraphics[width=10cm]{./img/abstractlist_interface/abstractlist_interface.eps}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Access Modifiers}
+
+NO SE SI DARÁ TIEMPO A ESTO.
+
+\begin{center}
+  \begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\multicolumn{1}{|c|}{access mod.} & \multicolumn{1}{|c|}{class} & \multicolumn{1}{|c|}{method} & \multicolumn{1}{|c|}{attribute} \\
+\hline
+\texttt{public}    & \multicolumn{3}{|c|}{Accesible to all classes.} \\
+\hline
+\textsl{(empty) AKA friendly AKA package-protected} & \multicolumn{3}{|c|}{Accesible only to classes in the same package.} \\
+\hline
+\texttt{protected}   & Only for inner classes. & \multicolumn{2}{|c|}{Acecsible only to subclasses.} \\
+\hline
+\texttt{private}     & Only for inner classes. & \multicolumn{2}{|c|}{Accessible only inside the class.} \\
+\hline
+\hline
+\texttt{final}       & Cannot be subclassed & Cannot be overriden & Cannot be modified once initialized \\
+\hline
+\texttt{static}      & Turns an inner class into a statically nested class. & Class method (instead of an object method) & Class attribute (instead of an object attribute) \\
+\hline
+\texttt{abstract}    & Cannot be instantiated & Has no code & --- \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Packages}
+
+ESTO YA SE HA EXPLICADO EN LA SESIóN 7 DE LAB.
+
+A package is a collection of classes, and the package is part of the full
+qualified name of the class.
+
+For example:
+
+There is a class in Java to represent colors, it is called
+\texttt{java.awt.Color}.
+
+\begin{blackboard}
+  main:
+    java.awt.Color red = new java.awt.Color(1.0, 0, 0);
+\end{blackboard}
+
+The java.awt.Color class is called like that because it is defined as follows:
+
+\begin{blackboard}
+package java.awt;
+
+class Color {
+...
+}
+\end{blackboard}
+
+So, this is a Java class called \texttt{Color} that belongs to the
+\texttt{java.awt} package. The \textsl{full qualified name} of the class is
+\texttt{java.awt.Color}.
+
+This menas you can have many Color classes in your programs, as long as they
+not in the same package:
+
+\begin{blackboard}
+java.awt.Color // the official java Color class
+alcortes.Color // my own color class
+uc3m.web.Color // the UC3M color class for creating the UC3M official website
+...
+\end{blackboard}
+
+Compiling classes in packages can be tricky, you have an explanation on how to
+do it on the bibliographic references.
+
+
+
+
+
+\subsection{Imports}
+
+The \texttt{import} keyword is a trick to avoid writting long Java class names:
+
+Instead of writting this:
+
+\codeinput{../java/ColorTest.java}{ColorTest.java}
+
+You can write this:
+
+\begin{blackboard}
+              |
+              V
+import java.awt.Color;
+class ColorTest {
+    public static void main(String[] args) {
+        Color c1 = new Color();
+        alcortes.Color c2 = new alcortes.Color();
+    }
+}
+              |
+              V
+import alcortes.Color;
+class ColorTest {
+    public static void main(String[] args) {
+        java.awt.Color c1 = new java.awt.Color();
+        Color c2 = new Color();
+    }
+}
+              |
+              V
+import alcortes.Color;
+import java.awt.Color;
+// this don't work!
+\end{blackboard}
+
+So, \texttt{import} don't actually imports anything to your program, it just
+let you use short class names instead of long names.
+
+Java automatically imports java.lang.* (all classes in the java.lang package)
+so you can write:
+
+\begin{blackboard}
+String instead of java.lang.String
+Object instead of java.lang.Object
+...
+\end{blackboard}
+
+
+
+
+
+
+
+\subsection{Default package}
+
+If you do not define a package for your classes, they will go into the
+"Default" package, that has no name, therefore:
+
+\begin{blackboard}
+class Rectangle {
+  ...
+}
+\end{blackboard}
+
+is a class called Rectangle in the default package, and its short name and full
+qualified name are both "Rectangle".
+
+But:
+
+\begin{blackboard}
+package alcortes;
+
+class Rectangle {
+...
+}
+\end{blackboard}
+
+would be a DIFFERENT java class, called "alcortes.Rectangle".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{\texttt{equals} and \texttt{instanceof}}
+
+NO SE SI DARÁ TIEMPO A ESTO.
+
+
+You already know the \texttt{toString} method.
+
+It is a very important method because as it is defined in \texttt{Object}, all
+classes inherits it.
+
+It is also very important because \texttt{println} call that method to get the
+string representation of objects.
+
+This means you can print objects in a meaningfull way by overriding their
+\texttt{toString} method.
+
+\texttt{equals} is also a very important method for similar reasons.
+
+It is also defined in the \texttt{Object} class and can be used to compare
+objects.
+
+Here is its prototype and implementation:
+
+\begin{blackboard}
+  public boolean equals(Object o) {
+    return (this == o);
+  }
+
+  Object a = new Object();
+  Object b = new Object();
+  Object c = a;
+
+  System.out.println(a == b);      // false
+  System.out.println(a.equals(b)); // false               DIBUJAR MEMORIA
+
+  System.out.println(a == c);      // true
+  System.out.println(a.equals(c)); // true
+\end{blackboard}
+
+So the \texttt{Object} version of this method just return if two references are
+pointing to the same memory location.
+
+If you want to compare objects using this method you should override it,
+for example, you already know that \texttt{String}s override it to compare the
+characters inside the string.
+
+Let's see how to do that for a Rectangle, for example:
+
+\begin{center}
+  \includegraphics[width=5cm]{./img/uml_square/uml_square.eps}
+\end{center}
+
+\begin{blackboard}
+class Rectangle {
+  ...
+  public boolean equals(Object o) {
+    if (o == null) {
+      return false;
+    }
+    if ( ! (o instanceof Rectangle)) {
+      return false;
+    }
+    Rectangle r = (Rectangle) o;
+    return (this.width == r.width && this.height == r.height);
+  }
+}
+
+  Rectangle r1 = new Rectangle(1D);
+  Rectangle r2 = new Rectangle(2D);
+  Square s1 = new Square(1D);
+
+  System.out.println(r1.equals(r1)); // true
+  System.out.println(r1.equals(r2)); // false
+  System.out.println(r1.equals(s1)); // true
+  System.out.println(s1.equals(r1)); // true
+  // carefull if you override the equals method in Square
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
