@@ -61,3 +61,20 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
+	cp ./img/uml_square/uml_square.eps $(demo_dir)
+	cp ./img/uml_shape_1/uml_shape_1.eps $(demo_dir)
+	mkdir $(demo_dir)/v1
+	cp ../java/v1/*.java $(demo_dir)/v1
+	cp ./img/uml_shape_2/uml_shape_2.eps $(demo_dir)
+	cp ./img/uml_graphicalshape/uml_graphicalshape.eps $(demo_dir)
+	mkdir $(demo_dir)/v2
+	cp ../java/v2/*.java $(demo_dir)/v2
+	cp ./img/abstract_rules/abstract_rules.eps $(demo_dir)
+	cp ./img/number/number.eps $(demo_dir)
+	cp ./img/abstractlist/abstractlist.eps $(demo_dir)
+	cp ./img/interfaces_rules/interfaces_rules.eps $(demo_dir)
+	cp ./img/drawable/drawable.eps $(demo_dir)
+	cp ./img/extends_implements/extends_implements.eps $(demo_dir)
+	cp ./img/important_interfaces/important_interfaces.eps $(demo_dir)
+	cp ./img/abstractlist_interface/abstractlist_interface.eps $(demo_dir)
+
