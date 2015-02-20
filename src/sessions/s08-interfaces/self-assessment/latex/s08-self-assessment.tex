@@ -123,6 +123,28 @@ This problem is impossible to solve, explain why.
 String is a final class.
 \end{solution}
 
+\subsection{}
+
+Write a \texttt{ReversiblePrintStream} class that represents reversible \texttt{java.io.PrintStream}s.
+
+Test your class with the following program:
+
+\codeinput{../java/ReversiblePrintStreamTest.java}{ReversiblePrintStream.java}
+
+Your output should look exactly like this:
+
+\begin{cmd}
+ java ReversiblePrintStreamTest
+ hello
+ h
+ eh
+ leh
+ lleh
+ olleh
+ hello
+ \end{cmd}
+
+\solutioninput{../java/ReversiblePrintStream.java}
 
 \section{Comparable Things}
 
