@@ -1,0 +1,609 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Object-Orientation &amp; Inheritance</title>
+    <meta name="Author" content="Universidad Carlos III de Madrid" />
+    <meta name="language" content="en" />
+    <link type="text/css" rel="stylesheet" href="./style.css" media="all" />
+  </head>
+  <body>
+      <h2 class="title">1. Session 4 (lab): Object-Orientation &amp; Inheritance (II)</h2>
+    
+    <h3>1.1. Class Hierarchies and Polymorphism</h3>
+
+            <p xml:lang="en" lang="en">
+    You have been asked to code a Windows application to manage the
+    users of the UC3M swimming pool.
+  </p>
+            <p xml:lang="en" lang="en">
+    The application should be a very simple database system, which would
+    store the data of all the swimming pool users. It must be capable of
+    listing all the users and their data.
+  </p>
+            <p xml:lang="en" lang="en">
+    There are 5 types of swimming pool users:
+  </p>
+            <div class="orderedlist">
+              <ol>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        <span class="emphasis"><em>Outsider</em></span>: people not related to the UC3M,
+        e.g. people living in Leganés. The only datum we know from them
+        is their DNI (the Spanish national identity card).
+      </p>
+                </li>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        <span class="emphasis"><em>Staff</em></span>: Office workers and support people on
+        the campus, but not teachers. We know their DNI and their
+        salary.
+      </p>
+                </li>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        <span class="emphasis"><em>Professor</em></span>: UC3M teachers. We know their
+        DNI, their department and their salary.
+      </p>
+                </li>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        <span class="emphasis"><em>Student</em></span>: We know their DNI and their NIA
+        (Student identification number).
+      </p>
+                </li>
+                <li class="listitem">
+                  <p xml:lang="en" lang="en">
+        <span class="emphasis"><em>Intern</em></span>: Regular students that are also
+        working for the university. We know all their student data and
+        also their salary.
+      </p>
+                </li>
+              </ol>
+            </div>
+            <div class="section" id="idm140277241625616">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277241625616">Section 1. Class Hierarchy</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Which of the following diagrams best represent the class hierarchy
+      of the application? Discuss the pros and cons of all diagrams with
+      a classmate for 15 minutes.
+    </p>
+              <div class="mediaobject" align="center">
+                <object type="image/svg+xml" data="./a.svg" align="middle"></object>
+              </div>
+              <div class="mediaobject" align="center">
+                <object type="image/svg+xml" data="./b.svg" align="middle"></object>
+              </div>
+              <div class="mediaobject" align="center">
+                <object type="image/svg+xml" data="./c.svg" align="middle"></object>
+              </div>
+              <div class="mediaobject" align="center">
+                <object type="image/svg+xml" data="./d.svg" align="middle"></object>
+              </div>
+              <div class="mediaobject" align="center">
+                <object type="image/svg+xml" data="./e.svg" align="middle"></object>
+              </div>
+              <div class="note">
+                <h3 class="title">Solution</h3>
+                <p xml:lang="en" lang="en">
+        There is no right and wrong answer to this exercise, but it
+        raises some good points.
+      </p>
+                <p xml:lang="en" lang="en">
+        Diagram A is too simple, as it does not make use of a class
+        hierarchy: there are a lot of code redundancies, for instance,
+        the handling of some class attributes like <code class="code">dni</code> and
+        <code class="code">salary</code> must be done in many classes.
+      </p>
+                <p xml:lang="en" lang="en">
+        On top of that, some of the dependencies between classes in the
+        exercise are not properly represented in the diagram, for
+        example, <code class="code">Intern</code>s should also be
+        <code class="code">Student</code>s.
+      </p>
+                <p xml:lang="en" lang="en">
+        Diagram B is better, as it makes uses of class hierarchies, but
+        it has some problems:
+      </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            People form <code class="code">Staff</code> cannot be
+            <code class="code">Professor</code>s, as the exercise explains.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            There is still too much code redundancy, for instance the
+            <code class="code">dni</code> and <code class="code">salary</code> attributes are
+            present in too many classes.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+                <p xml:lang="en" lang="en">
+        In diagram C, the class <code class="code">Outsider</code> has been
+        substituted by <code class="code">Person</code>, a much more generic
+        class. This allows eliminating the code redundancies for the
+        handling of the <code class="code">dni</code> attribute. The downside of this
+        approach is that outsiders have now to be instances of the
+        <code class="code">Person</code> class; therefore some of the semantics of
+        the exercise are lost. This can lead to problems in the future,
+        if we want to modify the application or add more types of users.
+      </p>
+                <p xml:lang="en" lang="en">
+        And there is still the problem of <code class="code">Professor</code>s that
+        are also <code class="code">Staff</code>, which is not allowed by the
+        exercise, and the code redundancy in the <code class="code">salary</code>
+        attribute.
+      </p>
+                <p xml:lang="en" lang="en">
+        Diagram D is very nice, there is no code redundancy on the
+        <code class="code">dni</code> attribute and <code class="code">Professor</code>s are no
+        longer part of the <code class="code">Staff</code>. There are still some code
+        redundancies for the <code class="code">salary</code> attribute, though.
+      </p>
+                <p xml:lang="en" lang="en">
+        In Diagram E, the problem of the code redundancy on the
+        <code class="code">salary</code> attribute is fixed by using the new
+        superclass <code class="code">Worker</code>. Sadly, Java does not allow
+        inheriting from more than one class at the same time, thus this
+        approach is impossible to implement. In future lessons, you will
+        learn about Java <span class="emphasis"><em>Interfaces</em></span>, a nice way to
+        implement multiple inheritance in Java. But, for now, this
+        approach is not possible.
+      </p>
+                <p xml:lang="en" lang="en">
+        Long story short: Diagram D is the preferred solution, even if we
+        have to cope with some code redundancy for the salary, because,
+        at the time being, we cannot do better.
+      </p>
+              </div>
+            </div>
+            <div class="section" id="idm140277239787824">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277239787824">Section 2. Polymorphism</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Implement the application using diagram D as a reference. Code all
+      the classes. Each class must declare all its attributes, a
+      constructor and also a method <code class="code">String toString()</code> to
+      generate a textual representation of the known data of each user,
+      according to the format below.
+    </p>
+              <p xml:lang="en" lang="en">
+      You must also code a test class, with only the <code class="code">main</code>
+      method. It should instantiate objects representing each user
+      (listed below) to test the application. You must store all the
+      user objects in a variable that can hold several
+      <code class="code">Person</code> objects (any Java collection will do, e.g. an <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html"><code class="code">ArrayList&lt;Person&gt;</code></a>...). Then
+      go through all the users in the collection, printing all their
+      data to the standard output.
+    </p>
+              <p xml:lang="en" lang="en">
+      The expected behavior of your application must be like this (the
+      order in which the users are printed is not relevant):
+    </p>
+              <pre class="programlisting">
+C:\Users\Alberto&gt;java DataBase
+DNI: 01100000-A
+DNI: 00220000-B
+DNI: 00030000-C, salary: 2000
+DNI: 04040000-D, salary: 1500
+DNI: 50500000-E, salary: 1000, department: mathematics
+DNI: 66600000-F, salary: 2000, department: telematics
+DNI: 77000000-G, NIA: 777777
+DNI: 88080000-H, NIA: 888888
+DNI: 90990000-I, NIA: 999999, salary: 400
+DNI: 10100000-J, NIA: 101010, salary: 800</pre>
+              <div class="note">
+                <h3 class="title">Solution</h3>
+                <pre class="programlisting">
+Warning: we are skipping all error checkings in the following code, so
+students can focus on the inheritance parts.
+
+#### Person.java #####################
+public class Person {
+    private String dni;
+
+    public Person(String dni) {
+        this.dni = dni;
+    }
+
+    public String toString() {
+        return "DNI: " + dni;
+    }
+}
+
+#### Staff.java ######################
+public class Staff extends Person {
+    private int salary;
+
+    public Staff(String dni, int salary) {
+        super(dni);
+        this.salary = salary;
+    }
+
+    public String toString() {
+        return super.toString() + ", salary: " + salary;
+    }
+}
+
+#### Professor.java ####################
+public class Professor extends Person {
+    private String department;
+    private int salary;
+
+    public Professor(String dni, int salary, String department) {
+        super(dni);
+        this.department = department;
+        this.salary = salary;
+    }
+
+    public String toString() {
+        return super.toString() + ", salary: " + salary +
+            ", department: " + department;
+    }
+}
+
+#### Student.java ####################
+public class Student extends Person {
+    private String nia;
+
+    public Student(String dni, String nia) {
+        super(dni);
+        this.nia = nia;
+    }
+
+    public String toString() {
+        return super.toString() + ", NIA: " + nia;
+    }
+}
+
+#### Intern.java #####################
+public class Intern extends Student {
+
+    private int salary;
+
+    public Intern(String dni, String nia, int salary) {
+        super(dni, nia);
+        this.salary = salary;
+    }
+
+    public String toString() {
+        return super.toString() + ", salary: " + salary;
+    }
+}
+
+#### DataBase.java ###################
+import java.util.ArrayList;
+
+public class DataBase {
+
+    public static void main(String args[]) {
+
+        // All users are stored in the same collection, any Java
+        // collection will do for this simple exercise
+        ArrayList&lt;Person&gt; users = new ArrayList&lt;Person&gt;();
+
+        // Fill the database with all users' data
+        {
+            Person p = new Person("01100000-A");
+            users.add(p);
+            p = new Person("00220000-B");
+            users.add(p);
+
+            Staff s = new Staff("00030000-C", 2000);
+            users.add(s);
+            s = new Staff("04040000-D", 1500);
+            users.add(s);
+
+            Professor f = new Professor("50500000-E", 1000, "mathematics");
+            users.add(f);
+            f = new Professor("66600000-F", 2000, "telematics");
+            users.add(f);
+
+            Student st = new Student("77000000-G", "777777");
+            users.add(st);
+            st = new Student("88080000-H", "888888");
+            users.add(st);
+
+            Intern in = new Intern("90990000-I", "999999", 400);
+            users.add(in);
+            in = new Intern("10100000-J", "101010", 800);
+            users.add(in);
+        }
+
+        // Print all users
+        for (int i=0; i&lt;users.size(); i++) {
+            Person p = users.get(i);
+            System.out.println(p);
+        }
+    }
+}</pre>
+              </div>
+            </div>
+            <div class="section" id="idm140277241632320">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277241632320">Section 3.</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="orderedlist">
+                <ol>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Discuss with a classmate how is it possible to print all user
+          data (data from <code class="code">Staff</code>,
+          <code class="code">Student</code>... objects) if all of them are handled
+          through references to a simple <code class="code">Person</code> object.
+        </p>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Discuss with a classmate why do you need to declare the
+          <code class="code">String toString()</code> as a public method on
+          <code class="code">Person</code> and all its subclasses. Would it be
+          possible to declare that method package-private instead, for
+          example?
+        </p>
+                  </li>
+                </ol>
+              </div>
+              <div class="note">
+                <h3 class="title">Solution</h3>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            In Java, overridden method resolution is performed by
+            <span class="emphasis"><em>virtual method invocation</em></span>. This means
+            that Java will resolve a method by looking at the class of
+            the actual object and ignoring the class of the reference
+            being used to handle the object.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            In Java, a method signature includes the access modifiers,
+            therefore, when you want to override a method, you must keep
+            its original access modifiers.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="section" id="idm140277242384944">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277242384944">Section 4. Last minute changes</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Just before submitting your application, the UC3M asks you
+      to implement 2 extra functionalities:
+    </p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" type="disc">
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Add a new user type <span class="emphasis"><em>Tenured</em></span>. They are
+          like standard <code class="code">Professor</code>s but have a fixed salary
+          of 2500 Euros. This means that the class constructor should
+          not have a salary argument. Also add these two instances of
+          tenured professors to the database:
+        </p>
+                    <pre class="programlisting">
+DNI: 11110000-K, salary: 2500, department: geography
+DNI: 12120000-L, salary: 2500, department: mathematics</pre>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          The application must support a command line argument
+          "<code class="code">-s</code>" for generating "short" listings, this is,
+          only the basic data from the users must be printed (only the
+          data available from the class <code class="code">Person</code>).
+        </p>
+                  </li>
+                </ul>
+              </div>
+              <p xml:lang="en" lang="en">
+      The expected behavior of your application must be like this:
+    </p>
+              <pre class="programlisting">
+; java DataBase
+DNI: 01100000-A
+DNI: 00220000-B
+DNI: 00030000-C, salary: 2000
+DNI: 04040000-D, salary: 1500
+DNI: 50500000-E, salary: 1000, department: mathematics
+DNI: 66600000-F, salary: 2000, department: telematics
+DNI: 77000000-G, NIA: 777777
+DNI: 88080000-H, NIA: 888888
+DNI: 90990000-I, NIA: 999999, salary: 400
+DNI: 10100000-J, NIA: 101010, salary: 800
+DNI: 11110000-K, salary: 2500, department: geography
+DNI: 12120000-L, salary: 2500, department: mathematics
+; java DataBase -s
+DNI: 01100000-A
+DNI: 00220000-B
+DNI: 00030000-C
+DNI: 04040000-D
+DNI: 50500000-E
+DNI: 66600000-F
+DNI: 77000000-G
+DNI: 88080000-H
+DNI: 90990000-I
+DNI: 10100000-J
+DNI: 11110000-K
+DNI: 12120000-L</pre>
+              <div class="orderedlist">
+                <ol>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Estimate how long it will take you to implement each of these
+          new functionalities, in hours or minutes.
+        </p>
+                  </li>
+                  <li class="listitem">
+                    <p xml:lang="en" lang="en">
+          Implement these two functionalities in a new version of your
+          application and compare the time it took you with your
+          original estimation.
+        </p>
+                  </li>
+                </ol>
+              </div>
+              <div class="note">
+                <h3 class="title">Solution</h3>
+                <p xml:lang="en" lang="en">
+        Adding the new <code class="code">Tenured</code> class is simple: just
+        inherit form <code class="code">Professor</code>, define a class constant for
+        the fixed salary and define a constructor using that constant in
+        its call to the constructor of the superclass. It should take
+        you about 5 or 10 minutes. Please note that you should not
+        override the <code class="code">String toString()</code> in this class.
+      </p>
+                <p xml:lang="en" lang="en">
+        Detecting the command line argument is also simple. Add the
+        necessary logic to process the command line arguments, detect
+        the usage of "<code class="code">-s</code>" and also add some error checking
+        for invalid arguments.
+      </p>
+                <p xml:lang="en" lang="en">
+        The fastest way to implement the short listing mode of operation
+        is to add a new method to <code class="code">Person</code> to generate a
+        short listing of a user. As all other user classes are
+        subclasses of <code class="code">Person</code> they will automatically get
+        this new functionality. This should take you between 10 and 15
+        minutes.
+      </p>
+                <pre class="programlisting">
+#### Tenured.java #####################
+public class Tenured extends Professor {
+    private static final int TENURED_SALARY = 2500;
+
+    public Tenured(String dni, String department) {
+        super(dni, TENURED_SALARY, department);
+    }
+}
+
+#### Person.java #####################
+public class Person {
+    private String dni;
+
+    public Person(String dni) {
+        this.dni = dni;
+    }
+
+    public String toString() {
+        return "DNI: " + dni;
+    }
+
+    public String toStringShort() {
+        // return toString();       -- WRONG
+        // return this.toString();  -- WRONG
+        //
+        // Sadly, none of these will work, as virtual method invocation
+        // for subclasses will use their own subclass.toString() method,
+        // hence code redundancy is unavoilable here
+        return "DNI: " + dni; 
+    }
+}
+
+#### DataBase.java ###################
+import java.util.ArrayList;
+
+public class DataBase {
+
+    public static void main(String args[]) {
+
+        // By default, listings are in long format
+        boolean shortListingDesired = false;
+
+        // Parse command args
+        if (args.length &gt; 1) {
+            System.err.println("Invalid number of arguments");
+            return;
+        } else if (args.length == 1) {
+            if (args[0].equals("-s")) {
+                shortListingDesired = true;
+            } else {
+                System.err.println("Invalid argument: " + args[0]);
+                return;
+            }
+        }
+
+        // All users are stored in the same collection, any Java
+        // collection will do for this simple exercise
+        ArrayList&lt;Person&gt; users = new ArrayList&lt;Person&gt;();
+
+        // Fill the database with all users' data
+        {
+            Person p = new Person("01100000-A");
+            users.add(p);
+            p = new Person("00220000-B");
+            users.add(p);
+
+            Staff s = new Staff("00030000-C", 2000);
+            users.add(s);
+            s = new Staff("04040000-D", 1500);
+            users.add(s);
+
+            Professor f = new Professor("50500000-E", 1000, "mathematics");
+            users.add(f);
+            f = new Professor("66600000-F", 2000, "telematics");
+            users.add(f);
+
+            Student st = new Student("77000000-G", "777777");
+            users.add(st);
+            st = new Student("88080000-H", "888888");
+            users.add(st);
+
+            Intern in = new Intern("90990000-I", "999999", 400);
+            users.add(in);
+            in = new Intern("10100000-J", "101010", 800);
+            users.add(in);
+
+            Tenured t = new Tenured("11110000-K", "geography");
+            users.add(t);
+            t = new Tenured("12120000-L", "mathematics");
+            users.add(t);
+        }
+
+        // Print all users
+        for (int i=0; i&lt;users.size(); i++) {
+            Person p = users.get(i);
+            if (shortListingDesired)
+                System.out.println(p.toStringShort());
+            else
+                System.out.println(p);
+        }
+    }
+}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="adagio_page_footer"></div>
+  </body>
+</html>
