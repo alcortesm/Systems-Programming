@@ -23,7 +23,6 @@ Abstract Classes
 Interfaces
 --
 Access Modifires Table
-Packages
 Object.equals(Object)
 \end{blackboard}
 
@@ -37,13 +36,6 @@ Object.equals(Object)
 
 
 \section{Abstract Classes}
-
-%The sole purpose of an Abstract Class is to be extended by other classes.
-
-%This means, you cannot create objects of abstract classes.
-
-%You will have to create a derived class, and then construct objects of that
-%derived class.
 
 Allow me to exaplain what an abstract class is, using an example:
 
@@ -303,8 +295,6 @@ MOSTRAR \verb+abstractlist_interface.eps+
 
 \section{Access Modifiers}
 
-NO SE SI DARÁ TIEMPO A ESTO.
-
 \begin{center}
   \begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
 \hline
@@ -343,9 +333,118 @@ NO SE SI DARÁ TIEMPO A ESTO.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{\texttt{equals} and \texttt{instanceof}}
+
+You already know the \texttt{toString} method.
+
+It is a very important method because as it is defined in \texttt{Object}, all
+classes inherits it.
+
+It is also very important because \texttt{println} call that method to get the
+string representation of objects.
+
+This means you can print objects in a meaningfull way by overriding their
+\texttt{toString} method.
+
+\texttt{equals} is also a very important method for similar reasons.
+
+It is also defined in the \texttt{Object} class and can be used to compare
+objects.
+
+Here is its prototype and implementation:
+
+\begin{blackboard}
+  public boolean equals(Object o) {
+    return (this == o);
+  }
+
+  Object a = new Object();
+  Object b = new Object();
+  Object c = a;
+
+  System.out.println(a == b);      // false
+  System.out.println(a.equals(b)); // false               DIBUJAR MEMORIA
+
+  System.out.println(a == c);      // true
+  System.out.println(a.equals(c)); // true
+\end{blackboard}
+
+So the \texttt{Object} version of this method just return if two references are
+pointing to the same memory location.
+
+If you want to compare objects using this method you should override it,
+for example, you already know that \texttt{String}s override it to compare the
+characters inside the string.
+
+Let's see how to do that for a Rectangle, for example:
+
+\begin{center}
+  \includegraphics[width=5cm]{./img/uml_square/uml_square.eps}
+\end{center}
+
+\begin{blackboard}
+class Rectangle {
+  ...
+  public boolean equals(Object o) {
+    if (o == null) {
+      return false;
+    }
+    if ( ! (o instanceof Rectangle)) {
+      return false;
+    }
+    Rectangle r = (Rectangle) o;
+    return (this.width == r.width && this.height == r.height);
+  }
+}
+
+  Rectangle r1 = new Rectangle(1D);
+  Rectangle r2 = new Rectangle(2D);
+  Square s1 = new Square(1D);
+
+  System.out.println(r1.equals(r1)); // true
+  System.out.println(r1.equals(r2)); // false
+  System.out.println(r1.equals(s1)); // true
+  System.out.println(s1.equals(r1)); // true
+  // carefull if you override the equals method in Square
+\end{blackboard}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Packages}
 
-ESTO YA SE HA EXPLICADO EN LA SESIóN 7 DE LAB.
+ESTO YA SE HA EXPLICADO EN LA SESIóN 7 DE LAB, NO HACE FALTA CONTARLO EN ESTA CLASE.
 
 A package is a collection of classes, and the package is part of the full
 qualified name of the class.
@@ -470,118 +569,6 @@ class Rectangle {
 \end{blackboard}
 
 would be a DIFFERENT java class, called "alcortes.Rectangle".
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{\texttt{equals} and \texttt{instanceof}}
-
-NO SE SI DARÁ TIEMPO A ESTO.
-
-
-You already know the \texttt{toString} method.
-
-It is a very important method because as it is defined in \texttt{Object}, all
-classes inherits it.
-
-It is also very important because \texttt{println} call that method to get the
-string representation of objects.
-
-This means you can print objects in a meaningfull way by overriding their
-\texttt{toString} method.
-
-\texttt{equals} is also a very important method for similar reasons.
-
-It is also defined in the \texttt{Object} class and can be used to compare
-objects.
-
-Here is its prototype and implementation:
-
-\begin{blackboard}
-  public boolean equals(Object o) {
-    return (this == o);
-  }
-
-  Object a = new Object();
-  Object b = new Object();
-  Object c = a;
-
-  System.out.println(a == b);      // false
-  System.out.println(a.equals(b)); // false               DIBUJAR MEMORIA
-
-  System.out.println(a == c);      // true
-  System.out.println(a.equals(c)); // true
-\end{blackboard}
-
-So the \texttt{Object} version of this method just return if two references are
-pointing to the same memory location.
-
-If you want to compare objects using this method you should override it,
-for example, you already know that \texttt{String}s override it to compare the
-characters inside the string.
-
-Let's see how to do that for a Rectangle, for example:
-
-\begin{center}
-  \includegraphics[width=5cm]{./img/uml_square/uml_square.eps}
-\end{center}
-
-\begin{blackboard}
-class Rectangle {
-  ...
-  public boolean equals(Object o) {
-    if (o == null) {
-      return false;
-    }
-    if ( ! (o instanceof Rectangle)) {
-      return false;
-    }
-    Rectangle r = (Rectangle) o;
-    return (this.width == r.width && this.height == r.height);
-  }
-}
-
-  Rectangle r1 = new Rectangle(1D);
-  Rectangle r2 = new Rectangle(2D);
-  Square s1 = new Square(1D);
-
-  System.out.println(r1.equals(r1)); // true
-  System.out.println(r1.equals(r2)); // false
-  System.out.println(r1.equals(s1)); // true
-  System.out.println(s1.equals(r1)); // true
-  // carefull if you override the equals method in Square
-\end{blackboard}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
