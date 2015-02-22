@@ -19,7 +19,208 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 
 \section{Today's Topics}
 \begin{blackboard}
-GUI
+Functors, Nested classes & Anonymous classes
+GUIs
 \end{blackboard}
+
+
+
+
+
+
+
+\section{Classes we are going to use today}
+
+Today we are going to use two classes in our examples:
+
+\begin{multicols}{2}
+  \begin{center}
+    \verb+person.eps+\\
+    \includegraphics[width=5cm]{./img/person/person.eps}
+  \end{center}
+  \columnbreak
+  \codeinput{../java/Person.java}{Person.java}
+\end{multicols}
+
+\begin{multicols}{2}
+  \begin{center}
+    \verb+runnable.eps+\\
+    \includegraphics[width=5cm]{./img/runnable/runnable.eps}
+  \end{center}
+  \columnbreak
+  \begin{blackboard}
+interface Runnable {
+    public void run();
+}
+\end{blackboard}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Funtors}
+
+
+Let's write a simple program that prints "Hello":
+
+\codeinput{../java/Hello1.java}{Hello1.java}
+
+Now let's write another version of this same program:
+
+\codeinput{../java/Hello2.java}{Hello2.java}
+
+Now let's write another, more complicated version of this program:
+
+\begin{multicols}{2}
+  \codeinput{../java/Hello3.java}{Hello3.java}
+  \columnbreak
+  \codeinput{../java/PrintFunctor.java}{PrintFunctor.java}
+\end{multicols}
+
+This seems like a very complicated way to something very simple, and you are
+right, but stay with me for a minute.
+
+Whenever you want to print "Hello" you can create an object from this class
+and call its \verb+run()+ mehtod.
+
+The sole purpuse in life of this class is to carry a method around.
+
+This class is just a method, disguised as a class.
+
+This class is called a FUNCTOR, a method disguised as a class.
+
+
+
+
+
+
+
+
+\subsection{Nested Classes}
+
+Now, in Java there is yet a better way to do this.
+
+In Java, you can create classes inside another class, they are called NESTED
+CLASSES.
+
+They are used a lot when you want a class that is only going to be used inside
+another class, but not outside it.
+
+So instead of creating a new java file for this class, you can simply write
+this class inside the class that is going to use it.
+
+\codeinput{../java/Hello4.java}{Hello4.java}
+
+
+
+
+
+
+
+
+\subsection{The power of Functors: passing methods to other methods}
+
+Let's say we want to write a program that prints "hello" 5 times, adds 10 years
+to Alberto and adds Alberto 3 times to a bag of Persons.
+
+\codeinput{../java/Repeat1.java}{Repeat1.java}
+
+Can you see the pattern here?
+
+Wouldn't it be nice to write a method that DO SOMETHING N times in a row.
+
+\begin{blackboard}
+void repeat(XXXX something, int n) {
+  for (int i=0; i<n; i++) {
+    something();
+  }
+}
+
+repeat(System.out.println("Hello"), 5);
+repeat(alberto.addOneYear(), 10);
+repeat(bag.add(alberto), 3);
+\end{blackboard}
+
+But in Java we can not pass a method as an input parameter to another method.
+
+In Java, we can only pass primtive types and references to objects as input
+parameters to a method.
+
+So how do we solve this?
+
+Well, we pass a functor, which is a method, disguised as an object:
+
+\codeinput{../java/Repeat2.java}{Repeat2.java}
+
+We can do this even better using Java anonymous classes.
+
+An anonymous class is how you create an object from a class that you only need
+for that single object, and then you forget about it forever.
+
+In spanish there is a perfect way to describe them: "una clase anónima es una
+clase de usar y tirar".
+
+The best english translation I have found for this is, anonymous classes are
+"one use classes" or "disposable classes".
+
+You use them once to create a single object and then you throw them away.
+
+For example, if you need an object that implements the Runnable interface, and
+that prints hello when you call its run method, you can write something like this:
+
+\begin{blackboard}
+// FUNCTOR implemented as an ANONYMOUS CLASS
+Runnable r = new Runnable() {
+  public void run() {
+    System.out.println("Hello");
+  }
+};
+\end{blackboard}
+
+This will create a new reference called r to an object of a class that
+implements the interface Runnable (\verb+Runnable r+).
+
+Then it will create a new object (\verb+new+) and point the reference r to it
+(\verb+=+).
+
+The class of this object is not in any Java file and it is not a defined as a
+nested class later, instead you are providing the full source code for the
+class just there in that very moment.
+
+The will not have a name (that why they are called anonymous classes).
+
+It will implement the \verb+Runnable+ interface.
+
+Objects from that class will have a \verb+run()+ method that prints "hello".
+
+Then, once the object is created, it will forget about that class forever.
+
+\codeinput{../java/Repeat3.java}{Repeat3.java}
+
+
+
+
+
+
+
+
+
+
+
+\section{GUIs}
+
+
 
 \end{document}
