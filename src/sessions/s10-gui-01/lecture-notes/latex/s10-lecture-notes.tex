@@ -221,6 +221,45 @@ Then, once the object is created, it will forget about that class forever.
 
 \section{GUIs}
 
+Let's run a program that prints the prime numbers under 100:
+
+\verb+ DEMO: java PrimesTui+
+
+Now let's run a Graphical program that does the same:
+
+\verb+ DEMO: java PrimesGui+
+
+Let's talk about their similarities and differences:
+
+\paragraph{Similarities}
+
+\begin{itemize}
+
+  \item They have the same functionality.
+
+    In fact, the core of both programs is the same, a class that calculates
+    prime numbers, only 35 loc.
+
+\end{itemize}
+
+\paragraph{Differences}
+
+\begin{itemize}
+
+  \item The GUI version is much complex:
+
+    \begin{itemize}
+
+      \item PrimeTui.java is 17 loc, PrimesGui.java is 151 loc.
+
+      \item PrimeTui uses 3 classes: String and 2 Exceptions. But PrimesGui
+        uses 12 classes, 2 interfaces and defines 2 nested classes, 4 functors
+        and 4 anonymous classes.
+
+    \end{itemize}
+
+\end{itemize}
+
 
 
 \end{document}
