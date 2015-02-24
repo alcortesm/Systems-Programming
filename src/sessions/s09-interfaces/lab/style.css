@@ -1,0 +1,343 @@
+/* 
+  Copyright (C) 2008 Carlos III University of Madrid
+  This file is part of the ADA: Agile Distributed Authoring Toolkit
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor
+  Boston, MA  02110-1301, USA.
+
+  Generic style file for Web Pages 
+  
+  Author: Abelardo Pardo (abelardo.pardo@uc3m.es)
+ 
+ */
+body 
+{ 
+  background-color: #FFFFFF; 
+  margin-left: auto;
+  margin-right: auto;
+  /* font-family: 'Arial', 'sans-serif'; */
+  font-family: 'Verdana';
+  width: 910px;
+}
+
+table 
+{ 
+  page-break-inside: avoid; 
+  border-collapse: collapse; 
+  margin-right: auto; 
+  margin-left: auto;
+  }
+
+table.qandaentry
+{
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-bottom: 25px;
+ }
+
+/* Center images derived from informalfigures */
+div.informalfigure div.mediaobject img, 
+div.informalfigure div.caption 
+{ 
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+  text-align: center;
+  }
+
+/* Border for informaltables frame, head, tr and th elements */
+div.informaltable table thead tr th,
+div.informaltable table tbody tr td 
+{
+  padding: 5px;
+  border: 1px solid black;
+  }
+
+div#titlebox, div#tailbox, div#narrowcontent
+{ 
+  margin-right: auto; 
+  margin-left: auto;
+  }
+
+pre.programlisting, pre.screen {
+  background-color: #d5dee3;
+  color: Black;
+  font-family: Courier New, Courier, monospace;
+  font-size: 10pt;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  margin-bottom: 0em;
+  margin-left: 0em;
+  margin-right: 0em;
+  margin-top: 0em;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0em;
+  text-transform: none
+}
+
+div.section_solution pre.programlisting {
+  border-style: solid;
+  border-color: red;
+  margin-bottom: 1em;
+}
+
+th 
+{ 
+  border-collapse: collapse; 
+  }
+
+td 
+{ 
+  border-collapse: collapse; 
+  }
+
+table.ada_pguide_table, table.ada_solution_table {
+  background-color: #DDDDDD;
+}
+
+table.ada_solution_table tbody tr td,
+table.ada_pguide_table tbody tr td {
+  border-collapse: collapse; 
+  border: 1px solid black;
+}
+
+tr.theorylecture,td.theorylecture,td.exam
+{ 
+  background-color: rgb(255,255,255); 
+  border: 1px solid black;
+}
+
+tr.lablecture,td.lablecture 
+{ 
+  background-color: rgb(224,224,224); 
+  border: 1px solid black;
+}
+
+tr.submissionresult { 
+    background-color: rgb(240,240,240); 
+}
+
+tr.noclass  
+{ 
+  background-color: rgb(255,136,136); 
+  color: black; 
+  }
+
+td.noclass 
+{ 
+  background-color: rgb(255,136,136); 
+  color: black; 
+  border: 1px solid black;
+  }
+
+td.rowhead { font-weight: bold; }
+
+.grey1head 
+{ 
+  background-color: #EEEEEE;
+  }
+
+.blue1head 
+{ 
+  background-color: #BBC7FB;
+  border: 1px solid black;
+}
+
+hr 
+{ 
+  height: 1px; 
+  background: black; 
+}
+
+/* Background for some titles */
+h2
+{ 
+  background: rgb(127,127,127)
+  }
+h3
+{ 
+  background: rgb(222,222,222)
+  }
+
+
+/* Remove border in images that are part of an ancho */
+a span.inlinemediaobject img { border: 0; }
+
+span.command 
+{ 
+  font-weight: bold;
+  }
+
+/* Hide elements of class noprint when printing */
+@media print {
+    body { background:white; color:black; margin:0 }
+    .noprint { display: none; }
+}
+
+/* Vertically center images on headers */
+h2.head-center span.inlinemediaobject img,
+h2.title span.inlinemediaobject img {
+ vertical-align: middle; /* float:left */
+}
+
+/* Vertically center images on headers */
+h3.head-center span.inlinemediaobject img,
+h3.title span.inlinemediaobject img {
+    vertical-align: middle;
+}
+
+img.time {
+    vertical-align: middle;
+    margin-right: 0.4em
+}
+
+div.chapter div.titlepage div div h2.title span img {
+    height: 120px;
+}
+
+div.section div.titlepage div div h2.title span img {
+    height: 60px;
+}
+
+/* For the Schedule */
+tr.lecture {
+      background-color: PapayaWhip;
+}
+
+tr.lab {
+      background-color: PaleGreen;
+}
+
+tr.project {
+      background-color: CornflowerBlue;
+}
+
+tr.lab-extra {
+      background-color: #BBC7FB;
+}
+
+tr.exam {
+      background-color: HotPink;
+}
+
+tr.noclass, td.noclass {
+      background-color: Gray;
+}
+
+.ada_hidden_elements {
+    display: none;
+}
+
+#ada_page_header_level1, #ada_page_header_level2, #ada_page_header_level3, #ada_page_header_level4 {
+    display: none;
+}
+
+
+/* duration-feedback stuff */
+
+div.duration {
+    margin-left: 75%;
+}
+
+div.duration-feedback {
+    float: right;
+    margin-top: -28px;
+}
+
+/******************************
+/** Estilos para las pildoras*/
+
+#slideShow {
+	position: relative;
+	/*width: 332px;*/
+	/*width: 426px;*/
+	/*height: 286px;*/
+	/*height: 358px;*/
+}
+
+#slsInd {
+	position: absolute;
+	z-index: 69
+}
+
+#slsBar {
+	position: absolute;
+	z-index: 69
+}
+
+#slsBorder {
+	border-top: 3px outset #C6CEDE;
+	border-top: 3px outset #C6CEDE; 
+	position: absolute;
+}
+
+#slsContainer { /* 320 = content width (pixels)*/
+	/* 240 = content height (pixels)*/
+	/*position: absolute; z-index: 0; overflow: hidden; clip: rect(0, 320, 240, 0); visibility: hidden*/
+	/*width: 420;
+	height:340;*/
+	position: absolute;
+	z-index: 0;
+	/* Content scrollbars: "auto" or "hidden". 
+	"auto" may cause flickering with Gecko browsers)*/
+	overflow: hidden; 
+	/*margin:10px;*/
+	/*background-color: #C6CEDE;*/ /*content background color*/
+	background-color: #C6CEDE;
+	/*clip: rect(0, 420, 340, 0);*/
+	visibility: hidden;
+}
+
+#slsSlider {
+	/*padding:20px;*/
+}
+
+/*.slsPage {width: 320px; height: 240px; overflow: hidden; background-color: #C6CEDE}*/
+.slsPage {
+	/* 320 = content width (pixels)*/
+	/* 240 = content height (pixels)*/
+	/*width: 420px;*/ /*Lo he cambiado al código*/
+	/*height: 340px;*/ /*Lo he cambiado al código*/
+	overflow: hidden;
+	/*padding:10px;*/
+	/*padding:20px;*/ /*Si se pone aquí, la última slide no se ve*/
+	/*background-color: #C6CEDE*/;
+	/*background-color: #fc9;*/
+	font-size:9pt;
+	border-right: 1px outset #ccc; /*Si se cambia el tamaño del borde, cambiar también en el javscript*/
+	
+}
+.enlaces_pills { /*Pues con las posiciones absolutas se va a tomar por saco lo de abajo...*/
+margin-top:0px;}
+.code {
+	/*padding-top: 20px;*/
+	/*margin-top: 20px;*/
+	font-family: Courier New, Courier, monospace;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-align: center;
+	
+}
+pre {margin-top:0; margin-bottom:0;}
+
+.adagio_hidden_elements, h1#adagio_institution_name, #adagio_degree_name,
+#adagio_course_edition
+{
+    display: none;
+}

@@ -1,0 +1,771 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Object-Orientation &amp; Inheritance</title>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <meta name="Author" content="Universidad Carlos III de Madrid" />
+    <meta name="language" content="en" />
+    <link type="text/css" rel="stylesheet" href="./style.css" media="all" />
+  </head>
+  <body>
+                <h2>1. Session 6 (lab): Object-Orientation &amp; Inheritance (III)</h2>
+                  <h3 class="title" id="idm140277181306768">1.1. Points and Shapes (II)</h3>
+            <p xml:lang="en" lang="en">
+    The general objective of this lab is to recap inheritance and
+    polymorphism in Java. You will be using <code class="code">abstract</code> and
+    <code class="code">extends</code> for inheritance, creating generic and especific
+    classes in a hierarchy. Especific classes will implement the
+    abstract methods defined in the generic ones and will override the
+    rest of their methods to implement polimorphism. The class hierarchy
+    in this lab is composed by the superclass <code class="code">Shape</code> and
+    three of its children: <code class="code">Circle</code>, <code class="code">Triangle</code>
+    and <code class="code">Quadrilateral</code>. There is also a subclass of
+    <code class="code">Quadrilateral</code> called <code class="code">Rectangle</code>.
+  </p>
+            <p xml:lang="en" lang="en">
+    Once you have implemented all that classes, you will have to create
+    a bunch of objects and insert them into a container. Then you will
+    perform operations on all of them taking advantage of polimorphism.
+  </p>
+            <div class="section" id="idm140277182268016">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277182268016">Abstract Classes and Inheritance.</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      The <code class="code">Shape</code> class represents a generic shape, that
+      will later be particularized into a more concrete class like
+      <code class="code">Circle</code>, <code class="code">Triangle</code> or
+      <code class="code">Rectangle</code>. In Java, this kind of generic, abstract
+      classes, are defined using the <code class="code">abstract</code> reserved
+      word.
+    </p>
+              <p xml:lang="en" lang="en">
+      In this first exercise you must define the <code class="code">Shape</code>
+      abstract class.
+    </p>
+              <pre class="programlisting">public abstract class Shape {
+
+    // Name of the shape
+    private String name;
+
+    // Constructor of the shape
+    public Shape(String name) {
+
+    }
+
+    // Calculates the area of a shape
+    abstract public double area();
+
+    // Indicates if the shape is regular or not
+    abstract public boolean isRegular();
+
+    // Gets the name of the shape
+    protected String getName() {
+
+    }
+
+    // Sets the name of the shape
+    protected void setName(String name) {
+
+    }
+
+}
+</pre>
+              <div class="section" id="idm140277181238544">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277181238544">The class <code class="code">Shape</code>.</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the constructor of the class <code class="code">Shape</code> and
+            its get and set methods.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="section" id="idm140277179962576">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277179962576">The subclass <code class="code">Circle</code>.</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+        The class <code class="code">Circle</code> inherits from <code class="code">Shape</code>,
+        take this into account when implementing it. Follow these steps:
+      </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Declare the class <code class="code">Circle</code> inheriting from
+            <code class="code">Shape</code>, using <code class="code">extends</code>.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Implement its constructor. Said constructor must accept
+            three arguments: its name (<code class="code">String</code>), its center
+            (<code class="code">Point</code>) and its radius (<code class="code">double</code>). Use
+            the class <a class="ulink" href="./Point.java"><code class="filename">Point.java</code></a>
+            to represent points, and call the constructor of the
+            <code class="code">Shape</code> class through the <code class="code">super</code>
+            reference on the <code class="code">Circle</code>'s constructor.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the method <code class="code">area</code> that returns the area of
+            the circle. Use the constant <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html#PI"><code class="code">Math.PI</code></a>
+            in your calculations.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the method <code class="code">isRegular()</code> that returns
+            <code class="code">true</code> if the shape is regular or
+            <code class="code">false</code> if it is not. A regular polygon has all its angles equal and all its sides equal. Circles are not polygons, but let us say that, for the purpose of this exercise, a circle is always regular.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Override the method <code class="code">toString()</code> to return a
+            textual representation of the name of the shape, its center
+            and its radius (the format of this textual representation is
+            up to you).
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the get and set methods.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="section" id="idm140277181296688">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277181296688">The subclass <code class="code">Triangle</code>.</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+        The class <code class="code">Triangle</code> also inherits from
+        <code class="code">Shape</code>. Follow these steps:
+      </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Declare the <code class="code">Triangle</code> class to inherit from
+            <code class="code">Shape</code>.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            The constructor will receive four arguments: the name of the
+            class and three points (<code class="code">Point v1</code>, <code class="code">Point
+            v2</code> and <code class="code">Point v3</code>), representing the three
+            vertexes of the triangle. Remember you have to call the
+            constructor of <code class="code">Shape</code> using <code class="code">super</code>.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program its <code class="code">area</code> method. The area of a triangle
+            can be calculated form its vertexes usign the following
+            expresion: <code class="code">area =
+            0.5*|Ax(By-Cy)+Bx(Cy-Ay)+Cx(Ay-By)|</code>, where
+            <code class="code">x</code> is the abscissa and <code class="code">y</code> the
+            ordinate of the correspoding vertexes (A, B, C). In the
+            expression, <code class="code">|...|</code> represents the absolute value
+            of what is inside.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the method <code class="code">isRegular()</code> to tell if the
+            triangle is regular. A triangle is regular if all its side
+            lenghts are equal (because then, all its angles will be equal also).
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Override the <code class="code">toString</code> metod to return a
+            sensible textual representation of a triangle, including at
+            least its name and its vertexes.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the get and set methods.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="section" id="idm140277181333344">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277181333344">The subclass <code class="code">Quadrilateral</code>.</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+        The <code class="code">Quadrilateral</code> is another subclass of
+        <code class="code">Shape</code>. But this time, we will make it also an
+        abstract class, because it is difficult to calculate its area
+        without knowing a little bit more about its details. Follow
+        these steps:
+      </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Declare an abstract class <code class="code">Quadrilateral</code> that
+            inherits from <code class="code">Shape</code>.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Implement its constructor, which receives five arguments:
+            its name and four points.
+          </p>
+                    </li>
+
+                    <li class="listitem"> <p xml:lang="en" lang="en">This time,
+                    make its attributes protected, so you can experience the
+                    difference between a parent class with private attributes (<code class="code">Shape</code>)
+                    and a parent class with protected attributes (<code class="code">Quadrilateral</code>).</p> </li>
+
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program the <code class="code">isRegular</code> method to tell if the
+            shape is regular. Please note that a quadrilateral is
+            regular if all its sides are equal (because then, its angles will be equal also).
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Override the <code class="code">toString</code> method to return a
+            sensible textual representation of a quadrilateral,
+            including its name and its vertexes.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="section" id="idm140277181293248">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277181293248">The subclass <code class="code">Rectangle</code>.</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">The subclass <code class="code">Rectangle</code> inherits from
+        <code class="code">Quadrilateral</code>. Follow these steps:
+      </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Declare the class <code class="code">Rectangle</code> that inherits from
+            <code class="code">Quadrilateral</code>.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program its constructor, receiving 5 arguments, its name and
+            its 4 vertexes. Remember to call the constructor of the
+            <code class="code">Quadrilateral</code> class through the
+            <code class="code">super</code> reference. The constructor must check
+            that the four vertexes provided make four right angles, otherwise it will not be a valid rectangle and the constructor must throw an exception.  </p> 
+
+            <p>You can use the following methods to test that all the angles are right angles:</p>
+
+<pre class=programlisting>    // returns the scalar product of p1-&gt;p2 and p1-&gt;p3
+    private static double scalarProduct(Point p1, Point p2, Point p3){
+        return (p3.getY()-p1.getY())*(p2.getY()-p1.getY())
+            + (p3.getX()-p1.getX())*(p2.getX()-p1.getX());
+    }
+
+    // compares two double values with an error margin
+    protected static final double ERROR_MARGIN = 0.00001D;
+    protected static boolean equalsDoubles(double a, double b) {
+        return (Math.abs(a-b) &lt;= ERROR_MARGIN);
+    }
+
+    // checks if it has 3 right angles
+    // WARNING: this particular implementation allows for
+    // rectangles with the four vertexes at the same point:
+    // they will be regular and have area 0.
+    private boolean isValidRectangle(){
+        double product1 = Rectangle.scalarProduct(vertexes[0], vertexes[1], vertexes[3]);
+        double product2 = Rectangle.scalarProduct(vertexes[1], vertexes[0], vertexes[2]);
+        double product3 = Rectangle.scalarProduct(vertexes[2], vertexes[1], vertexes[3]);
+        return Shape.equalsDoubles(product1, 0D) &amp;&amp;
+            Shape.equalsDoubles(product2, 0D) &amp;&amp;
+            Shape.equalsDoubles(product3, 0D);
+    }</pre>
+
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Program its <code class="code">area</code> method. In a rectangle, given
+            a vertex, the distance to its two nearest vertexes, would be
+            the base and height of the rectangle.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Override the <code class="code">toString</code> method to return a
+            sensible textual representation of a rectangle, including
+            its name and its vertexes. Can you reuse some code from the
+            <code class="code">Quadrilateral.toString</code> method in here?
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="section" id="idm140277180631184">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277180631184">Polimorphism. Calculating the area of several
+      shapes.</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">
+        The class <code class="code">ShapesSet</code> will contain several shapes,
+        stored in an <code class="code">ArrayList&lt;Shape&gt;</code> and will be
+        able to tell the total area of the shapes it holds. Here is a
+        templete for this class:
+      </p>
+                <pre class="programlisting">import java.util.ArrayList;
+
+public class ShapesDataBase {
+
+    // ArrayList of shapes
+    private ArrayList&lt;Shape&gt; shapes;
+
+    // Constructor of ShapesDataBase
+    public ShapeDataBase() {
+
+    }
+
+    // Calculates the total area of the shapes
+    public double totalArea() {
+
+    }
+
+    // shapes to String
+    public String toString() {
+
+    }
+
+    // Adds a new shape to the ShapeDataBase
+    public void addShape(Shape s) {
+
+    }
+
+    // Main program
+    public static void main(String args[]) {
+
+    }
+
+}
+</pre>
+                <p xml:lang="en" lang="en">
+        The class constructor must create an object of the
+        <code class="code">ArrayList</code> class to store the shapes.  Then the
+        user will be adding shapes using the <code class="code">addShape</code>
+        method. The method <code class="code">totalArea</code> can then be used to
+        get the total area of all the shapes that have been added. The
+        <code class="code">toString</code> method retuns a sensible textual
+        representation of all the shapes included in the
+        <code class="code">ShapeDataBase</code>.
+      </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Implement the class constructor.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Write the <code class="code">addShape</code> method that allows to add
+            an <code class="code">Shape</code> to the container.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Write the <code class="code">totalArea</code> method that allows to
+            calculate the total area of the shapes contained.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Write the <code class="code">toString</code> method that returns a
+            sensible textual representation of all the shapes inside.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="section" id="idm140277182004176">
+                <div class="titlepage">
+                  <div>
+                    <div>
+                      <h5 class="title" id="idm140277182004176">The <code class="code">main</code> method.</h5>
+                    </div>
+                  </div>
+                </div>
+                <p xml:lang="en" lang="en">Create the main program that has to carry out the
+      following tasks: </p>
+                <div class="orderedlist">
+                  <ol>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Create an object of the <code class="code">ShapeDataBase</code> class.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Create a circle.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Create a triangle.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Create a rectangle.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Add the circle, the triangle and the rectangle to the <code class="code">ShapesDataBase</code> object.
+          </p>
+                    </li>
+                    <li class="listitem">
+                      <p xml:lang="en" lang="en">
+            Print the result of the calculation of the total area of the
+            shapes along with the information about the shapes.
+          </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="idm140277181937536">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h2 class="title" id="idm140277181937536">Homework</h2>
+              </div>
+            </div>
+          </div>
+          <div class="section" id="idm140277182962896">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h3 class="title" id="idm140277182962896">2.1. Using Interfaces to calculate Pi</h3>
+                </div>
+              </div>
+            </div>
+            <p xml:lang="en" lang="en">
+    Interfaces can be very useful for having several alternative
+    implementations of the same functionality: we would like the main
+    program to use one or the other without noticing the changes.
+  </p>
+            <p xml:lang="en" lang="en">
+    In this exercise we will have several implementations of a class
+    that calculates the number pi. We will be using the following
+    interface:
+  </p>
+            <pre class="programlisting">import java.math.BigDecimal;
+
+/**
+ * Interface to be implemented by classes that compute the number pi.
+ *
+ */
+public interface PiProvider {
+
+    /**
+     * Computes and returns the value of the number pi. Implementations
+     * may decide the precision with which they compute the value.
+     *
+     * @return The number pi, with the precision each implementation
+     *         decides.
+     *
+     */
+    BigDecimal computePi();
+}
+</pre>
+            <p xml:lang="en" lang="en">
+    As some implementations will be able to calculate pi with a desired
+    precision, we will define also the following interface, that
+    inherits from <code class="code">PiProvider</code> and add some more methods to
+    deal with precisions.
+  </p>
+            <pre class="programlisting">import java.math.BigDecimal;
+
+/**
+ * Interface to be implemented by classes that compute the number pi.
+ * Classes that implement this interface can provide the value of pi
+ * with the requested precision, understood as the number of exact
+ * digits of the computed value.
+ *
+ */
+public interface AdvancedPiProvider extends PiProvider {
+
+    /**
+     * Sets the desired precision.
+     *
+     * @param precision The desired precision (number of digits).
+     *
+     * @throws PrecisionException if the desired precision is
+     *         negative, zero or bigger than the maximum precision
+     *         this class can provide.
+     *
+     */
+    void setPrecision(int precision) throws PrecisionException;
+
+    /**
+     * Returns the current value of precision.
+     *
+     * @return The current value of precision (number of digits).
+     *
+     */
+    int getPrecision();
+
+    /**
+     * Returns the maximum precision with which this provider is able
+     * to generate the value of pi.
+     *
+     * @return The maximum precision available from this provider, or
+     *         Integer.MAX_VALUE if the provider can provide an
+     *         arbitrarily big precision.
+     *
+     */
+    int getMaximumPrecision();
+}
+</pre>
+            <p xml:lang="en" lang="en">
+    As you can see, the method <code class="code">setPrecision</code> will throw an
+    exception if the desired precision is not a valid precision value
+    (less than 1 or greater than the maximum precision allowed by each
+    particular implementation). Here is the code of this exception:
+  </p>
+            <pre class="programlisting">public class PrecisionException extends Exception {
+    public PrecisionException(int precision) {
+        super("Unsupported precision: " + precision);
+    }
+}
+</pre>
+            <div class="section" id="idm140277180151744">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277180151744">Section 1</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Program and test a class called <code class="code">PiSimple</code> that
+      implements the <code class="code">PiProvider</code> interface and returns the
+      value of pi as (simply) 3.14.
+    </p>
+            </div>
+            <div class="section" id="idm140277182004304">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277182004304">Section 2</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Program and test a class called <code class="code">PiFromMath</code> that
+      implements the <code class="code">PiProvider</code> interface and returns the
+      value of pi defined by <code class="code">Math.PI</code> as a
+      <code class="code">BigDecimal</code>.
+    </p>
+            </div>
+            <div class="section" id="idm140277178602368">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277178602368">Section 3</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Program and test a class called <code class="code">PiFromBBP</code> that
+      implements the <code class="code">AdvancedPiProvider</code> interface, using
+      the code from the <code class="code">PiCalc</code> class you wrote in a
+      previous lab. You will only need to make a few changes to adapt
+      it.
+    </p>
+              <pre class="programlisting">import java.math.BigDecimal;
+import java.math.MathContext;
+
+public class PiCalc {
+
+    private int numDigits;
+    private MathContext mc;
+
+    public PiCalc(int numDigits) {
+        this.numDigits = numDigits;
+        mc = new MathContext(numDigits);
+    }
+
+    public BigDecimal compute() {
+        BigDecimal pi = new BigDecimal(0);
+        BigDecimal limit = new BigDecimal(1).movePointLeft(numDigits);
+        boolean stop = false;
+        for (int k = 0; !stop; k++) {
+            BigDecimal piK = piFunction(k);
+            pi = pi.add(piK);
+            if (piK.compareTo(limit) &lt; 0) {
+                stop = true;
+            }
+        }
+        return pi.round(mc);
+    }
+
+    private BigDecimal piFunction(int k) {
+        int k8 = 8 * k;
+        BigDecimal val1 = new BigDecimal(4);
+        val1 = val1.divide(new BigDecimal(k8 + 1), mc);
+        BigDecimal val2 = new BigDecimal(-2);
+        val2 = val2.divide(new BigDecimal(k8 + 4), mc);
+        BigDecimal val3 = new BigDecimal(-1);
+        val3 = val3.divide(new BigDecimal(k8 + 5), mc);
+        BigDecimal val4 = new BigDecimal(-1);
+        val4 = val4.divide(new BigDecimal(k8 + 6), mc);
+        BigDecimal val = val1;
+        val = val.add(val2);
+        val = val.add(val3);
+        val = val.add(val4);
+        BigDecimal multiplier = new BigDecimal(16);
+        multiplier = multiplier.pow(k);
+        BigDecimal one = new BigDecimal(1);
+        multiplier = one.divide(multiplier, mc);
+        val = val.multiply(multiplier);
+        return val;
+    }
+
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("One command-line argument expected: number of "
+                               + "digits.");
+        } else {
+            PiCalc piCalc = new PiCalc(Integer.parseInt(args[0]));
+            System.out.println(piCalc.compute());
+        }
+    }
+}
+</pre>
+              <p xml:lang="en" lang="en">
+      Please note that the new constructor will not receive any
+      arguments, as the default desired precision will be 30 decimal
+      places.
+    </p>
+            </div>
+            <div class="section" id="idm140277182931232">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277182931232">Section 4</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Program and test a class called <code class="code">PiStored</code> that stores
+      a precalculated value of pi as an <code class="code">String</code>. When asked
+      for a new value of pi, it will return the corresponding stored
+      value (using the desired precision). The maximum precision will be
+      limited by the size of the stored string.
+    </p>
+              <p xml:lang="en" lang="en">
+      Its constructor must not receive any parameters. The default
+      precision will be 30 decimal places.
+    </p>
+              <p xml:lang="en" lang="en">
+      You can use the following string as the value of pi:
+    </p>
+              <pre class="programlisting">private static final String PI = "3.14159265358979323846264338327950"
+                                 + "2884197169399375105820974944592307"
+                                 + "8164062862089986280348253421170679";</pre>
+              <p xml:lang="en" lang="en">
+      To copy a piece of the string, you can use the method <a class="ulink" href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#substring(int,       int)"><code class="code">substring</code> from the class
+      <code class="code">String</code></a>.
+    </p>
+            </div>
+            <div class="section" id="idm140277180991168">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h4 class="title" id="idm140277180991168">Section 5</h4>
+                  </div>
+                </div>
+              </div>
+              <p xml:lang="en" lang="en">
+      Program and test a class called <code class="code">Circle</code> that:
+    </p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" type="disc">
+                  <li xml:lang="en" class="listitem" lang="en">
+        Stores its radius as a <code class="code">BigDecimal</code>.
+      </li>
+                  <li xml:lang="en" class="listitem" lang="en">
+        Has a constructor that receives the radius.
+      </li>
+                  <li xml:lang="en" class="listitem" lang="en">
+        Has a method called <code class="code">area</code> that receives an object
+        implementing the <code class="code">PiProvider</code> interface and returns
+        the area of the circle calculated using the value of pi supplied
+        by that object.
+      </li>
+                </ul>
+              </div>
+              <p xml:lang="en" lang="en">
+      You must carefully make use of polymorphism so this class can use
+      any implementation of the <code class="code">PiProvider</code> interface. This
+      means also to foresee new implementations, different from the ones
+      you made yourself. Test your code using different instances of
+      each of your interface implementations.
+    </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="adagio_page_footer"></div>
+  </body>
+</html>
