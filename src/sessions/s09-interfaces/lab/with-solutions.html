@@ -491,7 +491,7 @@ public class ShapesDataBase {
     private String name;
 
     // Constructor of the shape with a name
-    public Shape (String name){
+    public Shape (String name) {
         setName(name);
     }
 
@@ -502,12 +502,12 @@ public class ShapesDataBase {
     public abstract boolean isRegular();
 
     // Gets the name of the shape
-    protected String getName(){
+    protected String getName() {
         return this.name;
     }
 
     // Sets the name of the shape
-    protected void setName(String name){
+    protected void setName(String name) {
         if (name == null) {
             throw new IllegalArgumentException();
         }
@@ -521,7 +521,7 @@ public class ShapesDataBase {
     }
 
     // returns the scalar product of p1-&gt;p2 and p1-&gt;p3
-    protected static double scalarProduct(Point p1, Point p2, Point p3){
+    protected static double scalarProduct(Point p1, Point p2, Point p3) {
         return (p3.getY()-p1.getY())*(p2.getY()-p1.getY())
             + (p3.getX()-p1.getX())*(p2.getX()-p1.getX());
     }
@@ -623,7 +623,7 @@ public class ShapesDataBase {
 
     // Constructor of the circle
     // Circles of radius 0 are allowed
-    public Circle (String name, Point center, double radius){
+    public Circle (String name, Point center, double radius) {
         super(name);
         this.center = center;
         setRadius(radius);
@@ -647,22 +647,22 @@ public class ShapesDataBase {
     }
 
     // Gets the center of the circle
-    protected Point getCenter(){
+    protected Point getCenter() {
         return this.center;
     }
 
     // Sets the center of the circle
-    protected void setCenter(Point center){
+    protected void setCenter(Point center) {
         this.center = center;
     }
 
     // Gets the radius of the circle
-    protected double getRadius(){
+    protected double getRadius() {
         return this.radius;
     }
 
     // Sets the radius of the circle
-    protected void setRadius(double radius){
+    protected void setRadius(double radius) {
         if (radius &lt; 0) {
             throw new IllegalArgumentException();
         }
@@ -693,7 +693,7 @@ public class ShapesDataBase {
     }
 
     // Indicates if the triangle is regular (equilateral triangle) or not
-    public boolean isRegular(){
+    public boolean isRegular() {
         double side1 = vertexes[0].distance(vertexes[1]);
         double side2 = vertexes[1].distance(vertexes[2]);
         double side3 = vertexes[2].distance(vertexes[0]);
@@ -754,7 +754,7 @@ public class ShapesDataBase {
     public abstract double area();
 
     // Indicates if the quadrilateral is regular.
-    public boolean isRegular(){
+    public boolean isRegular() {
         double side1 = vertexes[0].distance(vertexes[1]);
         double side2 = vertexes[1].distance(vertexes[2]);
         double side3 = vertexes[2].distance(vertexes[3]);
@@ -769,7 +769,7 @@ public class ShapesDataBase {
     }
 
     // Quadrilateral to String
-    public String toString(){
+    public String toString() {
         return (getName() + "; Vertexes: " +
                 getVertex(0) + ", " +
                 getVertex(1) + ", " +
@@ -797,7 +797,7 @@ public class ShapesDataBase {
     // WARNING: this particular implementation allows for
     // rectangles with the four vertexes at the same point:
     // they will be regular and has area 0.
-    private boolean isValidRectangle(){
+    private boolean isValidRectangle() {
         double product1 = Rectangle.scalarProduct(vertexes[0], vertexes[1], vertexes[3]);
         double product2 = Rectangle.scalarProduct(vertexes[1], vertexes[0], vertexes[2]);
         double product3 = Rectangle.scalarProduct(vertexes[2], vertexes[1], vertexes[3]);
