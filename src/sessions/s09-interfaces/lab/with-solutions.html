@@ -647,22 +647,22 @@ public class ShapesDataBase {
     }
 
     // Gets the center of the circle
-    private Point getCenter(){
+    protected Point getCenter(){
         return this.center;
     }
 
     // Sets the center of the circle
-    private void setCenter(Point center){
+    protected void setCenter(Point center){
         this.center = center;
     }
 
     // Gets the radius of the circle
-    private double getRadius(){
+    protected double getRadius(){
         return this.radius;
     }
 
     // Sets the radius of the circle
-    private void setRadius(double radius){
+    protected void setRadius(double radius){
         if (radius &lt; 0) {
             throw new IllegalArgumentException();
         }
@@ -709,7 +709,7 @@ public class ShapesDataBase {
     }
 
     // Gets ith vertex of the triangle
-    private Point getVertex(int i) {
+    protected Point getVertex(int i) {
         if (i&lt;0 || i&gt;2) {
             throw new IllegalArgumentException();
         }
@@ -717,7 +717,7 @@ public class ShapesDataBase {
     }
 
     // Sets vertex1 of the triangle
-    private void setVertex(int i, Point vertex) {
+    protected void setVertex(int i, Point vertex) {
         if (i&lt;0 || i&gt;2 || vertex == null) {
             throw new IllegalArgumentException();
         }
@@ -777,14 +777,14 @@ public class ShapesDataBase {
                 getVertex(3));
     }
 
-    public void setVertex(int i, Point vertex) {
+    protected void setVertex(int i, Point vertex) {
         if (i&lt;0 || i&gt;3 || vertex==null) {
             throw new IllegalArgumentException();
         }
         this.vertexes[i] = vertex;
     }
 
-    public Point getVertex(int i) {
+    protected Point getVertex(int i) {
         if (i&lt;0 || i&gt;3) {
             throw new IllegalArgumentException();
         }
