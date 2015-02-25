@@ -87,7 +87,21 @@ class PrimesGui {
     }
 
     public static void main(String args[]) {
-        final PrimeGenerator primeGenerator = new PrimeGenerator(MAX_NUMBER_TO_CHECK);
+        if (args.length != 1) {
+            System.err.println("ERROR: this program need one argument");
+            return;
+        }
+        final PrimeGenerator primeGenerator;
+        try {
+            primeGenerator = new PrimeGenerator(Integer.parseInt(args[0]));
+        } catch (NumberFormatException ex) {
+            System.err.println("ERROR: Bad argument: it must be an integer");
+            return;
+        } catch (IllegalArgumentException ex) {
+            System.err.println("ERROR: Bad argument: the number must be greater than 1");
+            return;
+        }
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 PrimesGui app = new PrimesGui(primeGenerator);

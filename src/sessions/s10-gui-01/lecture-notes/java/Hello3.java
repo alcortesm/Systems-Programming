@@ -1,6 +1,6 @@
 class Hello3 {
     public static void main(String[] args) {
-        PrintFunctor o = new PrintFunctor();
-        o.run();
+        Runnable runMe = new PrintFunctor();
+        runMe.run();
     }
 }

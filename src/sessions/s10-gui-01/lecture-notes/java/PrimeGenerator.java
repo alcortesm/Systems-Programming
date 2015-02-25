@@ -6,7 +6,7 @@ class PrimeGenerator {
     private static final int SLEEP_MS = 1000;
 
     public PrimeGenerator(int max) {
-        if (max <= 2) {
+        if (max <= 1) {
             throw new IllegalArgumentException();
         }
         this.max = max;

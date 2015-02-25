@@ -31,16 +31,7 @@ GUIs
 
 \section{Classes we are going to use today}
 
-Today we are going to use two classes in our examples:
-
-\begin{multicols}{2}
-  \begin{center}
-    \verb+person.eps+\\
-    \includegraphics[width=5cm]{./img/person/person.eps}
-  \end{center}
-  \columnbreak
-  \codeinput{../java/Person.java}{Person.java}
-\end{multicols}
+Today we are going to use the Java Runnable interface in our examples:
 
 \begin{multicols}{2}
   \begin{center}
@@ -81,6 +72,8 @@ Now let's write another version of this same program:
 
 \codeinput{../java/Hello2.java}{Hello2.java}
 
+We have hide what we want to do inside a method and call that method instead.
+
 Now let's write another, more complicated version of this program:
 
 \begin{multicols}{2}
@@ -89,21 +82,35 @@ Now let's write another, more complicated version of this program:
   \codeinput{../java/PrintFunctor.java}{PrintFunctor.java}
 \end{multicols}
 
+We have hide what we want to do inside an object, and then call the run()
+method of that object.
+
 This seems like a very complicated way to something very simple, and you are
 right, but stay with me for a minute.
 
 Whenever you want to print "Hello" you can create an object from this class
 and call its \verb+run()+ mehtod.
 
-The sole purpuse in life of this class is to carry a method around.
+The sole purpuse in life of this class is to carry what we want to do, and then
+do it when we call its run method.
 
-This class is just a method, disguised as a class.
+This class is just what we want to do, disguised as an object.
 
-This class is called a FUNCTOR, a method disguised as a class.
+This class is called a FUNCTOR, a bunch of code disguised as an object.
 
+Funtors are very important because you can not pass code or methods, but you can pass objects.
 
+For example:
 
+Let's say we have a program that prints 10 times "hello" and adds 10 times
+"Alberto" to an \verb+ArrayList<String>+.
 
+You can do that by hand, or create a method that runs an object 10 times and
+then you call that method two times: first with a functor that prints "hello",
+then with a functor that adds "Alberto" to an \verb+ArrayList<String>+.
+
+The conceptual jump is huge, you are no longer creating methods that does
+something, you are creating methods that do "anything" you want to do.
 
 
 
@@ -112,11 +119,15 @@ This class is called a FUNCTOR, a method disguised as a class.
 
 Now, in Java there is yet a better way to do this.
 
+As you are only going to use the PrintFuntor class to create a single object,
+pass it to a method and then forget about it, creating a PrintFunctor.java
+files seems like an overkill.
+
+It is not a very important class, you are only going to use it once to create a
+single object and then you forget about it.
+
 In Java, you can create classes inside another class, they are called NESTED
 CLASSES.
-
-They are used a lot when you want a class that is only going to be used inside
-another class, but not outside it.
 
 So instead of creating a new java file for this class, you can simply write
 this class inside the class that is going to use it.
@@ -126,45 +137,12 @@ this class inside the class that is going to use it.
 
 
 
+\subsection{Anonymous Classes}
 
+Now, in Java there is even a better way to do that.
 
-
-
-\subsection{The power of Functors: passing methods to other methods}
-
-Let's say we want to write a program that prints "hello" 5 times, adds 10 years
-to Alberto and adds Alberto 3 times to a bag of Persons.
-
-\codeinput{../java/Repeat1.java}{Repeat1.java}
-
-Can you see the pattern here?
-
-Wouldn't it be nice to write a method that DO SOMETHING N times in a row.
-
-\begin{blackboard}
-void repeat(XXXX something, int n) {
-  for (int i=0; i<n; i++) {
-    something();
-  }
-}
-
-repeat(System.out.println("Hello"), 5);
-repeat(alberto.addOneYear(), 10);
-repeat(bag.add(alberto), 3);
-\end{blackboard}
-
-But in Java we can not pass a method as an input parameter to another method.
-
-In Java, we can only pass primtive types and references to objects as input
-parameters to a method.
-
-So how do we solve this?
-
-Well, we pass a functor, which is a method, disguised as an object:
-
-\codeinput{../java/Repeat2.java}{Repeat2.java}
-
-We can do this even better using Java anonymous classes.
+You don't even have to create a nested class, you can just write the class in
+the same line where you are creating an object from that class.
 
 An anonymous class is how you create an object from a class that you only need
 for that single object, and then you forget about it forever.
@@ -180,34 +158,17 @@ You use them once to create a single object and then you throw them away.
 For example, if you need an object that implements the Runnable interface, and
 that prints hello when you call its run method, you can write something like this:
 
-\begin{blackboard}
-// FUNCTOR implemented as an ANONYMOUS CLASS
-Runnable r = new Runnable() {
-  public void run() {
-    System.out.println("Hello");
-  }
-};
-\end{blackboard}
+\codeinput{../java/Hello5.java}{Hello5.java}
 
-This will create a new reference called r to an object of a class that
-implements the interface Runnable (\verb+Runnable r+).
 
-Then it will create a new object (\verb+new+) and point the reference r to it
-(\verb+=+).
 
-The class of this object is not in any Java file and it is not a defined as a
-nested class later, instead you are providing the full source code for the
-class just there in that very moment.
 
-The will not have a name (that why they are called anonymous classes).
 
-It will implement the \verb+Runnable+ interface.
 
-Objects from that class will have a \verb+run()+ method that prints "hello".
 
-Then, once the object is created, it will forget about that class forever.
 
-\codeinput{../java/Repeat3.java}{Repeat3.java}
+
+
 
 
 
@@ -221,7 +182,7 @@ Then, once the object is created, it will forget about that class forever.
 
 \section{GUIs}
 
-Let's run a program that prints the prime numbers under 100:
+Let's run a program that prints the prime numbers smaller than its argument:
 
 \verb+ DEMO: java PrimesTui+
 
