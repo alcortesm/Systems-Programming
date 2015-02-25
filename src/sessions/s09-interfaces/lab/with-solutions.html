@@ -259,7 +259,7 @@
                       <p xml:lang="en" lang="en">
             Program the <code class="code">isRegular</code> method to tell if the
             shape is regular. Please note that a quadrilateral is
-            regular if all its sides are equal (because then, its angles will be equal also).
+            regular if it is a square (all its sides and angles are equal).
           </p>
                     </li>
                     <li class="listitem">
@@ -302,7 +302,7 @@
             <p>You can use the following methods to test that all the angles are right angles:</p>
 
 <pre class=programlisting>    // returns the scalar product of p1-&gt;p2 and p1-&gt;p3
-    private static double scalarProduct(Point p1, Point p2, Point p3){
+    protected static double scalarProduct(Point p1, Point p2, Point p3){
         return (p3.getY()-p1.getY())*(p2.getY()-p1.getY())
             + (p3.getX()-p1.getX())*(p2.getX()-p1.getX());
     }
@@ -329,9 +329,7 @@
                     </li>
                     <li class="listitem">
                       <p xml:lang="en" lang="en">
-            Program its <code class="code">area</code> method. In a rectangle, given
-            a vertex, the distance to its two nearest vertexes, would be
-            the base and height of the rectangle.
+            Program its <code class="code">area</code> method.
           </p>
                     </li>
                     <li class="listitem">
@@ -520,6 +518,12 @@ public class ShapesDataBase {
     protected static final double ERROR_MARGIN = 0.00001D;
     protected static boolean equalsDoubles(double a, double b) {
         return (Math.abs(a-b) &lt;= ERROR_MARGIN);
+    }
+
+    // returns the scalar product of p1-&gt;p2 and p1-&gt;p3
+    protected static double scalarProduct(Point p1, Point p2, Point p3){
+        return (p3.getY()-p1.getY())*(p2.getY()-p1.getY())
+            + (p3.getX()-p1.getX())*(p2.getX()-p1.getX());
     }
 }</pre>
               <pre class="programlisting">public class Point {
@@ -758,7 +762,10 @@ public class ShapesDataBase {
 
         return Shape.equalsDoubles(side1, side2) &amp;&amp;
             Shape.equalsDoubles(side1, side3) &amp;&amp;
-            Shape.equalsDoubles(side1, side4);
+            Shape.equalsDoubles(side1, side4) &amp;&amp;
+            Shape.equalsDoubles(
+                Shape.scalarProduct(
+                    vertexes[0], vertexes[1], vertexes[3]), 0D);
     }
 
     // Quadrilateral to String
@@ -785,12 +792,6 @@ public class ShapesDataBase {
     }
 }</pre>
               <pre class="programlisting">public class Rectangle extends Quadrilateral {
-
-    // returns the scalar product of p1-&gt;p2 and p1-&gt;p3
-    private static double scalarProduct(Point p1, Point p2, Point p3){
-        return (p3.getY()-p1.getY())*(p2.getY()-p1.getY())
-            + (p3.getX()-p1.getX())*(p2.getX()-p1.getX());
-    }
 
     // checks if it has 3 right angles
     // WARNING: this particular implementation allows for
