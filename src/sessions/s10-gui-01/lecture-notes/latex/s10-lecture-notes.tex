@@ -1,0 +1,453 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 10 - GUI 01}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Functors, Nested classes & Anonymous classes
+GUIs
+\end{blackboard}
+
+
+
+
+
+
+
+\section{Classes we are going to use today}
+
+Today we are going to use the Java Runnable interface in our examples:
+
+\begin{multicols}{2}
+  \begin{center}
+    \verb+runnable.eps+\\
+    \includegraphics[width=5cm]{./img/runnable/runnable.eps}
+  \end{center}
+  \columnbreak
+  \begin{blackboard}
+interface Runnable {
+    public void run();
+}
+\end{blackboard}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Funtors}
+
+
+Let's write a simple program that prints "Hello":
+
+\codeinput{../java/Hello1.java}{Hello1.java}
+
+Now let's write another version of this same program:
+
+\codeinput{../java/Hello2.java}{Hello2.java}
+
+We have hide what we want to do inside a method and call that method instead.
+
+Now let's write another, more complicated version of this program:
+
+\begin{multicols}{2}
+  \codeinput{../java/Hello3.java}{Hello3.java}
+  \columnbreak
+  \codeinput{../java/PrintFunctor.java}{PrintFunctor.java}
+\end{multicols}
+
+We have hide what we want to do inside an object, and then call the run()
+method of that object.
+
+This seems like a very complicated way to something very simple, and you are
+right, but stay with me for a minute.
+
+Whenever you want to print "Hello" you can create an object from this class
+and call its \verb+run()+ mehtod.
+
+The sole purpuse in life of this class is to carry what we want to do, and then
+do it when we call its run method.
+
+This class is just what we want to do, disguised as an object.
+
+This class is called a FUNCTOR, a bunch of code disguised as an object.
+
+Funtors are very important because you can not pass code or methods, but you can pass objects.
+
+For example:
+
+Let's say we have a program that prints 10 times "hello" and adds 10 times
+"Alberto" to an \verb+ArrayList<String>+.
+
+You can do that by hand, or create a method that runs an object 10 times and
+then you call that method two times: first with a functor that prints "hello",
+then with a functor that adds "Alberto" to an \verb+ArrayList<String>+.
+
+The conceptual jump is huge, you are no longer creating methods that does
+something, you are creating methods that do "anything" you want to do.
+
+
+
+
+\subsection{Nested Classes}
+
+Now, in Java there is yet a better way to do this.
+
+As you are only going to use the PrintFuntor class to create a single object,
+pass it to a method and then forget about it, creating a PrintFunctor.java
+files seems like an overkill.
+
+It is not a very important class, you are only going to use it once to create a
+single object and then you forget about it.
+
+In Java, you can create classes inside another class, they are called NESTED
+CLASSES.
+
+So instead of creating a new java file for this class, you can simply write
+this class inside the class that is going to use it.
+
+\codeinput{../java/Hello4.java}{Hello4.java}
+
+
+
+
+\subsection{Anonymous Classes}
+
+Now, in Java there is even a better way to do that.
+
+You don't even have to create a nested class, you can just write the class in
+the same line where you are creating an object from that class.
+
+An anonymous class is how you create an object from a class that you only need
+for that single object, and then you forget about it forever.
+
+In spanish there is a perfect way to describe them: "una clase anónima es una
+clase de usar y tirar".
+
+The best english translation I have found for this is, anonymous classes are
+"one use classes" or "disposable classes".
+
+You use them once to create a single object and then you throw them away.
+
+For example, if you need an object that implements the Runnable interface, and
+that prints hello when you call its run method, you can write something like this:
+
+\codeinput{../java/Hello5.java}{Hello5.java}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{GUI vs. TUI}
+
+Let's run a program that prints the prime numbers smaller than its argument:
+
+\verb+ DEMO: java PrimesTui+
+
+Now let's run a Graphical program that does the same:
+
+\verb+ DEMO: java PrimesGui+
+
+Let's talk about their similarities and differences:
+
+\paragraph{Similarities}
+
+\begin{itemize}
+
+  \item They have the same functionality.
+
+    In fact, the core of both programs is the same, a class that calculates
+    prime numbers, only 35 loc.
+
+\end{itemize}
+
+\paragraph{Differences}
+
+\begin{itemize}
+
+  \item The GUI version is much complex:
+
+    \begin{itemize}
+
+      \item PrimeTui.java is 17 loc, PrimesGui.java is 151 loc.
+
+      \item PrimeTui uses 3 classes: String and 2 Exceptions. But PrimesGui
+        uses 12 classes, 2 interfaces and defines 2 nested classes, 4 functors
+        and 4 anonymous classes.
+
+        Most of these classes belong to the packages \verb+java.swing+ or
+        \verb+java.awt+.
+
+        Those packages are Java libreries to create graphical interfaces.
+
+        \verb+java.awt+ is an old version, \verb+java.swing+ is the new version
+        that still use some classes from the old one.
+
+    \end{itemize}
+
+  \item The GUI version is a multithreaded application, this means our GUI
+    program is doing several things at the same time.
+
+    \begin{itemize}
+
+      \item I have write a class that returns the prime numbers smaller than a
+        given number, it looks like this:
+
+        \begin{center}
+          \includegraphics[width=8cm]{./img/primegenerator/primegenerator.eps}
+        \end{center}
+
+      \item The TUI version is just doing this:
+
+        \begin{center}
+          \includegraphics[width=8cm]{./img/tui_thread/tui_thread.eps}
+        \end{center}
+
+      \item the GUI version is doing several things at the same time:
+
+        \verb+DEMO DE REDIMENSIONAR LA VENTANA MIENTRAS EJECUTA+
+
+        \begin{center}
+          \includegraphics[width=14cm]{./img/gui_threads/gui_threads.eps}
+        \end{center}
+
+    \end{itemize}
+
+  \item the GUI version is not really doing as much work as you might think,
+    for example the windows decorations are being drawn by a process in my
+    operating system, not by the Java application itself, for example, if I ran
+    this same application in a windows computer it will look different, like
+    this:
+
+    \verb+DIBUJAR LAS WINDOW DECORATION EN WINDOWS+
+
+\end{itemize}
+
+
+
+
+\section{My first GUI}
+
+Let's create an program that creates and shows a window.
+
+\codeinput{../java/Gui01.java}{Gui01.java}
+
+The main threads ends, as you can see by the message, but the swing event
+dispacher threads continues executing, so you can perform graphical operations.
+
+But as you can see, if we try to close the window, the window is closed, but
+the program still continues.
+
+Let's fix this by telling our window that when it closes, the program must end.
+
+\verb+ENLACE: JFrame setDefaultCloseOperation+
+
+\codeinput{../java/Gui02.java}{Gui02.java}
+
+Just to keep things organized let's group all this graphical code in a method,
+let's call it, for example: createAndShowGui:
+
+\codeinput{../java/Gui04.java}{Gui04.java}
+
+But this way of creating GUI is very dangerous, because all this graphical code
+is being executed by the main thread.
+
+In swing, all GUI code must be executed by the EDT or you will have extremely
+difficult bugs.
+
+So, how do you tell your main thread, that you want this createAndShowGui
+method to be executed by EDT thread instead?
+
+In Swing, there is a class called \verb+javax.swing.SwingUtilities+ with an
+static method \verb+invokeLater()+ that allows you to send code to the EDT for
+execution.
+
+This invokeLater method receives a functor of course.
+
+\codeinput{../java/Gui05.java}{Gui05.java}
+
+\verb+DIBUJAR EL ESQUEMA DE HILOS+
+
+
+
+
+
+
+\subsection{Extending from JFrame}
+
+Now everything is fine and works properly.
+
+But let me explain a different way to do the same thing, that has some
+advantadges for small applications like the ones we are going to program in
+this course.
+
+Sadly, it is quite hard to understand now why this alternative way is better.
+
+This is the kind of thing you learn after having some expirience doing
+graphical interfaces.
+
+So I'm not even going to try to explain to you why this way is better, just
+believe me and I can guaranty that your life will be easier.
+
+Now, what is this alternative way:
+
+\verb+MOSTRAR java PrimesGui+
+
+Many people think about this a graphical application as an specialized version
+of a standard Java Frame.
+
+There are standard Java empty frames (JFrames), and then there is my
+application that is an especial version of a frame, with some buttons and
+things.
+
+From that point of view, your application IS A frame, and therefore, extends
+from JFrame.
+
+\codeinput{../java/Gui06.java}{Gui06.java}
+
+As I told you before, this way of creating graphical interfaces has some
+advantadges when the application is small, but I am not going to try to explain
+why, ok, just believe me on this.
+
+If you don't believe me, just try and build 20 or 30 applications, and after
+that, I'm quite sure you will understand.
+
+
+
+
+
+
+\subsection{Adding graphical components to your window}
+
+Now let's do something interesting with the window, let's add some graphical
+components, for example a Label, which is just a String of text that you can
+write inside a window.
+
+Now, a frame has several parts:
+
+\verb+DIBUJAR JFRAME: MENU, CONTENTPANE, and GLASSPANE+
+
+The contentpane is where you add graphical componentes, like buttons and
+labels.
+
+This contentpane is an object of the class JPanel.
+
+A JPanel is like a corkboard, where you can pin several things, like buttons or
+labels for example.
+
+To add a graphical object to our cork, we use its \verb+add+ method.
+
+So let's add a label to our window:
+
+\codeinput{../java/Gui07.java}{Gui07.java}
+
+The default font size of swing is quite small, so let me call a method I have
+write myself to make fonts bigger:
+
+\codeinput{../java/Gui08.java}{Gui08.java}
+
+Ok, now you can see things much better.
+
+Now lets add some decorations to our text.
+
+A JLabel inherits from JComponent and all JComponents have a background color
+and a foreground color.
+
+Another important thing to know about Java Components is that their background
+is transparent by default, so you will need to set them opaque if you want to
+see the background color.
+
+\codeinput{../java/Gui09.java}{Gui09.java}
+
+Now that we are actually showing something inside our window, we no longer need
+to tell the window its size, we can ask the frame to adjust its side to
+whatever it has inside, the pack() method does this:
+
+\codeinput{../java/Gui10.java}{Gui10.java}
+
+
+Now let's add some more graphical elements.
+
+When you add graphical elements to a panel, they position they are going to get
+depends on the order you add them and an allocation policy.
+
+The policy of the panels is configurable, and you have some standard policies
+you can chose from, they are called \verb+LayoutManagers+.
+
+\verb+ENLACE: A Visual Guide to Layout Managers+
+
+\codeinput{../java/Gui11.java}{Gui11.java}
+
+You can define your own graphical components to add to your panels, but there
+are a bunch predefined graphical components that you will find usefull.
+
+\verb+ENLACE: A Visual Guide to Swing Components+
+
+Now, let's do something a little more interesting, let's pretend we want to
+program a Java source editor, with the ability to open Java files, save Java
+files and compile Java files.
+
+The GUI will look like this:
+
+\verb+dibujar textarea, label abajo y una barra de botones arriba con open, save y compile+
+
+\codeinput{../java/Gui12.java}{Gui12.java}
+
+The buttons are very big because the grid is trying to fill all the available
+space, let's change the grid for a BoxLayout, that will group the buttons
+horizontally, but without trying to fill all the available space.
+
+\codeinput{../java/Gui13.java}{Gui13.java}
+
+You can see that when you try to write pass the borders of the textarea, you
+can not see what you are typing.
+
+ScrollPanes are made to see an small portion of a bigger graphical element, by
+adding some scroll bars around it, let's see if this solves our problem:
+
+\codeinput{../java/Gui14.java}{Gui14.java}
+
+
+\end{document}
