@@ -1,4 +1,4 @@
-name := person
+name := tui_thread
 
 # build
 src := $(name).dia

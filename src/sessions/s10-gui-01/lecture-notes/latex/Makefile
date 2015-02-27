@@ -61,4 +61,8 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-
+	cp ../java/*.java $(demo_dir)
+	cp ./img/runnable/runnable.eps $(demo_dir)
+	cp ./img/primegenerator/primegenerator.eps $(demo_dir)
+	cp ./img/tui_thread/tui_thread.eps $(demo_dir)
+	cp ./img/gui_threads/gui_threads.eps $(demo_dir)
