@@ -23,9 +23,250 @@ Events
 \end{blackboard}
 
 
+\newpage
+
+\section{Review of last lecture}
+
+\begin{itemize}
+
+  \item In Swing, a window is called a \texttt{JFrame}.
+
+  \item A \texttt{JFrame} has a \texttt{JPanel} called the \texttt{contentPanea}.
+
+  \item \texttt{JPanel}s are like corkboards, where you can pin other graphical objects, using its method \texttt{add()}.
+
+  \item You can add any \texttt{JComponents} (\texttt{JLabel}, \texttt{JButton}...) to the \texttt{contentPane}.
+
+  \item All \texttt{JComponents} have some common properties: they have a background
+    color, a foreground color, and things you can configure like a preferred
+    size, a minumum size, a maximum size...
+
+  \item Note that as \texttt{JPanel} is also a \texttt{JComponent}, so you can add \texttt{JPanels} inside other \texttt{JPanels}, to create complex windows.
+
+  \item \texttt{JComponent}s inside a \texttt{JPanel} will be drawn according to the \texttt{LayoutManager} of that \texttt{JPanel}.
+
+  \item There are several types of \texttt{LayoutManager}s: \texttt{GridLayout}, \texttt{BorderLayout}, \texttt{FlowLayout}...
+
+  \item All graphical operations must be performed inside the Event Dispacher Thread (EDT).
+
+  \item You can tell Java to execute code inside the EDT by passing a FUNCTOR to the \texttt{SwingUtilities.invokeLater()} method.
+
+  \item Most of the times is not worth it to create FUNCTORs as ordinary classes, better use NESTED classes or ANONYMOUS classes.
+
+\end{itemize}
+
+\vspace{1cm}
+\begin{center}
+\includegraphics[width=18cm]{./img/jframe/jframe.eps}
+\end{center}
+
+\newpage
 
 
 
 
+
+
+
+\section{How to make a swing program react to the users inputs}
+
+Some JComponents are interactive, like buttons for example.
+
+We would like to tell our program: when the user press this button, please
+execute this method. If the user press this other button, then execute this
+other method. Meanwhile, just do nothing.
+
+Of course, you already know that you can not pass methods in Java, but you can pass funtors.
+
+So you would like to tell Java: when the user press this button, then execute
+this funtor, if he presses this other button, then execute that other functor,
+and so on and so forth.
+
+
+\section{The Swing Event Dispacher Thread}
+
+The EDT is constantly monitoring the user mouse and keyboard, waiting for user inputs.
+
+When the user interacts with any JComponent (for example, when he press a button), the EDT will generate an Event.
+
+Depending on the user action, JComponents will create different kinds of Events:
+
+\begin{itemize}
+
+  \item \texttt{MouseEvent}:
+
+    \begin{itemize}
+
+      \item mouse button is pressed
+
+      \item mouse button is released
+
+      \item the mouse cursor enters Jcomponent area
+
+      \item the mouse cursos leaves JComponent area.
+
+      \item the mouse is moved
+
+      \item the mouse is dragged
+
+    \end{itemize}
+
+  \item \texttt{MouseWheelEvent}
+
+    \begin{itemize}
+
+    \item Mouse Wheel Up
+
+    \item Mouse Wheel Down
+
+    \end{itemize}
+
+  \item \texttt{KeyEvent}
+
+    \begin{itemize}
+
+    \item Key pressed
+
+    \item Key released
+
+    \end{itemize}
+
+\end{itemize}
+
+These are all pretty low level events, and your very simple graphical
+application should not care about them, just let Swing take care of them in the
+standard way.
+
+Instead of handling these kind of low level events, you will like to handle
+more high level events:
+
+Instead of detecting a MOUSE\_CURSOR\_ENTER\_JCOMPONENT, then MOUSE\_BUTTON\_PRESSED and
+then a MOUSE\_BUTTON\_RELEASED, you will like to detect a single BUTTON\_CLICKED events.
+
+Those kind of high level events are called \texttt{ActionEvents}:
+
+\section{ActionEvent}
+
+The class ActionEvent is a class that represents high level events from AbstractButtons.
+
+All AbstractButtons will create ActionEvents when a particular combination of the
+low level events is detected:
+
+For example, when you click on a button, the MOUSE\_BUTTON\_PRESSED and then the
+MOUSE\_BUTTON\_RELEASED event are created, that is a hint that the user has click
+on the button.
+
+The JButton is listening to those events and asking Swing to redraw itself so
+you can see that the button is pressed and then it is redraw again to show that
+the button was released. There is a high chance you don't want to change that
+in a simple application.
+
+But when that particular combination of low level events happend, the button
+also create a new ActionEvent for the clicking of the button. But this time,
+the JButton is not handling that event and is not doing anything with it. You
+as the programmer of the application must handle that event and do something
+interisting in you application.
+
+But you can also click on a button without using the mouse, you can press the
+TAB key until the graphical focus is set on the button you want to press and
+then press the SPACEBAR key, that will be like clicking the button.
+
+In this case the graphical application will have created some KEY PRESSED
+events and some KEY RELEASED events for the clicking of the TAB key and for the
+SPACEBAR key. The JButton will also be listening to those events and redraw itself
+so it looks like you are pressing and releasing the button.
+
+Again, after doing all that, the JButton is creating the same ActionEvent as
+before, when you clicked the button with the mouse, so your application can
+handle that event and do what it has to do when the button is pressed.
+
+The class ActionEvent looks like this:
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/actionevent/actionevent.eps}
+\end{center}
+
+When a button creates an ActionEvent, it fills in the source and command for the event.
+
+The source of the event is the JComponent creating the event, in our example the button.
+
+You can get the source of an ActionEvent by calling the \texttt{getSource()}
+method, it will return the JComponent that create that event.
+
+For example: if you have several buttons in your application, the events
+created by pressing each button will have a different source (each of the
+JButtons).
+
+When a button is pressed, you will receive an ActionEvent created by that
+button. You can use the \texttt{getSource()} methodto know which of your
+buttons was pressed, for example.
+
+The \texttt{command} of an ActionEvent is additional information in the event
+about the button that was pressed. You can ask for the command inside an event
+with the method \texttt{getActionCommand}.
+
+This allows you to create MODAL buttons, example: you can have a button to show
+or hide a portion of the window. When you press the button once, an ActionEvent
+will be created with that button as the source and the command \verb+"SHOW"+,
+when you press the button again, it will create an ActionEvent with the same
+button as its source but with the command \verb+"HIDE"+.
+
+So, you use the source of an event to identify what button was pressed and you
+use the command of an event to identify what action has to be done if the same
+button can do several things at different moments.
+
+Null commands are allowed if you don't want to use modal buttons.
+
+
+
+
+
+
+\section{Handling ActionEvents}
+
+By default, all the ActionEvents created by the JComponents of your window will be ignored.
+
+That is why the windows you have been doing untill now don't do anything when a button is pressed.
+
+If you want to handle an ActionEvent, you have to tell your AbstractButtons
+what to do with the ActionEvent, this is done by adding a funtor to your button
+that receives the ActionEvent as a parameter.
+
+These funtors are called Listeners in Swing.
+
+All AbstractButtons have an \texttt{addActionListener()} method that you can use to
+add an ActionListener (this is a funtor) to your graphical components.
+
+The UML of this relationship looks as follows:
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/actionlistener/actionlistener.eps}
+\end{center}
+
+So to do something when a button is pressed, you have to:
+
+\begin{enumerate}
+
+  \item Create a button.
+
+  \item Set the actionCommand of that button if you want to used actionCommands.
+
+  \item Create an ActionListener for your button with the code of what you want to do when the button is pressed.
+
+  \item Add the ActionListener to your button.
+
+\end{enumerate}
+
+If you do that, then when the button is pressed:
+
+\begin{enumerate}
+
+  \item The button will create an ActionEvent with the source as itself and the actionCommand of the button.
+
+  \item Then it will ask the EDT to execute the actioPerformed method of the actionListener that was added to the button.
+
+  \item The actionPerformed method will receive the ActionEvent as an argument.
+
+\end{enumerate}
 
 \end{document}

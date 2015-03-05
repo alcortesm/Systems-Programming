@@ -61,3 +61,4 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
+	pdftk A=$(out) cat A2 output $(demo_dir)/jframe.pdf
