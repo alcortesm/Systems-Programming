@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 class PrimeGenerator {
     private int max;
     private int last;
-    private static final int SLEEP_MS = 1000;
+    private static final int SLEEP_MS = 100;
 
     public PrimeGenerator(int max) {
         if (max <= 1) {
@@ -24,9 +24,9 @@ class PrimeGenerator {
 
     public int next() throws NoSuchElementException, InterruptedException {
         for (int current=last+1; current<=max; current++) {
+            Thread.sleep(SLEEP_MS);
             if (isPrime(current)) {
                 last = current;
-                Thread.sleep(SLEEP_MS);
                 return current;
             }
         }

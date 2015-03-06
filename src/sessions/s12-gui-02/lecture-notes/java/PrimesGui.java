@@ -11,12 +11,12 @@ import java.util.NoSuchElementException;
 import javax.swing.SwingUtilities;
 
 class PrimesGui {
-    private static final int MAX_NUMBER_TO_CHECK = 100;
     private static final int DEFAULT_FONT = 40;
     private static final String COMMAND_START = "COMMAND_START";
     private static final String COMMAND_STOP = "COMMAND_STOP";
 
     private PrimeGenerator primeGenerator;
+    private int max;
     private boolean running = false;
     private Worker worker;
 
@@ -82,8 +82,9 @@ class PrimesGui {
         frame.setVisible(true);
     }
 
-    private PrimesGui(PrimeGenerator primeGenerator) {
+    private PrimesGui(PrimeGenerator primeGenerator, int max) {
         this.primeGenerator = primeGenerator;
+        this.max = max;
     }
 
     public static void main(String args[]) {
@@ -92,8 +93,10 @@ class PrimesGui {
             return;
         }
         final PrimeGenerator primeGenerator;
+        final int max;
         try {
-            primeGenerator = new PrimeGenerator(Integer.parseInt(args[0]));
+            max = Integer.parseInt(args[0]);
+            primeGenerator = new PrimeGenerator(max);
         } catch (NumberFormatException ex) {
             System.err.println("ERROR: Bad argument: it must be an integer");
             return;
@@ -104,7 +107,7 @@ class PrimesGui {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                PrimesGui app = new PrimesGui(primeGenerator);
+                PrimesGui app = new PrimesGui(primeGenerator, max);
                 app.createAndShowGui();
             }
         });
@@ -140,7 +143,7 @@ class PrimesGui {
     private class Worker extends Thread {
         public void run() {
             try {
-                while (true) {
+                while (! isInterrupted()) {
                     int prime = primeGenerator.next();
                     final String primeStr = "" + prime;
                     SwingUtilities.invokeLater(new Runnable() {
@@ -151,7 +154,7 @@ class PrimesGui {
                 }
             } catch (NoSuchElementException ex) {
                 running = false;
-                primeGenerator = new PrimeGenerator(MAX_NUMBER_TO_CHECK);
+                primeGenerator = new PrimeGenerator(max);
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         setButtonsEnabledProperty();
