@@ -269,4 +269,91 @@ If you do that, then when the button is pressed:
 
 \end{enumerate}
 
+
+
+
+
+
+
+\section{Other kind of events}
+
+Each JComponent has its own Events and Listeners.
+
+For example a JSlider has ChangeEvents and you can listen to them by adding a ChangeListener object.
+
+A JTextField fires ordinary ActionEvents when the user fill a text inside and you can listen to that whith and ordinary ActionListener.
+
+A JScrollPanel fires MouseEvents and you can listen to them using by adding a MouseMotionListener object.
+
+Also, the window itself can fire events when the user interacts with it. It
+will fire WindowEvents when it is resized, closed, maximased or iconfied. You
+can listen to those events by adding a WindowListener.
+
+
+
+\section{Demo}
+
+Let's add some functionality to this program:
+
+\codeinput{../java/Gui20.java}{Gui20.java}
+
+Let's try and print something when the start button is pressed.
+
+We will need to add a new ActionListener to the button:
+
+\codeinput{../java/Gui21.java}{Gui21.java}
+
+Now, let's add another Listener for the other button:
+
+\codeinput{../java/Gui22.java}{Gui22.java}
+
+We don't really need to different Listener classes, we can use the same class
+for both buttons, for example lets try and print which button was pressed, just
+by using a single funtor.
+
+\codeinput{../java/Gui23.java}{Gui23.java}
+
+Now, printing is to easy, let's try and modify the user interface intself, for
+example let's count the number of clicks to the buttons and show that number as
+the button's text.
+
+\codeinput{../java/Gui24.java}{Gui24.java}
+
+But this program has a bug when the count reaches to 10:
+
+How can we fix that?
+
+We need to call the pack() method on the frame, but how do we access the frame?
+
+There are several solutions.
+
+The first one is just accessing an attribute on the outter class.
+
+We will need an attribute in the outter class that references the frame object.
+
+\codeinput{../java/Gui25.java}{Gui25.java}
+
+But this self-referencing can be confusing and it is not very elegant.
+
+Let's try another way: if we need the frame from the funtor, then let us pass it as an argument:
+
+We will need to create a new attribute in the functor and create a new constructor.
+
+\codeinput{../java/Gui26.java}{Gui26.java}
+
+But there is still another solution, much nicer.
+
+What if we implement the ActionListener interface in the Gui class itself, then
+the frame and the listener will be the same object.
+
+\codeinput{../java/Gui27.java}{Gui27.java}
+
+Now let's try an use the label as the output for the click counts.
+
+\codeinput{../java/Gui28.java}{Gui28.java}
+
+And let's fix the button positions with a simple FlowLayout.
+
+\codeinput{../java/Gui29.java}{Gui29.java}
+
 \end{document}
