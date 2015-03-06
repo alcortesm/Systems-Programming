@@ -62,3 +62,6 @@ demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
 	pdftk A=$(out) cat A2 output $(demo_dir)/jframe.pdf
+	cp ./img/actionevent/actionevent.eps $(demo_dir)
+	cp ./img/actionlistener/actionlistener.eps $(demo_dir)
+	cp ../java/*.java $(demo_dir)
