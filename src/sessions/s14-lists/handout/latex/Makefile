@@ -18,7 +18,7 @@ html_dir := $(out_dir)/html-versions-of-pdfs
 
 .PHONY: all install build clean imgs html
 
-all : imgs install
+all : imgs install html
 
 install : $(pub_files)
 

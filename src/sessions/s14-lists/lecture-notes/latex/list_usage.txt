@@ -1,0 +1,28 @@
+                          l.size()   l.toString()         return value / exceptions
+  List<String> l =
+    new ?????<String>();        0    {}
+  l.add(0, "A");                1    {A}
+  l.add(1, "B");                2    {A, B}
+  l.add(2, "C");                3    {A, B, C}
+  l.add(3, "B");                4    {A, B, C, B}
+  l.add(5, "C");                4    {A, B, C, B}         IndexOutOfBoundsException
+  l.add(2, null);               4    {A, B, C, B}         NullPointerException
+  l.add(0, "C");                5    {C, A, B, C, B}
+  l.add(2, "D");                6    {C, A, D, B, C, B}
+
+  String s = l.remove(5);       5    {C, A, D, B, C}     "B"
+  s = l.remove(1);              4    {C, D, B, C}        "A"
+  s = l.remove(0);              3    {D, B, C}           "D"
+
+  s = l.get(1);                 3    {D, B, C}           "B"
+  s = l.get(3);                 3    {D, B, C}           IndexOutOfBoundsException
+
+  l.set(1, "M");                3    {D, M, C}
+
+  boolean b = l.contains("C")   3    {D, M, C}           true
+  boolean b = l.contains("H")   3    {D, M, C}           false
+
+  l.add(3, "M");                4    {D, M, C, M}
+  int i = l.indexOf("M");       4    {D, M, C, M}        1
+
+  l.clear();                    0    {}
