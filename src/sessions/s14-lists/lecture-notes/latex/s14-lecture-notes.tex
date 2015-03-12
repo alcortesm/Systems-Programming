@@ -23,9 +23,205 @@ Lists
 \end{blackboard}
 
 
+\section{What is a Collection?}
+
+A collection is an object that groups multiple similar elements.
+
+They are also called \textbf{containers}.
+
+For example:
+
+\begin{itemize}
+
+  \item In your phone, your list of contacts \textbf{IS A} collection of friends and family members.
+
+  \item Your email inbox IS A collection of unread emails.
+
+  \item In Whatsapp, a conversation IS A collection of read and unread messages between you and a group of contacts (which is another collection of Whatsapp users).
+
+  \item In a computer video game, the inventory of your character IS A collection of the objects your character has collects through the game.
+
+  \item In a computer video game, your player achievements IS A collection of feats and challenges you have earned by playing the game.
+
+  \item A bag of apples IS A collection of apples.
+
+  \item A university course \textbf{HAS A} collection of students.
+
+    In aula global, you can list all the students in a group by clicking on the ``participants'' link. (demo).
+
+    Please note that a University course has also other things: a calendar, a collection of materials, a collection of teachers...
+
+    Please, note that an Student is NOT a collection of Strings, event if you define an Student by its name, surname, and NIA, all of them being Strings.
+
+    Those strings are the attributes of the Student, but you can not generally
+    think of an Student as a bag of Strings, because you will not be adding
+    Strings to a particular student along his life.
+
+  \item In Swing a JPanel HAS A collection of JComponents (buttons, labels, other JPanels...).
+
+  \item In Swing a JComponent (like a button for example) HAS A collection of
+    ActrionListeners (usually only one, but you can add several listeners to
+    the same button).
+
+  \item An \verb+String[]+ is collection of Strings.
+
+  \item An \verb+ArrayList<String>+ is a collection of Strings.
+
+  \item The memory Stack of your computer is a collection of StackFrames.
+
+\end{itemize}
+
+Collections are extremely important, you will spend about 50\% of your time as a programer writing and using collections.
+
+Actually, you will spend the rest of this course learning about collections.
 
 
 
+
+
+
+\subsection{Operations on collections}
+
+The minimum set of operations you will like to have on your collections are:
+
+\begin{itemize}
+
+  \item a \textbf{constructor}, that creates an empty collection
+
+  \item an \textbf{add} method that inserts an element into your collection
+
+  \item a \textbf{remove} method that extract an element from your collection
+
+  \item a \textbf{size} method that tells you the number of elements in your collection
+
+\end{itemize}
+
+Then, there are a lot of other operations you might need, depending on your problem:
+
+\begin{itemize}
+
+  \item an \textbf{isEmpty} method that tells you if the collection has any element
+
+  \item an \textbf{addAll} method that adds all the elements in a collection into another collection
+
+  \item a \textbf{clear} method that removes all the elements in the collection
+
+  \item a \textbf{contains} method that tells you if an element is already stored in the collection
+
+  \item a \textbf{containsAll} method that tells you if all the elements in a collection are in another collection
+
+  \item a \textbf{toArray} method that returns an array with all the elements in the collection
+
+  \item \ldots the list is endless, and depends on your particular problem
+
+\end{itemize}
+
+
+\subsection{Types of collections}
+
+\begin{itemize}
+
+  \item There are \textbf{infinite} collections and collections \textbf{with a size limit}.
+
+    \begin{itemize}
+
+      \item your contacts list in your phone can have infinite friends (not really,
+        the memory on your phone will impose a limit, the more photos you store in
+        your phone, the less friends you can add your contact list, but there is
+        no hard limit)
+
+      \item but there cannot be more than 40 students in a university small group.
+
+    \end{itemize}
+
+    The add method in an infinte list will only return an exception when you
+    run out of memory, but the add method on a small group will return an
+    exception everytime you try to insert a student once you have 40.
+
+  \item There are collections where you can add the same element several times,
+    this is \textbf{duplicated elements are allowed} and collections that
+    \textbf{doesn't allow duplicated elements}:
+
+    \begin{itemize}
+
+      \item You and your friends go to a restaurant, your order can have the same meal several times.
+
+      \item But there cannot be suplicated students in a university course.
+
+    \end{itemize}
+
+    The add method in an order object should insert meal even if they are
+    already there, but the add method in a university course should not insert
+    a student if she is already there, it may even throw an exception.
+
+  \item There are \textbf{ordered} collections where you store and retrieve elements by its index and \textbf{unordered} collections.
+
+    \begin{itemize}
+
+      \item People waiting in a queue to get into the cinema are sorted in the same
+        order in which the get there. It is pretty clear how is the first one, how
+        is the second one, and how is the last one.
+
+      \item Your wardrobe is a collection of clothes, but they are not
+        numbered, it makes no sense to get the 5th thing in your wardrobe, you
+        will have to look for what you want to wear everytime you open your
+        wardrobe.
+
+    \end{itemize}
+
+    You might have a get(int i) method in the cinema queue, but it makes no
+    sense to address clothes in your wardrobe by a number.
+
+  \item There are collections in which you \textbf{can insert nulls} and collections in which \textbf{you cannot}.
+
+    \begin{itemize}
+
+      \item The collection of NIAs of the students in a course can not have nulls, because all students must have a NIA
+
+      \item But the collection of surnames of students in a course can have
+        nulls, for example, Russian students do not have a second surname.
+        Probably it will be better to add empty strings as their surnames,
+        instead of nulls. Using nulls or empty strings is a very personal
+        decission for the grammer.
+
+    \end{itemize}
+
+    The add method to the collection of NIA should throw an exception if the
+    NIA string is null. But the add method to the collection of surnames might
+    be OK with nulls.
+
+\end{itemize}
+
+
+
+
+
+
+\section{Lists}
+
+A list is a especial type of collection.
+
+Lists are also called sequences.
+
+A lists is an ordered collection: items are added and retrieved by their index.
+
+Usually, lists are infinite. You can add as many elements to a lists as you want.
+
+Usually, lists can have duplicated elements.
+
+Usually, lists don't allow nulls.
+
+A nice and small interfacec for a list can be the following one:
+
+public interface List<E> {
+  int     size(); // max size is Integer.MAX\_VALUE
+  boolean isEmpty();
+  void    add(E e, int i);
+  E       get(int i);
+  E       remove(int i);
+  void    clear();
+  boolean contains(E e); // using Object.equals()
+}
 
 
 
