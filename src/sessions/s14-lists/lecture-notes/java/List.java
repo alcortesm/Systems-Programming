@@ -24,8 +24,8 @@ interface List<E> {
     void    clear();
 
     E       get(int i);
-
     void    set(int i, E e) throws NullPointerException, IndexOutOfBoundsException;
+
     boolean contains(E e);
     int     indexOf(E e) throws NoSuchElementException;
 

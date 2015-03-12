@@ -125,14 +125,14 @@ class ListTest {
 
     private static class JavaArrayList<E> extends java.util.ArrayList<E> {
         public String toString() {
-            StringBuilder sb = new StringBuilder("LIST[ ");
+            StringBuilder sb = new StringBuilder("{");
             for (int i=0; i<size(); i++) {
                 sb.append(get(i));
                 if (i != size()-1) {
                     sb.append(", ");
                 }
             }
-            sb.append("]");
+            sb.append("}");
             return sb.toString();
         }
 
@@ -856,12 +856,12 @@ class ListTest {
             List<Integer> list = newList();
             try {
                 list.add(0, 0);
-                list.set(1, null);
-                System.out.println("ERROR: test012: set with index too big");
+                list.set(0, null);
+                System.out.println("ERROR: test012: set with a null");
                 return false;
-            } catch (IndexOutOfBoundsException ex) {
+            } catch (NullPointerException ex) {
             } catch (Exception ex) {
-                System.out.println("ERROR: test012: set with index too big");
+                System.out.println("ERROR: test012: set with a null");
                 System.out.println(ex);
                 return false;
             }

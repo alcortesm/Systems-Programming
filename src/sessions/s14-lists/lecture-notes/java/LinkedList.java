@@ -78,6 +78,9 @@ class LinkedList<E> implements List<E> {
     }
 
     public void set(int i, E e) {
+        if (e == null) {
+            throw new NullPointerException();
+        }
         goTo(i).setDatum(e);
     }
 
@@ -103,15 +106,6 @@ class LinkedList<E> implements List<E> {
         size = 0;
     }
 
-    public boolean contains(E e) {
-        try {
-            indexOf(e);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
-    }
-
     public int indexOf(E e) {
         // check for performnce gain
         if (e == null) {
@@ -130,8 +124,17 @@ class LinkedList<E> implements List<E> {
         throw new NoSuchElementException();
     }
 
+    public boolean contains(E e) {
+        try {
+            indexOf(e);
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+        return true;
+    }
+
     public String toString() {
-        StringBuilder sb = new StringBuilder("LIST[ ]");
+        StringBuilder sb = new StringBuilder("{}");
         for (Node<E> c = first; c != null; c = c.getNext()) {
             if (c != first) {
                 sb.insert(sb.length()-1, ", ");

@@ -90,6 +90,9 @@ class ArrayList<E> implements List<E> {
     }
 
     public void set(int i, E e) {
+        if (e == null) {
+            throw new NullPointerException();
+        }
         if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -144,15 +147,6 @@ class ArrayList<E> implements List<E> {
         return retval;
     }
 
-    public boolean contains(E e) {
-        for (int i=0; i<size; i++) {
-            if (e.equals(array[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public int indexOf(E e) {
         for (int i=0; i<size; i++) {
             if (e.equals(array[i])) {
@@ -162,15 +156,24 @@ class ArrayList<E> implements List<E> {
         throw new NoSuchElementException();
     }
 
+    public boolean contains(E e) {
+        try {
+            indexOf(e);
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+        return true;
+    }
+
     public String toString() {
-        StringBuilder sb = new StringBuilder("LIST[ ");
+        StringBuilder sb = new StringBuilder("{");
         for (int i=0; i<size; i++) {
             sb.append(array[i]);
             if (i != size-1) {
                 sb.append(", ");
             }
         }
-        sb.append("]");
+        sb.append("}");
         return sb.toString();
     }
 }
