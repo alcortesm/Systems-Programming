@@ -1,23 +1,24 @@
 // Lists implementation using a LinkedList.
 //
 // Duplicated elements are allowed.
-//
-// Nulls are not allowed.
 
 import java.util.NoSuchElementException;
 
 class LinkedList<E> implements List<E> {
+
     private class Node<E> {
         private E datum;
         private Node<E> next;
 
         Node(E datum, Node<E> next) {
-            this.datum = datum;
-            this.next = next;
+            setDatum(datum);
+            setNext(next);
         }
 
         E getDatum() { return datum; }
         void setDatum(E datum) { this.datum = datum; }
+        // no null protection is needed for setDatum if the outter class is
+        // already doing it
 
         Node<E> getNext() { return next; }
         void setNext(Node<E> next) { this.next = next; }
@@ -39,6 +40,7 @@ class LinkedList<E> implements List<E> {
         return size == 0;
     }
 
+    // returns the ith node
     private Node<E> goTo(int i) {
         if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException();
@@ -46,9 +48,6 @@ class LinkedList<E> implements List<E> {
         int currentIndex = 0;
         Node<E> current = first;
         while (currentIndex != i) {
-            if (current == null) {
-                throw new IndexOutOfBoundsException();
-            }
             current = current.getNext();
             currentIndex++;
         }
@@ -87,17 +86,13 @@ class LinkedList<E> implements List<E> {
             throw new IndexOutOfBoundsException();
         }
         E datum;
-        if (i == 0) { // if i is the first one
+        if (i == 0) { // if we want to remove the first one
             datum = first.getDatum();
             first = first.getNext();
-        } else { // if i is NOT the first one
+        } else {
             Node<E> prev = goTo(i-1);
             datum = prev.getNext().getDatum();
-            if (i == size-1) { // if i is the last one
-                prev.setNext(null);
-            } else { // if i is in the middle
-                prev.setNext(prev.getNext().getNext());
-            }
+            prev.setNext(prev.getNext().getNext());
         }
         size--;
         return datum;
@@ -109,17 +104,20 @@ class LinkedList<E> implements List<E> {
     }
 
     public boolean contains(E e) {
-        for (Node<E> current = first;
-                current != null;
-                current = current.getNext()) {
-           if (current.getDatum().equals(e)) {
-               return true;
-           }
+        try {
+            indexOf(e);
+        } catch (NoSuchElementException ex) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public int indexOf(E e) {
+        // check for performnce gain
+        if (e == null) {
+            throw new NoSuchElementException();
+        }
+
         int index;
         Node<E> current;
         for (current = first, index = 0;

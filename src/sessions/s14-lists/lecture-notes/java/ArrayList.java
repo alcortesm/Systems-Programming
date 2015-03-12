@@ -9,9 +9,10 @@ import java.util.NoSuchElementException;
 
 class ArrayList<E> implements List<E> {
     // most JVM don't allow Integer.MAX_VALUE arrays, but -2, -4 or -8
-    // so use -10 just in case
-    private static final int MAX_CAPACITY = Integer.MAX_VALUE - 10;
-    private static final int MIN_CAPACITY = 10;
+    // we use JVM_MAX_ARRAY_MARGIN just in case
+    private static final int JVM_MAX_ARRAY_MARGIN = 10;
+    private static final int MAX_CAPACITY = Integer.MAX_VALUE - JVM_MAX_ARRAY_MARGIN;
+    private static final int MIN_CAPACITY = 10; // totally arbitrary value
     private static final int DEFAULT_CAPACITY = MIN_CAPACITY;
 
     private E[] array;
@@ -77,7 +78,7 @@ class ArrayList<E> implements List<E> {
             array[j+1] = array[j];
         }
         // insert new element
-        array[i++] = e;
+        array[i] = e;
         size++;
     }
 
@@ -96,12 +97,16 @@ class ArrayList<E> implements List<E> {
     }
 
     public void clear() {
-        for (int i=0; i<size; i++) {
-            array[i] = null;
-        }
+        // Creating a new empty array will help the garbage collector
+        // a lot.
+        @SuppressWarnings("unchecked")
+        E[] workaround = (E[]) new Object[DEFAULT_CAPACITY];
+        array = workaround;
         size = 0;
     }
 
+    // creates a new array half the size of the old one
+    // and copies all the elements of the old one into the new one.
     private void shrink() {
         int newLength;
         if (array.length / 2 < MIN_CAPACITY) {
@@ -131,7 +136,7 @@ class ArrayList<E> implements List<E> {
             array[j] = array[j+1];
         }
         size--;
-        array[size] = null;
+        array[size] = null; // helps the garbage collector a bit
         if ((array.length > MIN_CAPACITY)
                 && (size <= (array.length / 4))) {
             shrink();
@@ -169,4 +174,5 @@ class ArrayList<E> implements List<E> {
         return sb.toString();
     }
 }
+
 // vim: foldmethod=indent:foldminlines=0:foldnestmax=2:foldtext=v\:foldend
