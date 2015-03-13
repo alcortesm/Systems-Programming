@@ -305,6 +305,16 @@ Also, removing lots of elements will force the array to shrink.
 
 \section{Linked List implementation of a List}
 
+In a linked lists, each element of the list is stored in a node.
+
+Nodes are not contiguous in memory, they are individually allocated when nedded.
+
+All nodes in a list are chained to its previous one and to its next one, forming a long chain of nodes.
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/nodes/nodes.eps}
+\end{center}
+
 Node.
 \codelinesinput{../java/LinkedList.java}{LinkedList.java}{9}{25}
 
