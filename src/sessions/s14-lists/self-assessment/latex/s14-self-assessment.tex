@@ -16,4 +16,122 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \vspace{1cm}
 
+\section{List implementations}
+
+\subsection{ArrayList}
+
+Implement the following interface using an array in a class named \verb+ArrayList+ like the one you have seen in class.
+
+\codeinput{../../lecture-notes/java/List.java}{List.java}
+
+The \verb+toString+ method must return a string as shown in the example bellow:
+
+\begin{cmd}
+$ java ArrayListTest
+{}
+{A}
+{A, B}
+{A, B, C}
+\end{cmd}
+
+\subsection{LinkedList}
+
+Implement the \verb+List+ interface with a linked list. The \verb+toString+ method must use the same notation as the previous exercise.
+
+
+\section{ensureCapacity}
+
+\subsection{}
+
+Do some research on the \verb+ensureCapacity+ method from class \verb+java.util.ArrayList+.
+
+Why it is a good idea to have this method?
+
+\subsection{}
+
+Explain why this method is not part of the \verb+java.util.List+ interface.
+
+
+\subsection{}
+
+Add an \verb+ensureCapacity+ method to your \verb+ArrayList+ class.
+
+
+\section{Adding more methods to your lists}
+
+\subsection{Add at the end}
+
+Add a \verb+void add(E e)+ method to the \verb+List+ interface, that adds elements at the end of the list.
+
+Modify your \verb+ArrayList+ and \verb+LinkedList+ to implement this method in
+an efficient way (this is, both implementations must execute this method in a
+constant time, no matter the size of the list).
+
+
+\subsection{Add a list to your list}
+
+Add a \verb+void add(int i, List<? extends E> list)+ to your \verb+List+ interface.
+
+This method will add all the elements in the list \verb+list+ to the list on which you are calling that method.
+
+The elements are added in the same order as they appear in the \verb+list+ list.
+
+The original \verb+list+ list must not be modified in this process.
+
+The generic argument \verb+<? extends E>+ is a generic argument called
+\verb+<?>+, that can be any class that extends \verb+<E>+ or \verb+<E>+ itself.
+This allows to add a \verb+List<Person>+ to another \verb+List<Person>+ but
+also allows to add a \verb+List<Student>+ to a \verb+List<Person>+, as you
+should expect.
+
+Implement this method in the \verb+ArrayList+ and in the \verb+LinkedList+ in an efficient way.
+
+
+\subsection{}
+
+Can you add a \verb+LinkedList<E>+ to an \verb+ArrayList<E>+?
+
+Why?
+
+\subsection{Clone constructor}
+
+Add a constructor to \verb+ArrayList+ and to \verb+LinkedList+ that receives a
+list. The new list must have the same elements and in the same order as the
+list passed as an input parameter.
+
+Be carefull to do an efficient implementation of both methods.
+
+\subsection{equals}
+
+Add an \verb+equals+ method to your \verb+List+ interface and implement it in \verb+ArrayList+ and \verb+LinkedList+.
+
+The method must return \verb+true+ if both lists have \verb+equals+ elements and in the same order.
+
+This method should support comparing lists with different implementations and of types that extends from each other.
+
+
+\subsection{Find the index of the last element}
+
+Implement an \verb+int lastIndexOf(E e)+ that returns the last index of an element \verb+equals+ to \verb+e+.
+
+Implement this method on both \verb+ArrayList+ and \verb+LinkedList+.
+
+Explain which implementation is faster.
+
+
+\section{Duplicates}
+
+\subsection{Remove duplicates}
+
+Implement a method \verb+removeDuplicates+ that removes all the duplicated elements from your list.
+
+Implement this method on both \verb+ArrayList+ and \verb+LinkedList+.
+
+
+\subsection{Lists that do not allow duplicates}
+
+Extends your \verb+ArrayList+ and your \verb+LinkedList+ in two new classes that do not allow duplicates.
+
+Explain the performance implications of this change.
+
 \end{document}
