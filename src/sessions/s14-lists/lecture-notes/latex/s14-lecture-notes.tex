@@ -340,5 +340,41 @@ Remove.
 
 \section{Array vs. Linked list implementations}
 
+\begin{itemize}
+
+  \item Arrays:
+
+    \begin{itemize}
+
+      \item[GOOD] has random access: any position in the array can be accessed in constant time.
+
+      \item[GOOD] has low memory fragmentation: all elements are stored in a big chunk of memory, instead of using a lot of small chunks.
+
+      \item[BAD] need continuous memory: it may not be available due to memory fragmentation.
+
+      \item[BAD] present an innefficient use of memory when they are not full (when the length of the array is greater than the list size).
+
+      \item[BAD]  add and remove require to move all subsequent elements, this is extremely slow.
+
+    \end{itemize}
+
+  \item Linked Lists:
+
+    \begin{itemize}
+
+      \item[GOOD] add and remove can be performed on constant time if the previous node is already known.
+
+      \item[GODD] There is no need for contigous memory.
+
+      \item[GOOD] efficient use of memory, as there are not more nodes than nedded.
+
+      \item[BAD] accessing the ith element takes time proportional to i. This is a very common operation and is extremelly slow.
+
+      \item[BAD] Each node is an overhead in memory occupation.
+
+    \end{itemize}
+
+\end{itemize}
+
 
 \end{document}
