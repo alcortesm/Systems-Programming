@@ -1,5 +1,5 @@
 OUT_DIR := ../../out/pub
-SRC_FILES := index.html style.css staff.html materials.html
+SRC_FILES := index.html style.css staff.html materials.html exam-instructions.html
 OUT_FILES := $(addprefix $(OUT_DIR)/, $(SRC_FILES))
 
 .PHONY : all clean
