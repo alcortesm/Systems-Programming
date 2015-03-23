@@ -40,6 +40,7 @@ imgs :
 clean :
 	- rm $(out) $(dvi) $(ps)
 	- rm $(name).aux $(name).log $(name).out texput.log
+	- rm $(name).4ct $(name).4tc $(name).idv $(name).lg $(name).tmp $(name).xref
 	$(MAKE) -C img clean
 	- rm -rf html-version
 
