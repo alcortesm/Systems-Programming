@@ -1,0 +1,2 @@
+class StackOverflowException extends RuntimeException {
+}
