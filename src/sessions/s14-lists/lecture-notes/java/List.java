@@ -23,7 +23,7 @@ interface List<E> {
     E       remove(int i) throws IndexOutOfBoundsException;
     void    clear();
 
-    E       get(int i);
+    E       get(int i) throws IndexOutOfBoundsException;
     void    set(int i, E e) throws NullPointerException, IndexOutOfBoundsException;
 
     boolean contains(E e);
