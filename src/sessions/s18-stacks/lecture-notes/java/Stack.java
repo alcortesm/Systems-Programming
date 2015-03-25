@@ -1,9 +1,9 @@
-// Stack:
+// Stack (also called a LIFO):
 //
 // - ordered collection
-// - normally capacity is bounded
-// - normally nulls are allowed
-// - normally duplicated are allowed
+// - normally capacity is bounded (no infinite)
+// - normally nulls are not allowed
+// - normally duplicated elements are allowed
 
 import java.util.EmptyStackException;
 
