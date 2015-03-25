@@ -22,7 +22,10 @@ class LinkedStack<E> implements Stack<E> {
         return top == null;
     }
 
-    public void push(E e) {
+    public void push(E e) throws NullPointerException {
+        if (e == null) {
+            throw new NullPointerException();
+        }
         top = new Node<E>(e, top);
     }
 

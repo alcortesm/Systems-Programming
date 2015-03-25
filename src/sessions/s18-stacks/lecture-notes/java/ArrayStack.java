@@ -3,7 +3,6 @@
 // This particular implmentation is size bounded:
 //
 // - The constructor receives the max capacity.
-//
 // - The push method throws a StackOverflowException if full.
 
 import java.util.EmptyStackException;
@@ -32,7 +31,10 @@ class ArrayStack<E> implements Stack<E> {
         return top == -1;
     }
 
-    public void push(E e) throws StackOverflowException {
+    public void push(E e) throws NullPointerException, StackOverflowException {
+        if (e == null) {
+            throw new NullPointerException();
+        }
         if (top == array.length-1) {
             throw new StackOverflowException();
         }

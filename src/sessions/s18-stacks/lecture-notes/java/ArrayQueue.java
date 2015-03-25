@@ -1,8 +1,8 @@
 // Queue implemented as an array.
 //
 // This aprticular implementation:
+// - the constructor receives the max capacity
 // - has bounded capacity (enqueue throws IllegalStateException)
-// - do not allow nulls (enqueue throws NullPointerException)
 //
 // This is usually called a BUFFER.
 
@@ -90,4 +90,3 @@ class ArrayQueue<E> implements Queue<E> {
     }
 }
 // vim: foldmethod=indent:foldminlines=0:foldnestmax=2:foldtext=v\:foldend
-

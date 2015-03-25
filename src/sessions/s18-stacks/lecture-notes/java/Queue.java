@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 interface Queue<E> {
     boolean isEmpty();
-    void    enqueue(E e);
+    void    enqueue(E e) throws NullPointerException;
     E       dequeue() throws NoSuchElementException;
     E       front() throws NoSuchElementException;
 }

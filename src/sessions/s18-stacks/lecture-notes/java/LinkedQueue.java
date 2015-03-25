@@ -2,7 +2,6 @@
 //
 // This aprticular implementation:
 // - is infinite
-// - do not allow nulls (enqueue throws NullPointerException)
 
 import java.util.NoSuchElementException;
 
@@ -74,3 +73,4 @@ class LinkedQueue<E> implements Queue<E> {
         return sb.toString();
     }
 }
+// vim: foldmethod=indent:foldminlines=0:foldnestmax=2:foldtext=v\:foldend
