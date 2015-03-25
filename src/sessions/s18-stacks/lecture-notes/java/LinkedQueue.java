@@ -9,16 +9,12 @@ import java.util.NoSuchElementException;
 class LinkedQueue<E> implements Queue<E> {
 
     private class Node<E> {
-        private E datum;
-        private Node<E> next;
+        E datum;
+        Node<E> next;
         Node(E datum, Node<E> next) {
-            setDatum(datum);
-            setNext(next);
+            this.datum = datum;
+            this.next = next;
         }
-        E getDatum() { return datum; }
-        Node<E> getNext() { return next; }
-        void setDatum(E datum) { this.datum = datum; }
-        void setNext(Node<E> next) { this.next = next; }
     }
 
     private Node<E> first; // if empty, first is null.
@@ -37,7 +33,7 @@ class LinkedQueue<E> implements Queue<E> {
         if (isEmpty()) {
             first = newLast;
         } else {
-            last.setNext(newLast);
+            last.next = newLast;
         }
         last = newLast;
     }
@@ -46,8 +42,8 @@ class LinkedQueue<E> implements Queue<E> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        E retval = first.getDatum();
-        first = first.getNext();
+        E retval = first.datum;
+        first = first.next;
         if (isEmpty()) {
             last = null;
         }
@@ -58,7 +54,7 @@ class LinkedQueue<E> implements Queue<E> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        return first.getDatum();
+        return first.datum;
     }
 
     public String toString() {
@@ -66,11 +62,11 @@ class LinkedQueue<E> implements Queue<E> {
         if (! isEmpty()) {
             for (Node<E> current=first;
                    current!=last;
-                   current=current.getNext()) {
-                sb.insert(0, current.getDatum());
+                   current=current.next) {
+                sb.insert(0, current.datum);
                 sb.insert(0, ", ");
             }
-            sb.insert(0, last.getDatum());
+            sb.insert(0, last.datum);
             sb.append(" ");
         }
         sb.insert(0, "Queue {");

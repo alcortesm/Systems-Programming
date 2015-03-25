@@ -1,24 +1,19 @@
 // Stack implementation using a linked list
 //
-// This particular implmentation has infinite capacity.
+// This implmentation has infinite capacity.
 
 import java.util.EmptyStackException;
 
 class LinkedStack<E> implements Stack<E> {
 
     private class Node<E> {
-        private E datum;
-        private Node<E> next;
+        E datum;
+        Node<E> next;
 
         Node(E datum, Node<E> next) {
-            setDatum(datum);
-            setNext(next);
+            this.datum = datum;
+            this.next = next;
         }
-
-        E getDatum() { return datum; }
-        Node<E> getNext() { return next; }
-        void setDatum(E datum) { this.datum = datum; }
-        void setNext(Node<E> next) { this.next = next;}
     }
 
     private Node<E> top;
@@ -35,8 +30,8 @@ class LinkedStack<E> implements Stack<E> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        E retval = top.getDatum();
-        top = top.getNext();
+        E retval = top.datum;
+        top = top.next;
         return retval;
     }
 
@@ -44,16 +39,16 @@ class LinkedStack<E> implements Stack<E> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return top.getDatum();
+        return top.datum;
     }
 
     public String toString() {
         StringBuffer sb = new StringBuffer("");
         for (Node<E> current = top;
                 current != null;
-                current = current.getNext()) {
-            sb.insert(0, current.getDatum());
-            if (current.getNext() != null) {
+                current = current.next) {
+            sb.insert(0, current.datum);
+            if (current.next != null) {
                 sb.insert(0, ", ");
             } else {
                 sb.append(" ");
