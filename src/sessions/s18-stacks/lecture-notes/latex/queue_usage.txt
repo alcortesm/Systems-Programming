@@ -1,0 +1,21 @@
+                                  q.toString()            return value / exception
+Queue<String> s =
+    new ArrayQueue<String>(4);    {(front)}
+
+q.isEmpty();                      {(front)}               true
+q.front();                        {(front)}               NoSuchElementException
+q.dequeue();                      {(front)}               NoSuchElementException
+
+q.enqueue("A");                   {A (front)}
+q.enqueue("B");                   {B, A (front)}
+q.enqueue("C");                   {C, B, A (front)}
+q.enqueue("D");                   {D, C, B, A (front)}
+q.enqueue("E");                   {D, C, B, A (front)}   IllegalStatusException
+
+q.front();                        {D, C, B, A (front)}   "A"
+
+q.dequeue();                      {D, C, B (front)}      "A"
+q.dequeue();                      {D, C (front)}         "B"
+
+q.front();                        {D, C, (front)}        "C"
+

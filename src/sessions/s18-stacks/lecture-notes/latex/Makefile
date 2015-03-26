@@ -17,12 +17,17 @@ pub_dir := $(out_dir)/teacher
 pub_files := $(pub_dir)/$(out)
 html_dir := $(out_dir)/html-versions-of-pdfs
 demo_dir := $(pub_dir)/$(number)-demo
+zip := $(out_dir)/pub/sessions/$(number)-src.zip
 
-.PHONY: all install build clean imgs html
+.PHONY: all install build clean imgs html zip
 
 all : imgs install demo
 
-install : $(pub_files) html
+install : $(pub_files) html zip
+
+zip:
+	- rm $(zip)
+	zip -j -r $(zip) ../java/*.java ../java/readme.txt
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
@@ -62,3 +67,6 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
+	cp ../java/Stack.java ../java/ArrayStack.java ../java/LinkedStack.java $(demo_dir)
+	cp ../java/Queue.java ../java/ArrayQueue.java ../java/LinkedQueue.java $(demo_dir)
+	cp ../java/Deque.java ../java/ArrayDeque.java ../java/LinkedDeque.java $(demo_dir)

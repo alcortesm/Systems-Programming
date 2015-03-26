@@ -1,4 +1,4 @@
-// Deque (double queue)
+// Deque (double ended queue)
 //
 // Like a queue, but you can add and remove from both ends.
 

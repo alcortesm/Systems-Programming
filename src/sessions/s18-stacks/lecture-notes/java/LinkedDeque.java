@@ -17,8 +17,8 @@ class LinkedDeque<E> implements Deque<E> {
         }
     }
 
-    private Node<E> head;
-    private Node<E> tail;
+    private Node<E> head; // sentinel
+    private Node<E> tail; // sentinel
 
     public LinkedDeque() {
         head = new Node<E>(null, null, null);

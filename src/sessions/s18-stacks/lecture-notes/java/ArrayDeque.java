@@ -29,13 +29,13 @@ class ArrayDeque<E> implements Deque<E> {
         return head == -1;
     }
 
-    private int next(int i) { return (++i % array.length); }
-
-    private int prev(int i) { return i==0 ? array.length-1 : --i; }
-
     private boolean isFull() {
         return next(tail) == head;
     }
+
+    private int next(int i) { return (++i % array.length); }
+
+    private int prev(int i) { return i==0 ? array.length-1 : --i; }
 
     public void addTail(E e)
         throws NullPointerException, IllegalStateException {

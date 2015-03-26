@@ -29,12 +29,12 @@ class ArrayQueue<E> implements Queue<E> {
         return first == -1;
     }
 
-    private int next(int i) {
-        return (++i % array.length);
-    }
-
     private boolean isFull() {
         return next(last) == first;
+    }
+
+    private int next(int i) {
+        return (++i % array.length);
     }
 
     public void enqueue(E e)
