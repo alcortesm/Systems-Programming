@@ -10,7 +10,7 @@ import java.util.EmptyStackException;
 class ArrayStack<E> implements Stack<E> {
 
     private E[] array;
-    private int top;
+    private int top; // -1 means empty stack
 
     public ArrayStack(int capacity) {
         if (capacity < 1) {

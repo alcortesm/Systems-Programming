@@ -1,0 +1,24 @@
+                                  s.toString()         return value / exception
+Stack<String> s =
+    new ArrayStack<String>(4);    {(top)}
+
+s.isEmpty();                      {(top)}               true
+s.peek();                         {(top)}               EmptyStackException
+s.pop();                          {(top)}               EmptyStackException
+
+s.push("A");                      { A (top)}
+s.push("B");                      { A, B (top)}
+s.push("C");                      { A, B, C (top)}
+s.push("D");                      { A, B, C, D (top)}
+s.push("E");                      { A, B, C, D (top)}   StackOverflowException
+
+s.peek();                         { A, B, C, D (top)}   "D"
+
+s.pop();                          { A, B, C (top)}      "D"
+s.pop();                          { A, B (top)}         "C"
+
+s.peek();                         { A, B, (top)}        "B"
+
+while (! s.isEmpty()) {
+    s.pop();
+}                                  {(top)}

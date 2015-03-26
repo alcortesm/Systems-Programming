@@ -20,9 +20,162 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \section{Today's Topics}
 \begin{blackboard}
 Stacks
+  Array
+  Linked
 Queues
+  Array
+  Linked
+Deques
+  Array
+  Linked
 \end{blackboard}
 
 REPARTIR HANDOUT.
+
+\section{Stacks}
+
+A stack is a type of collection with two main operations:
+
+\begin{itemize}
+
+  \item \verb+void push(E e)+ to add an element to the collection
+
+  \item \verb+E pop()+ to remove an element from the collection
+
+\end{itemize}
+
+Adding and removing from a Stack is always performed from the same end, as
+follows:
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/stack/stack.eps}
+\end{center}
+
+That is why they are also called \verb+LIFO+s: last in, first out.
+
+Stacks are ordered collections, usually bounded. They usually allow duplicates
+and do not allow for nulls.
+
+\codeinput{../java/Stack.java}{Stack.java}
+
+
+
+
+
+\subsection{Operations on a stack}
+
+\codeinput{stack_usage.txt}{Handout}
+
+
+
+
+
+\subsection{Examples of stacks}
+
+\begin{itemize}
+
+  \item a stack of plates in your kitchen
+
+  \item a stack of books on your table
+
+  \item emplyees in a company, when reducing staff, the last ones to get in,
+    are the first ones to get fired.
+
+  \item the list of visited webpages in your browser, visiting a new webpage
+    push() the previous webpage into the stack, pressing the "back button"
+    opens the webpage returned by pop().
+
+  \item the "undo" functionality of most programs, performing an action pushes
+    the "undo" equivalent action into the stack. Pressing the undo button
+    execute the action returned by pop.
+
+  \item Balancing parenthesis in an expression: \verb+(()(()()))+
+
+  \item Reverse polish notation in a calculator: \verb;2 * (((4 * 3) / 2) + 5) --> 2 4 3 * 2 / 5 + *;
+
+  \item method calls in the Stack.
+
+\end{itemize}
+
+
+
+
+
+\subsection{ArrayStack}
+
+When implementing a stack using an array you have to ask yourself two questions:
+
+\begin{itemize}
+
+  \item In what order are you going to store the elements of the array? (is the top going to be index 0 of the index of the last inserted element)
+
+  \item How are you going to keep track of the "top" of the stack?
+
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/arraystack/arraystack.eps}
+\end{center}
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{10}{13}
+
+The constructor and \verb+isEmpty()+ are pretty simple:
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{15}{32}
+
+The \verb+peek()+ method is also very simple:
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{53}{58}
+
+The \verb+push()+ method is just a line plus some exceptions:
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{34}{42}
+
+The \verb+pop()+ method should be just a line, \verb+return array[top--]+,
+except that we need another line to help the garbage collector.
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{44}{51}
+
+
+
+
+
+
+
+
+
+\subsection{LinkedStack}
+
+When implementing a stack using a linked list, you have to ask yourself this question:
+
+\begin{itemize}
+
+  \item In which order is most efficient (is top = to first or the last)
+
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/linkedstack/linkedstack.eps}
+\end{center}
+
+The first thing we need is a node class, and the attributes of the list:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{9}{19}
+
+The default constructor is ok and \verb+isEmpty()+ is pretty simple:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{21}{23}
+
+The \verb+peek()+ method is also very simple:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{41}{46}
+
+The \verb+push()+ method is just a line plus some exceptions:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{25}{30}
+
+The \verb+pop()+ is just removing the first node and returning its datum.
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{32}{39}
 
 \end{document}

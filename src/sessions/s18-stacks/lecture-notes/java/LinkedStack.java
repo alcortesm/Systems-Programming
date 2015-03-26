@@ -16,7 +16,7 @@ class LinkedStack<E> implements Stack<E> {
         }
     }
 
-    private Node<E> top;
+    private Node<E> top; // null means empty list
 
     public boolean isEmpty() {
         return top == null;
