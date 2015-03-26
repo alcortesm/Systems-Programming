@@ -1,0 +1,427 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 18 - Stacks and Queues}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Stacks
+  Array
+  Linked
+Queues
+  Array
+  Linked
+Deques
+  Array
+  Linked
+\end{blackboard}
+
+REPARTIR HANDOUT.
+
+\section{Stacks}
+
+A stack is a type of collection with two main operations:
+
+\begin{itemize}
+
+  \item \verb+void push(E e)+ to add an element to the collection
+
+  \item \verb+E pop()+ to remove an element from the collection
+
+\end{itemize}
+
+Adding and removing from a Stack is always performed from the same end, as
+follows:
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/stack/stack.eps}
+\end{center}
+
+That is why they are also called \verb+LIFO+s: last in, first out.
+
+Stacks are ordered collections, usually bounded. They usually allow duplicates
+and do not allow for nulls.
+
+\codeinput{../java/Stack.java}{Stack.java}
+
+
+
+
+
+\subsection{Operations on a stack}
+
+\codeinput{stack_usage.txt}{Handout}
+
+
+
+
+
+\subsection{Examples of stacks}
+
+\begin{itemize}
+
+  \item a stack of plates in your kitchen
+
+  \item a stack of books on your table
+
+  \item emplyees in a company, when reducing staff, the last ones to get in,
+    are the first ones to get fired.
+
+  \item the list of visited webpages in your browser, visiting a new webpage
+    push() the previous webpage into the stack, pressing the "back button"
+    opens the webpage returned by pop().
+
+  \item the "undo" functionality of most programs, performing an action pushes
+    the "undo" equivalent action into the stack. Pressing the undo button
+    execute the action returned by pop.
+
+  \item Balancing parenthesis in an expression: \verb+(()(()()))+
+
+  \item Reverse polish notation in a calculator: \verb;2 * (((4 * 3) / 2) + 5) --> 2 4 3 * 2 / 5 + *;
+
+  \item method calls in the Stack.
+
+\end{itemize}
+
+
+
+
+
+\subsection{ArrayStack}
+
+When implementing a stack using an array you have to ask yourself two questions:
+
+\begin{itemize}
+
+  \item In what order are you going to store the elements of the array? (is the top going to be index 0 of the index of the last inserted element)
+
+  \item How are you going to keep track of the "top" of the stack?
+
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/arraystack/arraystack.eps}
+\end{center}
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{10}{13}
+
+The constructor and \verb+isEmpty()+ are pretty simple:
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{15}{32}
+
+The \verb+peek()+ method is also very simple:
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{53}{58}
+
+The \verb+push()+ method is just a line plus some exceptions:
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{34}{42}
+
+The \verb+pop()+ method should be just a line, \verb+return array[top--]+,
+except that we need another line to help the garbage collector.
+
+\codelinesinput{../java/ArrayStack.java}{ArrayStack.java}{44}{51}
+
+
+
+
+
+
+
+
+
+\subsection{LinkedStack}
+
+When implementing a stack using a linked list, you have to ask yourself this question:
+
+\begin{itemize}
+
+  \item In which order is most efficient (is top = to first or the last)
+
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/linkedstack/linkedstack.eps}
+\end{center}
+
+The first thing we need is a node class, and the attributes of the list:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{9}{19}
+
+The default constructor is ok and \verb+isEmpty()+ is pretty simple:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{21}{23}
+
+The \verb+peek()+ method is also very simple:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{41}{46}
+
+The \verb+push()+ method is just a line plus some exceptions:
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{25}{30}
+
+The \verb+pop()+ is just removing the first node and returning its datum.
+
+\codelinesinput{../java/LinkedStack.java}{LinkedStack.java}{32}{39}
+
+
+
+
+
+
+
+
+
+\section{Queues}
+
+A queue is a collection where you store items before processing them, in the
+same order as they appear.
+
+It has two main methods:
+
+\begin{itemize}
+
+  \item \verb+void enque(E e)+: add an element at the end of the queue.
+
+  \item \verb+E dequeue()+: remove the first element from the queue.
+
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/queue/queue.eps}
+\end{center}
+
+That is why they are also called \verb+FIFO+s: first in, first out.
+
+Queues are ordered collections, usually bounded. They usually allow duplicates
+and do not allow for nulls.
+
+\codeinput{../java/Queue.java}{Queue.java}
+
+
+
+
+
+
+
+\subsection{Operations on a queue}
+
+\codeinput{queue_usage.txt}{Handout}
+
+
+
+
+
+\subsection{Examples of stacks}
+
+\begin{itemize}
+
+  \item A queue of people waiting to get into the cinema
+
+  \item Waiting on some queue at the supermarket
+
+  \item A production or an assembly line, where products are processed by each worker in a line.
+
+  \item Computer buffers in general: example System.out is a buffered output.
+    When you println to System.out your program is not really writting to the
+    computer screen, it is adding string to a queue (a buffer) of strings that
+    the OS will print later, when it has time.
+
+  \item The Swing EDT: whenever an event is produced by the user (clicking a
+    button), the event is enqueued in a queue, to be processed by the
+    ActionListener when the EDT has time to do it.
+
+  \item Any time you want to connect a "producer" of things with a consumer of things.
+
+\end{itemize}
+
+
+
+\subsection{ArrayQueue}
+
+They are commonly know as BUFFERS.
+
+When implementing a queue with an array you must consider:
+
+\begin{itemize}
+
+  \item Where is going to be the \verb+first+ and the \verb+last+.
+
+  \item How to reuse the space left by the dequeue operations for new enqueues.
+
+\end{itemize}
+
+The answer is using a circular buffer.
+
+\begin{center}
+  \includegraphics[width=6cm]{./img/arrayqueue/arrayqueue.eps}
+\end{center}
+
+So, to imlement this, you will need an array, something to keep track of the
+first element and something to keep track of the last element.
+
+\codelinesinput{../java/ArrayQueue.java}{ArrayQueue.java}{13}{26}
+
+To calculate the next element, you no longer can use \verb,i++,. In this case a
+private \verb+next()+ method will do the trick:
+
+\codelinesinput{../java/ArrayQueue.java}{ArrayQueue.java}{36}{38}
+
+The \verb+isEmpty()+ is very simple. We will also need an \verb+isFull()+
+method later:
+
+\codelinesinput{../java/ArrayQueue.java}{ArrayQueue.java}{28}{34}
+
+The \verb+front()+ method is very simple:
+
+\codelinesinput{../java/ArrayQueue.java}{ArrayQueue.java}{70}{75}
+
+The \verb+enqueue()+ method is just inserting at the tail, but we must remember
+to initialize the first if the queue was empty:
+
+\codelinesinput{../java/ArrayQueue.java}{ArrayQueue.java}{40}{53}
+
+The \verb+dequeue()+ method has to take into account that when the queue is
+empty, we must reset the \verb+first+ and \verb+last+ to \verb+-1+:
+
+\codelinesinput{../java/ArrayQueue.java}{ArrayQueue.java}{55}{68}
+
+
+
+
+
+
+
+\subsection{LinkedQueue}
+
+When implementing a queue using a linked list, we need to consider the problem
+that inserting or deleting from the head is very fast, but inserting or
+deleting from the last element is very expensive.
+
+You can fix that by keeping track od the last element in the list.
+
+So you will need a Node, a first and a last:
+
+\codelinesinput{../java/LinkedQueue.java}{LinkedQueue.java}{10}{20}
+
+The \verb+isEmpty()+ is very simple:
+
+\codelinesinput{../java/LinkedQueue.java}{LinkedQueue.java}{22}{24}
+
+The \verb+front()+ method is very simple:
+
+\codelinesinput{../java/LinkedQueue.java}{LinkedQueue.java}{52}{57}
+
+The \verb+enqueue()+ method is just inserting at the tail, and remember to set
+the first element if the queue was empty before the insertion:
+
+\codelinesinput{../java/LinkedQueue.java}{LinkedQueue.java}{26}{38}
+
+As before, the \verb+dequeue()+ method has to take into account that when the
+queue is empty, we must reset the \verb+first+ and \verb+last+ to \verb+null+:
+
+\codelinesinput{../java/LinkedQueue.java}{LinkedQueue.java}{40}{50}
+
+
+
+
+
+
+
+
+
+\section{Deque}
+
+A \verb+Deque+ is an acronym for "Double ended queue" and it is pronounced
+"Deck".
+
+A Deque is just a queue where you can add and remove from both ends.
+
+For example, like a deck of cards.
+
+\codeinput{../java/Queue.java}{Queue.java}
+
+
+
+\subsection{ArrayDeque}
+
+An Deque implemented as an array is extremely simple, it is just an ordinary
+ArrayQueue, but with an additional \verb+addHead()+ and \verb+removeTail()+
+methods, that are exactly the same as the queue ones, but with all the
+movement mirrowed.
+
+We have rename first and last to head and tail and add an extra \verb+prev+
+method to calculate the previous index.
+
+\codeinput{../java/ArrayDeque.java}{ArrayDeque.java}
+
+
+
+
+
+\subsection{LinkedDeque}
+
+A Deque implemented as a linked list is extremely simple, if you know some
+tricks.
+
+\begin{itemize}
+
+  \item The trick of using a last reference solve the problem of adding at the
+    tail, but removing from the last is still expensive because we need to
+    transverse the collection to look for the previous one.
+
+    The way to solve this is to use a "Doubly linked list", where each node
+    holds a reference to its next AND ALSO TO ITS PREVIOUS.
+
+  \item This complicates a lot the methods for adding and removing, as we must
+    not only consider the special case when the list is empty, but when the
+    list is small, as we will be adding and extracting near the other border
+    pretty often.
+
+    The best way to reduce the complexity of this methods is to add two
+    additional nodes, at the beginning and at the end, called sentinels, that
+    will prevent us from adding or removing near the borders.
+
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=10cm]{./img/linkeddeque/linkeddeque.eps}
+\end{center}
+
+Using sentinels is a waste of memory, but makes your coding very simple:
+
+You will need a Node class with prev and next, a head and a tail and the two
+sentinels:
+
+\codelinesinput{../java/LinkedDeque.java}{LinkedDeque.java}{7}{27}
+
+The \verb+isEmpty()+ method is very simple:
+
+\codelinesinput{../java/LinkedDeque.java}{LinkedDeque.java}{29}{31}
+
+When adding we have to create a new node and set the 4 references:
+
+\codelinesinput{../java/LinkedDeque.java}{LinkedDeque.java}{33}{49}
+
+When removing we have to store the return value and fix the surrounding nodes:
+
+\codelinesinput{../java/LinkedDeque.java}{LinkedDeque.java}{51}{69}
+
+
+
+\end{document}
+

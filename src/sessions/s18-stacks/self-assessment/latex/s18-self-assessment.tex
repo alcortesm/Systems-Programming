@@ -1,0 +1,249 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[assessment]{style}
+
+\newcommand{\realtitle}{Session 18 - Stacks and Queues}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Self-Assessment
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Stacks}
+
+\subsection{}
+
+Write a dummy implementation of the \texttt{ArrayStack} class with the minimum
+methods and code for it to compile (this class must implement the
+\texttt{Stack} interface seen during the lecture).
+
+Also write a dummy constructor that receives its maximum capacity and a dummy
+\verb+toString+ method.
+
+\subsection{}
+
+Repeat the last exercise for the \texttt{LinkedStack} class.
+
+This class has infinite capacity.
+
+\subsection{}
+
+Finish the class \texttt{ArrayStack} until it passes all the tests in the
+\verb+StackTest+ program privided with your lecture.
+
+Your implementation must be size bounded: it must have a constructor that
+receives the maximum capacity.
+
+Write the \verb+toString+ method so that it prints stacks as follows:
+
+\begin{verbatim}
+    Stack {(top)}
+    Stack {A, B, C (top)}
+\end{verbatim}
+
+You can use the \texttt{StackTest} program as follows:
+
+\begin{cmd}
+$ java StackTest A
+\end{cmd}
+
+The program will finish silently if your implementation is correct and will
+output some error numbers if your implementation is wrong.
+
+Read the source code of the test program to learn what the errors mean
+and how to fix them.
+
+Do not copy the \texttt{ArrayStack} class provided with the lecture, it will
+spoil all the fun. Try to write your own class from scrach and only use the
+provided one in case of extreme pain.
+
+\subsection{}
+
+Repeat the last exercise with the \texttt{LinkedStack} class.
+
+You can use the \texttt{StackTest} program as follows:
+
+\begin{cmd}
+$ java StackTest L
+\end{cmd}
+
+
+
+\section{Queues}
+
+\subsection{}
+
+Write a dummy implementation of the \texttt{ArrayQueue} class with the minimum
+methods and code for it to compile (this class must implement the
+\texttt{Queue} interface seen during the lecture).
+
+Also write a dummy constructor that receives its maximum capacity and a dummy
+\verb+toString+ method.
+
+\subsection{}
+
+Repeat the last exercise for the \texttt{LinkedQueue} class.
+
+This class has infinite capacity.
+
+\subsection{}
+
+Finish the class \texttt{ArrayQueue} until it passes all the tests in the
+\verb+QueueTest+ program privided with your lecture.
+
+Your implementation must be size bounded: it must have a constructor that
+receives the maximum capacity.
+
+Write the \verb+toString+ method so that it prints stacks as follows:
+
+\begin{verbatim}
+    Queue {(front)}
+    Queue {A, B, C (front)}
+\end{verbatim}
+
+You can use the \texttt{QueueTest} program as follows:
+
+\begin{cmd}
+$ java QueueTest A
+\end{cmd}
+
+The program will finish silently if your implementation is correct and will
+output some error numbers if your implementation is wrong.
+
+Read the source code of the test program to learn what the errors mean
+and how to fix them.
+
+Do not copy the \texttt{ArrayQueue} class provided with the lecture, it will
+spoil all the fun. Try to write your own class from scrach and only use the
+provided one in case of extreme pain.
+
+\subsection{}
+
+Repeat the last exercise with the \texttt{LinkedQueue} class.
+
+You can use the \texttt{QueueTest} program as follows:
+
+\begin{cmd}
+$ java QueueTest L
+\end{cmd}
+
+
+
+\section{Deques}
+
+\subsection{}
+
+Write a dummy implementation of the \texttt{ArrayDeque} class with the minimum
+methods and code for it to compile (this class must implement the
+\texttt{Deque} interface seen during the lecture).
+
+Also write a dummy constructor that receives its maximum capacity and a dummy
+\verb+toString+ method.
+
+\subsection{}
+
+Repeat the last exercise for the \texttt{LinkedDeque} class.
+
+This class has infinite capacity.
+
+\subsection{}
+
+Finish the class \texttt{ArrayDeque} until it passes all the tests in the
+\verb+DequeTest+ program privided with your lecture.
+
+Your implementation must be size bounded: it must have a constructor that
+receives the maximum capacity.
+
+Write the \verb+toString+ method so that it prints stacks as follows:
+
+\begin{verbatim}
+    Deque {(head) (tail)}
+    Deque {(head) A, B, C (tail)}
+\end{verbatim}
+
+You can use the \texttt{DequeTest} program as follows:
+
+\begin{cmd}
+$ java DequeTest A
+\end{cmd}
+
+The program will finish silently if your implementation is correct and will
+output some error numbers if your implementation is wrong.
+
+Read the source code of the test program to learn what the errors mean
+and how to fix them.
+
+Do not copy the \texttt{ArrayDeque} class provided with the lecture, it will
+spoil all the fun. Try to write your own class from scrach and only use the
+provided one in case of extreme pain.
+
+\subsection{}
+
+Repeat the last exercise with the \texttt{LinkedDeque} class.
+
+You can use the \texttt{DequeTest} program as follows:
+
+\begin{cmd}
+$ java DequeTest L
+\end{cmd}
+
+
+
+
+\section{Counting elements}
+
+\subsection{}
+
+Add a \texttt{size} method to all the above interfaces (\texttt{Stack},
+\texttt{Queue} and \texttt{Deque}) that returns the number of elements in each
+collection.
+
+Implement the \texttt{size} method in all your implementations in the most
+efficient way for each one.
+
+
+
+
+
+\section{Removing duplicates}
+
+\subsection{}
+
+Write a \texttt{RemoveDuplicates()} method for the:
+
+\begin{itemize}
+
+  \item \texttt{ArrayStack} class.
+  \item \texttt{LinkedStack} class.
+  \item \texttt{ArrayQueue} class.
+  \item \texttt{LinkedDeque} class.
+
+\end{itemize}
+
+
+
+
+
+\section{Splitting the collections}
+
+\subsection{}
+
+Write a \texttt{split} method that removes the lower half of all the classes
+above and return an instance of the opposite class (array if linked or the
+other way around) with the missing elements.
+
+
+\subsection{}
+
+Write a \texttt{split} method for your \texttt{ArrayDeque} class that removes
+and returns the lower half of the collection in a \texttt{LinkedStack} object.
+
+\end{document}
