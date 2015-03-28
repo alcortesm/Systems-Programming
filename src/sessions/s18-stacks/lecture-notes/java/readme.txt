@@ -64,7 +64,7 @@ Contents:
   This program also accepts a second parameter (D), to output debug
   information about the testing process.
 
-  The toString() method for queues will return a string with the following
+  The toString() method for deques will return a string with the following
   format:
 
       Deque {(head) (tail)}
