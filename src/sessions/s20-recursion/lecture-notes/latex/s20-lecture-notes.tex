@@ -1,0 +1,97 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 20 - Recursion}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Recursion
+\end{blackboard}
+
+
+\section{Concept}
+
+Let's write a program that calculates the factorial of a natural number:
+
+\begin{equation*}
+  n! = n(n-1)\cdots2\cdot1=\prod_{i=1}^{n}i, \quad \forall n \in \mathbb{N}.
+\end{equation*}
+
+Its output should be:
+
+\begin{center}
+  \begin{tabular}[!ht]{|r|r||r|r|}
+    \hline
+    1 & 1      & 8  & 40\_320 \\
+    2 & 2      & 9  & 362\_880 \\
+    3 & 6      & 10 & 3\_628\_800 \\
+    4 & 24     & 11 & 39\_916\_800 \\
+    5 & 120    & 12 & 479\_001\_600 \\
+    6 & 720    & 13 & 6\_227\_020\_800 \\
+    7 & 5\_040 & \ldots & \ldots \\
+    \hline
+  \end{tabular}
+\end{center}
+
+ASK THE STUDENTS TO WRITE THE PROGRAM.
+
+You probably wrote an \emph{iterative} version of the program, this is, a program that \emph{iterates}, this is, a program that uses a loop.
+
+Something like this:
+
+\codelinesinput{../java/Factorial.java}{Factorial.java}{1}{37}
+
+
+But there is another definition of the factorial function:
+
+\begin{equation*}
+  n! =
+  \begin{cases}
+    1,              & \text{if } n = 0\\
+    n\cdot(n-1)!,   & \text{otherwise}
+  \end{cases}, \quad \forall n \in \mathbb{N}.
+\end{equation*}
+
+This is called a \emph{recursive} definition, as the definition of the factorial of n, uses the factorial itself.
+
+You have already seen some recursive definitions in Java, for example a \verb+Node<E>+ has an attribute next of type \verb+Node<E>+.
+
+According with this alternative definition of a factorial we can write an
+alternative version of the method \verb+factI+ above, called \verb+factR+
+(Recursive factorial):
+
+ASK THE STUDENTS TO WRITE THE ALTERNAVE METHOD "FACTR".
+
+\codelinesinput{../java/Factorial.java}{Factorial.java}{38}{50}
+
+
+
+
+
+
+
+
+\section{Definition}
+
+A method is called recursive if it calls itself (directly or indirectly).
+
+For example:
+
+
+
+
+\end{document}
