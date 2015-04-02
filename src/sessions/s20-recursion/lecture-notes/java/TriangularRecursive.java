@@ -1,4 +1,4 @@
-class TriangularIterative {
+class TriangularRecursive {
 
     // the triangular number of numbers bigger than
     // 65_535 is too big to fit into an Java int.
@@ -26,11 +26,22 @@ class TriangularIterative {
         }
     }
 
+    // for n bigger than 9924 there is a stack overflow
+    // in my laptop.
+    //
+    // A stack of 4520k should be enough for the biggest
+    // calculation (TriangularRecursive of 65_535).
+    //
+    //
+    // You can change the stack size of the JVM using
+    // the -Xss argument, for example:
+    //
+    // java -Xss4520k TriangularRecursive 65535
     static int triangular(int n) {
-        int result = 0;
-        for (int i=1; i<=n; i++) {
-            result += i;
+        if (n == 1) {
+            return 1;
+        } else {
+            return n + triangular(n - 1);
         }
-        return result;
     }
 }
