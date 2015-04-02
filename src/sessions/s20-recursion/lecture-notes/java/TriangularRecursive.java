@@ -37,7 +37,7 @@ class TriangularRecursive {
     // the -Xss argument, for example:
     //
     // java -Xss4520k TriangularRecursive 65535
-    static int triangular(int n) {
+    private static int triangular(int n) {
         if (n == 1) {
             return 1;
         } else {

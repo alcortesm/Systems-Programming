@@ -33,7 +33,7 @@ class TriangularFormula {
     // longs pretty quickly.
     //
     // For example, this methods returns wrong values for n > 46340.
-    static int triangular(int n) {
+    private static int triangular(int n) {
         return n * (n + 1) / 2;
     }
 }
