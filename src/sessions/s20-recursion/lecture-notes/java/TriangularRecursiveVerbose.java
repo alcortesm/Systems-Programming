@@ -33,6 +33,7 @@ class TriangularRecursiveVerbose {
     }
 
     private static int triangularVerbose(int n, int indentLevel) {
+        // hack to repeat INDENT string "indentLevel" times
         String indent = new String(new char[indentLevel]).replace("\0", INDENT);
         System.out.println(indent + "called traingular of " + n);
         int answer;
