@@ -157,11 +157,15 @@
       \newcommand{\solutioninput}[1]{%
         \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
         numbers=left]{#1}}
+      \newcommand{\solutionlinesinput}[3]{%
+        \vspace{0.5cm}\VerbatimInput[formatcom=\color{red}, frame=single, %
+          numbers=left, %
+        firstline=#2, lastline=#3]{#1}}
     \else
         \excludecomment{solution}
         \newcommand{\solutioninput}[1]{}
+        \newcommand{\solutionlinesinput}[3]{}
     \fi
-
 \fi %% assessment
 
 \endinput
