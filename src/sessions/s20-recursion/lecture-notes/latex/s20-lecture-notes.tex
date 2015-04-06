@@ -23,73 +23,117 @@ Recursion
 \end{blackboard}
 
 
-\section{Concept}
+\section{The Concept}
 
-Let's write a program that calculates the factorial of a natural number:
+In mathematics, the factorial of a nonnegative integer is calculated as follows:
 
+\begin{multicols}{2}
 \begin{equation*}
-  n! = n(n-1)\cdots2\cdot1=\prod_{i=1}^{n}i, \quad \forall n \in \mathbb{N}.
+  n! =
+  \begin{cases}
+    1, & \text{if } n = 0\\
+    \prod_{i=1}^{n}i, & \text{otherwise}
+  \end{cases}, \forall n \in \mathbb{Z}^{*}.
 \end{equation*}
 
-Its output should be:
+\columnbreak
 
 \begin{center}
-  \begin{tabular}[!ht]{|r|r||r|r|}
+  \begin{tabular}{|l|l|r|}
     \hline
-    1 & 1      & 8  & 40\_320 \\
-    2 & 2      & 9  & 362\_880 \\
-    3 & 6      & 10 & 3\_628\_800 \\
-    4 & 24     & 11 & 39\_916\_800 \\
-    5 & 120    & 12 & 479\_001\_600 \\
-    6 & 720    & 13 & 6\_227\_020\_800 \\
-    7 & 5\_040 & \ldots & \ldots \\
+    $n$ & calculation & $n!$\\
+    \hline
+    0   & $1$          & 1 \\
+    1   & $1$          & 1 \\
+    2   & $1 \cdot 2$ & 2 \\
+    3   & $1 \cdot 2 \cdot 3$ & 6 \\
+    4   & $1 \cdot 2 \cdot 3 \cdot 4$ & 24 \\
+    5   & $1 \cdot 2 \cdot 3 \cdot 4 \cdot 5$ & 120 \\
+    \ldots & \ldots & \ldots \\
     \hline
   \end{tabular}
 \end{center}
+\end{multicols}
 
-ASK THE STUDENTS TO WRITE THE PROGRAM.
+This is, $n!$ is the product of all the natural numbers from 1 to $n$ and $0!$ is 1.
+
+
+ASK THE STUDENTS TO WRITE A PROGRAM: write a program that calculates the factorial of a number.
+
+\begin{blackboard}
+$ java Factorial 0
+1
+$ java Factorial 1
+1
+$ java Factorial 2
+2
+$ java Factorial 3
+6
+$ java Factorial 4
+24
+$ java Factorial 5
+120
+...
+\end{blackboard}
+
 
 You probably wrote an \emph{iterative} version of the program, this is, a program that \emph{iterates}, this is, a program that uses a loop.
 
 Something like this:
 
-\codelinesinput{../java/Factorial.java}{Factorial.java}{1}{37}
+\codelinesinput{../java/FactorialIterative.java}{FactorialIterative.java}{1}{36}
 
 
-But there is another definition of the factorial function:
-
+But there is \emph{another} definition of the factorial:
+\begin{multicols}{2}
 \begin{equation*}
   n! =
   \begin{cases}
     1,              & \text{if } n = 0\\
-    n\cdot(n-1)!,   & \text{otherwise}
-  \end{cases}, \quad \forall n \in \mathbb{N}.
+    n(n-1)!,    & \text{otherwise}
+  \end{cases}, \quad \forall n \in \mathbb{Z}^{*}.
 \end{equation*}
 
-This is called a \emph{recursive} definition, as the definition of the factorial of n, uses the factorial itself.
+\columnbreak
 
-You have already seen some recursive definitions in Java, for example a \verb+Node<E>+ has an attribute next of type \verb+Node<E>+.
+\begin{center}
+  \begin{tabular}{|l|l|r|}
+    \hline
+    $n$ & calculation & $n!$\\
+    \hline
+    0   & $1$          & 1 \\
+    1   & $1 \cdot 0!$ & 1 \\
+    2   & $2 \cdot 1!$ & 2 \\
+    3   & $3 \cdot 2!$ & 6 \\
+    4   & $4 \cdot 3!$ & 24 \\
+    5   & $5 \cdot 4!$ & 120 \\
+    \ldots & \ldots & \ldots \\
+    \hline
+  \end{tabular}
+\end{center}
+\end{multicols}
 
-According with this alternative definition of a factorial we can write an
-alternative version of the method \verb+factI+ above, called \verb+factR+
-(Recursive factorial):
+In math, this is called a \emph{recursive} definition, as the definition of the factorial uses the factorial itself.
 
-ASK THE STUDENTS TO WRITE THE ALTERNAVE METHOD "FACTR".
+You have already seen some recursive definitions in Java, for example a \verb+Node<E>+ has an attribute \texttt{next} of type \verb+Node<E>+.
 
-\codelinesinput{../java/Factorial.java}{Factorial.java}{38}{50}
+According with this new definition of the factorial, we can write an
+alternative version of the \verb+factorial+ method above:
+
+\codelinesinput{../java/FactorialRecursive.java}{FactorialRecursive.java}{29}{35}
+
+This method is shorter and simpler to understand than the previous one, as it
+directly mirrors the mathematical definition.
+
+In programming, this is called a \emph{recursive} method, this is a method that calls itself.
 
 
 
 
 
+\section{More Examples}
 
-
-
-\section{Definition}
-
-A method is called recursive if it calls itself (directly or indirectly).
-
-For example:
+Let us see more examples of recursive methods:
 
 
 
