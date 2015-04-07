@@ -1,7 +1,7 @@
-class CountNTo1 {
+class Count1ToNRecursive {
 
     private static final String USAGE =
-        "USAGE: java CountNTo1 number"
+        "USAGE: java Count1ToNRecursive number"
         + System.lineSeparator()
         + "     number: integer bigger than 0";
 
@@ -22,9 +22,9 @@ class CountNTo1 {
     }
 
     private static void count1ToN(int n) {
-        System.out.println(n);
         if (n > 1) {
             count1ToN(n-1);
         }
+        System.out.println(n);
     }
 }

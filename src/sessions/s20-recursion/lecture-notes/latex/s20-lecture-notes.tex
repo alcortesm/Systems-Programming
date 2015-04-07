@@ -131,11 +131,256 @@ In programming, this is called a \emph{recursive} method, this is a method that 
 
 
 
-\section{More Examples}
+\section{Recursion and the Stack}
+
+Let us see what is happening in the stack while the \texttt{FactorialRecursive} program is running:
+
+\begin{blackboard}
+$ java FactorialRecursive 3
+6
+$ java FactorialRecursiveVerbose 3
+calling fact(3)
+|  calling fact(2)
+|  |  calling fact(1)
+|  |  |  calling fact(0)
+|  |  |  returning 1
+|  |  returning 1
+|  returning 2
+returning 6
+6
+\end{blackboard}
+
+DIBJAR MEMORIA DURANTE LA EJECUCIÓN
+
+
+
+
+\section{Anatomy of a recursive call}
+
+A recursive call must have two sections:
+
+\begin{itemize}
+
+\item one or more \emph{base cases}: returns a direct solution to the problem
+  without using recursion.
+
+\codelinesinput{../java/FactorialRecursive.java}{FactorialRecursive.java}{30}{31}
+
+\item one or more \emph{recursive cases}: reduces the problem by doing some
+  operations over a \emph{simplified} version of the problem.
+
+\codelinesinput{../java/FactorialRecursive.java}{FactorialRecursive.java}{32}{33}
+
+\end{itemize}
+
+Without a base case you will have infinite recursion, as the recursive method
+will call itself forever.
+
+Without a recursive case, you will not have recursion at all.
+
+It is important that the recursive case calls a simplified version of the
+problem, this is, you have to eventually get to the base case throwout your
+recursive calls, otherwise you will be making the problem bigger and bigger
+instead of simplifiying it and the recursion will never reach the base case.
+
+
+
+
+\section{Can you solve any problem using recursion}
+
+Nobody knows, this is still an open problem, but \emph{it is belived} among the
+scientific comunity that
+
+\begin{blackboard}
+Any problem on natural integers that can be solved using
+iteration, can be solved using recursion, and the other way around.
+\end{blackboard}
+
+This is call the ``Church-Turin thesis'', due to Alonso Church and Alan Turin.
+
+It has been proved that this thesis cannot be proved, but most programmers
+believe it is true (me included).
+
+
+
+
+
+
+\section{Recursion or iteration}
+
+Even if you believe in the Church-Turin thesis, not all problems are the same.
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/recur-vs-iter/recur-vs-iter.eps}
+\end{center}
+
+There are some problems that are easier to solve using an iterative approach,
+and there are problems that are easier to solve using a recursive approach.
+
+Sadly there is no way to know to what group your problem belongs, so you will
+need some intuition and imagination to decide between working on an iterative
+solution or a recursive one.
+
+Then even if you get it right, maybe the other solution is more efficient in
+terms of memory or execution time.
+
+So chosing between iteration or recursion is more an art than a science.
+
+
+
+
+
+\section{Tips on solving problems using recursion}
+
+The trick is:
+
+\begin{blackboard}
+Realize that your problem is just some operations over a simpler version of the
+same problem.
+\end{blackboard}
+
+Of course this is not always easy, but some times, it is, for example the factorial:
+
+\begin{equation*}
+  n! =
+  \begin{cases}
+    1,              & \text{if } n = 0\\
+    n(n-1)!,    & \text{otherwise}
+  \end{cases}, \quad \forall n \in \mathbb{Z}^{*}.
+\end{equation*}
+
+Instead of solving the factorial of $n$, you perform some operations on the
+factorial of $(n-1)$, that is a simpler version of the problem, as you will
+eventually reach the base case of $0! = 1$, which is the most simple case.
+
+
+
+
+\section{More Examples of recursion}
 
 Let us see more examples of recursive methods:
 
 
+\subsection{Counting from N to 1}
 
+\begin{multicols}{2}
+  \codelinesinput{../java/CountNTo1Iterative.java}{CountNTo1Iterative.java}{24}{28}
+\columnbreak
+  \codelinesinput{../java/CountNTo1Recursive.java}{CountNTo1Recursive.java}{24}{29}
+\end{multicols}
+
+Counting from $N$ to 1 is just printing $N$ and then counting from $N-1$ to 1.
+
+The base case is just when we reach 1: we do nothing (except for printing the 1).
+
+\subsection{Counting from 1 to N}
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Count1ToNIterative.java}{Count1ToNIterative.java}{24}{28}
+\columnbreak
+  \codelinesinput{../java/Count1ToNRecursive.java}{Count1ToNRecursive.java NOT IN THE HANDOUT}{24}{29}
+\end{multicols}
+
+This is quite interesting, just changing when we print the message we are
+printing backguards.
+
+This is because the stack frames for the methods live inside a stack, and as
+you know an stack reverse the order of its elements.
+
+You will be able to understand this better with a verbose version of the programs:
+
+\newpage
+
+\begin{multicols}{2}
+  \begin{blackboard}
+$ java CountNTo1Recursive 5
+5
+4
+3
+2
+1
+$ java CountNTo1RecursiveVerbose 5
+calling countNTo1(5)
+5
+|  calling countNTo1(4)
+4
+|  |  calling countNTo1(3)
+3
+|  |  |  calling countNTo1(2)
+2
+|  |  |  |  calling countNTo1(1)
+1
+|  |  |  |  returning
+|  |  |  returning
+|  |  returning
+|  returning
+returning
+\end{blackboard}
+\columnbreak
+  \begin{blackboard}
+$ java Count1ToNRecursive 5
+1
+2
+3
+4
+5
+$ java Count1ToNRecursiveVerbose 5
+calling countNTo1(5)
+|  calling countNTo1(4)
+|  |  calling countNTo1(3)
+|  |  |  calling countNTo1(2)
+|  |  |  |  calling countNTo1(1)
+1
+|  |  |  |  returning
+2
+|  |  |  returning
+3
+|  |  returning
+4
+|  returning
+5
+returning
+\end{blackboard}
+\end{multicols}
+
+
+
+\subsection{Palindromes}
+
+PARA EJERCICIOS METER LA OPTIMIZACIÓN DE NO COPIAR ARRAYS.
+
+\subsection{Finding the greater common divisor}
+
+ESTE MEJOR PARA EJERCICIOS.
+
+
+\subsection{Fibonacci}
+
+
+\subsection{Linked Lists}
+
+
+\section{Recursion Optimizations}
+
+
+
+\subsection{Stack Overflows}
+
+USE A BIGGER STACK (count1toN)
+
+OR
+
+USE TAIL RECURSION OPTIMIZATION (count1toN)
+
+\subsection{Exponential growth}
+
+USE MEMOIZATION
+
+(fibonacci)
+
+
+
+
+\subsection{Mutual recursion}
 
 \end{document}
