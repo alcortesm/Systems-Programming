@@ -163,4 +163,25 @@ Which of the three versions of your program is the fastest one for big numbers?
 
 Explain why.
 
+\section{Palindromes}
+
+\subsection{}
+
+The recursive implementation of the algorithm you saw during the lecture was
+very inefficient as we were creating a new string (the ``middle'') with each
+recursive call.
+
+Write a \texttt{IsPalindromeRecursiveEfficent} program that solves this
+problem.
+
+\textsl{Tip: the trick is to reuse the same string on all the calls to the
+  recursive algorithm an use two indexes (first and last, for example) to know
+what portions of the string we must consider in each recursion.}
+
+\textsl{The two indexes will indicate the first and last chararcter of the
+string on the first call but will advance towards the center of the string as
+the recursion goes.}
+
+\solutioninput{../java/IsPalindromeRecursiveEfficient.java}
+
 \end{document}

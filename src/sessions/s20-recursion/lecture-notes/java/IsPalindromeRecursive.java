@@ -15,8 +15,10 @@ class IsPalindromeRecursive {
         if (s.length() < 2) {
             return true;
         } else {
-            return (s.charAt(0) == s.charAt(s.length()-1))
-                && isPalindrome(s.substring(1,s.length()-1));
+            char first = s.charAt(0);
+            char last  = s.charAt(s.length()-1);
+            String middle = s.substring(1, s.length()-1);
+            return (first == last) && isPalindrome(middle);
         }
     }
 }

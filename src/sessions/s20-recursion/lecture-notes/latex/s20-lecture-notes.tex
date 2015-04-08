@@ -347,7 +347,60 @@ returning
 
 \subsection{Palindromes}
 
-PARA EJERCICIOS METER LA OPTIMIZACIÓN DE NO COPIAR ARRAYS.
+Write a method to tell if a string is a palindrome.
+
+A string is a palindrome if it has the same characters when you read it from
+the beginning to the end or backwards.
+
+For example:
+
+\begin{blackboard}
+"" true
+"a" true
+"aa" true
+"ab" false
+"aba" true
+"anna" true
+"Anna" false
+"racecar" true
+\end{blackboard}
+
+The iterative solution to this problems is a loop from the begining to the
+middle of the string, comparing the \texttt{ith} word with the
+\texttt{string.length()-1-ith} word:
+
+\codelinesinput{../java/IsPalindromeIterative.java}{IsPalindromeIterative.java}{14}{21}
+
+The recursive version is simpler:
+
+Let us define some names for the parts of a string:
+
+\begin{center}
+\includegraphics[width=8cm]{./img/palindrome/palindrome.eps}
+\end{center}
+
+A string is a palindrome if:
+
+\begin{blackboard}
+  (first == last) && isPalindrome(middle);
+\end{blackboard}
+
+Checking if the middle is a palindrome is easier than checking if the whole
+string is palindrome, so we are reducing the problem with each recursion.
+
+The base case is when the middle is of lenght 0 or 1, because all strings of
+lenght 0 or 1 are palindromes.
+
+\codelinesinput{../java/IsPalindromeRecursive.java}{IsPalindromeRecursive.java}{14}{23}
+
+
+This particular implementation of the recursive algorithm is very inefficient,
+because we are creating a new string each time we do the recursive call (the
+string middle is new with each recursion).
+
+In the self assessment exercises you will find tips on how to make this method
+efficient, reusing the same string in each recursive call.
+
 
 \subsection{Finding the greater common divisor}
 
