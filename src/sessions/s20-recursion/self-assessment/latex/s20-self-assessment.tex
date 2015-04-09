@@ -66,11 +66,9 @@ Triangular numbers can also be defined recursively:
 
 In the following exercisess you will be asked to calculate triangular numbers,
 but triangular numbers of numbers bigger than 65,535 are too big to fit into a
-Java \texttt{int}.
-
-Do not worry about this practical detail, just use \texttt{int} for simplicity,
-as we are not really interested in calculating big triangular numbers, just on
-understanding recursion.
+Java \texttt{int}. Do not worry about this practical detail, just use
+\texttt{int} for simplicity, as we are not really interested in calculating big
+triangular numbers, just on understanding recursion.
 
 \subsection{}
 
@@ -146,7 +144,7 @@ big input parameter.
 \subsection{}
 
 Write a tail recursive version of your recursive program and explain why this
-new version still does not solve the problem in the previos exercise when using
+new version still does not solve the problem in the previous exercise when using
 Java.
 
 
@@ -159,7 +157,9 @@ Explain why it does not work and fix it.
 
 \subsection{}
 
-Which of the three versions of your program is the fastest one for big numbers?
+Which of the three versions of your program (\texttt{TriangularIterative},
+\texttt{TriangularRecursive} and \texttt{TriangularFormula} is the fastest
+for big numbers?
 
 Explain why.
 
@@ -183,5 +183,139 @@ string on the first call but will advance towards the center of the string as
 the recursion goes.}
 
 \solutioninput{../java/IsPalindromeRecursiveEfficient.java}
+
+
+\section{A Recursion Classic: Euclid's Algorithm}
+
+(From Knuth's \textsl{The Art of Computer Programming, Vol. 1: Fundamental
+Algorithms}, third ed.)
+
+The Euclidean algorithm (c. 300 B.C.) for finding the greater common divisor of
+two numbers $m$ and $n$, that is, the largest positive integer that evenly
+divides both $m$ and $n$ goes as follows:
+
+\begin{itemize}
+
+  \item[\textbf{E1.}] [Find remainder.] Divide $m$ and $n$ and let $r$ be the remainder. (We will have $0 \le r \le n$).
+
+  \item[\textbf{E2.}] [Is it zero?] If $r = 0$, the algorithm terminates; $n$ is the answer.
+
+  \item[\textbf{E3.}] [Reduce.] Set $m \leftarrow n$, $n \leftarrow r$, and go back to step E1.
+
+\end{itemize}
+
+\subsection{}
+
+Calculate, using pen and paper, the gcd (gratest common divisor) of $m = 119$
+and $n = 544$ using Euclid's algorithm.
+
+\begin{solution}
+17
+\end{solution}
+
+\subsection{}
+
+Write a program called \texttt{GcdIterative} that calculates the gcd of two
+numbers using an iterative version of Euclid's algorithm.
+
+\solutioninput{../java/GcdIterative.java}
+
+\subsection{}
+
+Explain why
+
+\begin{equation}
+  \label{eq:euclid}
+  gcd(m, n) = gcd(n, r)\text{.}
+\end{equation}
+
+\textsl{Tip: Any number that divides $m$ and $n$ must divide $m - qn$.}
+
+\begin{solution}
+  $m = qn + r$
+\end{solution}
+
+\subsection{}
+
+Based on equality \eqref{eq:euclid}, write a program called
+\texttt{GcdRecursive} that returns the gcd of two numbers using recursion.
+
+\solutioninput{../java/GcdRecursive.java}
+
+
+\section{Fibonacci Again}
+
+\subsection{}
+
+Write a program called \texttt{FibonacciIterative} that calculates the Fibonacci number of its argument using an iteration.
+
+\solutioninput{../../lecture-notes/java/FibonacciIterative.java}
+
+
+
+
+\section{Recursion on Collections}
+
+\subsection{}
+
+Write a class called \texttt{ArrayStackRecursiveContains} that use a recursive
+version of the \texttt{boolean contains(E e)} method.
+
+This class must implement the \texttt{Stack} interface using an array.
+
+
+\subsection{}
+
+Write an \texttt{ArrayQueue} class and a \texttt{LinkedQueue} class, that
+implement the \texttt{Queue} interface, using an array and a linked list
+respectively.
+
+The \texttt{toString} method for these two classes must be written using recursion.
+
+
+\section{Tail Recursion}
+
+\subsection{}
+
+Write a tail recursive version of a program to calculate Factorials.
+
+
+
+\section{Recursion Madness}
+
+\subsection{}
+
+In a book store there is a \underline{\textsl{list}} of cash register machines.
+
+On each cash register machine there is a \underline{\textsl{queue}} of clients.
+
+Each client IS-A person and HAS-A \underline{\textsl{stack}} of books he/she wants to buy.
+
+A person has a DNI and an age.
+
+A book has a title and a price (\texttt{BigDecimal}).
+
+The queues does not accept duplicated clients, but the stack of books do, as
+you can buy several copies of the same book.
+
+Write a program that calculates:
+
+\begin{itemize}
+
+  \item the average age of the clients waiting to pay for their books
+
+  \item the total price of all the books from all the clients that are waiting to pay.
+
+\end{itemize}
+
+Implement this program and all its classes using recursion instead of iteration
+in every method.
+
+Implement your list using a linked list, your queue using an array and your
+stack using a linked list.
+
+\textsl{Tip: this problem is quite hard, the point is for you to practice and
+think, not to finish it. In any case, if you manage to finish it, come and see
+me, I would like to congratulate you in person.}
 
 \end{document}
