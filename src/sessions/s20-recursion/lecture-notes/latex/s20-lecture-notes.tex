@@ -186,15 +186,12 @@ instead of simplifiying it and the recursion will never reach the base case.
 
 
 
-\section{Can you solve any problem using recursion}
+\section{Can you solve any problem using recursion?}
 
 Nobody knows, this is still an open problem, but \emph{it is belived} among the
 scientific comunity that
 
-\begin{blackboard}
-Any problem on natural integers that can be solved using
-iteration, can be solved using recursion, and the other way around.
-\end{blackboard}
+\blackboardinput{c-t-thesis.txt}
 
 This is call the ``Church-Turin thesis'', due to Alonso Church and Alan Turin.
 
@@ -235,11 +232,11 @@ So chosing between iteration or recursion is more an art than a science.
 The trick is:
 
 \begin{blackboard}
-Realize that your problem is just some operations over a simpler version of the
-same problem.
+Realize that your problem is just some operations on top of
+solving a simpler version of the same problem.
 \end{blackboard}
 
-Of course this is not always easy, but some times, it is, for example the factorial:
+Of course this is not always easy to do, but some times, it is, for example the factorial:
 
 \begin{equation*}
   n! =
@@ -507,20 +504,20 @@ $ java Count1ToNIterative 100000
 \columnbreak
 \begin{blackboard}
 $ java Count1ToNRecursive 100000
-Exception in thread "main" java.lang.StackOverflowError
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:25)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
-        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+Exception in ... java.lang.StackOverflowError
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
+        at Count1ToNRecursive...:25)
 ...
 \end{blackboard}
 \end{multicols}
@@ -616,7 +613,7 @@ Do you remember the previous version of the Fibonacci program?
 
 That is the worst implementation ever, no serious programmer will use it, ever.
 
-Let us take a look at the code again, Why do you think this is the code ever?
+Let us take a look at the code again, Why do you think this is the worst code ever?
 
 \codelinesinput{../java/FibonacciRecursive.java}{FibonacciRecursive.java}{35}{43}
 
