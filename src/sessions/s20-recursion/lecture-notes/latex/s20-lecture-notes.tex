@@ -691,9 +691,26 @@ We have just make this program 14,000 times faster just by using a simple int ar
 
 \subsection{Mutual recursion}
 
-Mutual recursion is when you have indirect recursion, for example:
+Mutual recursion is when you have indirect recursion, this is a method calls itself by the means of other, intermediate methods.
 
+For example:
 
-EVEN ODD
+\begin{blackboard}
+class A {
+  void m1() {
+    // some operations
+    m2();
+  }
+
+  void m2() {
+    // some other operations
+    m1();
+  }
+}
+\end{blackboard}
+
+A very inefficient example:
+
+\codelinesinput{../java/EvenOrOdd.java}{EvenOrOdd.java}{11}{25}
 
 \end{document}
