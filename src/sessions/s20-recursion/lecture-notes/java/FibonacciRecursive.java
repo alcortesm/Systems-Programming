@@ -18,7 +18,7 @@ class FibonacciRecursive {
             if (input < 0 || input > MAX) {
                 throw new IllegalArgumentException();
             }
-            int output = fibonacci(input);
+            int output = fibo(input);
             System.out.println(output);
         } catch (Exception ex) {
             System.err.println(USAGE);
@@ -32,13 +32,13 @@ class FibonacciRecursive {
     // Example: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610,
     // 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393,
     // 196418, 317811, 514229, 832040...
-    private static int fibonacci(int n) {
+    private static int fibo(int n) {
         if (n == 0) {
             return 0;
         } else if (n == 1) {
             return 1;
         } else {
-            return fibonacci(n-1) + fibonacci(n-2);
+            return fibo(n-1) + fibo(n-2);
         }
     }
 }

@@ -1,4 +1,4 @@
-class FibonacciRecursiveMemoization {
+class FibonacciMemoization {
 
     // Fibonacci of a number bigger than 46 is so big
     // that it does not fit into an int.
@@ -18,10 +18,7 @@ class FibonacciRecursiveMemoization {
             if (input < 0 || input > MAX) {
                 throw new IllegalArgumentException();
             }
-            Integer[] memory = new Integer[input+1];
-            memory[0] = 0;
-            memory[1] = 1;
-            int output = fibonacci(input, memory);
+            int output = fibo(input);
             System.out.println(output);
         } catch (Exception ex) {
             System.err.println(USAGE);
@@ -29,17 +26,18 @@ class FibonacciRecursiveMemoization {
         }
     }
 
-    // Fn = Fn-1 + Fn-2
-    // with F0 = 0 and F1 = 1.
-    //
-    // Example: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610,
-    // 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393,
-    // 196418, 317811, 514229, 832040...
-    private static int fibonacci(int n, Integer[] memory) {
-        if (memory[n] != null) {
-            return memory[n];
+    private static int fibo(int n) {
+        Integer[] memo = new Integer[n+1];
+        memo[0] = 0; memo[1] = 1;
+        return fiboMemo(n, memo);
+    }
+
+    private static int fiboMemo(int n, Integer[] memo) {
+        if (memo[n] != null) {
+            return memo[n];
         } else {
-            return memory[n] = fibonacci(n-1, memory) + fibonacci(n-2, memory);
+            return memo[n] =
+                fiboMemo(n-1, memo) + fiboMemo(n-2, memo);
         }
     }
 }

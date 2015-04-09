@@ -409,31 +409,291 @@ ESTE MEJOR PARA EJERCICIOS.
 
 \subsection{Fibonacci}
 
+The Fibonacci sequence looks as follows:
 
-\subsection{Linked Lists}
+\begin{blackboard}
+Fibonacci sequence:
 
+  0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+\end{blackboard}
+
+Each number is the sum of its two previous numbers: $34 = 13 + 21$, $21 = 8 + 13$ ...
+
+And $F(0) = 0$ and $F(1) = 1$ by definition.
+
+So you can write the Fibonacci sequence as follows:
+
+\begin{equation*}
+  F_n =
+  \begin{cases}
+    0, & \text{if } n = 0\\
+    1, & \text{if } n = 1\\
+    F_{n-1} + F_{n-2}, & \text{otherwise}
+  \end{cases}, \forall n \in \mathbb{Z}^{*}.
+\end{equation*}
+
+Write a program that receives an index and returns the number in the Fibonacci
+sequence for that index.
+
+An iterative solution is not difficult, but you will have to think a little bit
+about it (I have left this as a problem for your self-assessment). The
+recursive solution is trivial though:
+
+\codelinesinput{../java/FibonacciRecursive.java}{FibonacciRecursive.java}{35}{43}
+
+Can you see the base cases and how the problem is reduced with each recursion?
+
+\subsection{Stacks, queue...}
+
+Recursive algorithms for data structure manipulation are very common also, for
+example:
+
+Write a LinkedStack with a \texttt{boolean contains(E e)} method.
+
+The iterative version of this program will go through all the elements in the
+stack using a for or a while loop, until we reach the buttom of the stack or
+until we find the data.
+
+The recursive version is simpler:
+
+\begin{center}
+\includegraphics[width=12cm]{./img/linkedstack/linkedstack.eps}
+\end{center}
+
+\begin{multicols}{2}
+\codelinesinput{../java/LinkedStackRecursiveContains.java}{LinkedStackRecursiveConstains.java}{76}{84}
+\columnbreak
+\codelinesinput{../java/LinkedStackRecursiveContains.java}{LinkedStackRecursiveContains.java}{18}{27}
+\end{multicols}
+
+Can you see the reduction in each step and the base cases?
+
+Of course, you know by the ``Church-Turin'' thesis that you can also write
+recursive version for array based collections, I will left that as a
+self-assessment exercise.
 
 \section{Recursion Optimizations}
 
+Even when some problem can be easily solved by recursion, the straighforward
+recursive solution can be pretty inefficient, let us see how to optimize
+recursive calls.
 
 
 \subsection{Stack Overflows}
 
-USE A BIGGER STACK (count1toN)
+As each call to a method in Java creates a new Stack Frame in the stack, you can easily run out of Stack space using recursion:
 
-OR
+Example:
 
-USE TAIL RECURSION OPTIMIZATION (count1toN)
+\begin{multicols}{2}
+\begin{blackboard}
+$ java Count1ToNIterative 100000
+...
+99987
+99988
+99989
+99990
+99991
+99992
+99993
+99994
+99995
+99996
+99997
+99998
+99999
+100000
+\end{blackboard}
+\columnbreak
+\begin{blackboard}
+$ java Count1ToNRecursive 100000
+Exception in thread "main" java.lang.StackOverflowError
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:25)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+        at Count1ToNRecursive.count1ToN(Count1ToNRecursive.java:26)
+...
+\end{blackboard}
+\end{multicols}
+
+The iterative version runs just fine with big numbers, but the recursive
+version runs out of stack space pretty quickly.
+
+There are two ways to solve this:
+
+\subsubsection{Make the stack bigger}
+
+First let us try the brute force approach: if we do not have enough stack space
+for our program, just make the stack bigger.
+
+You can make the stack space bigger in Java by passing the \texttt{-Xss} to the virtual machine.
+
+The \texttt{-X} stands for \texttt{EXTENSION} and the \texttt{ss} stands for \texttt{Stack Size}.
+
+For example:
+
+\begin{blackboard}
+$ java -Xss8000k Count1ToNRecursive 100000
+...
+99996
+99997
+99998
+99999
+100000
+\end{blackboard}
+
+It seems that in my laptop, with 8,000 kylobytes of stack is enought to count from 10,000 to 1.
+
+
+
+\subsubsection{Tail recursion optimization}
+
+But sometimes we can not make the stack bigger, because we are reducing the
+heap and maybe we wont be able to fit all our objects in memory.
+
+In general there is a better solution than making the stack bigger.
+
+Take a look a the \texttt{Count1ToNRecursive} code again.
+
+\codelinesinput{../java/Count1ToNRecursive.java}{Count1ToNRecursive.java}{24}{29}
+
+Now let us try to make a \emph{Tail recursive} version of the same method.
+
+A \emph{tail recursive method} is a recursive method where the recursive call
+is the last thing to do in the method.
+
+This is the method does not do any further operations after the recursive call.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Count1ToNRecursive.java}{Count1ToNRecursive.java}{24}{29}
+\columnbreak
+\codelinesinput{../java/Count1ToNTailRecursive.java}{Count1ToNTailRecursive.java}{24}{35}
+\end{multicols}
+
+When the last thing to do in a method is to call another method, there is no
+need to keep the stack frame of the first method in the stack until the second
+method has finished, because the first method has already finished.
+
+This means we can delete the stack frame of the first method right away, before
+calling the second method.
+
+This is called \emph{Tail Recursion Optimization}.
+
+When your compilar support \emph{Tail Recursion Optimization}, tail recursive
+methods only use one stack frame, so you will never run out of stack space.
+
+This is way learning how to turn recursive methods into tail recursive methods
+is so important, and such a popular exam question.
+
+This is the optimum solution for solving the stack space problem, instead of
+doing your stack bigger.
+
+Now the bad news: JAVA compilers do not support TAIL RECURSION OPTIMIZATION, so
+this beautifull method is useless in JAVA.
+
+But turning recursive methods into tail recursive methods is still one of the
+most important abilities of a programmer, because most serious languages
+supoprt tail recursion optimization.
+
+
 
 \subsection{Exponential growth}
 
-USE MEMOIZATION
+Another typicall problem of recursion is exponential growth.
 
-(fibonacci)
+Let us see an example:
 
+Do you remember the previous version of the Fibonacci program?
 
+That is the worst implementation ever, no serious programmer will use it, ever.
+
+Let us take a look at the code again, Why do you think this is the code ever?
+
+\codelinesinput{../java/FibonacciRecursive.java}{FibonacciRecursive.java}{35}{43}
+
+This code is very slow!
+
+\begin{blackboard}
+$ time java FibonacciRecursive 45
+1134903170
+
+real    0m14.930s
+user    0m14.909s
+sys     0m0.020s
+\end{blackboard}
+
+It takes 15 seconds to calculate the Fibonacci of 45, but it sould take less than a second.
+
+What is the problem?
+
+\begin{center}
+\includegraphics[width=14cm]{./img/fibonacci/fibonacci.eps}
+\end{center}
+
+All these kind of problems can be easily solved using Dynamic Programming which
+is a very important technique for optimizing solutions to problems.
+
+Dynamic programming is a huge topic and we are not going to see all the details
+in this course.
+
+But let me show you a solution to this problem using one of the techniques of
+Dynamic programming, called MEMOIZATION, which means basically REMEMBERING:
+
+Instead of executing fibonacci 17 trillion times, let us just remember the
+result for each execution so we do not have to calculate the same numbers over
+a over.
+
+TACHAR CIRCULOS EN EL DIBUJO
+
+\begin{multicols}{2}
+\codelinesinput{../java/FibonacciRecursive.java}{FibonacciRecursive.java}{35}{43}
+\columnbreak
+\codelinesinput{../java/FibonacciMemoization.java}{FibonacciMemoization.java}{29}{42}
+\end{multicols}
+
+Now let us compare times:
+
+\begin{multicols}{2}
+\begin{blackboard}
+$ time java FibonacciRecursive 45
+1134903170
+
+real    0m14.930s
+user    0m14.909s
+sys     0m0.020s
+\end{blackboard}
+\columnbreak
+\begin{blackboard}
+$ time java FibonacciMemoization 45
+1134903170
+
+real    0m0.105s
+user    0m0.088s
+sys     0m0.016s
+\end{blackboard}
+\end{multicols}
+
+Wow, that was fast!
+
+Companies will pay you a lot of money to make a program work 10\% faster.
+
+We have just make this program 14,000 times faster just by using a simple int array.
 
 
 \subsection{Mutual recursion}
+
+Mutual recursion is when you have indirect recursion, for example:
+
+
+EVEN ODD
 
 \end{document}

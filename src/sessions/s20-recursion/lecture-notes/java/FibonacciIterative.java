@@ -18,7 +18,7 @@ class FibonacciIterative {
             if (input < 0 || input > MAX) {
                 throw new IllegalArgumentException();
             }
-            int output = fibonacci(input);
+            int output = fibo(input);
             System.out.println(output);
         } catch (Exception ex) {
             System.err.println(USAGE);
@@ -32,7 +32,7 @@ class FibonacciIterative {
     // Example: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610,
     // 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393,
     // 196418, 317811, 514229, 832040...
-    private static int fibonacci(int n) {
+    private static int fibo(int n) {
         if (n < 2) {
             return n;
         } else {
@@ -46,6 +46,7 @@ class FibonacciIterative {
             }
             return fn;
         }
+        // a simpler version:
 //        int a = 0;
 //        int b = 1;
 //        int c;
