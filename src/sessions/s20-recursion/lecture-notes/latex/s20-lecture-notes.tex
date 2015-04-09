@@ -120,7 +120,11 @@ You have already seen some recursive definitions in Java, for example a \verb+No
 According with this new definition of the factorial, we can write an
 alternative version of the \verb+factorial+ method above:
 
+\begin{multicols}{2}
+\codelinesinput{../java/FactorialIterative.java}{FactorialIterative.java}{29}{35}
+\columnbreak
 \codelinesinput{../java/FactorialRecursive.java}{FactorialRecursive.java}{29}{35}
+\end{multicols}
 
 This method is shorter and simpler to understand than the previous one, as it
 directly mirrors the mathematical definition.
@@ -236,7 +240,8 @@ Realize that your problem is just some operations on top of
 solving a simpler version of the same problem.
 \end{blackboard}
 
-Of course this is not always easy to do, but some times, it is, for example the factorial:
+Of course this is not always easy to do, but some times, it is, for example the
+factorial:
 
 \begin{equation*}
   n! =
@@ -458,9 +463,9 @@ The recursive version is simpler:
 \end{center}
 
 \begin{multicols}{2}
-\codelinesinput{../java/LinkedStackRecursiveContains.java}{LinkedStackRecursiveConstains.java}{76}{84}
+\codelinesinput{../java/LinkedStackRecursiveContains.java}{LinkedStackRecursiveConstains.java}{75}{83}
 \columnbreak
-\codelinesinput{../java/LinkedStackRecursiveContains.java}{LinkedStackRecursiveContains.java}{18}{27}
+\codelinesinput{../java/LinkedStackRecursiveContains.java}{LinkedStackRecursiveContains.java}{18}{26}
 \end{multicols}
 
 Can you see the reduction in each step and the base cases?

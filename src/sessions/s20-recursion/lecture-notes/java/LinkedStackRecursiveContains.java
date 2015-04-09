@@ -15,7 +15,6 @@ class LinkedStackRecursiveContains<E> implements Stack<E> {
             this.next = next;
         }
 
-        // this is part of the Node inner class
         boolean contains(E e) {
             if (e.equals(datum)) {
                 return true;

@@ -1,4 +1,4 @@
 Church-Turin Thesis:
 
-Any problem on natural integers that can be solved using iteration,
-can be solved using recursion, and the other way around.
+    Any problem on natural integers that can be solved using iteration,
+    can be solved using recursion, and the other way around.
