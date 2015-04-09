@@ -23,7 +23,11 @@ zip := $(out_dir)/pub/sessions/$(number)-src.zip
 
 all : imgs install demo
 
-install : $(pub_files) html
+install : $(pub_files) html zip
+
+zip:
+	- rm $(zip)
+	zip -j -r $(zip) ../java/Count1ToN*.java ../java/CountNTo1*.java ../java/EvenOrOdd.java ../java/Factorial*.java ../java/FibonacciMemoization.java ../java/FibonacciRecursive.java ../java/IsPalindrome*.java ../java/LinkedStackRecursiveContains.java ../java/Stack.java
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
@@ -63,3 +67,4 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
+	cp ../java/*.java $(demo_dir)
