@@ -67,4 +67,4 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-#	cp ../java/*.java $(demo_dir)
+	cp ./img/fibonacci/fibonacci.eps ./img/object/object.eps ./img/music/music.eps ./img/map/map.eps ./img/madrid-rome/madird-rome.eps ./img/knapsack/knapsack.eps $(demo_dir)
