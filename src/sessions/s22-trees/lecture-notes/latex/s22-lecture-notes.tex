@@ -1,0 +1,175 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 22 - Trees}
+
+\newcommand{\separator}{\begin{center}%
+\noindent\makebox[\linewidth]{\rule{0.75\paperwidth}{0.4pt}}%
+\end{center}}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Trees
+\end{blackboard}
+
+\section{Examples of trees}
+
+Do you remember the recursive and horrible solution to the Fibonacci problem?
+
+\begin{center}
+\includegraphics[width=6cm]{./img/fibonacci/fibonacci.eps}
+\end{center}
+
+This kind of structure is called a \emph{tree}.
+
+In conputer science trees grow downwards, the node at the top is called the
+\emph{root}, and the nodes at the buttom are called the \emph{leaves}.
+
+\separator
+
+Do you remember the object inheritance hierarchy in Java?
+
+\begin{center}
+\includegraphics[width=6cm]{./img/object/object.eps}
+\end{center}
+
+Well, this is also a tree.
+
+\separator
+\newpage
+
+Let us take a look at the directories I have under my music directory:
+
+\begin{center}
+\includegraphics[width=8cm]{./img/music/music.eps}
+\end{center}
+
+This might not look as a tree, but if you look closely, you will see it is, in
+fact, a tree, with the music directory as the root, then, on the first level
+the name of the bands, and on the second level the name of the albums.
+
+Problem: Write a graphical Java program that allows me to browse my music collection
+by bands and albums and let me play songs by clicking on them.
+
+\separator
+
+Now, let us take a look at this map of flight routes through Europe:
+
+\begin{center}
+\includegraphics[width=5cm]{./img/map/map.eps}
+\end{center}
+
+Problem: Write a Java program that finds the flight with least connections from Madrid to Rome.
+
+You can create the tree of flight from Madrid to Rome, and look for the path
+with least connections. This is, the path with least depth.
+
+\begin{center}
+\includegraphics[width=12cm]{./img/madrid-rome/madrid-rome.eps}
+\end{center}
+
+\separator
+
+The Knapsack problem.
+
+You are a burglar, stealing some goods in a house.
+
+You carry a bag that can hold up to 95 Kilograms of goods.
+
+\newpage
+
+In the house there are 4 objects, each of them with its own weight and price:
+
+\begin{blackboard}
+      w  p
+  A  50 60
+  B  20 30
+  C  30 66
+  D  40 40
+\end{blackboard}
+
+Write a Java program that calculates the best way to fill your bag.
+
+\begin{center}
+\includegraphics[width=13cm]{./img/knapsack/knapsack.eps}
+\end{center}
+
+A naive algorithm to solve this problem might look as follows:
+
+\begin{blackboard}
+  - build the tree with all the combinations
+  - search the leaf with the biggest price
+\end{blackboard}
+
+Now, think of Amazon, sending boxes to Madrid from Paris in a plane, trying to
+fill the boxes the best way possible.
+
+Of course Amazon will have thousands of boxes and many 20 flight connections or so.
+
+
+\separator
+
+All these are toy examples of real programming problems that happens every day in
+
+\begin{itemize}
+  \item Computer graphics
+  \item Compresion of video, images and music
+  \item Optimization problems (in airports, filesystems, companies)
+  \item Marketing
+  \item Storehouses
+  \item Economics
+  \item Sequencing the human genome
+  \item Internet communications
+  \item ...
+\end{itemize}
+
+As you can see, tree are pretty useful data structures.
+
+
+\section{Definition}
+
+Until now, you have been using \emph{linear} structures, like lists, queues, stacks and decks.
+
+In a linear data structure each element has a clear precesor and a clear succesor.
+
+Trees are non-linear data structures that store elements in a hierarchy.
+
+Each element (except the root) has a parent.
+
+Each element (except the leafs) has one or more children.
+
+SLIDES FROM 5 to 14.
+
+
+
+\section{Terminology}
+
+SLIDES FROM 17 to 20.
+
+
+
+\section{Implementation}
+
+NODE from ~/tmp/ps/TNode.java
+
+
+
+
+
+\section{Binary Trees}
+
+\end{document}
