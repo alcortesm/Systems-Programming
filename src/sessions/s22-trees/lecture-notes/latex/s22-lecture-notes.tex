@@ -187,11 +187,51 @@ Solution to slide 17:
 
 \section{Implementation}
 
-NODE from ~/tmp/ps/TNode.java
+
+\subsection{Complicated Way}
+
+\begin{blackboard}
+class TNode<E> {
+    E datum;
+    TNode<E> parent;
+    LinkedQueue<TNode<E>> children;
+
+    ...
+}
+\end{blackboard}
+
+\includegraphics[width=4cm]{./img/tree1/tree1a.eps}
+\includegraphics[width=4cm]{./img/tree1/tree1b.eps}
+\includegraphics[width=4cm]{./img/tree1/tree1c.eps}
+\includegraphics[width=4cm]{./img/tree1/tree1d.eps}
+
+\begin{center}
+\includegraphics[width=12cm]{./img/tree1/tree1d.eps}
+\end{center}
 
 
 
+\subsection{Simple Way}
 
+\begin{blackboard}
+class TNode<E> {
+    E datum;
+    TNode<E> parent;
+    TNode<E> next;
+    TNode<E> child;
+
+    ...
+}
+\end{blackboard}
+
+\includegraphics[width=4cm]{./img/tree2/tree2a.eps}
+\includegraphics[width=4cm]{./img/tree2/tree2b.eps}
+\includegraphics[width=4cm]{./img/tree2/tree2c.eps}
+\includegraphics[width=4cm]{./img/tree2/tree2d.eps}
+
+\begin{center}
+\includegraphics[width=12cm]{./img/tree2/tree2d.eps}
+\end{center}
 
 \section{Binary Trees}
 
