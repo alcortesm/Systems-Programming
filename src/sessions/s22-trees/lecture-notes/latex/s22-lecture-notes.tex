@@ -112,7 +112,7 @@ A naive algorithm to solve this problem might look as follows:
 
 \begin{blackboard}
   - build the tree with all the combinations
-  - search the leaf with the biggest price
+  - search for the leaf with the biggest price
 \end{blackboard}
 
 Now, think of Amazon, sending boxes to Madrid from Paris in a plane, trying to
@@ -142,9 +142,9 @@ As you can see, tree are pretty useful data structures.
 
 \section{Definition}
 
-Until now, you have been using \emph{linear} structures, like lists, queues, stacks and decks.
+Until now, you have been using \emph{linear} data structures, like lists, queues, stacks and decks.
 
-In a linear data structure each element has a clear precesor and a clear succesor.
+In a linear data structure each element has a clear predecessor and a clear succesor.
 
 Trees are non-linear data structures that store elements in a hierarchy.
 
@@ -164,6 +164,8 @@ Solution to slide 17:
 
 \begin{center}
   \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Node & height & depth & size & int. / ext. \\
     \hline
     a & 3 & 0 & 11 & Internal \\
     b & 1 & 1 & 3  & Internal \\
@@ -195,7 +197,6 @@ class TNode<E> {
     E datum;
     TNode<E> parent;
     LinkedQueue<TNode<E>> children;
-
     ...
 }
 \end{blackboard}
@@ -233,6 +234,51 @@ class TNode<E> {
 \includegraphics[width=12cm]{./img/tree2/tree2d.eps}
 \end{center}
 
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
 \section{Binary Trees}
+
+\input{complete.tex}
+
+\includegraphics[width=4cm]{./img/btrees/btreesa.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesb.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesc.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesd.eps}
+
+\begin{blackboard}
+Non-binary               binary                   binary                   binary
+                         non-complete             complete                 complete
+                         non-full                 full                     non-full
+\end{blackboard}
+
+\includegraphics[width=4cm]{./img/btrees/btreese.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesf.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesg.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesh.eps}
+
+\begin{blackboard}
+binary                   binary                   binary                   binary
+non-complete             complete                 complete                 complete
+non-full                 full                     non-full                 full
+\end{blackboard}
+
+\newpage
+\input{properties.tex}
+\newpage
+
+\subsection{Implementations}
+
+
 
 \end{document}

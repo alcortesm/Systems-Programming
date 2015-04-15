@@ -1,0 +1,47 @@
+\subsection{Properties}
+
+For binary trees, let
+\begin{itemize}
+
+\item $e \in \mathbb{N}$ be the total number of external nodes,
+
+\item $i \in \mathbb{N}$ be the total number of internal nodes,
+
+\item $n \in \mathbb{N}$ be the total number of nodes ($n = e + i$),
+
+\item $n_0 \in \mathbb{N}$ be the total number of nodes with no children, this
+is, leafs,
+
+\item $n_2 \in \mathbb{N}$ be the total number of nodes with two children and
+
+\item $h \in \mathbb{N}$ be the height of a non-empty tree.
+
+\end{itemize}
+
+Then, for generic (non-empty) binary trees, the number of nodes with depth $d$
+is at least 1 and at most $2^d$, therefore
+
+\begin{equation}
+  h + 1 \le n \le 2^{h+1} - 1,
+\end{equation}
+because
+\begin{equation}
+  \sum_{i=0}^{h}2^i = 2^{h+1} - 1.
+\end{equation}
+
+Also for generic (non-empty) binary trees, as each node with two children opens
+a new path, \begin{equation} n_0 = n_2 + 1.  \end{equation}
+
+For complete binary trees
+\begin{equation}
+  i = \left \lfloor{\frac{n}{2}}\right \rfloor,
+\end{equation}
+as each pair of consecutive leafs have the same parent.
+
+Finally, for full binary trees
+\begin{equation}
+  2^h + 1 \le n \le 2^{h+1} - 1,
+\end{equation}
+as the depest level will have at least 2 leafs.
+
+
