@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-class ArrayTree<E> {
+class ArrayBTree<E> {
     private E[] array;
     private static final int MIN_DEPTH = 1;
     private static final int MAX_DEPTH = 29;
@@ -9,7 +9,7 @@ class ArrayTree<E> {
     // but we have to take into account the
     // JVM max array margin (usually only a few bytes).
 
-    public ArrayTree(int depth) {
+    public ArrayBTree(int depth) {
         if (depth < MIN_DEPTH || depth > MAX_DEPTH ) {
             throw new IllegalArgumentException();
         }
@@ -20,7 +20,7 @@ class ArrayTree<E> {
         this.array = workaround;
     }
 
-    public ArrayTree(int depth, E root) {
+    public ArrayBTree(int depth, E root) {
         this(depth);
         setDatum(root(), root);
     }
@@ -37,7 +37,7 @@ class ArrayTree<E> {
         return (i >= 0) && (i < array.length) ;
     }
 
-    private void throwIfNoDatum(int i)
+    private void throwIfBadAccess(int i)
                         throws ArrayIndexOutOfBoundsException,
                                NoSuchElementException {
         if (! isValidIndex(i)) {
@@ -51,7 +51,7 @@ class ArrayTree<E> {
     // returns the element stored at i
     public E getDatum(int i) throws ArrayIndexOutOfBoundsException,
                                     NoSuchElementException {
-        throwIfNoDatum(i);
+        throwIfBadAccess(i);
         return array[i];
     }
 
@@ -155,23 +155,35 @@ class ArrayTree<E> {
 
     public int size(int i) throws ArrayIndexOutOfBoundsException,
                                   NoSuchElementException {
-        throwIfNoDatum(i);
+        throwIfBadAccess(i);
         int leftSize = (hasLeft(i)) ? size(left(i)) : 0;
         int rightSize = (hasRight(i)) ? size(right(i)) : 0;
         return 1 + leftSize + rightSize;
     }
 
+    public int size() throws ArrayIndexOutOfBoundsException,
+                             NoSuchElementException {
+        return size(root());
+    }
+
     public int height(int i) throws ArrayIndexOutOfBoundsException,
                                     NoSuchElementException {
-        throwIfNoDatum(i);
+        throwIfBadAccess(i);
         int leftHeight = (hasLeft(i)) ? height(left(i)) : -1;
         int rightHeight = (hasRight(i)) ? height(right(i)) : -1;
         return 1 + Math.max(leftHeight, rightHeight);
     }
 
-    public int depth(int i) throws ArrayIndexOutOfBoundsException,
-                                   NoSuchElementException {
-        throwIfNoDatum(i);
+    public int height() throws ArrayIndexOutOfBoundsException,
+                               NoSuchElementException {
+        return height(root());
+    }
+
+    // This method is slow, in array binary trees, there is a faster
+    // way based in the index (see below).
+    public int depthSlow(int i) throws ArrayIndexOutOfBoundsException,
+                                       NoSuchElementException {
+        throwIfBadAccess(i);
         if (! hasParent(i)) {
             return 0;
         } else {
@@ -179,10 +191,21 @@ class ArrayTree<E> {
         }
     }
 
+    // A quick implementation of the depth method using
+    // the expresion depth = log_2(i+1)
+    //
+    // int logs are difficult in Java, here i am using
+    // a clever trick using binary arithmetic.
+    public int depth(int i) throws ArrayIndexOutOfBoundsException,
+                                   NoSuchElementException {
+        throwIfBadAccess(i);
+        return 31 - Integer.numberOfLeadingZeros(i + 1);
+    }
+
     public boolean isInternal(int i)
                         throws ArrayIndexOutOfBoundsException,
                                NoSuchElementException {
-        throwIfNoDatum(i);
+        throwIfBadAccess(i);
         return hasLeft(i) || hasRight(i);
     }
 
@@ -202,7 +225,7 @@ class ArrayTree<E> {
         //               /   \
         //              h     i
         //
-        ArrayTree<Character> tree = new ArrayTree<Character>(4);
+        ArrayBTree<Character> tree = new ArrayBTree<Character>(4);
         Character[] data = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i' };
         int a = tree.root();
         int b = tree.left(a);
@@ -218,8 +241,8 @@ class ArrayTree<E> {
             tree.setDatum(indexes[ii], data[ii]);
         }
 
-        System.out.println("Tree size = " + tree.size(tree.root()));
-        System.out.println("Tree height = " + tree.height(tree.root()));
+        System.out.println("Tree size = " + tree.size());
+        System.out.println("Tree height = " + tree.height());
         System.out.println("Node\tsize\theight\tdepth\tInternal/External");
         for (int ii=0; ii<indexes.length; ii++) {
             System.out.println("" + tree.getDatum(indexes[ii])
