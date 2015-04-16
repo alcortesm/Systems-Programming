@@ -20,6 +20,10 @@ class LinkedBNode<E> {
         }
     }
 
+    public boolean isInternal() {
+        return (left != null || right != null);
+    }
+
     public int depth() {
         return (parent != null) ? 1 + parent.depth() : 0;
     }
@@ -36,37 +40,60 @@ class LinkedBNode<E> {
         return 1 + Math.max(leftHeight, rightHeight);
     }
 
-    public boolean isInternal() {
-        return (left != null || right != null);
+    public String toString() {
+        return toStringPreOrder();
     }
 
-    public void printPreOrder() {
-        System.out.println(datum);
-        if (left != null) {
-            left.printPreOrder();
-        }
-        if (right != null) {
-            right.printPreOrder();
+    // add a coma if necessary when concatenating strings
+    private String concat(String prefix, String suffix) {
+        if (prefix.length() == 0) {
+            return suffix;
+        } else {
+            return prefix + ", " + suffix;
         }
     }
 
-    public void printPostOrder() {
+
+    // Concatenating strings in java is not very efficient.
+    //
+    // It would be better to pass around
+    // a StringBuilder object in the recursive calls.
+    //
+    // But that would make this example code more difficult
+    // to understand so we prefer to use the inefficient version.
+    public String toStringPreOrder() {
+        String result = "";
+        result += datum.toString();
         if (left != null) {
-            left.printPostOrder();
+            result = concat(result, left.toStringPreOrder());
         }
         if (right != null) {
-            right.printPostOrder();
+            result = concat(result, right.toStringPreOrder());
         }
-        System.out.println(datum);
+        return result;
     }
 
-    public void printInOrder() {
+    public String toStringPostOrder() {
+        String result = "";
         if (left != null) {
-            left.printInOrder();
+            result += left.toStringPostOrder();
         }
-        System.out.println(datum);
         if (right != null) {
-            right.printInOrder();
+            result = concat(result, right.toStringPostOrder());
         }
+        result = concat(result, datum.toString());
+        return result;
+    }
+
+    public String toStringInOrder() {
+        String result = "";
+        if (left != null) {
+            result += left.toStringInOrder();
+        }
+        result = concat(result, datum.toString());
+        if (right != null) {
+            result = concat(result, right.toStringInOrder());
+        }
+        return result;
     }
 }

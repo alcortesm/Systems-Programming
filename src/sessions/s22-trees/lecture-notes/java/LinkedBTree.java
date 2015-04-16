@@ -1,7 +1,7 @@
+import java.util.NoSuchElementException;
+
 class LinkedBTree<E> {
     private LinkedBNode<E> root;
-    public static final boolean LEFT = true;
-    public static final boolean RIGHT = false;
 
     public LinkedBTree() {
         root = null;
@@ -11,7 +11,14 @@ class LinkedBTree<E> {
         this.root = new LinkedBNode<E>(root, null, null, null);
     }
 
-    public LinkedBNode<E> getRoot() {
+    public void setRoot(LinkedBNode<E> root) {
+        this.root = root;
+    }
+
+    public LinkedBNode<E> getRoot() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
         return this.root;
     }
 
@@ -19,62 +26,125 @@ class LinkedBTree<E> {
         return root == null;
     }
 
-    public int size() {
-        return root.size();
-    }
-
-    public int height() {
-        return root.height();
-    }
-
-    public void printPreOrder() {
-        if (! isEmpty()) {
-            root.printPreOrder();
-        }
-    }
-
-    public void printPostOrder() {
-        if (! isEmpty()) {
-            root.printPostOrder();
-        }
-    }
-
-    public void printInOrder() {
-        if (! isEmpty()) {
-            root.printInOrder();
-        }
-    }
-
     public void makeEmpty() {
-        root = null;
+        setRoot(null);
     }
 
-    // Insert a tree on the left or on the right of this one.
+    // To make this method fast, we are reusing
+    // the nodes from the tree to be inserted
+    // instead of reusing them.
     //
-    // To make this method fast, we are reusing the nodes from the original
-    // tree, and therefore we must destroy the oringal tree to avoid
-    // having several trees using the same nodes.
-    public void insert(LinkedBTree<E> tree, boolean onTheLeft) {
+    // Therefore, we must destroy the inserted
+    // tree after the insertion, to avoid having
+    // two trees using the same nodes.
+    private void insertLeft(LinkedBTree<E> tree) {
         if (tree == null) {
             throw new IllegalArgumentException();
         }
-        if (onTheLeft) {
-            if (tree.isEmpty()) {
+        // if inserting an empty tree just remove
+        // whatever was on the left
+        if (tree.isEmpty()) {
+            if (root.left != null) {
+                root.left.parent = null;
                 root.left = null;
-            } else {
-                root.left = tree.root;
-                root.left.parent = root;
-                tree.makeEmpty(); // destroy original
             }
-        } else { // the same but on the right
-            if (tree.isEmpty()) {
-                root.right = null;
-            } else {
-                root.right = tree.root;
-                root.right.parent = root;
-                tree.makeEmpty(); // destroy original
+        } else {
+            // if tree is not empty, substitute old
+            // nodes with the ones of the new tree
+
+            // if there was something on the left,
+            // remove its parent link.
+            if (root.left != null) {
+                root.left.parent = null;
             }
+            // substitute old nodes with new ones
+            root.left = tree.root;
+            root.left.parent = root;
+            // and destroy the old tree
+            tree.makeEmpty();
         }
+    }
+
+    // This method is the same as insertLeft, but
+    // changing left for right. It is a pity that
+    // there is no way in Java to avoid all this
+    // code redundancy.
+    private void insertRight(LinkedBTree<E> tree) {
+        if (tree == null) {
+            throw new IllegalArgumentException();
+        }
+        // if inserting an empty tree just remove
+        // whatever was on the right
+        if (tree.isEmpty()) {
+            if (root.right != null) {
+                root.right.parent = null;
+                root.right = null;
+            }
+        } else {
+            // if tree is not empty, substitute old
+            // nodes with the ones of the new tree
+
+            // if there was something on the right,
+            // remove its parent link.
+            if (root.right != null) {
+                root.right.parent = null;
+            }
+            // substitute old nodes with new ones
+            root.right = tree.root;
+            root.right.parent = root;
+            // and destroy the old tree
+            tree.makeEmpty();
+        }
+    }
+
+    public int size() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            return root.size();
+        }
+    }
+
+    public int height() throws IllegalStateException {
+        if (isEmpty()) {
+            throw new IllegalStateException();
+        } else {
+            return root.height();
+        }
+    }
+
+    public String toString() {
+        return toStringPreOrder();
+    }
+
+    public String toStringPreOrder() {
+        String result = "Tree (pre) = ";
+        if (isEmpty()) {
+            result += "[empty]";
+        } else {
+            result += root.toStringPreOrder();
+        }
+        return result;
+    }
+
+    public String toStringPostOrder() {
+        String result = "Tree (post) = ";
+        if (isEmpty()) {
+            result += "[empty]";
+        } else {
+            result += root.toStringPostOrder();
+        }
+        return result;
+    }
+
+    public String toStringInOrder() {
+        String result = "Tree (in) = ";
+        if (isEmpty()) {
+            result += "[empty]";
+        } else {
+            result += root.toStringInOrder();
+        }
+        return result;
     }
 
     public static void main(String args[]) {
@@ -116,14 +186,14 @@ class LinkedBTree<E> {
         nodes[7] = h.getRoot();
         nodes[8] = i.getRoot();
 
-        g.insert(h, LinkedBTree.LEFT);
-        g.insert(i, LinkedBTree.RIGHT);
-        e.insert(g, LinkedBTree.RIGHT);
-        c.insert(e, LinkedBTree.RIGHT);
-        c.insert(f, LinkedBTree.LEFT);
-        b.insert(d, LinkedBTree.LEFT);
-        a.insert(b, LinkedBTree.LEFT);
-        a.insert(c, LinkedBTree.RIGHT);
+        g.insertLeft(h);
+        g.insertRight(i);
+        e.insertRight(g);
+        c.insertLeft(e);
+        c.insertRight(f);
+        b.insertLeft(d);
+        a.insertLeft(b);
+        a.insertRight(c);
 
         System.out.println("Tree size = " + a.size());
         System.out.println("Tree height = " + a.height());
@@ -135,6 +205,9 @@ class LinkedBTree<E> {
                     + "\t" + nodes[ii].depth()
                     + "\t" + (nodes[ii].isInternal() ? "I" : "E"));
         }
+        System.out.println(a.toStringPreOrder());
+        System.out.println(a.toStringPostOrder());
+        System.out.println(a.toStringInOrder());
         // The output should be:
         //
         // Tree size = 9
@@ -149,5 +222,8 @@ class LinkedBTree<E> {
         // g       3       1       3       I
         // h       1       0       4       E
         // i       1       0       4       E
+        // Tree (pre) = a, b, d, c, e, g, h, i, f
+        // Tree (post) = d, b, h, i, g, e, f, c, a
+        // Tree (in) = d, b, a, e, h, g, i, c, f
     }
 }
