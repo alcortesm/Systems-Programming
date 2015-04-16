@@ -9,11 +9,13 @@ For binary trees, let
 
 \item $n \in \mathbb{N}$ be the total number of nodes ($n = e + i$),
 
-\item $n_2 \in \mathbb{N}$ be the total number of nodes with two children and
+\item $n'' \in \mathbb{N}$ be the total number of nodes with two children and
 
 \item $h \in \mathbb{N}$ be the height of a non-empty tree.
 
 \end{itemize}
+
+\separator
 
 Then, for \textbf{generic} (non-empty) binary trees, the number of nodes with
 depth $d$ is at least 1 and at most $2^d$, therefore
@@ -27,13 +29,24 @@ because
 \end{equation}
 
 Also for generic (non-empty) binary trees, as each node with two children opens
-a new path, \begin{equation} e = n_2 + 1.  \end{equation}
+a new path, \begin{equation} e = n'' + 1.  \end{equation}
+
+\separator
 
 For \textbf{complete} binary trees
 \begin{equation}
   i = \left \lfloor{\frac{n}{2}}\right \rfloor,
 \end{equation}
 as each pair of consecutive leafs have the same parent.
+
+Also, a complete binary tree has the smallest possible height,
+this is, complete binary trees are ``compact''
+(they store information as a tree of minimum height):
+\begin{equation}
+  h = \left \lfloor{\log_2 n}\right \rfloor,
+\end{equation}
+
+\separator
 
 For \textbf{full} binary trees
 \begin{equation}

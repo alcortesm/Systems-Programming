@@ -1,7 +1,7 @@
-name := btrees
+name := graph
 
 # build
-src := $(name)a.dia $(name)b.dia $(name)d.dia $(name)e.dia $(name)f.dia $(name)g.dia $(name)h.dia $(name)c.dia
+src := $(name)1.dia $(name)2.dia $(name)3.dia $(name)4.dia
 out := $(src:%.dia=%.eps)
 tmp := $(src:%.dia=%.pdf)
 pdf := $(name).pdf

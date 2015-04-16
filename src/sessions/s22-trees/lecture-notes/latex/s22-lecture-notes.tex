@@ -26,6 +26,49 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 Trees
 \end{blackboard}
 
+\section{Graphs}
+
+\begin{center}
+\includegraphics[width=10cm]{./img/graph/graph4.eps}
+\end{center}
+
+A graph is a set of \emph{nodes} connected by \emph{edges} (that in computer science we call \emph{links}).
+
+Graphs are a very powerful way to store information and relationships,
+but they are complex to study.
+
+Examples of graphs can be the connections between computers in a network or a set of friends in Facebook.
+
+We are not going to study graphs in this course,
+-- SLIDE --
+but you have already study a \emph{particular} and very simple type of graph: the \emph{list}.
+
+-- SLIDE --
+
+When in a graph there is only one path to get from any node to any other node, it is called a \emph{tree}.
+
+We are not going to study trees in this course either,
+but we are going to study rooted trees for the rest of the course.
+
+-- SLIDE --
+
+A \emph{rooted tree} is a tree with an special node, called the \emph{root}.
+
+The root is usually important for your problem for some reason that depends on the problem.
+
+The choice of a root impose an order in the tree.
+The root A is the parent of B and C, which are the children of A.
+
+Please note that the rooted tree in the picture is the same graph as the tree above,
+it has the same nodes with the same edges between them,
+I just move the nodes around to show in a clear way that the node A is somewhat special for me.
+
+Rooted trees are not as powerful as graphs for representing information,
+but they much simpler, which makes them a very popular data structure.
+
+For the rest of this course, when I say tree, I am really refering to a rooted tree.
+
+
 \section{Examples of trees}
 
 Do you remember the recursive and horrible solution to the Fibonacci problem?
@@ -34,10 +77,11 @@ Do you remember the recursive and horrible solution to the Fibonacci problem?
 \includegraphics[width=6cm]{./img/fibonacci/fibonacci.eps}
 \end{center}
 
-This kind of structure is called a \emph{tree}.
+This is obviously a tree.
 
-In conputer science trees grow downwards, the node at the top is called the
-\emph{root}, and the nodes at the buttom are called the \emph{leaves}.
+In conputer science trees grow downwards,
+the root is at the top and the \emph{leaves} are at the buttom,
+we are that weird.
 
 \separator
 
@@ -49,10 +93,12 @@ Do you remember the object inheritance hierarchy in Java?
 
 Well, this is also a tree.
 
+That is why we sometimes say parent instead of superclass and child instead of subclass.
+
 \separator
 \newpage
 
-Let us take a look at the directories I have under my music directory:
+Let us take a look at some of the directories I have under my music directory:
 
 \begin{center}
 \includegraphics[width=8cm]{./img/music/music.eps}
@@ -75,12 +121,17 @@ Now, let us take a look at this map of flight routes through Europe:
 
 Problem: Write a Java program that finds the flight with least connections from Madrid to Rome.
 
-You can create the tree of flight from Madrid to Rome, and look for the path
-with least connections. This is, the path with least depth.
+You can create the tree of flights from Madrid to Rome, and look for the path
+with least connections (this is edges or links).
+
+This is, you have to find the sortest path
+or the leaf with the smallest \emph{depth}.
 
 \begin{center}
 \includegraphics[width=12cm]{./img/madrid-rome/madrid-rome.eps}
 \end{center}
+
+\newpage
 
 \separator
 
@@ -89,8 +140,6 @@ The Knapsack problem.
 You are a burglar, stealing some goods in a house.
 
 You carry a bag that can hold up to 95 Kilograms of goods.
-
-\newpage
 
 In the house there are 4 objects, each of them with its own weight and price:
 
@@ -104,6 +153,8 @@ In the house there are 4 objects, each of them with its own weight and price:
 
 Write a Java program that calculates the best way to fill your bag.
 
+This is, find the combination of goods, that maximize the total price while keeping the weight smaller or equal than 95.
+
 \begin{center}
 \includegraphics[width=13cm]{./img/knapsack/knapsack.eps}
 \end{center}
@@ -111,14 +162,14 @@ Write a Java program that calculates the best way to fill your bag.
 A naive algorithm to solve this problem might look as follows:
 
 \begin{blackboard}
-  - build the tree with all the combinations
+  - build the tree with all the combinations (weight <= 95)
   - search for the leaf with the biggest price
 \end{blackboard}
 
 Now, think of Amazon, sending boxes to Madrid from Paris in a plane, trying to
 fill the boxes the best way possible.
 
-Of course Amazon will have thousands of boxes and many 20 flight connections or so.
+Of course Amazon will have thousands of goods and there might be 20 or more flight connections.
 
 
 \separator
@@ -128,17 +179,18 @@ All these are toy examples of real programming problems that happens every day i
 \begin{itemize}
   \item Computer graphics
   \item Compresion of video, images and music
-  \item Optimization problems (in airports, filesystems, companies)
+  \item Optimization problems (in airports, storehouses, filesystems, companies)
   \item Marketing
-  \item Storehouses
   \item Economics
-  \item Sequencing the human genome
+  \item Sequencing the human gnome
   \item Internet communications
   \item ...
 \end{itemize}
 
-As you can see, tree are pretty useful data structures.
+As you can see, trees are pretty useful data structures.
 
+
+\newpage
 
 \section{Definition}
 
@@ -187,6 +239,8 @@ Solution to slide 17:
 
 
 
+\newpage
+
 \section{Implementation}
 
 
@@ -211,6 +265,8 @@ class TNode<E> {
 \end{center}
 
 
+
+\newpage
 
 \subsection{Simple Way}
 
@@ -249,34 +305,63 @@ class TNode<E> {
 
 \section{Binary Trees}
 
-\input{complete.tex}
+\input{definition.tex}
 
 \includegraphics[width=4cm]{./img/btrees/btreesa.eps}
 \includegraphics[width=4cm]{./img/btrees/btreesb.eps}
-\includegraphics[width=4cm]{./img/btrees/btreesc.eps}
 \includegraphics[width=4cm]{./img/btrees/btreesd.eps}
+\includegraphics[width=4cm]{./img/btrees/btreese.eps}
 
 \begin{blackboard}
-Non-binary               binary                   binary                   binary
-                         non-complete             complete                 complete
-                         non-full                 full                     non-full
+Non-binary               binary                   binary                     binary
+                         non-complete             complete                   non-complete
+                         non-full                 non-full                   non-full
 \end{blackboard}
 
-\includegraphics[width=4cm]{./img/btrees/btreese.eps}
 \includegraphics[width=4cm]{./img/btrees/btreesf.eps}
 \includegraphics[width=4cm]{./img/btrees/btreesg.eps}
 \includegraphics[width=4cm]{./img/btrees/btreesh.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesc.eps}
 
 \begin{blackboard}
-binary                   binary                   binary                   binary
-non-complete             complete                 complete                 complete
-non-full                 full                     non-full                 full
+binary                   binary                   binary                     binary
+complete                 complete                 complete                   complete
+full                     non-full                 full                       full
 \end{blackboard}
+
+
+\newpage
 
 \input{properties.tex}
 
 \subsection{Implementations}
 
+There are two main ways to implement binary trees:
+
+\begin{itemize}
+
+  \item as an array
+
+  \item as linked nodes
+
+\end{itemize}
+
+\subsection{ArrayBTree}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/arraybtree/arraybtree.eps}
+\end{center}
+
+This imlementation is only useful for complete trees,
+because otherwise we are wasting a lot of memory.
+
+In our next class we will study some interesting cases of complete trees,
+and we will come back to this implementation again.
+
+But for now, let us learn a more efficient implementation for generic non-complete trees.
+
+
+\subsection{LinkedBTree}
 
 
 \end{document}

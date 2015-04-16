@@ -1224,15 +1224,15 @@
         <dia:point val="46,11"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="46,10.405;53.63,15.15"/>
+        <dia:rectangle val="46,10.3864;54.6086,15.1872"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#A Tree is composed
-of Nodes.
-
-Each Node has a depth.
+            <dia:string>#Each Node in a rooted tree
+has a depth, this is
+the length of the path to
+the root.
 
 The root has depth = 0.#</dia:string>
           </dia:attribute>
@@ -1259,19 +1259,19 @@ The root has depth = 0.#</dia:string>
     </dia:object>
     <dia:object type="Standard - Box" version="0" id="O47">
       <dia:attribute name="obj_pos">
-        <dia:point val="45.6,10.2"/>
+        <dia:point val="45.5,10"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="45.55,10.15;54.05,15.45"/>
+        <dia:rectangle val="45.45,9.95;55.05,15.55"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="45.6,10.2"/>
+        <dia:point val="45.5,10"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="8.3999999999999986"/>
+        <dia:real val="9.5"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="5.1999999999999993"/>
+        <dia:real val="5.5"/>
       </dia:attribute>
       <dia:attribute name="border_width">
         <dia:real val="0.10000000149011612"/>
