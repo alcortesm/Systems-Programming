@@ -53,7 +53,6 @@ class LinkedBNode<E> {
         }
     }
 
-
     // Concatenating strings in java is not very efficient.
     //
     // It would be better to pass around

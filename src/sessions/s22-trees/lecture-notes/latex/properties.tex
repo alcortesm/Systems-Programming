@@ -9,6 +9,8 @@ For binary trees, let
 
 \item $n \in \mathbb{N}$ be the total number of nodes ($n = e + i$),
 
+\item $n_d \in \mathbb{N}$ be the total number of nodes of depth $d$,
+
 \item $n'' \in \mathbb{N}$ be the total number of nodes with two children and
 
 \item $h \in \mathbb{N}$ be the height of a non-empty tree.
@@ -17,15 +19,21 @@ For binary trees, let
 
 \separator
 
-Then, for \textbf{generic} (non-empty) binary trees, the number of nodes with
-depth $d$ is at least 1 and at most $2^d$, therefore
+Then, for \textbf{generic} (non-empty) binary trees,
+the capacity of a level is twice the capacity of the previous level.
 
+This means that the number of nodes with
+depth $d$ is at least 1 and at most $2^d$, this is
+\begin{equation}
+  1 \le n_d \le 2^d,
+\end{equation}
+therefore, as $n = \sum_{j=0}^{h}n_d$, we have
 \begin{equation}
   h + 1 \le n \le 2^{h+1} - 1,
 \end{equation}
 because
 \begin{equation}
-  \sum_{i=0}^{h}2^i = 2^{h+1} - 1.
+  \sum_{j=0}^{h}2^j = 2^{h+1} - 1.
 \end{equation}
 
 Also for generic (non-empty) binary trees, as each node with two children opens
@@ -53,3 +61,10 @@ For \textbf{full} binary trees
   2^h + 1 \le n \le 2^{h+1} - 1,
 \end{equation}
 as the depest level will have at least 2 leafs.
+
+Also, for full binary trees, by definition
+\begin{equation}
+  i = n'',
+\end{equation}
+as there can be no internal nodes with only 1 child.
+

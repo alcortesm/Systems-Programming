@@ -37,7 +37,7 @@ class LinkedBTree<E> {
     // Therefore, we must destroy the inserted
     // tree after the insertion, to avoid having
     // two trees using the same nodes.
-    private void insertLeft(LinkedBTree<E> tree) {
+    public void insertLeft(LinkedBTree<E> tree) {
         if (tree == null) {
             throw new IllegalArgumentException();
         }
@@ -69,7 +69,7 @@ class LinkedBTree<E> {
     // changing left for right. It is a pity that
     // there is no way in Java to avoid all this
     // code redundancy.
-    private void insertRight(LinkedBTree<E> tree) {
+    public void insertRight(LinkedBTree<E> tree) {
         if (tree == null) {
             throw new IllegalArgumentException();
         }
