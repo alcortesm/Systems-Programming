@@ -1,7 +1,7 @@
 name := tree2
 
 # build
-src := $(name)a.dia $(name)b.dia $(name)c.dia $(name)d.dia
+src := $(name)a.dia $(name)b.dia $(name)c.dia $(name)d.dia $(name)e.dia
 out := $(src:%.dia=%.eps)
 tmp := $(src:%.dia=%.pdf)
 pdf := $(name).pdf

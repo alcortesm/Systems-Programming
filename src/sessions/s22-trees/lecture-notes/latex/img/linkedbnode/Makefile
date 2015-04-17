@@ -1,7 +1,7 @@
 name := linkedbnode
 
 # build
-src := $(name)1.dia $(name)2.dia $(name)3.dia $(name)4.dia $(name)5.dia
+src := $(name)1.dia $(name)2.dia $(name)3.dia $(name)4.dia $(name)5.dia $(name)6.dia
 out := $(src:%.dia=%.eps)
 tmp := $(src:%.dia=%.pdf)
 pdf := $(name).pdf
