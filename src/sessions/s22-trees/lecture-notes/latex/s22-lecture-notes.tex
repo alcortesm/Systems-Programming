@@ -1,0 +1,591 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 22 - Trees}
+
+\newcommand{\separator}{\begin{center}%
+\noindent\makebox[\linewidth]{\rule{0.75\paperwidth}{0.4pt}}%
+\end{center}}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Today's Topics}
+\begin{blackboard}
+Trees
+\end{blackboard}
+
+\section{Graphs}
+
+\begin{center}
+\includegraphics[width=10cm]{./img/graph/graph4.eps}
+\end{center}
+
+A graph is a set of \emph{nodes} connected by \emph{edges} (that in computer science we call \emph{links}).
+
+Graphs are a very powerful way to store information and relationships,
+but they are complex to study.
+
+Examples of graphs can be the connections between computers in a network or a set of friends in Facebook.
+
+We are not going to study graphs in this course,
+-- SLIDE --
+but you have already study a \emph{particular} and very simple type of graph: the \emph{list}.
+
+-- SLIDE --
+
+When in a graph there is only one path to get from any node to any other node, it is called a \emph{tree}.
+
+We are not going to study trees in this course either,
+but we are going to study rooted trees for the rest of the course.
+
+-- SLIDE --
+
+A \emph{rooted tree} is a tree with an special node, called the \emph{root}.
+
+The root is usually important for your problem for some reason that depends on the problem.
+
+The choice of a root impose an order in the tree.
+The root A is the parent of B and C, which are the children of A.
+
+Please note that the rooted tree in the picture is the same graph as the tree above,
+it has the same nodes with the same edges between them,
+I just move the nodes around to show in a clear way that the node A is somewhat special for me.
+
+Rooted trees are not as powerful as graphs for representing information,
+but they much simpler, which makes them a very popular data structure.
+
+For the rest of this course, when I say tree, I am really refering to a rooted tree.
+
+
+\section{Examples of trees}
+
+Do you remember the recursive and horrible solution to the Fibonacci problem?
+
+\begin{center}
+\includegraphics[width=6cm]{./img/fibonacci/fibonacci.eps}
+\end{center}
+
+This is obviously a tree.
+
+In conputer science trees grow downwards,
+the root is at the top and the \emph{leaves} are at the buttom,
+we are that weird.
+
+\separator
+
+Do you remember the object inheritance hierarchy in Java?
+
+\begin{center}
+\includegraphics[width=6cm]{./img/object/object.eps}
+\end{center}
+
+Well, this is also a tree.
+
+That is why we sometimes say parent instead of superclass and child instead of subclass.
+
+\separator
+\newpage
+
+Let us take a look at some of the directories I have under my music directory:
+
+\begin{center}
+\includegraphics[width=8cm]{./img/music/music.eps}
+\end{center}
+
+This might not look as a tree, but if you look closely, you will see it is, in
+fact, a tree, with the music directory as the root, then, on the first level
+the name of the bands, and on the second level the name of the albums.
+
+Problem: Write a graphical Java program that allows me to browse my music collection
+by bands and albums and let me play songs by clicking on them.
+
+\separator
+
+Now, let us take a look at this map of flight routes through Europe:
+
+\begin{center}
+\includegraphics[width=5cm]{./img/map/map.eps}
+\end{center}
+
+Problem: Write a Java program that finds the flight with least connections from Madrid to Rome.
+
+You can create the tree of flights from Madrid to Rome, and look for the path
+with least connections (this is edges or links).
+
+This is, you have to find the sortest path
+or the leaf with the smallest \emph{depth}.
+
+\begin{center}
+\includegraphics[width=12cm]{./img/madrid-rome/madrid-rome.eps}
+\end{center}
+
+\newpage
+
+\separator
+
+The Knapsack problem.
+
+You are a burglar, stealing some goods in a house.
+
+You carry a bag that can hold up to 95 Kilograms of goods.
+
+In the house there are 4 objects, each of them with its own weight and price:
+
+\begin{blackboard}
+      w  p
+  A  50 60
+  B  20 30
+  C  30 66
+  D  40 40
+\end{blackboard}
+
+Write a Java program that calculates the best way to fill your bag.
+
+This is, find the combination of goods, that maximize the total price while keeping the weight smaller or equal than 95.
+
+\begin{center}
+\includegraphics[width=13cm]{./img/knapsack/knapsack.eps}
+\end{center}
+
+A naive algorithm to solve this problem might look as follows:
+
+\begin{blackboard}
+  - build the tree with all the combinations (weight <= 95)
+  - search for the leaf with the biggest price
+\end{blackboard}
+
+Now, think of Amazon, sending boxes to Madrid from Paris in a plane, trying to
+fill the boxes the best way possible.
+
+Of course Amazon will have thousands of goods and there might be 20 or more flight connections.
+
+
+\separator
+
+All these are toy examples of real programming problems that happens every day in
+
+\begin{itemize}
+  \item Computer graphics
+  \item Compresion of video, images and music
+  \item Optimization problems (in airports, storehouses, filesystems, companies)
+  \item Marketing
+  \item Economics
+  \item Sequencing the human gnome
+  \item Internet communications
+  \item ...
+\end{itemize}
+
+As you can see, trees are pretty useful data structures.
+
+
+\newpage
+
+\section{Definition}
+
+Until now, you have been using \emph{linear} data structures, like lists, queues, stacks and decks.
+
+In a linear data structure each element has a clear predecessor and a clear succesor.
+
+Trees are non-linear data structures that store elements in a hierarchy.
+
+Each element (except the root) has a parent.
+
+Each element (except the leafs) has one or more children.
+
+SLIDES FROM 5 to 14.
+
+
+
+\section{Terminology}
+
+SLIDES FROM 15 to 18.
+
+Solution to slide 17:
+
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Node & height & depth & size & int. / ext. \\
+    \hline
+    a & 3 & 0 & 11 & Internal \\
+    b & 1 & 1 & 3  & Internal \\
+    c & 0 & 1 & 1  & External \\
+    \hline
+    d & 1 & 1 & 2 & Internal \\
+    e & 2 & 1 & 4 & Internal \\
+    f & 0 & 2 & 1 & External \\
+    \hline
+    g & 0 & 2 & 1 & External \\
+    h & 0 & 2 & 1 & External \\
+    i & 0 & 2 & 1 & External \\
+    \hline
+    j & 1 & 2 & 2 & Internal \\
+    k & 0 & 3 & 1 & External \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+
+\newpage
+
+\section{Implementation}
+
+
+\subsection{Complicated Way}
+
+\begin{blackboard}
+class TNode<E> {
+    E datum;
+    TNode<E> parent;
+    LinkedQueue<TNode<E>> children;
+    ...
+}
+\end{blackboard}
+
+\includegraphics[width=4cm]{./img/tree1/tree1a.eps}
+\includegraphics[width=4cm]{./img/tree1/tree1b.eps}
+\includegraphics[width=4cm]{./img/tree1/tree1c.eps}
+\includegraphics[width=4cm]{./img/tree1/tree1d.eps}
+
+\begin{center}
+\includegraphics[width=12cm]{./img/tree1/tree1d.eps}
+\end{center}
+
+
+
+\newpage
+
+\subsection{Simple Way}
+
+\begin{blackboard}
+class TNode<E> {
+    E datum;
+    TNode<E> parent;
+    TNode<E> next;
+    TNode<E> child;
+
+    ...
+}
+\end{blackboard}
+
+\includegraphics[width=4cm]{./img/tree2/tree2a.eps}
+\includegraphics[width=4cm]{./img/tree2/tree2b.eps}
+\includegraphics[width=4cm]{./img/tree2/tree2c.eps}
+\includegraphics[width=4cm]{./img/tree2/tree2d.eps}
+
+\begin{center}
+\includegraphics[width=12cm]{./img/tree2/tree2d.eps}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+\section{Binary Trees}
+
+\input{definition.tex}
+
+\includegraphics[width=4cm]{./img/btrees/btreesa.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesb.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesd.eps}
+\includegraphics[width=4cm]{./img/btrees/btreese.eps}
+
+\begin{blackboard}
+Non-binary               binary                   binary                     binary
+                         non-complete             complete                   non-complete
+                         non-full                 non-full                   non-full
+\end{blackboard}
+
+\includegraphics[width=4cm]{./img/btrees/btreesf.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesg.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesh.eps}
+\includegraphics[width=4cm]{./img/btrees/btreesc.eps}
+
+\begin{blackboard}
+binary                   binary                   binary                     binary
+complete                 complete                 complete                   complete
+full                     non-full                 full                       full
+\end{blackboard}
+
+
+\newpage
+
+\input{properties.tex}
+
+\subsection{Implementations}
+
+There are two main ways to implement binary trees:
+
+\begin{itemize}
+
+  \item as an array
+
+  \item as linked nodes
+
+\end{itemize}
+
+\subsection{ArrayBTree}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/arraybtree/arraybtree.eps}
+\end{center}
+
+This imlementation is only useful for complete trees,
+because otherwise we are wasting a lot of memory.
+
+In our next class we will study some interesting cases of complete trees,
+and we will come back to this implementation again.
+
+But for now, let us learn a more efficient implementation for generic
+non-complete trees.
+
+
+\subsection{LinkedBTree}
+
+As a binary tree is ordered, we can not use the complicated or the simple
+implementation for the generic linked tree, because it will be impossible to
+define nodes with only a right child.
+
+Thankfully, the solution is pretty simple for binary trees, as they have a
+constant number of childs, just use a left link and a right link directly.
+
+\includegraphics[width=4cm]{./img/linkedbnode/linkedbnode1.eps}
+\includegraphics[width=4cm]{./img/linkedbnode/linkedbnode2.eps}
+\includegraphics[width=4cm]{./img/linkedbnode/linkedbnode3.eps}
+\includegraphics[width=4cm]{./img/linkedbnode/linkedbnode4.eps}
+\begin{center}
+  \includegraphics[width=12cm]{./img/linkedbnode/linkedbnode5.eps}
+\end{center}
+
+The \texttt{LinkedBNode} definition and constructors looks like this:
+
+\codelinesinput{../java/LinkedBNode.java}{LinkedBNode}{1}{21}
+
+The \texttt{isInternal} check is
+
+\codelinesinput{../java/LinkedBNode.java}{LinkedBNode}{23}{25}
+
+Problem: Write an implementation for the \texttt{depth} method?
+
+\codelinesinput{../java/LinkedBNode.java}{LinkedBNode}{27}{29}
+
+Problem: Write an implementation for the \texttt{size} method?
+
+\codelinesinput{../java/LinkedBNode.java}{LinkedBNode}{31}{35}
+
+Problem: Write an implementation for the \texttt{height} method?
+
+\codelinesinput{../java/LinkedBNode.java}{LinkedBNode}{37}{41}
+
+A \texttt{LinkedBTree} has only two important block of code:
+
+\begin{itemize}
+
+  \item Its definition and constructors:
+
+    \codelinesinput{../java/LinkedBTree.java}{LinkedBTree}{1}{31}
+
+  \item and a way to insert small trees into other trees to make big trees.
+
+    This one is tricky, as we want to reuse the nodes from the previous tree
+    when inserting, so we can make this method fast.
+
+    But this means we have to remove the nodes from the tree being inserted to
+    avoid having nodes that belong to several trees at the same time.
+
+    \codelinesinput{../java/LinkedBTree.java}{LinkedBTree}{40}{66}
+
+    There is an equivalent \texttt{insertRight} method.
+
+\end{itemize}
+
+Problem: build the following tree:
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/treeexample/treeexample.eps}
+\end{center}
+
+
+\subsection{Tree traversals}
+
+A traversal is a way to visit all the nodes in a graph, for example for
+printing them or for searching or for doing some other operation on them.
+
+In a list, there is only two reasonable ways to visit its nodes,
+for example to print them
+or to search for a node
+or to sum the contents of the nodes,
+this either from left to right or from right to left.
+
+But in a tree, there are 4 different ways:
+
+\input{traversals.tex}
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/traversals/traversals.eps}
+\end{center}
+
+
+\subsubsection{PreOrder}
+
+The recursive version is very simple:
+
+\begin{multicols}{2}
+\begin{blackboard}
+      PRE_ORDER
+
+// LinkedBNode
+void printPreOrder() {
+  s.o.p(datum);
+  if (left != null) {
+    left.printPreOrder();
+  }
+  if (right != null) {
+    right.printPreOrder();
+  }
+}
+\end{blackboard}
+\columnbreak
+\includegraphics[width=5cm]{./img/preorder/preorder.eps}
+\end{multicols}
+
+The iterative version is more complex:
+
+\begin{blackboard}
+      PRE_ORDER ITERATIVE
+
+// LinkedBTree
+void printPreOrder() {
+  if (isEmpty()) {
+    return;
+  }
+  Stack<LinkedBNode<E>> stack =
+                   new Stack<LinkedBNode<E>>();
+  stack.push(root);
+  root.printPreOrder(stack);
+}
+
+// LinkedBNode
+void printPreOrder(Stack<LinkedBNode<E> stack) {
+  while (! stack.isEmpty()) {
+    LinkedBNode<E> current = stack.pop();
+    System.out.println(current.datum);
+    if (right != null) {
+      stack.push(current.right);
+    }
+    if (left != null) {
+      stack.push(current.left);
+    }
+  }
+}
+\end{blackboard}
+
+\subsection{PostOrder}
+
+The recursive version is simple:
+
+\begin{multicols}{2}
+\begin{blackboard}
+      POST_ORDER
+
+// LinkedBNode
+void printPostOrder() {
+  if (left != null) {
+    left.printPostOrder();
+  }
+  if (right != null) {
+    right.printPostOrder();
+  }
+  s.o.p(datum);
+}
+\end{blackboard}
+\columnbreak
+\includegraphics[width=5cm]{./img/postorder/postorder.eps}
+\end{multicols}
+
+\subsection{InOrder}
+
+The recursive version is simple:
+
+\begin{multicols}{2}
+\begin{blackboard}
+      IN_ORDER
+
+// LinkedBNode
+void printInOrder() {
+  if (left != null) {
+    left.printInOrder();
+  }
+  s.o.p(datum);
+  if (right != null) {
+    right.printInOrder();
+  }
+}
+\end{blackboard}
+\columnbreak
+\includegraphics[width=5cm]{./img/inorder/inorder.eps}
+\end{multicols}
+
+\newpage
+\subsection{LevelOrder}
+
+The recursive version is very complex.
+
+But the iterative version is very simple:
+
+\begin{multicols}{2}
+\begin{blackboard}
+      LEVEL_ORDER ITERATIVE
+
+// LinkedBTree
+void printLevelOrder() {
+  if (isEmpty()) {
+    return;
+  }
+  Queue<LinkedBNode<E>> queue =
+                   new Queue<LinkedBNode<E>>();
+  queue.enqueue(root);
+  root.printLevelOrder(queue);
+}
+
+// LinkedBNode
+void printLevelOrder(Queue<LinkedBNode<E>> queue) {
+  while (! queue.isEmpty()) {
+    LinkedBNode<E> current = queue.dequeue();
+    System.out.println(current.datum);
+    if (left != null) {
+      queue.enqueue(current.left);
+    }
+    if (right != null) {
+      queue.enqueue(current.right);
+    }
+  }
+}
+\end{blackboard}
+\columnbreak
+\includegraphics[width=5cm]{./img/levelorder/levelorder.eps}
+\end{multicols}
+
+\end{document}
