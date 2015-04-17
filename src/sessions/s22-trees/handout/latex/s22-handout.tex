@@ -98,7 +98,7 @@ For \textbf{complete} binary trees:
 
 For \textbf{full} binary trees:
 \begin{equation}
-  2^h + 1 \le n \le 2^{h+1} - 1
+  2h + 1 \le n \le 2^{h+1} - 1
 \end{equation}
 \begin{equation}
   i = n''
@@ -168,10 +168,10 @@ void printPreOrder(Stack<LinkedBNode<E> stack) {
   while (! stack.isEmpty()) {
     LinkedBNode<E> current = stack.pop();
     System.out.println(current.datum);
-    if (right != null) {
+    if (current.right != null) {
       stack.push(current.right);
     }
-    if (left != null) {
+    if (current.left != null) {
       stack.push(current.left);
     }
   }
@@ -198,10 +198,10 @@ void printLevelOrder(Queue<LinkedBNode<E>> queue) {
   while (! queue.isEmpty()) {
     LinkedBNode<E> current = queue.dequeue();
     System.out.println(current.datum);
-    if (left != null) {
+    if (current.left != null) {
       queue.enqueue(current.left);
     }
-    if (right != null) {
+    if (current.right != null) {
       queue.enqueue(current.right);
     }
   }
