@@ -1,0 +1,211 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage[handout]{style}
+
+\newcommand{\realtitle}{Session 22 - Trees}
+
+\newcommand{\separator}{\begin{center}%
+\noindent\makebox[\linewidth]{\rule{0.75\paperwidth}{0.4pt}}%
+\end{center}}
+
+\begin{document}
+
+\footnotesize{
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \small{\realtitle}\\Handout
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+}
+\vspace{0.2cm}
+
+\begin{multicols}{2}
+\begin{blackboard}
+class TNode<E> {
+    E datum;
+    TNode<E> parent;
+    LinkedQueue<TNode<E>> children;
+}
+\end{blackboard}
+\includegraphics[width=8cm]{../../lecture-notes/latex/img/tree1/tree1d.eps}
+\columnbreak
+\begin{blackboard}
+class TNode<E> {
+    E datum;
+    TNode<E> parent;
+    TNode<E> next;
+    TNode<E> child;
+}
+\end{blackboard}
+\includegraphics[width=8cm]{../../lecture-notes/latex/img/tree2/tree2d.eps}
+\end{multicols}
+
+
+\input{../../lecture-notes/latex/definition.tex}
+
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesa.eps}
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesb.eps}
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesd.eps}
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreese.eps}
+
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesf.eps}
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesg.eps}
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesh.eps}
+\includegraphics[width=4cm]{../../lecture-notes/latex/img/btrees/btreesc.eps}
+
+\newpage
+
+\begin{minipage}{0.3\linewidth}
+For binary trees, let
+\begin{itemize}
+
+\item $e \in \mathbb{N}$ be the total number of external nodes (i.e. leafs),
+
+\item $i \in \mathbb{N}$ be the total number of internal nodes,
+
+\item $n \in \mathbb{N}$ be the total number of nodes ($n = e + i$),
+
+\item $n_d \in \mathbb{N}$ be the total number of nodes of depth $d$,
+
+\item $n'' \in \mathbb{N}$ be the total number of nodes with two children and
+
+\item $h \in \mathbb{N}$ be the height of a non-empty tree.
+
+\end{itemize}
+Then, for \textbf{generic} (non-empty) binary trees:
+
+\begin{equation}
+  1 \le n_d \le 2^d
+\end{equation}
+\begin{equation}
+  h + 1 \le n \le 2^{h+1} - 1
+\end{equation}
+\begin{equation}
+  \sum_{j=0}^{h}2^j = 2^{h+1} - 1
+\end{equation}
+\begin{equation} e = n'' + 1.  \end{equation}
+
+For \textbf{complete} binary trees:
+\begin{equation}
+  i = \left \lfloor{\frac{n}{2}}\right \rfloor
+\end{equation}
+\begin{equation}
+  h = \left \lfloor{\log_2 n}\right \rfloor
+\end{equation}
+
+For \textbf{full} binary trees:
+\begin{equation}
+  2^h + 1 \le n \le 2^{h+1} - 1
+\end{equation}
+\begin{equation}
+  i = n''
+\end{equation}
+
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+  \begin{center}
+\includegraphics[width=11cm]{../../lecture-notes/latex/img/linkedbnode/linkedbnode5.eps}
+\begin{multicols}{2}
+\begin{blackboard}
+      PRE_ORDER
+
+// LinkedBNode
+void printPreOrder() {
+  s.o.p(datum);
+  if (left != null) {
+    left.printPreOrder();
+  }
+  if (right != null) {
+    right.printPreOrder();
+  }
+}
+\end{blackboard}
+\columnbreak
+\includegraphics[width=5cm]{../../lecture-notes/latex/img/emptytree/emptytree.eps}
+\end{multicols}
+\begin{multicols}{2}
+\begin{blackboard}
+      IN_ORDER
+
+// LinkedBNode
+void printPreOrder() {
+  if (left != null) {
+    left.printPreOrder();
+  }
+  s.o.p(datum);
+  if (right != null) {
+    right.printPreOrder();
+  }
+}
+\end{blackboard}
+\columnbreak
+\includegraphics[width=5cm]{../../lecture-notes/latex/img/emptytree/emptytree.eps}
+\end{multicols}
+\end{center}
+\end{minipage}
+
+
+\begin{minipage}{0.48\linewidth}
+\begin{blackboard}
+      PRE_ORDER ITERATIVE
+
+// LinkedBTree
+void printPreOrder() {
+  if (isEmpty()) {
+    return;
+  }
+  Stack<LinkedBNode<E>> stack =
+                   new Stack<LinkedBNode<E>>();
+  stack.push(root);
+  root.printPreOrder(stack);
+}
+
+// LinkedBNode
+void printPreOrder(Stack<LinkedBNode<E> stack) {
+  while (! stack.isEmpty()) {
+    LinkedBNode<E> current = stack.pop();
+    System.out.println(current.datum);
+    if (right != null) {
+      stack.push(current.right);
+    }
+    if (left != null) {
+      stack.push(current.left);
+    }
+  }
+}
+\end{blackboard}
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
+\begin{blackboard}
+      LEVEL_ORDER ITERATIVE
+
+// LinkedBTree
+void printLevelOrder() {
+  if (isEmpty()) {
+    return;
+  }
+  Queue<LinkedBNode<E>> queue =
+                   new Queue<LinkedBNode<E>>();
+  queue.enqueue(root);
+  root.printLevelOrder(queue);
+}
+
+// LinkedBNode
+void printLevelOrder(Queue<LinkedBNode<E>> queue) {
+  while (! queue.isEmpty()) {
+    LinkedBNode<E> current = queue.dequeue();
+    System.out.println(current.datum);
+    if (left != null) {
+      queue.enqueue(current.left);
+    }
+    if (right != null) {
+      queue.enqueue(current.right);
+    }
+  }
+}
+\end{blackboard}
+\end{minipage}
+\end{document}

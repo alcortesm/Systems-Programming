@@ -454,6 +454,8 @@ The recursive version is very simple:
 
 \begin{multicols}{2}
 \begin{blackboard}
+      PRE_ORDER
+
 // LinkedBNode
 void printPreOrder() {
   s.o.p(datum);
@@ -472,25 +474,24 @@ void printPreOrder() {
 The iterative version is more complex:
 
 \begin{blackboard}
+      PRE_ORDER ITERATIVE
+
 // LinkedBTree
 void printPreOrder() {
   if (isEmpty()) {
     return;
   }
   Stack<LinkedBNode<E>> stack =
-    new Stack<LinkedBNode<E>>();
+                   new Stack<LinkedBNode<E>>();
   stack.push(root);
   root.printPreOrder(stack);
 }
-\columnbreak
-\includegraphics[width=5cm]{./img/preorder/preorder.eps}
-\end{multicols}
 
 // LinkedBNode
 void printPreOrder(Stack<LinkedBNode<E> stack) {
   while (! stack.isEmpty()) {
     LinkedBNode<E> current = stack.pop();
-    s.o.p(current.datum);
+    System.out.println(current.datum);
     if (right != null) {
       stack.push(current.right);
     }
@@ -507,13 +508,15 @@ The recursive version is simple:
 
 \begin{multicols}{2}
 \begin{blackboard}
+      POST_ORDER
+
 // LinkedBNode
-void printPreOrder() {
+void printPostOrder() {
   if (left != null) {
-    left.printPreOrder();
+    left.printPostOrder();
   }
   if (right != null) {
-    right.printPreOrder();
+    right.printPostOrder();
   }
   s.o.p(datum);
 }
@@ -528,14 +531,16 @@ The recursive version is simple:
 
 \begin{multicols}{2}
 \begin{blackboard}
+      IN_ORDER
+
 // LinkedBNode
-void printPreOrder() {
+void printInOrder() {
   if (left != null) {
-    left.printPreOrder();
+    left.printInOrder();
   }
   s.o.p(datum);
   if (right != null) {
-    right.printPreOrder();
+    right.printInOrder();
   }
 }
 \end{blackboard}
@@ -552,22 +557,24 @@ But the iterative version is very simple:
 
 \begin{multicols}{2}
 \begin{blackboard}
+      LEVEL_ORDER ITERATIVE
+
 // LinkedBTree
-void printPreOrder() {
+void printLevelOrder() {
   if (isEmpty()) {
     return;
   }
   Queue<LinkedBNode<E>> queue =
-    new Queue<LinkedBNode<E>>();
+                   new Queue<LinkedBNode<E>>();
   queue.enqueue(root);
-  root.printPreOrder(queue);
+  root.printLevelOrder(queue);
 }
 
 // LinkedBNode
-void printPreOrder(Queue<LinkedBNode<E>> queue) {
+void printLevelOrder(Queue<LinkedBNode<E>> queue) {
   while (! queue.isEmpty()) {
     LinkedBNode<E> current = queue.dequeue();
-    s.o.p(current.datum);
+    System.out.println(current.datum);
     if (left != null) {
       queue.enqueue(current.left);
     }
