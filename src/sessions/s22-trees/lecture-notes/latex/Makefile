@@ -27,7 +27,7 @@ install : $(pub_files) html zip
 
 zip:
 	- rm $(zip)
-#	zip -j -r $(zip) ../java/Count1ToN*.java ../java/CountNTo1*.java ../java/EvenOrOdd.java ../java/Factorial*.java ../java/FibonacciMemoization.java ../java/FibonacciRecursive.java ../java/IsPalindrome*.java ../java/LinkedStackRecursiveContains.java ../java/Stack.java
+	zip -j -r $(zip) ../java/LinkedB*.java
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
