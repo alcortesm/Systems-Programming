@@ -67,4 +67,4 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-	cp ./img/fibonacci/fibonacci.eps ./img/object/object.eps ./img/music/music.eps ./img/map/map.eps ./img/madrid-rome/madrid-rome.eps ./img/knapsack/knapsack.eps ./img/tree1/tree1.pdf ./img/tree2/tree2.pdf ./img/graph/graph.pdf ./img/btrees/btrees.pdf ./img/arraybtree/arraybtree.eps ./img/linkedbnode/linkedbnode.pdf ./img/traversals/traversals.eps $(demo_dir)
+	cp ./img/fibonacci/fibonacci.eps ./img/object/object.eps ./img/music/music.eps ./img/map/map.eps ./img/madrid-rome/madrid-rome.eps ./img/knapsack/knapsack.eps ./img/tree1/tree1.pdf ./img/tree2/tree2.pdf ./img/graph/graph.pdf ./img/btrees/btrees.pdf ./img/arraybtree/arraybtree.eps ./img/linkedbnode/linkedbnode.pdf ./img/traversals/traversals.eps ./img/treeexample/treeexample.eps $(demo_dir)
