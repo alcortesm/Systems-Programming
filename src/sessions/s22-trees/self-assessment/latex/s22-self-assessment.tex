@@ -16,4 +16,154 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \vspace{1cm}
 
+\section{Binary trees}
+
+\subsection{}
+
+Implement a binary tree using the source code provided in your lecture as a base.
+
+Delete the body of all the non-static methods provided in the source code, and re-write them yourself.
+
+You can use the provided main method to test your code.
+
+Then download again the source code and compare your solution with the official one.
+
+\subsection{}
+
+Write a method \texttt{isComplete} that returns if a binary tree is complete.
+
+\subsection{}
+
+Write a method \texttt{isFull} that returns if a binary tree is full.
+
+\subsection{}
+
+Write a method \texttt{contains} that returns if the element passed as an argument is found in the tree.
+
+\subsection{}
+
+Write a \texttt{path} method that returns a \emph{list} of elements in the path
+from the root to the element passed as an argument if it exists in the tree. Otherwise it will return an empty list.
+
+\subsection{}
+
+Implement a \texttt{duplicate} method for your binary tree that returns an
+exact copy of a binary tree, with exact duplicates of all its nodes.
+
+\subsection{}
+
+Now, write the above method as a constructor for your tree class.
+
+\subsection{}
+
+Implement a \texttt{mirror} method for your binary tree that returns a mirrowed
+copy of your tree as shown in the figure:
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/mirror/mirror.eps}
+\end{center}
+
+\subsection{}
+
+Implement an method \texttt{toStringLevelOrder} that
+returns a string representation of a tree in level order.
+
+\textsl{Tip 1: a recursive version of this method is pretty difficult to code}.
+
+\textsl{Tip 2: a queue might be usefull to solve this problem}.
+
+
+\subsection{}
+
+Implement an iterative version of the \texttt{toStringPreOrder}.
+
+\textsl{Tip: an stack might be usefull to solve this problem}.
+
+
+
+\subsection{}
+
+Write a program that builds the tree for this expresion: \verb;((1 + 2) / (3 - 4)) * (2 ^ 3);,
+and prints the result by calling an \texttt{evaluate} method on
+the root of the tree.
+
+\textsl{Tip 1: watch this \href{https://www.youtube.com/watch?v=4F72VULWFvc}{video}}: \verb;https://www.youtube.com/watch?v=4F72VULWFvc; from 00:00 to 17:00.
+
+
+\subsection{}
+
+Expand your previous expresion tree so it supports the factorial operator.
+
+Test it with the following expresion: \verb;(1 + 2)! * (4 / 2!);
+
+
+\subsection{}
+
+Add a \texttt{toString} method to your tree from the previous exercise, so that it prints the expresion in the tree as we usually write them in math.
+
+\textsl{Tip: be careful with the parenthesis}.
+
+
+\subsection{}
+
+Write a program to evaluate mathematical expresions written in postfix notation, \\ for example: 1 2 + ! 4 2 ! / *
+
+\textsl{Tip: you do not need a binary tree to solve this problem, an stack will be enoguh}.
+
+
+
+
+
+
+\section{N-ary trees}
+
+\subsection{}
+
+Implement an N-ary tree, and try to build the tree from slide 17 in a main
+method. Then print the size, depth, height of each node and if the nodes are
+internal or external, so you can have a solution to the table in that same slide.
+
+\textsl{Tip: write a recursive method for your tree that prints, using a
+level-order traversal, the infromation of each node (size, height\dots).}
+
+\subsection{}
+
+Write a program that builds the following tree and print the path with the
+smallest depth, this is, the fastest way to get from Madrid to Rome.
+
+\begin{center}
+  \includegraphics[width=8cm]{../../lecture-notes/latex/img/btrees/btreesa.eps}
+\end{center}
+
+\subsection{}
+
+Write a program that prints the list of rooms you will have to visit to get from the entrance of the following maze to the exit.
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/maze/maze.eps}
+\end{center}
+
+
+\subsection{}
+
+What would happend in the previous exercise if room E and F were connected as shown in the figure below?
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/maze2/maze.eps}
+\end{center}
+
+\subsection{}
+
+Write a Java program to solve the following knapstack problem using a generic N-ary tree:
+
+\begin{blackboard}
+Item  Weight  Price
+A     50      60
+B     20      30
+C     30      66
+D     40      40
+\end{blackboard}
+
+Consider that the maximum weight allowed is 95.
+
 \end{document}
