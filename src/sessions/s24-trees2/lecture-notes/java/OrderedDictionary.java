@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-interface OrderedDictionary<K extends Comparable, I> {
+interface OrderedDictionary<K extends Comparable<K>, I> {
     int size();
     boolean isEmpty();
 

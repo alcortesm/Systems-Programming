@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-class BST<K extends Comparable, I>
+class BST<K extends Comparable<K>, I>
     implements OrderedDictionary<K, I> {
 
     public BST() {

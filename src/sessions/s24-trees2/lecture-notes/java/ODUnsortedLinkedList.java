@@ -1,24 +1,24 @@
 import java.util.NoSuchElementException;
 
-class ODUnsortedList<K extends Comparable<K>, I>
+class ODUnsortedLinkedList<K extends Comparable<K>, I>
     implements OrderedDictionary<K, I> {
 
-    private Node<K, I> first;
+    private Node first;
     private int size;
 
-    private class Node<K, I> {
+    private class Node {
         K key;
         I info;
-        Node<K, I> next;
+        Node next;
 
-        Node(K key, I info, Node<K, I> next) {
+        Node(K key, I info, Node next) {
             this.key = key;
             this.info = info;
             this.next = next;
         }
     }
 
-    public ODUnsortedList() {
+    public ODUnsortedLinkedList() {
         first = null;
         size = 0;
     }
@@ -32,13 +32,13 @@ class ODUnsortedList<K extends Comparable<K>, I>
     }
 
     public void insert(K key, I info) {
-        first = new Node<K, I>(key, info, first);
+        first = new Node(key, info, first);
         size++;
         return;
     }
 
     public I find(K key) throws NoSuchElementException {
-        Node<K, I> current;
+        Node current;
         for (current = first; current != null ; current = current.next) {
             if (current.key.compareTo(key) == 0) {
                 return current.info;
@@ -59,7 +59,7 @@ class ODUnsortedList<K extends Comparable<K>, I>
             return retval;
         }
 
-        for (Node<K, I> prev = first; prev.next != null; prev = prev.next) {
+        for (Node prev = first; prev.next != null; prev = prev.next) {
             if (prev.next.key.compareTo(key) == 0) {
                 I retval = prev.next.info;
                 prev.next = prev.next.next;
@@ -88,28 +88,27 @@ class ODUnsortedList<K extends Comparable<K>, I>
     // magic for the average first year student, and completly out
     // of the scope of this course.
     public String toString() {
-        java.util.List<Entry<K, I>> list =
-            new java.util.LinkedList<Entry<K, I>>();
-        for (Node<K, I> current = first;
+        java.util.List<Entry> list =
+            new java.util.LinkedList<Entry>();
+        for (Node current = first;
                 current != null;
                 current = current.next) {
-            list.add(new Entry<K, I>(current.key, current.info));
+            list.add(new Entry(current.key, current.info));
         }
         java.util.Collections.sort(list);
         StringBuilder sb = new StringBuilder();
-        for (Entry<K, I> entry : list) {
+        for (Entry entry : list) {
             if (sb.length() != 0) {
                 sb.append(", ");
             }
-            sb.append("(" + entry.key + "," +
-                    entry.info + ")");
+            sb.append("(" + entry.key + "," + entry.info + ")");
         }
         return sb.toString();
     }
 
     // this class is needed for the above workaround to work.
-    private class Entry<K extends Comparable<K>, I>
-            implements Comparable<Entry<K, I>> {
+    private class Entry
+            implements Comparable<Entry> {
         K key;
         I info;
 
@@ -118,7 +117,7 @@ class ODUnsortedList<K extends Comparable<K>, I>
             this.info = info;
         }
 
-        public int compareTo(Entry<K, I> entry) {
+        public int compareTo(Entry entry) {
             return this.key.compareTo(entry.key);
         }
     }
