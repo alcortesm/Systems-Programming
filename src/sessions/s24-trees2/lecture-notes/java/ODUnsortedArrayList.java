@@ -1,7 +1,17 @@
+// Ordered Dictionary implementation using an array list.
+//
+// This implementation:
+//
+// - allows nulls in the values
+//
+// - does not allow duplicates (insertion of an entry with
+//   an already existing key, will replace the old value with
+//   the new one)
+
 import java.util.NoSuchElementException;
 
-class ODUnsortedArrayList<K extends Comparable<K>, I>
-    implements OrderedDictionary<K, I> {
+class ODUnsortedArrayList<K extends Comparable<K>, V>
+    implements OrderedDictionary<K, V> {
 
     // most JVM don't allow Integer.MAX_VALUE arrays, but -2, -4 or -8
     // we use JVM_MAX_ARRAY_MARGIN just in case
@@ -12,11 +22,11 @@ class ODUnsortedArrayList<K extends Comparable<K>, I>
 
     private class Entry implements Comparable<Entry> {
         K key;
-        I info;
+        V value;
 
-        Entry(K key, I info) {
+        Entry(K key, V value) {
             this.key = key;
-            this.info = info;
+            this.value = value;
         }
 
         public int compareTo(Entry entry) {
@@ -30,7 +40,7 @@ class ODUnsortedArrayList<K extends Comparable<K>, I>
     public ODUnsortedArrayList() {
         size = 0;
         // We whould like to initialize our array like this:
-        //    array = new Entry<k, I>[DEFAULT_CAPACITY];
+        //    array = new Entry<k, V>[DEFAULT_CAPACITY];
         // but Java does not allow creating "generic" arrays.
         // The following 4 lines is a workaround:
         @SuppressWarnings("unchecked")
@@ -91,15 +101,10 @@ class ODUnsortedArrayList<K extends Comparable<K>, I>
         this.array = workaround;
     }
 
-    public void insert(K key, I info) {
-        if (size == array.length) {
-            grow();
-        }
-        array[size++] = new Entry(key, info);
-        return;
-    }
-
     private int indexOf(K key) throws NoSuchElementException {
+        if (key == null) {
+            throw new IllegalArgumentException();
+        }
         for (int i = 0 ; i<size; i++) {
             if (array[i].key.compareTo(key) == 0) {
                 return i;
@@ -108,13 +113,30 @@ class ODUnsortedArrayList<K extends Comparable<K>, I>
         throw new NoSuchElementException();
     }
 
-    public I find(K key) throws NoSuchElementException {
-        return array[indexOf(key)].info;
+    public void insert(K key, V value) throws IllegalArgumentException {
+        if (key == null) {
+            throw new IllegalArgumentException();
+        }
+        try {
+            array[indexOf(key)].value = value;
+        } catch (NoSuchElementException ex) {
+            if (size == array.length) {
+                grow();
+            }
+            array[size++] = new Entry(key, value);
+        }
+        return;
     }
 
-    public I remove(K key) throws NoSuchElementException {
+    public V find(K key) throws
+        IllegalArgumentException, NoSuchElementException {
+        return array[indexOf(key)].value;
+    }
+
+    public V remove(K key) throws
+        IllegalArgumentException, NoSuchElementException {
         int index = indexOf(key);
-        I retval = (I) array[index].info;
+        V retval = array[index].value;
         // shift elements to the left
         for (int j=index; j<(size-1); j++) {
             array[j] = array[j+1];
@@ -136,33 +158,16 @@ class ODUnsortedArrayList<K extends Comparable<K>, I>
         size = 0;
     }
 
-    // To make testing simpler, this method should return the
-    // entries growing in key order, but the purpose of the class
-    // is to store the entries unsorted (for demostration purposes).
-    //
-    // This means returning the entries in key order is absurd for
-    // for this class.
-    //
-    // Let us solve this quickly by inserting copies of the entries
-    // in a Java List and the sort it. This is pretty advanced Java
-    // magic for the average first year student, and completly out
-    // of the scope of this course.
+    // this will not print the elements in key order, of course
+    // that will be a lot of work for a collections that is not
+    // storing the elements in order.
     public String toString() {
-        java.util.List<Entry> list =
-            new java.util.LinkedList<Entry>();
-        for (Entry entry : array) {
-            if (entry == null) {
-                break;
-            }
-            list.add(entry);
-        }
-        java.util.Collections.sort(list);
-        StringBuilder sb = new StringBuilder();
-        for (Entry entry : list) {
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i<size(); i++) {
             if (sb.length() != 0) {
                 sb.append(", ");
             }
-            sb.append("(" + entry.key + "," + entry.info + ")");
+            sb.append("(" + array[i].key + "," + array[i].value + ")");
         }
         return sb.toString();
     }
