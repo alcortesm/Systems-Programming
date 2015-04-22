@@ -41,8 +41,92 @@ Implementations:
 
 \section{The Comparable Interface}
 
+Do you remember our old friend the Circle class?
+
+\codeinput{../java/Circle1.java}{Circle1.java}
+
+PROBLEM: add a method to the Circle class that returns if a Circle is bigger, equal or smaller than another circle.
+
+What is the input arguments to that method?
+
+What is the return type of that method?
+
+What would you call such method?
+
+\codelinesinput{../java/Circle2.java}{Circle2.java}{19}{37}
+
+What is this program going to print when executed?
+
+\separator
+
+Do you remember our old friend the Point class?
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/point/point.eps}
+\end{center}
+
+Can you think of a reasonable way to compare points?
+
+It depends on the problem, but probably the only thing that makes sense for
+comparing points is comparing their distance to the origin.
+
+\separator
+
+Do you remember the Person class?
+
+\begin{center}
+  \includegraphics[width=8cm]{./img/person/person.eps}
+\end{center}
+
+Can you think of a reasonalbe way to compare people?
+
+Again it depends on the problem, but an alphabetical comparisson of their names
+maight makes sense, or for other programs, you may compare the ages, so someone
+older is ``bigger''.
+
+Can you see the pattern here?
+
+\separator
+
+PROBLEM: write a program that alphabetically compare two strings and prints if
+the first is smaller, equal or bigger than the second one.
+
+Example: alcortes is SMALLER than alicia.
+
+To compare two strings alphabetically you will have to compare the first
+character of both string, then if they are equal, continue with the second and
+so on an so forth.
+
+Thankfully, the string class already has a compareTo method that does exactly
+that, so the program is very simple to write:
+
+\codeinput{../java/StringComparator.java}{StringComparator.java}
+
+The String class has this method because it implements the \verb+Comparable<String>+ interface.
+
+This means that strings has a \verb+compareTo(String other)+ that returns a
+negative int, zero or positive depending on if this string is alphabetically
+smaller, equal or bigger than the ``other'' string.
+
+Behold the Comparable interface:
+
 \begin{center}
   \includegraphics[width=6cm]{./img/comparable/comparable.eps}
 \end{center}
+
+A class that implements this interface means that if you have several objects
+from that class, you can sort them from smaller to bigger.
+
+For example, if you have a bunch of circles in a list, you can sort them from smaller to bigger.
+
+Or if you have a bunch of persons in a class, you can sort them by names in alphabetical order.
+
+Being able to sort objects is exceptionally important as we will see today during the class.
+
+Sorting is one of the more important things a computer can do: ``Ordenador'' : que ordena.
+
+Sorting is a awesome topic, I love sorting, sadly we will not see sorting in this course, but
+we are going to do extensive usage of the comparable interface for the rest of
+the course.
 
 \end{document}
