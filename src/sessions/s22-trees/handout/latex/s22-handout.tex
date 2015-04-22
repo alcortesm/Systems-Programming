@@ -131,13 +131,13 @@ void printPreOrder() {
       IN_ORDER
 
 // LinkedBNode
-void printPreOrder() {
+void printInOrder() {
   if (left != null) {
-    left.printPreOrder();
+    left.printInOrder();
   }
   s.o.p(datum);
   if (right != null) {
-    right.printPreOrder();
+    right.printInOrder();
   }
 }
 \end{blackboard}
