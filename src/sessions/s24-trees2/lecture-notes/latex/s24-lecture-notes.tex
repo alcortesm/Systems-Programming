@@ -21,8 +21,8 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \vspace{1cm}
 
 \begin{blackboard}
-interface Comparable
-Modeling a real life dictionaries
+Interface Comparable
+Modeling real life dictionaries
 Dictionaries in computer science
 Implementations:
  - Unsorted ArrayList
@@ -53,7 +53,7 @@ What is the return type of that method?
 
 What would you call such method?
 
-\codelinesinput{../java/Circle2.java}{Circle2.java}{19}{37}
+\codelinesinput{../java/Circle2.java}{Circle2.java}{20}{38}
 
 What is this program going to print when executed?
 
@@ -62,7 +62,7 @@ What is this program going to print when executed?
 Do you remember our old friend the Point class?
 
 \begin{center}
-  \includegraphics[width=8cm]{./img/point/point.eps}
+  \includegraphics[width=10cm]{./img/point/point.eps}
 \end{center}
 
 Can you think of a reasonable way to compare points?
@@ -75,7 +75,7 @@ comparing points is comparing their distance to the origin.
 Do you remember the Person class?
 
 \begin{center}
-  \includegraphics[width=8cm]{./img/person/person.eps}
+  \includegraphics[width=10cm]{./img/person/person.eps}
 \end{center}
 
 Can you think of a reasonalbe way to compare people?
@@ -111,7 +111,7 @@ smaller, equal or bigger than the ``other'' string.
 Behold the Comparable interface:
 
 \begin{center}
-  \includegraphics[width=6cm]{./img/comparable/comparable.eps}
+  \includegraphics[width=4cm]{./img/comparable/comparable.eps}
 \end{center}
 
 A class that implements this interface means that if you have several objects
@@ -121,12 +121,25 @@ For example, if you have a bunch of circles in a list, you can sort them from sm
 
 Or if you have a bunch of persons in a class, you can sort them by names in alphabetical order.
 
+So, the Circle2 class before allows to compare Circle2 objects with Circle2
+objects, so let us state that property clearly to Java:
+
+\codelinesinput{../java/Circle3.java}{Circle3.java}{1}{1}
+
 Being able to sort objects is exceptionally important as we will see today during the class.
 
 Sorting is one of the more important things a computer can do: ``Ordenador'' : que ordena.
 
-Sorting is a awesome topic, I love sorting, sadly we will not see sorting in this course, but
+Sorting is a fun and awesome topic, sadly we will not see sorting in this course, but
 we are going to do extensive usage of the comparable interface for the rest of
 the course.
+
+\newpage
+
+\section{Modeling real life dictionaries}
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/realdict/realdict5.eps}
+\end{center}
 
 \end{document}

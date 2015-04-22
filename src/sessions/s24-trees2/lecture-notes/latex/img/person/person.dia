@@ -318,16 +318,16 @@
     </dia:object>
     <dia:object type="Geometric - Notched Right Arrow" version="1" id="O1">
       <dia:attribute name="obj_pos">
-        <dia:point val="34,19"/>
+        <dia:point val="34,18"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="33.8793,18.8793;36.0707,21.1207"/>
+        <dia:rectangle val="33.8793,17.8793;36.0707,20.1207"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="34,19"/>
+        <dia:point val="34,18"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="2"/>

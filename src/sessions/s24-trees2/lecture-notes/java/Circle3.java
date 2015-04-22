@@ -1,8 +1,8 @@
-class Circle2 {
+class Circle3 implements Comparable<Circle3> {
 
     private double radius;
 
-    Circle2(double radius) {
+    Circle3(double radius) {
         if (radius <= 0D) {
             throw new IllegalArgumentException();
         }
@@ -17,7 +17,7 @@ class Circle2 {
         return Math.PI * radius * radius;
     }
 
-    public int compareTo(Circle2 other) {
+    public int compareTo(Circle3 other) {
         if (this.radius > other.radius) {
             return 1;
         } else if (this.radius < other.radius) {
@@ -28,9 +28,9 @@ class Circle2 {
     }
 
     public static void main(String args[]) {
-        Circle2 a = new Circle2(2D);
-        Circle2 b = new Circle2(3D);
-        Circle2 c = new Circle2(2D);
+        Circle3 a = new Circle3(2D);
+        Circle3 b = new Circle3(3D);
+        Circle3 c = new Circle3(2D);
         System.out.println("a.compareTo(b) = " + a.compareTo(b));
         System.out.println("a.compareTo(c) = " + a.compareTo(c));
         System.out.println("b.compareTo(a) = " + b.compareTo(a));
