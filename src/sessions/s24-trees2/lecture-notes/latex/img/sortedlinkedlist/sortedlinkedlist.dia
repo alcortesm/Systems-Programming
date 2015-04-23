@@ -124,13 +124,13 @@
     </dia:object>
     <dia:object type="Standard - Box" version="0" id="O2">
       <dia:attribute name="obj_pos">
-        <dia:point val="76,10"/>
+        <dia:point val="88,10"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="75.95,9.95;77.05,11.05"/>
+        <dia:rectangle val="87.95,9.95;89.05,11.05"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="76,10"/>
+        <dia:point val="88,10"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="1"/>
@@ -153,7 +153,7 @@
         <dia:point val="49,-9"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="49,-9.61363;64.0836,-8.01275"/>
+        <dia:rectangle val="49,-9.595;64.065,-8.05"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
@@ -3339,6 +3339,74 @@
         <dia:connection handle="0" to="O87" connection="8"/>
         <dia:connection handle="1" to="O85" connection="7"/>
       </dia:connections>
+    </dia:object>
+    <dia:object type="Standard - Box" version="0" id="O89">
+      <dia:attribute name="obj_pos">
+        <dia:point val="76,-7"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="75.95,-7.05;88.05,8.05"/>
+      </dia:attribute>
+      <dia:attribute name="elem_corner">
+        <dia:point val="76,-7"/>
+      </dia:attribute>
+      <dia:attribute name="elem_width">
+        <dia:real val="12"/>
+      </dia:attribute>
+      <dia:attribute name="elem_height">
+        <dia:real val="15"/>
+      </dia:attribute>
+      <dia:attribute name="show_background">
+        <dia:boolean val="true"/>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="Standard - Text" version="1" id="O90">
+      <dia:attribute name="obj_pos">
+        <dia:point val="77,-6"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="77,-6.595;87.01,6.15"/>
+      </dia:attribute>
+      <dia:attribute name="text">
+        <dia:composite type="text">
+          <dia:attribute name="string">
+            <dia:string>#Insert when key is not
+in the dictionary:
+
+  - search for key     n/2
+  - insert              c
+                       ---
+                       n/2
+
+
+Remove when key is
+in the dictionary:
+
+  - search for key     n/2
+  - extract             c
+                       ---
+                       n/2#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="font">
+            <dia:font family="monospace" style="0" name="Courier"/>
+          </dia:attribute>
+          <dia:attribute name="height">
+            <dia:real val="0.80000000000000004"/>
+          </dia:attribute>
+          <dia:attribute name="pos">
+            <dia:point val="77,-6"/>
+          </dia:attribute>
+          <dia:attribute name="color">
+            <dia:color val="#000000"/>
+          </dia:attribute>
+          <dia:attribute name="alignment">
+            <dia:enum val="0"/>
+          </dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+      <dia:attribute name="valign">
+        <dia:enum val="3"/>
+      </dia:attribute>
     </dia:object>
   </dia:layer>
 </dia:diagram>

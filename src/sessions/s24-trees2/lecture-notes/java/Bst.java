@@ -55,7 +55,6 @@ class Bst<K extends Comparable<K>, V>
             return this.key.compareTo(node.key);
         }
 
-        // return if the size must be incremented
         void insert(K key, V value) {
             if (key.compareTo(this.key) == 0) {
                 this.value = value;

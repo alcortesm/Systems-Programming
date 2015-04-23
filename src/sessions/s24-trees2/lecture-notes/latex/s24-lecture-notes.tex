@@ -35,7 +35,6 @@ Implementations:
    + insert
    + remove
    + degenerated trees
- - Hash Table
 \end{blackboard}
 
 
@@ -47,11 +46,12 @@ Do you remember our old friend the Circle class?
 
 PROBLEM: add a method to the Circle class that returns if a Circle is bigger, equal or smaller than another circle.
 
-What is the input arguments to that method?
+What name should we give to such method?
+
+What are the input arguments to that method?
 
 What is the return type of that method?
 
-What would you call such method?
 
 \codelinesinput{../java/Circle2.java}{Circle2.java}{20}{38}
 
@@ -245,21 +245,6 @@ be able to find values quickly. We will come back to this later.
   \includegraphics[width=14cm]{./img/unsortedarraylist/unsortedarraylist.eps}
 \end{center}
 
-\begin{blackboard}
-insert(key, value) when key is not in the dictionary
-  search for key                              n       (proportional to n)
-  insert                                      c       (constant time)
-                                             -----
-                                              n
-
-remove(key) when key is in the dictionary
-  search for key                              n/2     (proportional to n/2)
-  extract                                     c
-  shift left                                  n/2
-                                             ------
-                                              n
-\end{blackboard}
-
 \begin{multicols}{2}
 \begin{center}
   \includegraphics[width=7cm]{./img/efficiency/efficiency1.eps}
@@ -294,20 +279,6 @@ the remaining elements to the left when extracting?
   \includegraphics[width=14cm]{./img/unsortedlinkedlist/unsortedlinkedlist.eps}
 \end{center}
 
-\begin{blackboard}
-insert(key, value) when key is not in the dictionary
-  search for key                              n
-  insert                                      c
-                                             ------
-                                              n
-
-remove(key) when key is in the dictionary
-  search for key                              n/2
-  extract                                     c
-                                             ------
-                                              n/2
-\end{blackboard}
-
 \begin{multicols}{2}
 \begin{center}
   \includegraphics[width=7cm]{./img/efficiency/efficiency2.eps}
@@ -339,20 +310,6 @@ than the one you are looking for.
 \begin{center}
   \includegraphics[width=14cm]{./img/sortedlinkedlist/sortedlinkedlist.eps}
 \end{center}
-
-\begin{blackboard}
-insert(key, value) when key is not in the dictionary
-  search for key                              n/2
-  insert                                      c
-                                             ------
-                                              n/2
-
-remove(key):
-  search for key                              n/2
-  extract                                     c
-                                             ------
-                                              n/2
-\end{blackboard}
 
 \begin{multicols}{2}
 \begin{center}
@@ -403,21 +360,6 @@ So, how do we do something like that in our implementation?
 \end{center}
 
 \codelinesinput{../java/ODSortedArrayList.java}{ODSortedArrayList.java}{157}{177}
-\begin{blackboard}
-insert(key, value):
-  search for key                              lg n
-  shift to right                              n/2
-  insert                                      1
-                                             ------
-                                              n/2
-
-remove(key):
-  search for key                              lg n
-  extract                                     1
-  shift to left                               n/2
-                                             ------
-                                              n/2
-\end{blackboard}
 
 \begin{multicols}{2}
 \begin{center}
@@ -496,22 +438,48 @@ PROBLEM: search by hand the key 11 in the last BST.
 \end{center}
 
 \begin{multicols}{2}
-  \codelinesinput{../java/Bst.java}{Bst Class}{259}{268}
-  \codelinesinput{../java/Bst.java}{Bst Node}{97}{99}
+  \codelinesinput{../java/Bst.java}{Bst Class}{258}{267}
+  \codelinesinput{../java/Bst.java}{Bst Node}{96}{98}
 \columnbreak
-  \codelinesinput{../java/Bst.java}{Bst Node}{79}{95}
+  \codelinesinput{../java/Bst.java}{Bst Node}{78}{94}
 \end{multicols}
 
 
 \subsection{Insert}
 
+\begin{center}
+  \includegraphics[width=12cm]{./img/algoinsert/algoinsert.eps}
+\end{center}
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Bst.java}{Bst Class}{245}{256}
+\columnbreak
+  \codelinesinput{../java/Bst.java}{Bst Node}{58}{76}
+\end{multicols}
+
+
+\newpage
+
 \subsection{Extract}
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/algoremove/algoremove.eps}
+\end{center}
+
+DRAW EXAMPLES OF THE THREE POSSIBILITIES
 
 \subsection{Unbalanced BST}
 
+DRAW EXAMPLES OF UNBALANCED TREES COMMING FROM NON-RANDOM INPUT
 
+EXPLAIN LOW PERFORMANCE OF UNBALANCED TREES
 
+EXPLAIN RANDOMIZED INPUT
 
+INTRODUCE SELF-BALANCING TREES
 
+EXPLAIN HOW BALANCED TREES CAN BECOME UNBALANCED BY EXTRACTING
+
+EXAPLAIN THAT YOU SHOULD REMOVE ON ALTERNATIVE SIDES WHEN REMOVING
 
 \end{document}
