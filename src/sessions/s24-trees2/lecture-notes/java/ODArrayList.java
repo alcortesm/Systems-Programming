@@ -10,7 +10,7 @@
 
 import java.util.NoSuchElementException;
 
-class ODUnsortedArrayList<K extends Comparable<K>, V>
+class ODArrayList<K extends Comparable<K>, V>
     implements OrderedDictionary<K, V> {
 
     // most JVM don't allow Integer.MAX_VALUE arrays, but -2, -4 or -8
@@ -37,7 +37,7 @@ class ODUnsortedArrayList<K extends Comparable<K>, V>
     private Entry[] array;
     private int size;
 
-    public ODUnsortedArrayList() {
+    public ODArrayList() {
         size = 0;
         // We whould like to initialize our array like this:
         //    array = new Entry<k, V>[DEFAULT_CAPACITY];

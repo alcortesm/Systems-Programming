@@ -239,36 +239,277 @@ be able to find values quickly. We will come back to this later.
 
 \section{Implementation}
 
-\subsection{Array List - Unsorted}
+\subsection{Array List}
 
 \begin{center}
   \includegraphics[width=14cm]{./img/unsortedarraylist/unsortedarraylist.eps}
 \end{center}
 
 \begin{blackboard}
-insert(key, value):
-  search for key                              O(n)  (proportional to n)
-  shift right and insert                      O(n)
+insert(key, value) when key is not in the dictionary
+  search for key                              n       (proportional to n)
+  insert                                      c       (constant time)
+                                             -----
+                                              n
 
-                                              O(n)
-
-remove(key):
-  search for key                              O(n)
-  extract                                     O(1)  (constant time)
-  shift left                                  O(n)
-
-                                              O(n)
+remove(key) when key is in the dictionary
+  search for key                              n/2     (proportional to n/2)
+  extract                                     c
+  shift left                                  n/2
+                                             ------
+                                              n
 \end{blackboard}
 
+\begin{multicols}{2}
 \begin{center}
   \includegraphics[width=7cm]{./img/efficiency/efficiency1.eps}
 \end{center}
+\columnbreak
 
 Let say we are working with a dictionary with the people in Madrid: 3 million.
 
 Let say that 100 of them are trying to access a web page.
 
 This means that just trying to log in will require 1 minute and a half to each of them.
+
+Can we make this faster?
+
+Well, the are two main sources of delay are:
+
+\begin{itemize}
+  \item having to shift all the elements to the left when extracting
+  \item having to search throw the whole list when inserting
+\end{itemize}
+
+Let us get rid of the first source of delay, how can we avoid having to shift
+the remaining elements to the left when extracting?
+
+\end{multicols}
+
+\newpage
+
+\subsection{Linked List}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/unsortedlinkedlist/unsortedlinkedlist.eps}
+\end{center}
+
+\begin{blackboard}
+insert(key, value) when key is not in the dictionary
+  search for key                              n
+  insert                                      c
+                                             ------
+                                              n
+
+remove(key) when key is in the dictionary
+  search for key                              n/2
+  extract                                     c
+                                             ------
+                                              n/2
+\end{blackboard}
+
+\begin{multicols}{2}
+\begin{center}
+  \includegraphics[width=7cm]{./img/efficiency/efficiency2.eps}
+\end{center}
+\columnbreak
+
+It takes the same time to search for the key, but now we do not have to shift the
+rest of the elements to the left when extracting, which means we are faster.
+
+Can we do better?
+
+Of course, let us take care of the remaining problem: having to search through the
+whole dictionary when inserting or when extracting.
+
+How can we do that?
+
+Well, real life dictionaries have their entries sorted by key for a reason: it
+is faster to search for keys if they are ordered, because you can stop
+searching once you get to the portion of the dictionary that has bigger keys
+than the one you are looking for.
+
+\end{multicols}
+
+
+\newpage
+
+\subsection{Linked List - Sorted}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/sortedlinkedlist/sortedlinkedlist.eps}
+\end{center}
+
+\begin{blackboard}
+insert(key, value) when key is not in the dictionary
+  search for key                              n/2
+  insert                                      c
+                                             ------
+                                              n/2
+
+remove(key):
+  search for key                              n/2
+  extract                                     c
+                                             ------
+                                              n/2
+\end{blackboard}
+
+\begin{multicols}{2}
+\begin{center}
+  \includegraphics[width=7cm]{./img/efficiency/efficiency3.eps}
+\end{center}
+\columnbreak
+
+By storing the elements in sorted order we are skipping a lot of checks when
+searching because we now can stop looking for entries once we have reach the
+portion of the dictionary that is bigger than our key.
+
+The performance of this version should be much better, because of this early
+escape. In reality, it is not so good as the extra check to see if the key we
+are looking for is smaller than the rest of the dictionary is a heavy burden
+that lowers the performance.
+
+Can we do this even faster?
+
+Yes, in a real dictionary, we you search for the definition of ``table'', you
+do not start by the first page, and keep passing pages until you get to the
+``T''.
+
+You open the dictionary at its half, you see that you are looking at words that
+begins by M, then you know ``table'' will be on the right half of the
+dictionary. You have just skip $n/2$ of the entries in only one step.
+
+Then you continue jumping to the half of the remaining, to skip anoter $n/4$.
+
+And so on and so forth until you get to ``table'' in very few jumps.
+
+This way of searching in ordered collections is called \emph{Binary Search}.
+
+In a 1000 pages dictionary, searching from the beginning will require 1000
+steps in the worst case, but searching using BS will require only 10 steps. The
+performance gain is huge.
+
+So, how do we do something like that in our implementation?
+\end{multicols}
+
+
+
+\newpage
+
+\subsection{Array List - Sorted}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/sortedarraylist/sortedarraylist.eps}
+\end{center}
+
+\codelinesinput{../java/ODSortedArrayList.java}{ODSortedArrayList.java}{157}{177}
+\begin{blackboard}
+insert(key, value):
+  search for key                              lg n
+  shift to right                              n/2
+  insert                                      1
+                                             ------
+                                              n/2
+
+remove(key):
+  search for key                              lg n
+  extract                                     1
+  shift to left                               n/2
+                                             ------
+                                              n/2
+\end{blackboard}
+
+\begin{multicols}{2}
+\begin{center}
+  \includegraphics[width=7cm]{./img/efficiency/efficiency4.eps}
+\end{center}
+\columnbreak
+
+Nowadays, computers are optimized for moving data to adjacent positions and it
+can be achieved must faster than jumping from node to node in a linked list, so
+actually, the $n/2$ performance of this version has a very marginal
+contribution, leading to an awesome performance.
+
+But can we do better?
+
+Yes, by not having to shift the elements of the dictionary when inserting or
+extracting.
+
+You already know that can do that by using a linked list, but then, you can not
+access the middle element.
+
+You need some kind of mix between the good things of an array (jumping at the
+middle of some data range) and the good things of a linked list (not having to
+shift remaining elements when inserting or extracting).
+
+Is this even possible, how can we do that?
+
+\end{multicols}
+
+
+
+\newpage
+
+\section{Binary Search Tree}
+
+We can do that by using a Binary Search Tree, that will give us this amazing
+performance:
+
+\begin{center}
+  \includegraphics[width=7cm]{./img/efficiency/efficiency5.eps}
+\end{center}
+
+A BST is a binary tree with one important property, called the binary search tree property:
+
+\begin{blackboard}
+  For all nodes,
+        all the keys in its LEFT  subtree are SMALLER than the key of the node
+    and all the keys of its RIGHT subtree are BIGGER  than the key of the node.
+\end{blackboard}
+
+\begin{center}
+  \includegraphics[width=6cm]{./img/bstquiz/bstquiz1.eps}
+  \includegraphics[width=6cm]{./img/bstquiz/bstquiz2.eps}
+  \includegraphics[width=6cm]{./img/bstquiz/bstquiz3.eps}
+  \includegraphics[width=6cm]{./img/bstquiz/bstquiz4.eps}
+\end{center}
+
+\begin{blackboard}
+  no, yes
+  yes, yes
+\end{blackboard}
+
+PROBLEM: print the last BST in IN-order.
+
+PROBLEM: search by hand the key 11 in the last BST.
+
+\subsection{Implementation}
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/bstimpl/bstimpl.eps}
+\end{center}
+
+\subsection{Find}
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/algofind/algofind.eps}
+\end{center}
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Bst.java}{Bst Class}{259}{268}
+  \codelinesinput{../java/Bst.java}{Bst Node}{97}{99}
+\columnbreak
+  \codelinesinput{../java/Bst.java}{Bst Node}{79}{95}
+\end{multicols}
+
+
+\subsection{Insert}
+
+\subsection{Extract}
+
+\subsection{Unbalanced BST}
+
+
 
 
 

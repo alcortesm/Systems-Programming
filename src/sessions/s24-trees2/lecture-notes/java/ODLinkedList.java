@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-class ODUnsortedLinkedList<K extends Comparable<K>, V>
+class ODLinkedList<K extends Comparable<K>, V>
     implements OrderedDictionary<K, V> {
 
     private Node first;
@@ -18,7 +18,7 @@ class ODUnsortedLinkedList<K extends Comparable<K>, V>
         }
     }
 
-    public ODUnsortedLinkedList() {
+    public ODLinkedList() {
         first = null;
         size = 0;
     }

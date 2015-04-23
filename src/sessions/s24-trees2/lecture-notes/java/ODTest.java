@@ -1,15 +1,15 @@
 import java.util.NoSuchElementException;
 
 class ODTest {
-    private static final String ARG_UAL = "UAL";
-    private static final String ARG_ULL = "ULL";
+    private static final String ARG_AL = "AL";
+    private static final String ARG_LL = "LL";
     private static final String ARG_SAL = "SAL";
     private static final String ARG_SLL = "SLL";
     private static final String ARG_BST = "BST";
     private static final String ARG_ALL = "ALL";
 
-    private static final String UAL = "UNSORTED ARRAY LIST";
-    private static final String ULL = "UNSORTED LINKED LIST";
+    private static final String AL = "ARRAY LIST";
+    private static final String LL = "LINKED LIST";
     private static final String SAL = "SORTED ARRAY LIST";
     private static final String SLL = "SORTED LINKED LIST";
     private static final String BST = "BINARY SEARCH TREE";
@@ -32,11 +32,11 @@ class ODTest {
         String implementation;
         if (args.length == 1) {
             switch (args[0]) {
-                case ARG_UAL:
-                    implementation = UAL;
+                case ARG_AL:
+                    implementation = AL;
                     break;
-                case ARG_ULL:
-                    implementation = ULL;
+                case ARG_LL:
+                    implementation = LL;
                     break;
                 case ARG_SAL:
                     implementation = SAL;
@@ -64,8 +64,8 @@ class ODTest {
         try {
             boolean pass;
             if (implementation.equals(ALL)) {
-                pass = test(UAL);
-                pass = test(ULL) && pass;
+                pass = test(AL);
+                pass = test(LL) && pass;
                 pass = test(SAL) && pass;
                 pass = test(SLL) && pass;
                 pass = test(BST) && pass;
@@ -86,11 +86,11 @@ class ODTest {
 
     private static void usage() {
         System.out.println("usage:");
-        System.out.println("\tODTest [ UAL | ULL | SAL | SLL | BST | ALL]");
+        System.out.println("\tODTest [ AL | LL | SAL | SLL | BST | ALL]");
         System.out.println();
         System.out.println("\tTest an Ordered Dictionary using:");
-        System.out.println("\t\t" + ARG_UAL + " : " + UAL);
-        System.out.println("\t\t" + ARG_ULL + " : " + ULL);
+        System.out.println("\t\t" + ARG_AL + " : " + AL);
+        System.out.println("\t\t" + ARG_LL + " : " + LL);
         System.out.println("\t\t" + ARG_SAL + " : " + SAL);
         System.out.println("\t\t" + ARG_SLL + " : " + SLL);
         System.out.println("\t\t" + ARG_BST + " : " + BST);
@@ -101,11 +101,11 @@ class ODTest {
         OrderedDictionary<K, I> createOD(String implementation) {
         OrderedDictionary<K, I> od;
         switch (implementation) {
-            case UAL:
-                od = new ODUnsortedArrayList<K, I>();
+            case AL:
+                od = new ODArrayList<K, I>();
                 break;
-            case ULL:
-                od = new ODUnsortedLinkedList<K, I>();
+            case LL:
+                od = new ODLinkedList<K, I>();
                 break;
             case SAL:
                 od = new ODSortedArrayList<K, I>();

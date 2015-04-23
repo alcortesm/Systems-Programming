@@ -4,6 +4,7 @@
 //  java -Xint -Djava.compiler=NONE ODTime 100 100
 
 import java.util.Random;
+import java.util.NoSuchElementException;
 
 class ODTime {
     private static final int EVEN = 0;
@@ -81,15 +82,22 @@ class ODTime {
             od.insert(keys[EVEN][i], keys[EVEN][i]);
         }
 
-        long startTime = System.nanoTime();
+        // measure insert a key not in the dict
+        // and remove it
+        Integer what;
+        long startTime;
+        long estimatedTime;
+        long accumTime = 0;
         for (int i=0; i<times; i++) {
-            Integer what = keys[ODD][i % keys[ODD].length];
-            // System.out.println("inserting and extracting " + what);
+            // measure insertion of not pressent keys
+            what = keys[ODD][i % keys[ODD].length];
+            startTime = System.nanoTime();
             od.insert(what, what);
             od.remove(what);
+            estimatedTime = System.nanoTime() - startTime;
+            accumTime += estimatedTime;
         }
-        long estimatedTime = System.nanoTime() - startTime;
-        long mean_nano = estimatedTime / times;
+        long mean_nano = accumTime / times;
         long mean_microsecs = mean_nano / ((long) Math.pow(10, 3));
         return mean_microsecs;
     }
@@ -132,14 +140,14 @@ class ODTime {
         OrderedDictionary<Integer, Integer> od;
         long mean;
 
-        // System.out.println("# size\ttimes\tseed\tUAL\tULL\tSAL\tSLL\tBST");
+        // System.out.println("# size\ttimes\tseed\tAL\tLL\tSAL\tSLL\tBST");
         System.out.print("" + size + "\t" + times + "\t" + seed);
 
-        od = new ODUnsortedArrayList<Integer, Integer>();
+        od = new ODArrayList<Integer, Integer>();
         mean = test(od, keys, size, times);
         System.out.print("\t" + mean);
 
-        od = new ODUnsortedLinkedList<Integer, Integer>();
+        od = new ODLinkedList<Integer, Integer>();
         mean = test(od, keys, size, times);
         System.out.print("\t" + mean);
 

@@ -19,7 +19,7 @@ $(out) : $(pdf)
 $(pdf) : $(eps)
 	epstopdf $(@:%.pdf=%.eps)
 
-$(eps) : $(src) $(gp)
+$(eps) : $(src) $(gp) common.gp
 	gnuplot $(@:%.eps=%.gp)
 
 clean :

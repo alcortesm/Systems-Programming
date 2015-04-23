@@ -45,12 +45,16 @@ class ODSortedLinkedList<K extends Comparable<K>, V>
             Node prev;
             // move prev to the node before the first bigger key
             // or the end if no bigger key is found
+            int comp;
             for (prev = first; prev.next != null; prev = prev.next) {
-                if (prev.next.key.compareTo(key) == 0) {
+                comp = prev.next.key.compareTo(key);
+                if (comp < 0) {
+                    continue;
+                } else if (comp > 0) {
+                    break;
+                } else {
                     prev.next.value = value;
                     return;
-                } else if (prev.next.key.compareTo(key) > 0) {
-                    break;
                 }
             }
             prev.next = new Node(key, value, prev.next);
@@ -63,12 +67,15 @@ class ODSortedLinkedList<K extends Comparable<K>, V>
         if (key == null) {
             throw new IllegalArgumentException();
         }
+        int comp;
         for (Node current = first; current != null ; current = current.next) {
-            if (current.key.compareTo(key) == 0) {
-                return current.value;
-            }
-            if (current.key.compareTo(key) > 0) {
+            comp = current.key.compareTo(key);
+            if (comp < 0) {
+                continue;
+            } else if (comp > 0) {
                 break;
+            } else {
+                return current.value;
             }
         }
         throw new NoSuchElementException();
@@ -90,15 +97,18 @@ class ODSortedLinkedList<K extends Comparable<K>, V>
             return retval;
         }
 
+        int comp;
         for (Node prev = first; prev.next != null; prev = prev.next) {
-            if (prev.next.key.compareTo(key) == 0) {
+            comp = prev.next.key.compareTo(key);
+            if (comp < 0) {
+                continue;
+            } else if (comp > 0) {
+                break;
+            } else {
                 V retval = prev.next.value;
                 prev.next = prev.next.next;
                 size--;
                 return retval;
-            }
-            if (prev.next.key.compareTo(key) > 0) {
-                break;
             }
         }
         throw new NoSuchElementException();
