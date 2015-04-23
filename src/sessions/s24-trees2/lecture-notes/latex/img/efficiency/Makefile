@@ -2,7 +2,7 @@ name := efficiency
 
 # inputs
 src := $(name).data
-gp := $(name)1.gp $(name)2.gp $(name)3.gp $(name)4.gp
+gp := $(name)1.gp $(name)2.gp $(name)3.gp $(name)4.gp $(name)5.gp
 
 # outputs
 eps := $(gp:%.gp=%.eps)

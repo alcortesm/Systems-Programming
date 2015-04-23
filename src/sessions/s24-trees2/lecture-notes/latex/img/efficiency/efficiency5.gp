@@ -1,7 +1,7 @@
 #!/usr/bin/gnuplot
 
 set terminal postscript eps color size 10cm, 10cm
-set output "efficiency1.eps"
+set output "efficiency5.eps"
 
 set title "Ordered Dictionaries Benchmark" font ",20"
 set xlabel "Size of the dictionary"
@@ -16,4 +16,9 @@ set style line 3 lc 3 lt 3 lw 5 pt 3 pi -1 ps 1
 set style line 4 lc 4 lt 4 lw 5 pt 4 pi -1 ps 1
 set style line 5 lc 5 lt 5 lw 5 pt 5 pi -1 ps 1
 
-plot "efficiency.data" using 1:4 with linespoints ls 1 title 'Unsorted Array List'
+plot "efficiency.data" using 1:4 with linespoints ls 1 title 'Unsorted Array List', \
+     "efficiency.data" using 1:5 with linespoints ls 2 title 'Unsorted Linked List', \
+     "efficiency.data" using 1:7 with linespoints ls 3 title 'Sorted Linked List', \
+     "efficiency.data" using 1:6 with linespoints ls 4 title 'Sorted Array List', \
+     "efficiency.data" using 1:8 with linespoints ls 5 title 'Binary Search Tree'
+

@@ -142,4 +142,135 @@ the course.
   \includegraphics[width=12cm]{./img/realdict/realdict5.eps}
 \end{center}
 
+An class for a real life dictionary would be something like this:
+
+\begin{center}
+  \includegraphics[width=12cm]{./img/realdictinterface/realdictinterface.eps}
+\end{center}
+
+
+
+
+
+
+
+\section{Dictionaries in Computer Science}
+
+Dictioaries in Computer Science are a generalization of real life dictionaries.
+
+\begin{center}
+  \includegraphics[width=10cm]{./img/ordereddictionary/ordereddictionary.eps}
+\end{center}
+
+To simplify things, let us consider only dictionaries that do not allow duplicated keys.
+
+This means that keys are unique, if you try to insert a new pair key-value when
+that key is already in the dictionary, the old value will be updated or an
+exception can be throw.
+
+Please note that keys are of type K, that implements Comparable<K>, meaning
+keys can be ordered from smallest to the biggest.
+
+For example the real life dictionary from before (that does not accept duplicated keys) would be:
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/demodict/demodict.eps}
+\end{center}
+
+\subsection{More examples of dictionaries}
+
+Counting cars in a garage:
+
+\begin{blackboard}
+OrderedDictionary<String, Integer>
+
+"Mercedes", 5
+"BMW", 3
+"Ford", 7
+...
+\end{blackboard}
+
+\separator
+
+Students in Aual Global:
+
+\begin{blackboard}
+OrderedDictionary<Integer, Student>
+
+10001111, "Alberto Cortes, age 22, NIA 10001111"
+10002222, "Alicia Rodriguez, age 22, NIA 10002222"
+10003333, "Alberto Cortes, age 35, NIA 10003333"
+...
+\end{blackboard}
+
+\separator
+
+Appointments in a calendar:
+
+\begin{blackboard}
+OrderedDictionary<Date, String>
+
+5 of May, "My birthday"
+25 of December, "Christmas"
+19th of May, "PS exam!"
+...
+\end{blackboard}
+
+\separator
+
+Storing the textures of 3D objects in a computer game:
+
+\begin{blackboard}
+OrderedDictionary<Point, Texture>
+\end{blackboard}
+
+During the loading of a level in the game you will create a dictionary with all
+the textures of all the objects in the game, using the location of the objects
+as the key.
+
+Whenever the player is looking somewhere, you will find the textures at the
+points he is looking at and apply the textures to the objects there.  There is
+a good reason for storing the entries by alphabeticall order of their keys: to
+be able to find values quickly. We will come back to this later.
+
+
+
+\newpage
+
+\section{Implementation}
+
+\subsection{Array List - Unsorted}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/unsortedarraylist/unsortedarraylist.eps}
+\end{center}
+
+\begin{blackboard}
+insert(key, value):
+  search for key                              O(n)  (proportional to n)
+  shift right and insert                      O(n)
+
+                                              O(n)
+
+remove(key):
+  search for key                              O(n)
+  extract                                     O(1)  (constant time)
+  shift left                                  O(n)
+
+                                              O(n)
+\end{blackboard}
+
+\begin{center}
+  \includegraphics[width=7cm]{./img/efficiency/efficiency1.eps}
+\end{center}
+
+Let say we are working with a dictionary with the people in Madrid: 3 million.
+
+Let say that 100 of them are trying to access a web page.
+
+This means that just trying to log in will require 1 minute and a half to each of them.
+
+
+
+
 \end{document}

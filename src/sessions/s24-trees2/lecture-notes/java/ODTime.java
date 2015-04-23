@@ -1,3 +1,8 @@
+// to test theoric efficiency, run this program without
+// optimizations, example:
+//
+//  java -Xint -Djava.compiler=NONE ODTime 100 100
+
 import java.util.Random;
 
 class ODTime {
@@ -69,7 +74,7 @@ class ODTime {
         System.exit(1);
     }
 
-    private static void test(String description, OrderedDictionary<Integer, Integer> od,
+    private static long test(OrderedDictionary<Integer, Integer> od,
             Integer[][] keys, int size, int times) {
         od.clear();
         for (int i=0; i<keys[EVEN].length; i++) {
@@ -86,7 +91,7 @@ class ODTime {
         long estimatedTime = System.nanoTime() - startTime;
         long mean_nano = estimatedTime / times;
         long mean_microsecs = mean_nano / ((long) Math.pow(10, 3));
-        System.out.println(description + " : " + mean_microsecs + " microsecs");
+        return mean_microsecs;
     }
 
     public static void main(String args[]) {
@@ -118,7 +123,6 @@ class ODTime {
             seed = System.currentTimeMillis();
         }
         random = new Random(seed);
-        System.out.println("seed = " + seed);
 
         Integer[][] keys = createKeys(size);
         // printArray(keys);
@@ -126,23 +130,30 @@ class ODTime {
         // printArray(keys);
 
         OrderedDictionary<Integer, Integer> od;
+        long mean;
 
-        System.out.println("Starting benchmark");
+        // System.out.println("# size\ttimes\tseed\tUAL\tULL\tSAL\tSLL\tBST");
+        System.out.print("" + size + "\t" + times + "\t" + seed);
 
         od = new ODUnsortedArrayList<Integer, Integer>();
-        test("Unsorted Array List", od, keys, size, times);
+        mean = test(od, keys, size, times);
+        System.out.print("\t" + mean);
 
         od = new ODUnsortedLinkedList<Integer, Integer>();
-        test("Unsorted Linked List", od, keys, size, times);
+        mean = test(od, keys, size, times);
+        System.out.print("\t" + mean);
 
         od = new ODSortedArrayList<Integer, Integer>();
-        test("Sorted Array List", od, keys, size, times);
+        mean = test(od, keys, size, times);
+        System.out.print("\t" + mean);
 
         od = new ODSortedLinkedList<Integer, Integer>();
-        test("Sorted Linked List", od, keys, size, times);
+        mean = test(od, keys, size, times);
+        System.out.print("\t" + mean);
 
         od = new Bst<Integer, Integer>();
-        test("Binary Search Tree", od, keys, size, times);
-
+        mean = test(od, keys, size, times);
+        System.out.print("\t" + mean);
+        System.out.println();
     }
 }
