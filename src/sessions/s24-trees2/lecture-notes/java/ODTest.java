@@ -114,9 +114,10 @@ class ODTest {
                 od = new ODSortedLinkedList<K, I>();
                 break;
             case BST:
-                od = new Bst<K, I>(Bst.PREDECESSOR_UNBALANCING);
+                // od = new Bst<K, I>(Bst.PREDECESSOR_UNBALANCING);
                 // od = new Bst<K, I>(Bst.SUCCESSOR_UNBALANCING);
                 // od = new Bst<K, I>(Bst.RANDOM_UNBALANCING);
+                od = new Bst<K, I>();
                 break;
             default:
                 throw new RuntimeException(

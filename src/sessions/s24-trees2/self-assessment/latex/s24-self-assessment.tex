@@ -16,4 +16,152 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \vspace{1cm}
 
+\section{}
+
+\subsection{}
+
+Write 5 dummy implementations of the \texttt{OrderedDictionary} interface provided with this session source code.
+
+Name these 5 implementations as follows: \texttt{ODArrayList}, \texttt{ODLinkedList}, \texttt{ODSortedLinkedList}, \\
+\texttt{ODSortedArrayList} and \texttt{Bst}.
+
+Do not bother implementing the methods yet, just write one-liners, throwing an exception or returning some made-up value.
+
+For the \texttt{Bst} add also a \texttt{toStringLevelOrder} method.
+
+\subsection{}
+
+Work on the \texttt{ODArrayList} class until it pass all the checks made by the program \texttt{ODTest} provided with this session source code.
+
+This dictionary should be implemented using an ordinary array list (not sorted).
+
+To test this version you should invoke the test program using the \texttt{AL} argument, as follows:
+
+\begin{cmd}
+$ java ODTest AL
+
+=========== Testing ARRAY LIST
+
+=========== OK
+
+\end{cmd}
+
+When done, compare your version of \texttt{ArrayList} with the one provided with this session source code.
+
+\subsection{}
+
+Work on the \texttt{ODLinkedList} class until it pass all the checks made by the program \texttt{ODTest} provided with this session source code.
+
+This dictionary should be implemented using an ordinary linked list (not sorted).
+
+To test this version you should invoke the test program using the \texttt{LL} argument, as follows:
+
+\begin{cmd}
+$ java ODTest LL
+
+=========== Testing LINKED LIST
+
+=========== OK
+
+\end{cmd}
+
+When done, compare your version of \texttt{LinkedList} with the one provided with this session source code.
+
+\subsection{}
+
+Work on the \texttt{ODSortedLinkedList} class until it pass all the checks made by the program \texttt{ODTest} provided with this session source code.
+
+This dictionary should be implemented using a sorted linked list.
+
+To test this version you should invoke the test program using the \texttt{SLL} argument, as follows:
+
+\begin{cmd}
+$ java ODTest SLL
+
+=========== Testing SORTED LINKED LIST
+
+=========== OK
+
+\end{cmd}
+
+When done, compare your version of \texttt{SortedLinkedList} with the one provided with this session source code.
+
+\subsection{}
+
+Work on the \texttt{ODSortedArrayList} class until it pass all the checks made by the program \texttt{ODTest} provided with this session source code.
+
+This dictionary should be implemented using a sorted array list and using binary search.
+
+To test this version you should invoke the test program using the \texttt{SAL} argument, as follows:
+
+\begin{cmd}
+$ java ODTest SAL
+
+=========== Testing SORTED ARRAY LIST
+
+=========== OK
+
+\end{cmd}
+
+When done, compare your version of \texttt{SortedArrayList} with the one provided with this session source code.
+
+
+\subsection{}
+
+Work on the \texttt{Bst} class until it pass all the checks made by the program \texttt{ODTest} provided with this session source code.
+
+This dictionary should be implemented using a binary search tree.
+
+To test this version you should invoke the test program using the \texttt{BST} argument, as follows:
+
+\begin{cmd}
+$ java ODTest BST
+
+=========== Testing BINARY SEARCH TREE
+
+=========== OK
+
+\end{cmd}
+
+When done, compare your version of \texttt{Bst} with the one provided with this session source code.
+
+\textsl{Tip: the remove method from a BST can be tricky. Consider working first in some helper methods so the main \texttt{remove} method can be written in only a few lines of code.}
+
+
+\subsection{}
+
+Write a program that counts the frequency of characters in a sentence and prints it out, example:
+
+\begin{cmd}
+$ java Frequency "a"
+(a,1)
+
+$ java Frequency "aa"
+(a,2)
+
+$ java Frequency "aaaaa"
+(a,5)
+
+$ java Frequency "a b c"
+( ,2), (a,1), (b,1), (c,1)
+
+$ java Frequency "a b c bb bb"
+( ,4), (a,1), (b,5), (c,1)
+
+$ java Frequency "Frequency is the number of occurrences of a repeating event per 
+unit time.[1] It is also referred to as temporal frequency, which emphasizes the 
+contrast to spatial frequency and angular frequency. The period is the duration 
+of time of one cycle in a repeating event, so the period is the reciprocal of the
+ frequency"
+( ,53), (,,2), (.,2), (1,1), (F,1), (I,1), (T,1), ([,1), (],1), (a,16), (b,1), 
+(c,14), (d,5), (e,42), (f,10), (g,3), (h,10), (i,17), (l,6), (m,5), (n,18), 
+(o,17), (p,9), (q,5), (r,22), (s,12), (t,21), (u,10), (v,2), (w,1), (y,6), 
+(z,1)
+\end{cmd}
+
+\textsl{Tip: remember there are 65.536 different characters in Java so using an
+array to hold their frequencies can be an overkill, an ordered dictionary will
+be much better.}
+
+\solutioninput{../java/Frequency.java}
 \end{document}
