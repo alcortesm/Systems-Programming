@@ -67,4 +67,4 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-#	cp ./img/fibonacci/fibonacci.eps ./img/object/object.eps ./img/music/music.eps ./img/map/map.eps ./img/madrid-rome/madrid-rome.eps ./img/knapsack/knapsack.eps ./img/tree1/tree1.pdf ./img/tree2/tree2.pdf ./img/graph/graph.pdf ./img/btrees/btrees.pdf ./img/arraybtree/arraybtree.eps ./img/linkedbnode/linkedbnode.pdf ./img/traversals/traversals.eps ./img/treeexample/treeexample.eps $(demo_dir)
+	cp ../java/Circle*.java ./img/point/point.eps ./img/person/person.eps ../java/StringComparator.java ./img/comparable/comparable.eps ./img/realdict/realdict.pdf ./img/realdictinterface/realdictinterface.eps ./img/ordereddictionary/ordereddictionary.eps ./img/demodict/demodict.eps ./img/unsortedarraylist/unsortedarraylist.eps ./img/efficiency/efficiency.pdf ./img/unsortedlinkedlist/unsortedlinkedlist.eps ./img/sortedarraylist/sortedarraylist.eps ./img/sortedlinkedlist/sortedlinkedlist.eps ./img/bstquiz/bstquiz.pdf ./img/bstimpl/bstimpl.eps ./img/algofind/algofind.eps ./img/algoinsert/algoinsert.eps ./img/algoremove/algoremove.eps $(demo_dir)

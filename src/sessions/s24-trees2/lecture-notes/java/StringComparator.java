@@ -6,18 +6,14 @@ class StringComparator {
             return;
         }
 
-        if (args[0].compareTo(args[1]) == 0) {
-            System.out.println(args[0] +
-                    " is alphabetically EQUAL as " +
-                    args[1]);
-        } else if (args[0].compareTo(args[1]) > 0) {
-            System.out.println(args[0] +
-                    "is alphabetically BIGGER than " +
-                    args[1]);
+        int comp = args[0].compareTo(args[1]);
+        System.out.print(args[0] + " is alphabetically");
+        if (comp == 0) {
+            System.out.println(" EQUAL to " + args[1]);
+        } else if (comp > 0) {
+            System.out.println(" BIGGER than " + args[1]);
         } else {
-            System.out.println(args[0] +
-                    " is alphabetically SMALLER than " +
-                    args[1]);
+            System.out.println(" SMALLER than " + args[1]);
         }
     }
 }

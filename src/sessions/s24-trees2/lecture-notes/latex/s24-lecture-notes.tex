@@ -78,11 +78,11 @@ Do you remember the Person class?
   \includegraphics[width=10cm]{./img/person/person.eps}
 \end{center}
 
-Can you think of a reasonalbe way to compare people?
+Can you think of a reasonable way to compare people?
 
-Again it depends on the problem, but an alphabetical comparisson of their names
-maight makes sense, or for other programs, you may compare the ages, so someone
-older is ``bigger''.
+Again it depends on the problem, but an alphabetical comparison of their names
+might make sense, or, you may compare the ages, so someone
+older is ``bigger'' than someone younger.
 
 Can you see the pattern here?
 
@@ -91,7 +91,10 @@ Can you see the pattern here?
 PROBLEM: write a program that alphabetically compare two strings and prints if
 the first is smaller, equal or bigger than the second one.
 
-Example: alcortes is SMALLER than alicia.
+\begin{blackboard}
+$ java StringComparator alcortes alicia
+alcortes is alphabetically SMALLER than alicia
+\end{blackboard}
 
 To compare two strings alphabetically you will have to compare the first
 character of both string, then if they are equal, continue with the second and
@@ -142,13 +145,14 @@ the course.
   \includegraphics[width=12cm]{./img/realdict/realdict5.eps}
 \end{center}
 
-An class for a real life dictionary would be something like this:
+A class for a real life dictionary would be something like this:
 
 \begin{center}
   \includegraphics[width=12cm]{./img/realdictinterface/realdictinterface.eps}
 \end{center}
 
 
+\newpage
 
 
 
@@ -166,7 +170,7 @@ To simplify things, let us consider only dictionaries that do not allow duplicat
 
 This means that keys are unique, if you try to insert a new pair key-value when
 that key is already in the dictionary, the old value will be updated or an
-exception can be throw.
+exception will be throw.
 
 Please note that keys are of type K, that implements Comparable<K>, meaning
 keys can be ordered from smallest to the biggest.
@@ -174,7 +178,7 @@ keys can be ordered from smallest to the biggest.
 For example the real life dictionary from before (that does not accept duplicated keys) would be:
 
 \begin{center}
-  \includegraphics[width=14cm]{./img/demodict/demodict.eps}
+  \includegraphics[width=16cm]{./img/demodict/demodict.eps}
 \end{center}
 
 \subsection{More examples of dictionaries}
@@ -210,8 +214,8 @@ Appointments in a calendar:
 \begin{blackboard}
 OrderedDictionary<Date, String>
 
-5 of May, "My birthday"
-25 of December, "Christmas"
+5th of May, "My birthday"
+25th of December, "Christmas"
 19th of May, "PS exam!"
 ...
 \end{blackboard}
@@ -229,9 +233,7 @@ the textures of all the objects in the game, using the location of the objects
 as the key.
 
 Whenever the player is looking somewhere, you will find the textures at the
-points he is looking at and apply the textures to the objects there.  There is
-a good reason for storing the entries by alphabeticall order of their keys: to
-be able to find values quickly. We will come back to this later.
+points he is looking at and apply the textures to the objects there.
 
 
 
@@ -263,7 +265,7 @@ Well, the are two main sources of delay are:
 
 \begin{itemize}
   \item having to shift all the elements to the left when extracting
-  \item having to search throw the whole list when inserting
+  \item having to search through the whole list when inserting
 \end{itemize}
 
 Let us get rid of the first source of delay, how can we avoid having to shift
@@ -285,8 +287,9 @@ the remaining elements to the left when extracting?
 \end{center}
 \columnbreak
 
-It takes the same time to search for the key, but now we do not have to shift the
-rest of the elements to the left when extracting, which means we are faster.
+It takes the same time to search for the key, but now we do not have to shift
+the rest of the elements to the left when extracting, which means we are
+faster.
 
 Can we do better?
 
@@ -328,8 +331,8 @@ that lowers the performance.
 
 Can we do this even faster?
 
-Yes, in a real dictionary, we you search for the definition of ``table'', you
-do not start by the first page, and keep passing pages until you get to the
+Yes, in a real dictionary, when you search for the definition of ``table'', you
+do not start at the first page, and keep passing pages until you get to the
 ``T''.
 
 You open the dictionary at its half, you see that you are looking at words that
@@ -368,7 +371,7 @@ So, how do we do something like that in our implementation?
 \columnbreak
 
 Nowadays, computers are optimized for moving data to adjacent positions and it
-can be achieved must faster than jumping from node to node in a linked list, so
+can be achieved much faster than jumping from node to node in a linked list, so
 actually, the $n/2$ performance of this version has a very marginal
 contribution, leading to an awesome performance.
 
@@ -377,8 +380,8 @@ But can we do better?
 Yes, by not having to shift the elements of the dictionary when inserting or
 extracting.
 
-You already know that can do that by using a linked list, but then, you can not
-access the middle element.
+You already know you can do that by using a linked list, but then, you cannot
+access the middle elements.
 
 You need some kind of mix between the good things of an array (jumping at the
 middle of some data range) and the good things of a linked list (not having to
@@ -406,7 +409,7 @@ A BST is a binary tree with one important property, called the binary search tre
 \begin{blackboard}
   For all nodes,
         all the keys in its LEFT  subtree are SMALLER than the key of the node
-    and all the keys of its RIGHT subtree are BIGGER  than the key of the node.
+    and all the keys in its RIGHT subtree are BIGGER  than the key of the node.
 \end{blackboard}
 
 \begin{center}

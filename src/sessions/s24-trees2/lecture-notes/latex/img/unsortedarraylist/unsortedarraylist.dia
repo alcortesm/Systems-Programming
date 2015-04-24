@@ -5304,7 +5304,7 @@
         <dia:point val="77,-6"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="77,-6.595;87.01,6.15"/>
+        <dia:rectangle val="77,-6.61362;87.0286,6.18725"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
@@ -5313,7 +5313,7 @@
 in the dictionary:
 
   - search for key      n
-  - insert at size      c
+  - insert at n         c
                        ---
                         n
 
