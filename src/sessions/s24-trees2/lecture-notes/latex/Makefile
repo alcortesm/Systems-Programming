@@ -27,7 +27,7 @@ install : $(pub_files) html zip
 
 zip:
 	- rm $(zip)
-#	zip -j -r $(zip) ../java/LinkedB*.java
+	zip -j -r $(zip) ../java/*.java ../java/run.bash
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
