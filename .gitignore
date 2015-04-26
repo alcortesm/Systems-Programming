@@ -20,3 +20,5 @@ html-version/
 *.lg
 *.tmp
 *.xref
+*.jar
+testreport/
