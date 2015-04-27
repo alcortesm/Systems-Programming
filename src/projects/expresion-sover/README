@@ -1,0 +1,7 @@
+Expression solver:
+
+A simple implementation of a tree that evaluates arithmetic expressions.
+
+This implementations does not use inheritance, and evaluates using a big
+switch, which makes it ugly but ideal for partial exams that do not cover
+inheritance.
