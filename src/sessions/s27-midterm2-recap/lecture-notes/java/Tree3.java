@@ -94,14 +94,16 @@ class Tree3<E> {
         //     1         2
         //    / \         \
         //   3   4         5
-        //                /
-        //               6
+        //    \           /
+        //     6         7
+        //
+        Tree3<Integer> t6 = new Tree3<Integer>(6);
+        Tree3<Integer> t3 = new Tree3<Integer>(new Tree3<Integer>(), 3, t6);
         Tree3<Integer> t4 = new Tree3<Integer>(4);
-        Tree3<Integer> t3 = new Tree3<Integer>(3);
         Tree3<Integer> t1 = new Tree3<Integer>(t3, 1, t4);
 
-        Tree3<Integer> t6 = new Tree3<Integer>(6);
-        Tree3<Integer> t5 = new Tree3<Integer>(t6, 5, new Tree3<Integer>());
+        Tree3<Integer> t7 = new Tree3<Integer>(7);
+        Tree3<Integer> t5 = new Tree3<Integer>(t7, 5, new Tree3<Integer>());
         Tree3<Integer> t2 = new Tree3<Integer>(new Tree3<Integer>(), 2, t5);
 
         Tree3<Integer> t0 = new Tree3<Integer>(t1, 0, t2);
@@ -113,6 +115,7 @@ class Tree3<E> {
         System.out.println("t4.toStringInOrder() = " + t4);
         System.out.println("t5.toStringInOrder() = " + t5);
         System.out.println("t6.toStringInOrder() = " + t6);
+        System.out.println("t7.toStringInOrder() = " + t7);
 
         System.out.println("t0.countLeafs() = " + t0.countLeafs());
         System.out.println("t1.countLeafs() = " + t1.countLeafs());
@@ -121,5 +124,6 @@ class Tree3<E> {
         System.out.println("t4.countLeafs() = " + t4.countLeafs());
         System.out.println("t5.countLeafs() = " + t5.countLeafs());
         System.out.println("t6.countLeafs() = " + t6.countLeafs());
+        System.out.println("t7.countLeafs() = " + t7.countLeafs());
     }
 }
