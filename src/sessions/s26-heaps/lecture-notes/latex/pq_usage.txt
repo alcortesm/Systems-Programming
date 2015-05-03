@@ -1,0 +1,22 @@
+                                       pq.toString()                           return value / exception
+PriorityQueue<Integer, String> pq
+ = new ??????<Integer, String>();      {(max)}
+
+pq.isEmpty();                          {(max)}                                 true
+pq.getMax();                           {(max)}                                 NoSuchElementException
+pq.removeMax();                        {(max)}                                 NoSuchElementException
+
+pq.insert(8, "A");                     {(max) (8,A)}
+pq.insert(2, "B");                     {(max) (8,A) ?}
+pq.insert(5, "C");                     {(max) (8,A) ? ?}
+pq.insert(0, "D");                     {(max) (8,A) ? ? ?}
+pq.insert(9, "E");                     {(max) (9,E) ? ? ? ?}
+
+pq.getMax();                           {(max) (9,E) ? ? ? ?}                   "E"
+
+pq.removeMax();                        {(max) (8,A) ? ? ?}                     "E"
+pq.removeMax();                        {(max) (5,C) ? ?}                       "A"
+
+pq.insert(7, "F");                     {(max) (7,F) ? ? ?}
+pq.insert(-2, "G");                    {(max) (7,F) ? ? ? ?}
+pq.removeMax();                        {(max) (5,C) ? ? ?}                     "F"

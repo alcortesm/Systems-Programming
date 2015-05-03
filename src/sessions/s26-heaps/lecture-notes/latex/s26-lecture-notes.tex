@@ -1,0 +1,111 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 26 - Heaps}
+
+\newcommand{\separator}{\begin{center}%
+\noindent\makebox[\linewidth]{\rule{0.75\paperwidth}{0.4pt}}%
+\end{center}}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+
+\section{Priority Queues}
+
+You already know about queues: queues are a standard way to process objects on
+a \emph{first-come, first-served} scheduling, for example, clients in a store.
+
+However, for many problems, some ``clients'' are more important than others:
+
+\begin{itemize}
+
+  \item Passengers waitting to board a plane, often first class passengers are
+    going to board before Business class passengers, no matter how late they
+    get into the airport.
+
+  \item Your agenda is a collection of tasks that usually come in in a random
+    order, but you usually start working on the most urgent task (this is, the
+    task with the highest priority), no matter how late this task got into your
+    agenda.
+
+  \item An Internet router is constantly receiving data packages from all
+    around the world, but it serves the packets with the highest priority
+    first.
+
+  \item Any real time simulation program, including most games: the game is
+    constantly creating new events that will happend in the close future, they
+    are being stored in a priority queue, so the most urgent event is simulated
+    first. In this case the priority of an event is how close does it have to
+    happen.
+
+    Example: in a multiplayer game: several people are giving commands to the
+    game, in which order are this commands going to happen? (begins casting a
+    spell, another throw an arrow, does the arrow hit before the spell is
+    cast?)
+
+\end{itemize}
+
+So the main operations on a priority queue are:
+
+\codeinput{../java/PriorityQueue.java}{PriorityQueue.java}
+
+\subsection{Operations on a Priority Queue}
+
+\codeinput{pq_usage.txt}{Handout}
+
+\subsection{Implementations}
+
+\begin{center}
+  \includegraphics[width=14cm]{./img/pq_implementations/pq_implementations-16.eps}
+\end{center}
+
+
+\subsection{The Heap Data Structure}
+
+A binary heap is a binary tree with two properties:
+
+\begin{enumerate}
+
+  \item The \emph{shape} property: The tree is complete.
+
+    This means the tree has the minimum possible height for its number of
+    elements ($h = \lfloor log_{2} n \rfloor$).
+
+    The excellent performance of this data structure comes from this property:
+    contrary to binary search trees, there are not ``unbalanced'' heaps.
+
+    This is also the reason why we use array based trees for heaps instead of
+    trees based in linked nodes (more on this later).
+
+  \item The \emph{heap order} property: For every node, its priority is $\ge$ than the
+    priority of its children, if any.
+
+    This means the node with the highest priority is always the root of the tree.
+
+\end{enumerate}
+
+\begin{center}
+  \includegraphics[width=7cm]{./img/is_heap/is_heap-01.eps}
+  \includegraphics[width=7cm]{./img/is_heap/is_heap-02.eps}
+  \includegraphics[width=7cm]{./img/is_heap/is_heap-03.eps}
+  \includegraphics[width=7cm]{./img/is_heap/is_heap-04.eps}
+\end{center}
+
+\begin{blackboard}
+  is this tree a binary heap?
+
+  yes, no
+  no, yes
+\end{blackboard}
+\end{document}
