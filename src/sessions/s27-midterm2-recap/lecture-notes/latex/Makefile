@@ -27,7 +27,7 @@ install : $(pub_files) html zip
 
 zip:
 	- rm $(zip)
-#	zip -j -r $(zip) ../java/*.java ../java/run.bash
+	zip -j -r $(zip) ../java
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
@@ -67,4 +67,4 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-#	cp ../java/Circle*.java ./img/point/point.eps ./img/person/person.eps ../java/StringComparator.java ./img/comparable/comparable.eps ./img/realdict/realdict.pdf ./img/realdictinterface/realdictinterface.eps ./img/ordereddictionary/ordereddictionary.eps ./img/demodict/demodict.eps ./img/unsortedarraylist/unsortedarraylist.eps ./img/efficiency/efficiency.pdf ./img/unsortedlinkedlist/unsortedlinkedlist.eps ./img/sortedarraylist/sortedarraylist.eps ./img/sortedlinkedlist/sortedlinkedlist.eps ./img/bstquiz/bstquiz.pdf ./img/bstimpl/bstimpl.eps ./img/algofind/algofind.eps ./img/algoinsert/algoinsert.eps ./img/algoremove/algoremove.eps $(demo_dir)
+	cp ../java-simple/*.java ./img/tree/tree.eps ./img/non-tree/non-tree.pdf $(demo_dir)

@@ -1,7 +1,7 @@
-name := non-tree-
+name := non-tree
 
 # build
-src := $(name)1.dia $(name)2.dia $(name)3.dia
+src := $(name)-1.dia $(name)-2.dia $(name)-3.dia
 out := $(src:%.dia=%.eps)
 tmp := $(src:%.dia=%.pdf)
 pdf := $(name).pdf
