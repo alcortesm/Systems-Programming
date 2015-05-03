@@ -1,0 +1,812 @@
+\documentclass[a4paper, 9pt]{extarticle}
+
+\usepackage[notes]{style}
+
+\newcommand{\realtitle}{Session 27 - Midterm 2 recap}
+
+\newcommand{\separator}{\begin{center}%
+\noindent\makebox[\linewidth]{\rule{0.75\paperwidth}{0.4pt}}%
+\end{center}}
+
+\begin{document}
+
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \Large{\realtitle}\\Lecture Notes
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{1cm}
+
+\section{2008-2009, Extraordinary call, Problem 2, Section 1}
+
+GIVE SOME TIME TO READ THE PROBLEM TEXT.
+
+There is one interesting thing about this problem:
+
+\begin{itemize}
+
+  \item It is a problem about stacks, but you do not have to implement an stack,
+    instead, you are given an already working stack and you
+    have to use it to do something interesting.
+
+\end{itemize}
+
+
+\subsection{Implementing a simple stack}
+
+Let us make the most of this problem by reviewing how to implement an stack.
+
+This is not part of the original problem, but it is a nice exercise to practice
+for the exams.
+
+I have written the following interface based on the stack defined in the problem:
+
+\codeinput{../java-simple/Stack.java}{java-simple/Stack.java}
+
+Take your time to read the interface carefully, because there are some
+interesting things about it.
+
+GIVE SOME TIME HERE TO THINK AND WRITE DOWN THINGS THAT LOOK WEIRD.
+
+There are 6 interesting things about the stack in this problem:
+
+\begin{enumerate}
+
+  \item You cannot use this stack to store Java objects.
+
+    This is not a generic stack. This means we can not insert
+    \texttt{Points}, \texttt{Circles} or \texttt{Person}s (people).
+
+    It is not even an stack of java \texttt{Objects}.
+
+    It is an stack of ints, a primitive type.
+
+    This will have some interesting immplications with the garbage collector,
+    as we will see later.
+
+  \item it lacks a \texttt{size} method, but that is OK, we will survive without it.
+
+  \item it lacks a \texttt{peek} method, but that is OK, we will survive without it.
+
+  \item the \texttt{toString} method is not mentioned in the problem or in the
+    interface. We are sure that every class that implements this interface will
+    have a \texttt{toString} method, because all Java classes have that method,
+    but we can not be sure that the inherited \texttt{toString} method from
+    \texttt{Object} has been overriden to do something meaningfull for a stack,
+    so we can not count on that for printting the stack.
+
+  \item the \texttt{push} method does not throw an
+    \texttt{StackOverflowException}, this can only mean that the stack must be
+    infinite.
+
+  \item What should the \texttt{pop} method return when the stack is empty? a null?, a -1?.
+
+    The nice thing to do is to throw a \texttt{java.util.EmptyStackException},
+    there is no need to say so in the definition of the interface, but it is
+    good manners to do so. CHANGE THE INTERFACE TO THROW THIS EXCEPTION.
+
+\end{enumerate}
+
+\codeinput{../java/Stack.java}{java/Stack.java}
+
+
+
+
+
+\subsubsection{Implementing an Array Based Stack}
+
+OK, so let us implement this simple stack using an array.
+
+Do you remember how to do that?
+
+Let us say we have a stack with four elements, DRAW THAT.
+
+How are we going to store that elements in our array? (left-to-right or
+right-to-left?)
+
+How are we going to keep track of the last one?
+
+OK, let us quickly write the \texttt{ArrayStack} class:
+
+THE STUDENTS DICTATE THE IMPLEMENTATION
+
+\begin{multicols}{2}
+\codeinput{../java/ArrayStack.java}{java/ArrayStack.java}
+\end{multicols}
+
+\separator
+
+\begin{multicols}{2}
+
+BEGIN WITH THIS:
+
+\codeinput{../java-simple/ArrayStack.java}{java-simple/ArrayStack.java}
+
+1) FIRST ASK FOR THE CONSTRUCTOR AND THE empty METHOD
+
+2) THEN ASK FOR THE push METHOD, START WITH ITS LAST LINE, THEN ADD THE grow METHOD.
+
+3) THEN ASK FOR THE pop METHOD, START WITH ITS LAST LINE, THEN ADD THE shrink METHOD.
+
+4) TEST THE CLASS WITH:
+
+\begin{blackboard}
+$ java StackTest A
+$
+\end{blackboard}
+\end{multicols}
+
+
+
+
+
+\subsubsection{Implementing a Linked Stack}
+
+Let us say we have a stack with four elements, DRAW THAT.
+
+How are we going to store that elements in out linked stack? (left-to-right or
+right-to-left?)
+
+OK, let us quickly write a \texttt{LinkedStack} class:
+
+THE STUDENTS DICTATE THE IMPLEMENTATION
+
+\begin{multicols}{2}
+\codeinput{../java/LinkedStack.java}{java/LinkedStack.java}
+\end{multicols}
+
+\separator
+
+\begin{multicols}{2}
+
+BEGIN WITH THIS:
+
+\codeinput{../java-simple/LinkedStack.java}{java-simple/LinkedStack.java}
+
+\columnbreak
+
+1) FIRST SEE IF THEY WANT TO USE GETTERS AND SETTER FOR THE NODES
+
+2) ASK FOR THE CONSTRUCTOR AND THE empty METHOD
+
+2) THEN ASK FOR THE push METHOD
+
+3) THEN ASK FOR THE pop METHOD
+
+4) TEST THE CLASS WITH:
+
+\begin{blackboard}
+$ java StackTest L
+$
+\end{blackboard}
+\end{multicols}
+
+\newpage
+
+
+
+
+
+
+
+\subsection{The Show Method}
+
+OK, enough with the stacks, remember that the original exam problem did not ask
+us to write any stack, so we have been loosing time here.
+
+In fact, the original problem give us a stack written by others, and ask us to
+do something with it.
+
+Let us read again what we need to do.
+
+GIVE SOME TIME TO RE-READ THE PROBLEM.
+
+OK, so we have an unknow stack class and we do not know who or how it is
+implemented.
+
+Let us call that class the \texttt{ExamStack}. I have a secret stack class
+right here, but I am not going to show you its code.
+
+I have add a few more lines to the \texttt{Exam} \texttt{main} method, so it is
+more interesting:
+
+\begin{multicols}{2}
+\codeinput{../java-simple/Exam.java}{java-simple/Exam.java}
+\columnbreak
+WHAT DOES THIS PROGRAM DO?
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+3
+-- again --
+5
+3
+-----------
+-----------
+7
+5
+3
+-- again --
+7
+5
+3
+-----------
+\end{blackboard}
+
+WHY ARE THINGS PRINTED IN THIS ORDER? -> desing choice
+\end{multicols}
+
+
+
+
+
+\newpage
+\subsubsection{Destructive Iterative Version}
+
+Let us forget about the exam for a second, and let us try to write a much simpler version of show.
+
+Let us make it iterative and let us not care about what happens to the elements
+in the stack after showing them.
+
+We will call this version of the method \texttt{show1}.
+
+WRITE THE show1 METHOD.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{34}{45}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+-----------
+-----------
+5
+-- again --
+-----------
+-----------
+7
+-- again --
+-----------
+\end{blackboard}
+WHAT IS WRONG? show empties the stack
+\end{multicols}
+
+
+
+\newpage
+
+\subsubsection{Non-Destructive Iterative Version}
+
+HOW DO WE AVOID EMPTYING THE STACK WHILE WE PRINT ITS ELEMENTS?
+
+We need some kind of storage to store the elements and then push them back into
+the stack after printting them.
+
+Well, the most simple storage class we know is the Java \texttt{ArrayList} class.
+
+WRITE THE show2 METHOD, THAT PRINTS THE STACK WITHOUT DESTROYING IT, BY USING AN arraylist.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{47}{68}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+3
+-- again --
+3
+5
+-----------
+-----------
+7
+5
+3
+-- again --
+3
+5
+7
+-----------
+\end{blackboard}
+WHAT IS WRONG NOW? shows reverse the order of the elements in the stack
+\end{multicols}
+
+
+\newpage
+
+We can solve this by adding the elements in the reverse order or getting
+them in the reverse order.
+
+WHICH VERSION IS FASTER?
+
+Difficult to say, both ways are slow.
+
+WRITE show3, THAT PRINTS THE STACK USING AN ARRAYLIST AND LEFT THE STACK UNMODIFIED.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{70}{91}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+3
+-- again --
+5
+3
+-----------
+-----------
+7
+5
+3
+-- again --
+7
+5
+3
+-----------
+\end{blackboard}
+NOW THE PROGRAM IS WORKING.
+\end{multicols}
+
+But in an exam we usually are not allowed to use external classes, this is, we cannot use a Java \texttt{ArrayList}.
+
+WHAT CAN WE USE INSTEAD?
+
+\separator
+\newpage
+
+Let us try with an array of ints.
+
+WRITE show4, THAT PRINTS THE STACK USING AN ARRAY OF INTS AND LEFT IT UNMODIFIED.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{93}{124}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+3
+-- again --
+5
+3
+-----------
+-----------
+7
+5
+3
+-- again --
+7
+5
+3
+-----------
+\end{blackboard}
+NOW THE PROGRAM IS WORKING.
+\end{multicols}
+
+But I think this is too complicated, having to make the array bigger and all that stuff.
+
+We can write a much simpler solution using another storage class that we are allowed to use in this exam.
+
+That is, using a stack.
+
+\newpage
+
+Let us use an aunxiliary stack to store the elements extracted from the original stack when printting:
+
+WRITE show5, THAT PRINTS THE STACK USING AN AUXILIARY STACK.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{126}{144}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+3
+-- again --
+5
+3
+-----------
+-----------
+7
+5
+3
+-- again --
+7
+5
+3
+-----------
+\end{blackboard}
+NOW THE PROGRAM IS WORKING.
+\end{multicols}
+
+So now, we have a show method, that prints an stack, without modifiying its
+contents. And it is done without using any other class not mentioned in the
+exam and it is also much easier than using an array.
+
+The problem is that the exam is asking us to do this RECURSIVELY.
+
+
+\newpage
+\subsubsection{Destructive Recursive Version}
+
+So, let us try to solve this problem recursively.
+
+Let us begin with a simpler problem:
+
+WRITE A show6 METHOD THAT PRINTS AN STACK RECURSIVELY, BUT DO NOT WORRY ABOUT MODIFYING THE STACK.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{146}{153}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+-- again --
+-----------
+-----------
+7
+-- again --
+-----------
+\end{blackboard}
+THIS MIGHT BE RECURSIVE, BUT IT IS EMPTYING THE STACK.
+\end{multicols}
+
+So, we have a recursive version, the problem is that it is emptying the stack.
+
+The way to solve this problem is the same as before, we need to store the
+popped elements into some storage space.
+
+But thanks to recursion we do not need another extra stack to store the
+elements, we can use the interval variables defined in the stack frames of each
+recursive call to the method.
+
+
+
+\newpage
+\subsubsection{Non-Destructive Recursive Version}
+
+WRITE A show7 RECURSIVE METHOD THAT PRINTS AN STACK AND LEFT IT UNMODIFIED.
+
+\begin{multicols}{2}
+\codelinesinput{../java/Exam.java}{java/Exam.java}{155}{164}
+\columnbreak
+\begin{blackboard}
+$ java Exam
+-----------
+-- again --
+-----------
+-----------
+3
+-- again --
+3
+-----------
+-----------
+5
+3
+-- again --
+5
+3
+-----------
+-----------
+7
+5
+3
+-- again --
+7
+5
+3
+-----------
+\end{blackboard}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section{2008-2009, Extraordinary call, Problem 2, Section 3}
+
+Let us skip section 2, as it is not very interesting.
+
+GIVE SOME TIME TO READ SECTION 3.
+
+So this problem is about counting leafs in a binary tree.
+
+There are several definitions of a binary tree, the one we are going to use in this
+exercise is the \emph{recursive definition with empty trees}:
+
+\begin{blackboard}
+A binary tree is
+
+  - empty
+
+  - or a node with two binary trees
+\end{blackboard}
+
+The tree looks like this:
+
+\begin{multicols}{2}
+  \codelinesinput{../java-simple/Tree1.java}{java-simple/Tree1.java}{1}{53}
+\end{multicols}
+
+CHANGES:
+
+\begin{enumerate}
+
+  \item The class in the exam does not explain how to create trees that are not
+    empty, and the node constructor is never used for anything.
+
+    This means we will not be able to create any interesting tree with this class.
+
+    To fix this, I have changed 3 things:
+
+    \begin{enumerate}
+
+      \item I have added a new \texttt{Node} constructor that receives the
+        element, a left tree and a right tree. This constructor must check for
+        null as the trees because the definition of the tree that we are using
+        does not alloes for nulls in a node, a node must reference a left tree
+        and a right tree.
+
+      \item I have added a new \texttt{Tree} constructor for creating leafs. A
+        leaf has empty trees as it sleft and right childs.
+
+      \item I have added a new \texttt{Tree} constructor that merges two trees into a new tree.
+
+        This way, we can create big trees by merging a lot of leafs, which is
+        the usual way of creating trees.
+
+    \end{enumerate}
+
+  \item I have added an \texttt{isEmpty} method to the \texttt{Tree} class,
+    because it is very useful and very simple.
+
+  \item I have added a \texttt{toString} method to the \texttt{Tree} class,
+    because it is very simple and useful for debugging.
+
+    In this case I have chose to return the in-order version of \texttt{toString}.
+
+\end{enumerate}
+
+
+So now, before trying to solve the exam, let us make the most of this problem
+and try to review how to implement binary trees.
+
+\newpage
+\subsection{How to create big trees}
+
+First let us try to create a big tree, like this one:
+
+\begin{center}
+  \includegraphics[width=10cm]{./img/tree/tree.eps}
+\end{center}
+
+We start by creating the lower leafs, and them we combine each leaf with other
+leafs to create small trees, then we combine small trees into large trees:
+
+\begin{multicols}{2}
+  \codelinesinput{../java-simple/Tree1.java}{java-simple/Tree1.java}{55}{95}
+\end{multicols}
+
+Now, what will be printted if I call \texttt{s.o.p(t0)}?
+and if I call \texttt{s.o.p(t1)}?
+
+Now, what will be printted if I call \texttt{s.o.p(t0.countLeafs())}?
+and if I call \texttt{s.o.p(t1.countLeafs())}?
+and if I call \texttt{s.o.p(t7.countLeafs())}?
+
+OK, so now that we know how to create big trees and use them, let us write an
+implementation for this.
+
+\newpage
+\subsection{Binary Tree Implementation 1}
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Tree1.java}{java/Tree1.java}{1}{53}
+
+  1) BEGIN WITH THE CTORS.
+
+  2) THEN isEmpty.
+
+  3) THEN toStringInOrder.
+\end{multicols}
+
+
+
+\newpage
+\subsubsection{The countLeafs Method}
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Tree1.java}{java/Tree1.java}{55}{63}
+  \columnbreak
+\begin{blackboard}
+  $ java Tree1
+  t0.toStringInOrder() =  3  6  1  4  0  2  7  5
+  t1.toStringInOrder() =  3  6  1  4
+  t2.toStringInOrder() =  2  7  5
+  t3.toStringInOrder() =  3  6
+  t4.toStringInOrder() =  4
+  t5.toStringInOrder() =  7  5
+  t6.toStringInOrder() =  6
+  t7.toStringInOrder() =  7
+  t0.countLeafs() = 3
+  t1.countLeafs() = 2
+  t2.countLeafs() = 1
+  t3.countLeafs() = 1
+  t4.countLeafs() = 1
+  t5.countLeafs() = 1
+  t6.countLeafs() = 1
+  t7.countLeafs() = 1
+\end{blackboard}
+\end{multicols}
+
+\newpage
+\subsubsection{Problems of this implementation}
+
+The main problem with this implementation is that when you merge trees, the
+trees survive, so you can merge the same tree in several tress, leading to a
+non-tree:
+
+\begin{center}
+  \includegraphics[width=10cm]{./img/non-tree/non-tree-3.eps}
+\end{center}
+
+
+\newpage
+\subsection{Binary Tree Implementation 2}
+
+One way to avoid this problem is to change the definition of a tree, instead of
+empty or a node with two subtress, we can use:
+
+\begin{blackboard}
+A binary tree is
+
+  - empty
+
+  - or a node with zero, one or two nodes
+\end{blackboard}
+
+The tree will now look like this:
+
+\codelinesinput{../java-simple/Tree2.java}{java-simple/Tree2.java}{1}{43}
+
+\newpage
+\begin{multicols}{2}
+  \codelinesinput{../java/Tree2.java}{java/Tree2.java}{1}{71}
+
+  1) BEGIN WITH THE CTORS.
+
+  2) THEN isEmpty.
+
+  3) THEN toStringInOrder (BOTH IN tree2 AND IN node).
+\end{multicols}
+
+
+
+
+\newpage
+\subsection{The countLeafs Method}
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Tree2.java}{java/Tree2.java}{73}{79}
+  \codelinesinput{../java/Tree2.java}{java/Tree2.java}{23}{31}
+  \columnbreak
+\begin{blackboard}
+  $ java Tree2
+  t0.toStringInOrder() =  3  6  1  4  0  2  7  5
+  t1.toStringInOrder() =
+  t2.toStringInOrder() =
+  t3.toStringInOrder() =
+  t4.toStringInOrder() =
+  t5.toStringInOrder() =
+  t6.toStringInOrder() =
+  t7.toStringInOrder() =
+  t0.countLeafs() = 3
+  t1.countLeafs() = 0
+  t2.countLeafs() = 0
+  t3.countLeafs() = 0
+  t4.countLeafs() = 0
+  t5.countLeafs() = 0
+  t6.countLeafs() = 0
+  t7.countLeafs() = 0
+\end{blackboard}
+\end{multicols}
+
+\newpage
+\subsubsection{Problems of this implementation}
+
+This version allows to merge trees without any problems, but its recursive
+methods are more complex as you have to constantly check for nulls.
+
+In the previous version a tree was either empty of has exactly 2 childs.
+
+Now, you have 4 possibilities:
+
+\begin{enumerate}
+
+  \item no childs
+
+  \item two children
+
+  \item one child, the left one
+
+  \item one child, the right one
+
+\end{enumerate}
+
+So all methods are mor complex.
+
+A PARTIR DE AQUI, A GUSTO DEL PROFESOR, ESTO SE SALE DEL TEMARIO DE ESTE CURSO.
+
+There is an advanced way to fix this, using sentinels like in doubly-linked list.
+
+\begin{multicols}{2}
+  \codelinesinput{../java/Tree3.java}{java/Tree3.java}{1}{88}
+\end{multicols}
+
+\end{document}
