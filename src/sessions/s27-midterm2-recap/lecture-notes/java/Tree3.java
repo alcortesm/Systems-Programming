@@ -1,10 +1,6 @@
 class Tree3<E> {
 
     private static class BaseNode {
-        void merge() {
-            throw new IllegalArgumentException();
-        }
-
         String toStringInOrder() {
             return "";
         }
@@ -72,19 +68,11 @@ class Tree3<E> {
     }
 
     public String toString() {
-        if (isEmpty()) {
-            return "";
-        } else {
-            return root.toStringInOrder();
-        }
+        return root.toStringInOrder();
     }
 
     public int countLeafs() {
-        if (isEmpty()) {
-            return 0;
-        } else {
-            return root.countLeafs();
-        }
+        return root.countLeafs();
     }
 
     public static void main(String args[]) {

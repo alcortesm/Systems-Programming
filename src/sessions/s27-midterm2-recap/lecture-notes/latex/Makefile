@@ -67,4 +67,8 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-	cp ../java-simple/*.java ./img/tree/tree.eps ./img/non-tree/non-tree.pdf $(demo_dir)
+	mkdir -p $(demo_dir)/java
+	cp ../java/*.java $(demo_dir)/java
+	mkdir -p $(demo_dir)/java-simple
+	cp ../java-simple/*.java $(demo_dir)/java-simple
+	cp ./img/tree/tree.eps ./img/non-tree/non-tree.pdf $(demo_dir)
