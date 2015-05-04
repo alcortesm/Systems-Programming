@@ -52,13 +52,13 @@ class Tree1 {
         return toStringInOrder();
     }
 
-    public int countLeafs() {
+    public int countLeaves() {
         if (isEmpty()) {
             return 0;
         } else if (node.left.isEmpty() && node.right.isEmpty() ) {
             return 1;
         } else {
-            return node.left.countLeafs() + node.right.countLeafs();
+            return node.left.countLeaves() + node.right.countLeaves();
         }
     }
 
@@ -92,13 +92,13 @@ class Tree1 {
         System.out.println("t6.toStringInOrder() = " + t6);
         System.out.println("t7.toStringInOrder() = " + t7);
 
-        System.out.println("t0.countLeafs() = " + t0.countLeafs());
-        System.out.println("t1.countLeafs() = " + t1.countLeafs());
-        System.out.println("t2.countLeafs() = " + t2.countLeafs());
-        System.out.println("t3.countLeafs() = " + t3.countLeafs());
-        System.out.println("t4.countLeafs() = " + t4.countLeafs());
-        System.out.println("t5.countLeafs() = " + t5.countLeafs());
-        System.out.println("t6.countLeafs() = " + t6.countLeafs());
-        System.out.println("t7.countLeafs() = " + t7.countLeafs());
+        System.out.println("t0.countLeaves() = " + t0.countLeaves());
+        System.out.println("t1.countLeaves() = " + t1.countLeaves());
+        System.out.println("t2.countLeaves() = " + t2.countLeaves());
+        System.out.println("t3.countLeaves() = " + t3.countLeaves());
+        System.out.println("t4.countLeaves() = " + t4.countLeaves());
+        System.out.println("t5.countLeaves() = " + t5.countLeaves());
+        System.out.println("t6.countLeaves() = " + t6.countLeaves());
+        System.out.println("t7.countLeaves() = " + t7.countLeaves());
     }
 }

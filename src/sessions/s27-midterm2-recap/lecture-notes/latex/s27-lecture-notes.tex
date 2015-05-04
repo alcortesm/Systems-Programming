@@ -575,7 +575,7 @@ Let us skip section 2, as it is not very interesting.
 
 GIVE SOME TIME TO READ SECTION 3.
 
-So this problem is about counting leafs in a binary tree.
+So this problem is about counting leaves in a binary tree.
 
 There are several definitions of a binary tree, the one we are going to use in this
 exercise is the \emph{recursive definition with empty trees}:
@@ -613,12 +613,12 @@ CHANGES:
         does not alloes for nulls in a node, a node must reference a left tree
         and a right tree.
 
-      \item I have added a new \texttt{Tree} constructor for creating leafs. A
+      \item I have added a new \texttt{Tree} constructor for creating leaves. A
         leaf has empty trees as it sleft and right childs.
 
       \item I have added a new \texttt{Tree} constructor that merges two trees into a new tree.
 
-        This way, we can create big trees by merging a lot of leafs, which is
+        This way, we can create big trees by merging a lot of leaves, which is
         the usual way of creating trees.
 
     \end{enumerate}
@@ -646,8 +646,8 @@ First let us try to create a big tree, like this one:
   \includegraphics[width=10cm]{./img/tree/tree.eps}
 \end{center}
 
-We start by creating the lower leafs, and them we combine each leaf with other
-leafs to create small trees, then we combine small trees into large trees:
+We start by creating the lower leaves, and them we combine each leaf with other
+leaves to create small trees, then we combine small trees into large trees:
 
 \begin{multicols}{2}
   \codelinesinput{../java-simple/Tree1.java}{java-simple/Tree1.java}{55}{95}
