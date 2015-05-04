@@ -118,11 +118,11 @@ The insert algorithm has two parts:
 
   \item Place the new node at the end of the complete tree.
 
-    With the tree already complies with the \emph{shape} property, but probably
-    not with the \emph{heap order} property.
+    That way the tree already satisfies the \emph{shape} property, but probably
+    not the \emph{heap order} property.
 
   \item If the priority of your parent is smaller than yours, swap possitions
-    with the parent. Repeat until the heap property is meet.
+    with your parent. Repeat until the heap property is satisfied.
 
     This will fix the \emph{heap order} property eventually, without breaking
     the \emph{shape} property, as swapping does not modify the shape of the
@@ -152,17 +152,17 @@ the last node in the tree, and move it to the root.
 
 This way the shape property is mantained.
 
-The heap order property is not probably broken, but we can easily fix that by swapping:
+Now, the heap order property is probably broken, but we can easily fix that by swapping:
 
 If the priority of the node is smaller than any of its children, then swap with
-the child with the biggest priority. Repeat until the heap property is meet.
+the child with the biggest priority. Repeat until the heap property is satisfied.
 
 \begin{enumerate}
 
   \item Return root, move las node to root.
 
   \item If priority of the node is smaller than any of its children,
-    swap with the biggest child. Repeat until the heap property is meet.
+    swap with the biggest child. Repeat until the heap property is satisfied.
 
 \end{enumerate}
 \columnbreak
@@ -191,7 +191,93 @@ It looked like this:
 So let us implement a binary heap using an array:
 
 \codeinput{../java/PriorityQueue.java}{PriorityQueue.java}
-\codeinput{../java/Heap.java}{Heap.java}
+
+\begin{multicols}{2}
+The first thing you have to realize is that even if we have been drawing heaps
+as nodes with numbers (this is, the priority), a priority queue holds both the
+priority of an entry and the value.
+
+This is similar as what we had with disctionaries, where each entry in the
+dictionary was a key and a value.
+
+So, to implement a heap using an array, we will need a \texttt{Pair} class that
+holds the priority and the value, or use two arrays in parallel, one of
+priorities and another one of values:
+
+This pair class does not officially need to implement the
+\texttt{Comparable<Pair>} interface. But, as we will want to compare the
+priorities of a pair quite often, instead of getting a pair, then getting its
+priority, then comparing it, we can write cleaner code by just comparing pairs.
+
+For this to work, one pair is going to be greater, equal or smaller than other
+pair, just if its priority is greater, equal or smaller than the priority of
+the other pair. This will save us a lot of typing.
+\columnbreak
+
+\codelinesinput{../java/Heap.java}{The pair internal class (entry will also be a good name)}{5}{25}
+\end{multicols}
+
+\separator
+
+Now, let us see what attributes do we need for our heap:
+
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{27}{54}
+
+\newpage
+
+Now, let us write the easy methods: \texttt{isEmpty()} and \texttt{size()}.
+
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{56}{62}
+
+Let us also write the \texttt{getMax} method, as it is pretty simple:
+
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{125}{130}
+
+Before going with the complicated methods, let us define some helper functions:
+
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{64}{87}
+
+Now let us write the insert method. Do you remember the algorithm?
+
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{89}{123}
+
+And now let us finish with the removeMax():
+
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{132}{193}
+
+
+\subsection{Min Heaps vs. Max Heaps}
+
+What we have implement is called a max heap, because the heap order property
+sort elements from higher priority to lower priority.
+
+That is what you would expect from a priority queue and the real life meaning
+of the term ``priority''.
+
+But, there are also \emph{min heaps} where elements are store the other way
+around, and the element with the lowest priority is always at the top.
+
+Min heaps are just as max heaps but changing all the comparisons form $<$ to
+$>$ and the other way around.
+
+Contrary to what you whould expect, most programmers use min heaps instead of
+max heaps, because in computer science, the things with the lowest priority are
+the most important.
+
+This is not a play on words, this is for real, for example in an operating
+system, processess have priorities, your computer will execute the most
+important ones before the least important ones, for example, the process doing
+some calculations in an spread sheet will be more important than the SWING
+process drawing its graphical interface.
+
+Well, most operating systems uses low values for the most important processess
+and high values for the least important, meaning that the execution queue of
+processess will be a min heap, not a max heap (it is not really a heap, for
+reasons you will learn in a few years).
+
+Computer scienties are just that weird, what whould you expect from people that
+grows trees upside down?
+
 
 \end{document}
 
