@@ -27,7 +27,7 @@ install : $(pub_files) html zip
 
 zip:
 	- rm $(zip)
-#	zip -j -r $(zip) ../java/*.java
+	zip -j -r $(zip) ../java/*.java
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
