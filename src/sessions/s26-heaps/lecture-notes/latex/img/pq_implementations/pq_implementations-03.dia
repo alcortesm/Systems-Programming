@@ -108,18 +108,18 @@
         <dia:point val="11,23"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="11,22.405;22.525,28.75"/>
+        <dia:rectangle val="11,22.3864;22.5436,28.7873"/>
       </dia:attribute>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
             <dia:string>#PriorityQueue&lt;Integer, String&gt; pq
     = new ??????&lt;Integer, String&gt;();
-pq.insert(8, "A");
+pq.insert(7, "A");
 pq.insert(2, "B");
 pq.insert(9, "C");
 pq.insert(0, "D");
-pq.insert(7, "E");
+pq.insert(8, "E");
 pq.insert(1, "F");#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
@@ -171,7 +171,7 @@ pq.insert(1, "F");#</dia:string>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#7#</dia:string>
+            <dia:string>#8#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="sans" style="0" name="Helvetica"/>
@@ -363,7 +363,7 @@ pq.insert(1, "F");#</dia:string>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#8#</dia:string>
+            <dia:string>#7#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="sans" style="0" name="Helvetica"/>
@@ -2852,7 +2852,7 @@ pq.insert(1, "F");#</dia:string>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#7#</dia:string>
+            <dia:string>#8#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="sans" style="0" name="Helvetica"/>
@@ -2996,7 +2996,7 @@ pq.insert(1, "F");#</dia:string>
       <dia:attribute name="text">
         <dia:composite type="text">
           <dia:attribute name="string">
-            <dia:string>#8#</dia:string>
+            <dia:string>#7#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">
             <dia:font family="sans" style="0" name="Helvetica"/>

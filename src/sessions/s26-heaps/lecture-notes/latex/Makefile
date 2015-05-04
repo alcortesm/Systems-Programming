@@ -67,8 +67,5 @@ $(html_dir) :
 demo :
 	rm -rf $(demo_dir)
 	mkdir -p $(demo_dir)
-#	mkdir -p $(demo_dir)/java
-#	cp ../java/*.java $(demo_dir)/java
-# 	mkdir -p $(demo_dir)/java-simple
-# 	cp ../java-simple/*.java $(demo_dir)/java-simple
-# 	cp ./img/tree/tree.eps ./img/non-tree/non-tree.pdf $(demo_dir)
+	cp ../java/*.java $(demo_dir)
+	cp ./img/insert/insert.eps ./img/is_heap/is_heap.pdf ./img/pq_implementations/pq_implementations.pdf ./img/removeMax/removeMax.eps $(demo_dir)
