@@ -1,0 +1,82 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage[handout]{style}
+
+\newcommand{\realtitle}{Session 26 - Trees 2}
+
+\newcommand{\separator}{\begin{center}%
+\noindent\makebox[\linewidth]{\rule{0.75\paperwidth}{0.4pt}}%
+\end{center}}
+
+\begin{document}
+
+\footnotesize{
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+UC3M \hfill Alberto Cortés Martín\\
+Systems Programming, 2014-2015 \hfill version: \today\\
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\begin{center}
+  \small{\realtitle}\\Handout
+\end{center}
+\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+}
+\vspace{0.2cm}
+
+\codeinput{../../lecture-notes/java/PriorityQueue.java}{PriorityQueue.java}
+
+\codeinput{../../lecture-notes/latex/pq_usage.txt}{Usage of a priority queue}
+
+\begin{center}
+  \includegraphics[width=14cm]{../../lecture-notes/latex/img/pq_implementations/pq_implementations-00.eps}
+\end{center}
+
+\begin{blackboard}
+Heap properties:
+
+  - SHAPE property: it is a complete binary tree.
+
+  - HEAP ORDER property: the priority of all nodes is bigger or equal than the priority of its children.
+\end{blackboard}
+
+\begin{center}
+  \includegraphics[width=7cm]{../../lecture-notes/latex/img/is_heap/is_heap-01.eps}
+  \includegraphics[width=7cm]{../../lecture-notes/latex/img/is_heap/is_heap-02.eps}
+  \includegraphics[width=7cm]{../../lecture-notes/latex/img/is_heap/is_heap-03.eps}
+  \includegraphics[width=7cm]{../../lecture-notes/latex/img/is_heap/is_heap-04.eps}
+\end{center}
+
+\newpage
+
+\begin{multicols}{2}
+\begin{blackboard}
+Insert algorithm:
+
+  - Place the new node at the end of the tree.
+
+  - swap it with its parent until the heap
+    order property is satisfied.
+\end{blackboard}
+\columnbreak
+\begin{center}
+  \includegraphics[width=8cm]{../../lecture-notes/latex/img/insert/insert.eps}
+\end{center}
+\end{multicols}
+
+\begin{multicols}{2}
+\begin{blackboard}
+RemoveMax algorithm:
+
+  - Return root.
+
+  - Move last node to root.
+
+  - swap it with its biggest child until the
+    heap order property is satisfied.
+\end{blackboard}
+\columnbreak
+\begin{center}
+  \includegraphics[width=8cm]{../../lecture-notes/latex/img/removeMax/removeMax.eps}
+\end{center}
+\end{multicols}
+
+\end{document}
