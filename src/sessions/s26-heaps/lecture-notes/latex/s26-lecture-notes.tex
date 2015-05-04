@@ -64,7 +64,7 @@ So the main operations on a priority queue are:
 
 \codeinput{pq_usage.txt}{Handout}
 
-\subsection{Implementations}
+\subsection{Priority Queues Implementations}
 
 \begin{center}
   \includegraphics[width=14cm]{./img/pq_implementations/pq_implementations-16.eps}
@@ -108,4 +108,90 @@ A binary heap is a binary tree with two properties:
   yes, no
   no, yes
 \end{blackboard}
+
+\subsection{Insert Algorithm}
+
+The insert algorithm has two parts:
+
+\begin{multicols}{2}
+\begin{enumerate}
+
+  \item Place the new node at the end of the complete tree.
+
+    With the tree already complies with the \emph{shape} property, but probably
+    not with the \emph{heap order} property.
+
+  \item If the priority of your parent is smaller than yours, swap possitions
+    with the parent. Repeat until the heap property is meet.
+
+    This will fix the \emph{heap order} property eventually, without breaking
+    the \emph{shape} property, as swapping does not modify the shape of the
+    tree.
+
+\end{enumerate}
+\columnbreak
+\begin{center}
+  \includegraphics[width=8cm]{./img/insert/insert.eps}
+\end{center}
+\end{multicols}
+
+\newpage
+\subsection{RemoveMax Algorithm}
+
+\begin{multicols}{2}
+
+The root element is always the element with the maximum priority, therefore, we
+do not have to search for it.
+
+But once we extract it, the tree is broken, as it has not root.
+
+To recover the tree shape, we have to choose one other node to substitute the root.
+
+The best way to do that while mantaining the \emph{shape} property is to choose
+the last node in the tree, and move it to the root.
+
+This way the shape property is mantained.
+
+The heap order property is not probably broken, but we can easily fix that by swapping:
+
+If the priority of the node is smaller than any of its children, then swap with
+the child with the biggest priority. Repeat until the heap property is meet.
+
+\begin{enumerate}
+
+  \item Return root, move las node to root.
+
+  \item If priority of the node is smaller than any of its children,
+    swap with the biggest child. Repeat until the heap property is meet.
+
+\end{enumerate}
+\columnbreak
+\begin{center}
+  \includegraphics[width=8cm]{./img/removeMax/removeMax.eps}
+\end{center}
+\end{multicols}
+
+
+\subsection{Binary Heap Implementation}
+
+As a binary heap is a binary tree, we can reuse the last week implementation of
+a binary tree, with node that have parent, left and right references.
+
+But since binary heaps are complete binary trees, it is much more simpler to
+just use an array imlementation of a binary tree.
+
+Do you remember the array imlementation of a binary tree from two weeks ago?
+
+It looked like this:
+
+\begin{center}
+  \includegraphics[width=12cm]{../../../s22-trees/lecture-notes/latex/img/arraybtree/arraybtree.eps}
+\end{center}
+
+So let us implement a binary heap using an array:
+
+\codeinput{../java/PriorityQueue.java}{PriorityQueue.java}
+\codeinput{../java/Heap.java}{Heap.java}
+
 \end{document}
+
