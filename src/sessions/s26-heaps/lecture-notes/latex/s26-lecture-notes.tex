@@ -24,7 +24,7 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \section{Priority Queues}
 
 You already know about queues: queues are a standard way to process objects on
-a \emph{first-come, first-served} scheduling, for example, clients in a store.
+a \emph{first-come, first-served} basis, for example, clients in a store.
 
 However, for many problems, some ``clients'' are more important than others:
 
@@ -32,7 +32,7 @@ However, for many problems, some ``clients'' are more important than others:
 
   \item Passengers waitting to board a plane, often first class passengers are
     going to board before Business class passengers, no matter how late they
-    get into the airport.
+    got to the airport.
 
   \item Your agenda is a collection of tasks that usually come in in a random
     order, but you usually start working on the most urgent task (this is, the
@@ -41,7 +41,7 @@ However, for many problems, some ``clients'' are more important than others:
 
   \item An Internet router is constantly receiving data packages from all
     around the world, but it serves the packets with the highest priority
-    first.
+    first (this is not how a router really works, but you get the idea).
 
   \item Any real time simulation program, including most games: the game is
     constantly creating new events that will happend in the close future, they
@@ -243,7 +243,7 @@ Now let us write the insert method. Do you remember the algorithm?
 
 And now let us finish with the removeMax():
 
-\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{132}{194}
+\codelinesinput{../java/Heap.java}{Heap attributes and ctor}{132}{195}
 
 
 \subsection{Min Heaps vs. Max Heaps}

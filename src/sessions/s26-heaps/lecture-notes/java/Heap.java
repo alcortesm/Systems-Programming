@@ -179,13 +179,14 @@ class Heap<P extends Comparable<P>, V> implements PriorityQueue<P, V> {
 
         // move last node to the root
         array[1] = array[last];
+        array[last] = null;
         last--;
 
         // swap with the biggest child until the
         // heap order property is satisfied
         int current = 1;
         int biggest;
-        while ((biggest = biggestOfTheFamily(current)) != current) {
+        while (current != (biggest = biggestOfTheFamily(current))) {
             swap(current, biggest);
             current = biggest;
         }
