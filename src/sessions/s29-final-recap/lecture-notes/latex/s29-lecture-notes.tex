@@ -20,17 +20,19 @@ Systems Programming, 2014-2015 \hfill version: \today\\
 \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \vspace{1cm}
 
-\section{Final Exam 2014-2015}
+\begin{center}
+  {\Huge Final Exam (Extraordinary call) 2014-2015}
+\end{center}
 
-\subsection{Problem 1}
+\section{Problem 1}
 
 GIVE 10 MINUTES TO READ THE PROBLEM TEXT.
 
-YOU WILL HAVE TO EXPLAIN WHAT IS THE PROBLEM IS ABOUT IN 2 PARRAGRAPHS, AS IF
-IT WERE A PROJECT YOU ARE WORKING ON.
+THEN YOU WILL HAVE TO EXPLAIN WHAT IS THE PROBLEM ASKING IN ABOUT 2
+PARRAGRAPHS.
 
 
-\subsubsection{Discussion}
+\subsection{Discussion}
 
 Problem description:
 \begin{multicols}{2}
@@ -111,12 +113,12 @@ Now, let us write a program to test this and the print method from the last sect
 
 \newpage
 
-\subsubsection{Section 1}
+\subsection{Section 1}
 
 \codelinesinput{../java/Estate.java}{Estate.java}{1}{20}
 
 
-\subsubsection{Section 2}
+\subsection{Section 2}
 
 \codeinput{../java/Housing.java}{Housing.java}
 \codeinput{../java/Establishment.java}{Establishment.java}
@@ -124,7 +126,7 @@ Now, let us write a program to test this and the print method from the last sect
 
 \newpage
 
-\subsubsection{Section 3}
+\subsection{Section 3}
 
 \begin{multicols}{2}
 Pay attention to:
@@ -181,6 +183,147 @@ Pay attention to:
 \end{itemize}
 \columnbreak
 \codelinesinput{../java/Estate.java}{Estate.java}{56}{78}
+\end{multicols}
+
+
+
+
+
+
+
+\section{Problem 2}
+
+GIVE 10 MINUTES TO READ THE PROBLEM TEXT.
+
+THEN YOU WILL HAVE TO EXPLAIN WHAT IS THIS PROBLEM ASKING IS ABOUT 2 PARRAGRAPHS.
+
+
+\subsection{Discussion}
+
+Data structure description:
+
+\begin{multicols}{2}
+\begin{enumerate}
+
+  \item You have a tree that represents a family tree. Each \texttt{Tree} is a
+    person (\texttt{String name}).
+
+  \item Each person can have several children, for example, the children of Dís were Fíli and Kíli.
+
+  \item Children are represented as a collections of trees (this is, a
+    collection of people). In this problem we are going to use a
+    \texttt{Queue<Tree>}, and we have called that a \texttt{Forest}, because it
+    is a collection of trees.
+
+    Fíli and Kíli have no children so they have empty queues (or empty forests).
+
+  \item But Dís has 2 children, so he has a non-empty queue\ldots
+
+  \item With its corresponding nodes.
+
+\end{enumerate}
+
+\columnbreak
+
+\begin{center}
+\includegraphics[width=8cm]{./img/family-tree/family-tree-05.eps}
+\end{center}
+
+\end{multicols}
+
+Problem description:
+
+\begin{itemize}
+
+  \item You should be able to create people (trees) and their children (queue
+    of other people).
+
+  \item You should be able to print a person, which will print all its family
+    tree.
+
+\end{itemize}
+
+
+Interesting things:
+
+\begin{itemize}
+
+  \item I have change the name of the tree attribute from \texttt{forest} to
+    \texttt{children}, because it is a much better name.
+
+  \item I have change the attributes of the queue, from \texttt{top} and
+    \texttt{tail} to \texttt{first} and \texttt{last}, because it is a much
+    better name, not only for a generic queue, but also for a collections of
+    children, as the firstborn is now pointed by \texttt{first}, and the last
+    child is pointed by \texttt{last}, so the naming now makes sense.
+
+  \item According to these, there is an error in the problem text, Thorin was 5
+    year younger than Frerin, so it should be on the left in the problem
+    diagram, but that is not very important.
+
+  \item Please notice that none of the two main classes (\texttt{Tree} and
+    \texttt{Forest}) are \emph{generic} classes.
+
+    The info of the trees are strings, and the forest is not a generic queue,
+    it is a queue of trees, thus its name.
+
+\end{itemize}
+
+\newpage
+
+\subsection{Section 1}
+
+\begin{multicols}{2}
+
+  \codeinput{../java-simple/Forest.java}{java-simple/Forest.java}
+
+  \columnbreak
+
+  \codeinput{../java-simple/Node.java}{java-simple/Node.java}
+
+\end{multicols}
+
+
+\codelinesinput{../java/Forest.java}{Forest.java}{33}{45}
+
+
+\newpage
+
+\subsection{Section 2}
+
+\begin{multicols}{2}
+
+  \codeinput{../java-simple/Tree.java}{java-simple/Tree.java}
+
+  \columnbreak
+
+  \codelinesinput{../java/Tree.java}{Tree.java}{25}{27}
+
+\end{multicols}
+
+
+
+\subsection{Section 3}
+
+\begin{multicols}{2}
+
+  \codeinput{../java/TreeTest.java}{TreeTest.java}
+
+\end{multicols}
+
+
+
+
+\subsection{Section 4}
+
+\begin{multicols}{2}
+
+  \codelinesinput{../java/Tree.java}{Tree.java}{29}{33}
+
+  \columnbreak
+
+  \codelinesinput{../java/Forest.java}{Forest.java}{47}{55}
+
 \end{multicols}
 
 

@@ -42,7 +42,7 @@ class EstateTest {
 
         // test static print over a list
         List<Estate> list = new LinkedList<Estate>();
-        list.add(0, h1); list.add(1, h2); list.add(2, e1); list.add(3, e2);
+        list.add(0, h1); list.add(0, h2); list.add(0, e1); list.add(0, e2);
         Estate.printAverageIBIMaxTRU(list);
 
         // must print :
