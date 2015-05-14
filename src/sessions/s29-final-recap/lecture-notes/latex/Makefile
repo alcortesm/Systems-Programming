@@ -27,7 +27,7 @@ install : $(pub_files) html zip
 
 zip:
 	- rm $(zip)
-#	zip -j -r $(zip) ../java/*.java
+	zip -j -r $(zip) ../java/*.java
 
 $(pub_files) : $(out) | $(pub_dir)
 	cp $< $@
@@ -71,3 +71,4 @@ demo :
 	cp ../java/*.java $(demo_dir)/java
 	mkdir -p $(demo_dir)/java-simple
 	cp ../java-simple/*.java $(demo_dir)/java-simple
+	cp ./img/estate-advanced/estate-advanced.eps ./img/estate-simple/estate-simple.eps ./img/family-tree/family-tree.pdf $(demo_dir)
